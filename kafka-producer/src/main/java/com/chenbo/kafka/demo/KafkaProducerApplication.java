@@ -11,13 +11,15 @@ import org.springframework.context.ConfigurableApplicationContext;
  */
 @SpringBootApplication
 public class KafkaProducerApplication {
+    private static final int TRY_TIMES = 3;
 
     public static void main(String[] args) {
+
         ConfigurableApplicationContext context = SpringApplication.run(KafkaProducerApplication.class, args);
 
         KafkaSender sender = context.getBean(KafkaSender.class);
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < TRY_TIMES; i++) {
             //调用消息发送类中的消息发送方法
             sender.send();
 
