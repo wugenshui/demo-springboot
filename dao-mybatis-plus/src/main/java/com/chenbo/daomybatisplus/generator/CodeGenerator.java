@@ -66,7 +66,7 @@ public class CodeGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setModuleName(scanner("模块名"));
-        pc.setParent("com.chenbo");
+        pc.setParent("com.chenbo.daomybatisplus");
         mpg.setPackageInfo(pc);
 
         // 自定义配置
@@ -133,5 +133,4 @@ public class CodeGenerator {
         mpg.setTemplateEngine(new VelocityTemplateEngine());
         mpg.execute();
     }
-
 }

@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.chenbo.daomybatisplus.mapper")
+@MapperScan("com.chenbo.daomybatisplus.**.mapper")
 public class DaoMybatisPlusApplication {
 
     public static void main(String[] args) {
