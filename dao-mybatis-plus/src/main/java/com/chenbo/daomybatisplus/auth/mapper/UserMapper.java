@@ -1,7 +1,9 @@
 package com.chenbo.daomybatisplus.auth.mapper;
 
-import com.chenbo.daomybatisplus.auth.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.chenbo.daomybatisplus.auth.entity.User;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * <p>
@@ -13,4 +15,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UserMapper extends BaseMapper<User> {
 
+    @Update("UPDATE User SET deleted = 0 WHERE ID = #{id}")
+    int updateDeleted(@Param("id") Long id);
 }

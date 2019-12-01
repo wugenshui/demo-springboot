@@ -1,9 +1,9 @@
 package com.chenbo.daomybatisplus.auth.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chenbo.daomybatisplus.auth.entity.User;
 import com.chenbo.daomybatisplus.auth.mapper.UserMapper;
 import com.chenbo.daomybatisplus.auth.service.IUserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +17,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
+    @Override
+    public int updateDeleted(Long id) {
+        return baseMapper.updateDeleted(id);
+    }
 }

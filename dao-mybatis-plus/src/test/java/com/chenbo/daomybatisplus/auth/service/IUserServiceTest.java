@@ -53,4 +53,11 @@ public class IUserServiceTest {
         boolean state = userService.removeById(1094590409767661570L);
         Assert.assertTrue(state);
     }
+
+    @Test
+    public void updateDeletedTest() {
+        int rows = userService.updateDeleted(1094590409767661570L);
+        Assert.assertEquals(1, rows);
+    }
+
 }
