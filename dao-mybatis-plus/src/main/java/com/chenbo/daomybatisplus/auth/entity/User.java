@@ -3,6 +3,7 @@ package com.chenbo.daomybatisplus.auth.entity;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.Version;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -52,6 +53,7 @@ public class User implements Serializable {
     private LocalDateTime updateTime;
 
     @ApiModelProperty(value = "版本")
+    @Version
     private Integer version;
 
     @ApiModelProperty(value = "逻辑删除标识(0.未删除,1.已删除)")

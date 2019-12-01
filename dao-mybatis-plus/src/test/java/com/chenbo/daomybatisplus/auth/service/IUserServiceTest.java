@@ -41,6 +41,7 @@ public class IUserServiceTest {
     @Test
     public void updateByIdTest() {
         User user = new User();
+        user.setVersion(1);
         user.setId(1094590409767661570L);
         user.setEmail("soft@gmail.com");
         boolean state = userService.updateById(user);
