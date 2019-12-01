@@ -1,12 +1,16 @@
 package com.chenbo.daomybatisplus.auth.entity;
 
-import java.time.LocalDateTime;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -19,10 +23,13 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="User对象", description="用户")
+@ApiModel(value = "User对象", description = "用户")
 public class User implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
+
+    @ApiModelProperty(value = "主键")
+    private Long id;
 
     @ApiModelProperty(value = "姓名")
     private String name;
@@ -37,15 +44,19 @@ public class User implements Serializable {
     private Long managerId;
 
     @ApiModelProperty(value = "创建时间")
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     @ApiModelProperty(value = "修改时间")
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
     @ApiModelProperty(value = "版本")
     private Integer version;
 
     @ApiModelProperty(value = "逻辑删除标识(0.未删除,1.已删除)")
+    @TableLogic
+    @TableField(select = false)
     private Integer deleted;
 
 
