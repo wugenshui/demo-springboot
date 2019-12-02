@@ -15,5 +15,5 @@ public interface UserMapper {
      * @param id
      * @return 实体
      */
-    User selectById(int id);
+    User selectById(double id);
 }

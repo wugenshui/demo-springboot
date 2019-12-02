@@ -17,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("{id}")
-    public String getUser(@PathVariable int id) {
+    public String getUser(@PathVariable double id) {
         return userService.selectById(id).toString();
     }
 }
