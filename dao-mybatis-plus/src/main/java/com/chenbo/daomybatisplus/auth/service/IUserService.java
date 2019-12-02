@@ -12,5 +12,20 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2019-12-01
  */
 public interface IUserService extends IService<User> {
-    int updateDeleted(Long id);
+    /**
+     * 恢复删除标记
+     *
+     * @param id 主键
+     * @return 影响行数
+     */
+    int resumeDelete(Long id);
+
+
+    /**
+     * 版本恢复
+     *
+     * @param id 主键
+     * @return 影响行数
+     */
+    int resumeVersion(Long id);
 }

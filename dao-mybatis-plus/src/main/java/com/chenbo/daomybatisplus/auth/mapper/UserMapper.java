@@ -15,6 +15,22 @@ import org.apache.ibatis.annotations.Update;
  */
 public interface UserMapper extends BaseMapper<User> {
 
+    /**
+     * 恢复删除标记
+     *
+     * @param id 主键
+     * @return 影响行数
+     */
     @Update("UPDATE User SET deleted = 0 WHERE ID = #{id}")
-    int updateDeleted(@Param("id") Long id);
+    int resumeDelete(@Param("id") Long id);
+
+
+    /**
+     * 版本恢复
+     *
+     * @param id 主键
+     * @return 影响行数
+     */
+    @Update("UPDATE User SET version = 1 WHERE ID = #{id}")
+    int resumeVersion(@Param("id") Long id);
 }

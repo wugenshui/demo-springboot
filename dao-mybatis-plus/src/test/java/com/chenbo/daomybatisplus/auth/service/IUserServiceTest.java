@@ -2,10 +2,8 @@ package com.chenbo.daomybatisplus.auth.service;
 
 import com.chenbo.daomybatisplus.auth.entity.User;
 import org.junit.Assert;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -16,7 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@FixMethodOrder(MethodSorters.JVM)
 public class IUserServiceTest {
     @Autowired
     IUserService userService;
@@ -38,6 +35,9 @@ public class IUserServiceTest {
         Assert.assertNotNull(user);
     }
 
+    /**
+     * 更新数据并恢复
+     */
     @Test
     public void updateByIdTest() {
         User user = new User();
@@ -46,18 +46,20 @@ public class IUserServiceTest {
         user.setEmail("soft@gmail.com");
         boolean state = userService.updateById(user);
         Assert.assertTrue(state);
+
+        int rows = userService.resumeVersion(1094590409767661570L);
+        Assert.assertEquals(1, rows);
     }
 
+    /**
+     * 逻辑删除并恢复
+     */
     @Test
     public void removeByIdTest() {
         boolean state = userService.removeById(1094590409767661570L);
         Assert.assertTrue(state);
-    }
 
-    @Test
-    public void updateDeletedTest() {
-        int rows = userService.updateDeleted(1094590409767661570L);
+        int rows = userService.resumeDelete(1094590409767661570L);
         Assert.assertEquals(1, rows);
     }
-
 }

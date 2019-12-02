@@ -18,7 +18,12 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
     @Override
-    public int updateDeleted(Long id) {
-        return baseMapper.updateDeleted(id);
+    public int resumeDelete(Long id) {
+        return baseMapper.resumeDelete(id);
+    }
+
+    @Override
+    public int resumeVersion(Long id) {
+        return baseMapper.resumeVersion(id);
     }
 }
