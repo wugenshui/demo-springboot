@@ -11,8 +11,9 @@ import org.springframework.stereotype.Repository;
 public interface UserMapper {
     /**
      * 根据id查询实体
-    * @param id
-     * @return
+     *
+     * @param id
+     * @return 实体
      */
-    User Sel(int id);
+    User selectById(int id);
 }

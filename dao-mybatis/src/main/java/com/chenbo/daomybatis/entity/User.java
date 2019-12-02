@@ -1,54 +1,32 @@
 package com.chenbo.daomybatis.entity;
 
+import lombok.Data;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 /**
  * @author : chenbo
  * @date : 2019/11/21
  */
-public class User {
-    private Integer id;
-    private String userName;
-    private String passWord;
-    private String realName;
+@Data
+public class User implements Serializable {
 
-    public Integer getId() {
-        return id;
-    }
+    private Long id;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private String name;
 
-    public String getUserName() {
-        return userName;
-    }
+    private Integer age;
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+    private String email;
 
-    public String getPassWord() {
-        return passWord;
-    }
+    private Long managerId;
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
-    }
+    private LocalDateTime createTime;
 
-    public String getRealName() {
-        return realName;
-    }
+    private LocalDateTime updateTime;
 
-    public void setRealName(String realName) {
-        this.realName = realName;
-    }
+    private Integer version;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", passWord='" + passWord + '\'' +
-                ", realName='" + realName + '\'' +
-                '}';
-    }
+    private Integer deleted;
 }
