@@ -12,8 +12,8 @@ public interface UserMapper {
     /**
      * 根据id查询实体
      *
-     * @param id
+     * @param id 主键
      * @return 实体
      */
-    User selectById(double id);
+    User selectById(Long id);
 }

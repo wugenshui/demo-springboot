@@ -9,6 +9,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mapping/*Mapper.xml
   #type-aliases-package: com.chenbo.daomybatis
 

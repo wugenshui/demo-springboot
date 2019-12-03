@@ -1,5 +1,6 @@
 package com.chenbo.daomybatis.controller;
 
+import com.chenbo.daomybatis.entity.User;
 import com.chenbo.daomybatis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +17,15 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 获取用户信息
+     *
+     * @param id 用户id
+     * @return
+     */
     @RequestMapping("{id}")
-    public String getUser(@PathVariable double id) {
-        return userService.selectById(id).toString();
+    public User getUser(@PathVariable Long id) {
+        id = 1094590409767661570L;
+        return userService.selectById(id);
     }
 }

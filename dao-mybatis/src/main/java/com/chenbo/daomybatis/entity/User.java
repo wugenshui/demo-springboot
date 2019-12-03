@@ -2,7 +2,6 @@ package com.chenbo.daomybatis.entity;
 
 import lombok.Data;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -10,7 +9,7 @@ import java.time.LocalDateTime;
  * @date : 2019/11/21
  */
 @Data
-public class User implements Serializable {
+public class User {
 
     private Long id;
 
