@@ -19,20 +19,20 @@ public class AjaxResult<T> {
     /**
      * 返回的消息提示
      */
-    private String message;
+    private String msg;
     /**
      * 返回的数据
      */
     private T data;
 
-    public AjaxResult(int state, String message) {
+    public AjaxResult(int state, String msg) {
         this.state = state;
-        this.message = message;
+        this.msg = msg;
     }
 
-    public AjaxResult(int state, String message, T data) {
+    public AjaxResult(int state, String msg, T data) {
         this.state = state;
-        this.message = message;
+        this.msg = msg;
         this.data = data;
     }
 
@@ -42,7 +42,7 @@ public class AjaxResult<T> {
      * @return
      */
     public Map<String, Object> covMap() {
-        return MapUtil.build().put("state", this.state).put("message", this.message).put("data", this.data).over();
+        return MapUtil.build().put("state", this.state).put("message", this.msg).put("data", this.data).over();
     }
 
     /**
@@ -105,12 +105,12 @@ public class AjaxResult<T> {
         this.state = state;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public T getData() {
