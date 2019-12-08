@@ -1,6 +1,7 @@
 package com.chenbo.daomongodb.service;
 
 import com.chenbo.daomongodb.dao.UserDao;
+import com.chenbo.daomongodb.dao.UserPostDao;
 import com.chenbo.daomongodb.model.User;
 import com.chenbo.daomongodb.model.UserPost;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,11 @@ import java.util.Optional;
  * @date : 2019-12-08
  */
 @Service
-public class UserService {
+public class UserDaoService {
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private UserPostDao userPostDao;
 
     public User insert() {
         User user = new User();
@@ -25,6 +28,7 @@ public class UserService {
         UserPost userPost = new UserPost();
         userPost.setName("作业人员");
         userPost.setLevel(5);
+        userPost = userPostDao.insert(userPost);
 
         user.setUsername("张三");
         user.setLoginname("张三丰");
@@ -34,17 +38,16 @@ public class UserService {
         user.setSex("男");
         user.setAge(18);
         user.setFavourite(new String[]{"吃饭", "唱歌"});
-        user.setPost(userPost);
+        user.setUserPost(userPost);
+        user.setExperience(12L);
 
         return userDao.insert(user);
     }
 
-    public void delete(String id) {
-        userDao.deleteById(id);
-    }
-
-    public void deleteAll() {
-        userDao.deleteAll();
+    public void delete(User user) {
+        userDao.delete(user);
+        UserPost userPost = user.getUserPost();
+        userPostDao.delete(userPost);
     }
 
     public List<User> findAll() {
