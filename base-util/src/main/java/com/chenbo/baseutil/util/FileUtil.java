@@ -24,17 +24,17 @@ public class FileUtil {
      * @throws IOException
      */
     public static void fileupload(byte[] file, String directory, String fileName) throws IOException {
-        //目标目录
+        // 目标目录
         File targetDirectory = new File(directory);
         if (!targetDirectory.exists()) {
             targetDirectory.mkdirs();
         }
 
-        //二进制流写入
+        // 二进制流写入
         try (FileOutputStream fileOutputStream = new FileOutputStream(directory + fileName)) {
             fileOutputStream.write(file);
             fileOutputStream.flush();
-        } catch (Exception e) {
+        } catch (IOException e) {
             throw e;
         }
     }
