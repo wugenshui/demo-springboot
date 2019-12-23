@@ -213,4 +213,19 @@ public class User {
     public void setDeleted(Integer deleted) {
         this.deleted = deleted;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                ", managerId=" + managerId +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", version=" + version +
+                ", deleted=" + deleted +
+                '}';
+    }
 }

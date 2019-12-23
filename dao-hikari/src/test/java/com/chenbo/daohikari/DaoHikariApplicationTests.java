@@ -1,13 +1,29 @@
 package com.chenbo.daohikari;
 
-import org.junit.jupiter.api.Test;
+import com.chenbo.daohikari.domain.User;
+import com.chenbo.daohikari.mapper.UserMapper;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
+@RunWith(SpringRunner.class)
 @SpringBootTest
-class DaoHikariApplicationTests {
+public class DaoHikariApplicationTests {
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
     }
 
+    @Test
+    public void testSelectAll() {
+        List<User> users = userMapper.selectAll();
+        users.forEach(System.out::println);
+    }
 }
