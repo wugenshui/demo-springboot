@@ -5,15 +5,23 @@
 
 <generatorConfiguration>
     <!--导入属性配置-->
-    <properties resource="jdbc.properties"></properties>
+    <properties resource="generator/jdbc.properties"></properties>
 
     <!-- 指定数据库驱动的jdbc驱动jar包的位置 -->
-    <classPathEntry location="${db.driverLocation}"/>
+<!--    <classPathEntry location="${jdbc.driverLocation}"/>-->
 
     <!-- context 是逆向工程的主要配置信息 -->
     <!-- id：起个名字 -->
     <!-- targetRuntime：设置生成的文件适用于那个 mybatis 版本 -->
     <context id="default" targetRuntime="MyBatis3">
+        <!-- 是否允许子包 -->
+        <property name="enableSubPackages" value="false"/>
+        <!-- 是否对modal添加构造函数 -->
+        <property name="constructorBased" value="true"/>
+        <!-- 是否清理从数据库中查询出的字符串左右两边的空白字符 -->
+        <property name="trimStrings" value="true"/>
+        <!-- 建立modal对象是否不可改变 即生成的modal对象不会有setter方法，只有构造方法 -->
+        <property name="immutable" value="false"/>
 
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
             <property name="mappers" value="tk.mybatis.mapper.MyMapper" />
@@ -32,6 +40,14 @@
                         userId="${jdbc.username}"
                         password="${jdbc.password}">
         </jdbcConnection>
+
+        <!--非必须，类型处理器，在数据库类型和java类型之间的转换控制-->
+        <javaTypeResolver>
+            <!-- 默认情况下数据库中的 decimal，bigInt 在 Java 对应是 sql 下的 BigDecimal 类 -->
+            <!-- 不是 double 和 long 类型 -->
+            <!-- 使用常用的基本类型代替 sql 包下的引用类型 -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
 
         <!-- targetPackage：生成的实体类所在的包 -->
         <!-- targetProject：生成的实体类所在的硬盘位置 -->
@@ -53,26 +69,7 @@
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
-            <generateKey column="id" sqlStatement="Mysql" identity="true"></generateKey>
+<!--            <generateKey column="id" sqlStatement="Mysql" identity="true"></generateKey>-->
         </table>
-
-        <!--非必须，类型处理器，在数据库类型和java类型之间的转换控制-->
-        <javaTypeResolver>
-            <!-- 默认情况下数据库中的 decimal，bigInt 在 Java 对应是 sql 下的 BigDecimal 类 -->
-            <!-- 不是 double 和 long 类型 -->
-            <!-- 使用常用的基本类型代替 sql 包下的引用类型 -->
-            <property name="forceBigDecimals" value="false"/>
-        </javaTypeResolver>
-        <!-- 是否允许子包 -->
-        <property name="enableSubPackages" value="false"/>
-        <!-- 是否对modal添加构造函数 -->
-        <property name="constructorBased" value="true"/>
-        <!-- 是否清理从数据库中查询出的字符串左右两边的空白字符 -->
-        <property name="trimStrings" value="true"/>
-        <!-- 建立modal对象是否不可改变 即生成的modal对象不会有setter方法，只有构造方法 -->
-        <property name="immutable" value="false"/>
-
-
-
     </context>
 </generatorConfiguration>

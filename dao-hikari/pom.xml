@@ -93,11 +93,12 @@
                         <artifactId>mysql-connector-java</artifactId>
                         <version>${mysql.version}</version>
                     </dependency>
-<!--                    <dependency>-->
-<!--                        <groupId>tk.mybatis</groupId>-->
-<!--                        <artifactId>mapper</artifactId>-->
-<!--                        <version>4.1.4</version>-->
-<!--                    </dependency>-->
+                    <!-- https://mvnrepository.com/artifact/tk.mybatis/mapper -->
+                    <dependency>
+                        <groupId>tk.mybatis</groupId>
+                        <artifactId>mapper</artifactId>
+                        <version>4.1.5</version>
+                    </dependency>
                 </dependencies>
             </plugin>
         </plugins>
