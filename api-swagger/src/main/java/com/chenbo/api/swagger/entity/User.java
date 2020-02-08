@@ -1,5 +1,6 @@
 package com.chenbo.api.swagger.entity;
 
+import com.chenbo.api.swagger.validator.IsMobile;
 import lombok.Data;
 
 import javax.validation.constraints.Max;
@@ -23,4 +24,7 @@ public class User {
     private Integer age;
 
     private LocalDateTime createTime;
+
+    @IsMobile
+    private String mobile;
 }
