@@ -1,9 +1,15 @@
 package com.chenbo.api.swagger.controller;
 
+import com.chenbo.api.swagger.entity.AjaxResult;
 import com.chenbo.api.swagger.entity.User;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author : chenbo
@@ -14,15 +20,24 @@ import java.time.LocalDateTime;
 public class UserController {
 
     @GetMapping("{id}")
-    public User getUser(@PathVariable Long id) {
+    public AjaxResult<User> getUser(@PathVariable Long id) {
         User user = initUser();
         user.setId(id);
-        return user;
+        return AjaxResult.success(user);
     }
 
     @PostMapping
-    public User saveUser(@RequestBody User user) {
-        return user;
+    public AjaxResult<User> saveUser(@Valid @RequestBody User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            List<ObjectError> errorList = bindingResult.getAllErrors();
+            List<String> mesList = new ArrayList<String>();
+            for (int i = 0; i < errorList.size(); i++) {
+                mesList.add(errorList.get(i).getDefaultMessage());
+            }
+            return AjaxResult.error("保存用户异常：" + mesList.toString());
+        } else {
+            return AjaxResult.success(user);
+        }
     }
 
     private User initUser() {
