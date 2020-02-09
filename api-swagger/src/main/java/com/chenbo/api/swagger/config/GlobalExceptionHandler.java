@@ -29,15 +29,13 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public AjaxResult<String> MethodArgumentNotValidHandler(HttpServletRequest request, MethodArgumentNotValidException exception) throws Exception {
-        String temp = "";
         List<FieldError> errors = exception.getBindingResult().getFieldErrors();
         ObjectError error = errors.get(0);
-        String msg = error.getDefaultMessage();
-        return AjaxResult.error(msg);
+        return AjaxResult.error("参数校验失败:" + error.getDefaultMessage());
     }
 
     /**
-     * 拦截所有的异常
+     * 拦截所有未处理异常
      *
      * @param httpServletRequest
      * @param e
