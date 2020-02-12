@@ -2,6 +2,8 @@ package com.chenbo.api.swagger.entity;
 
 import com.chenbo.baseutil.enums.HttpResultEnum;
 import com.chenbo.baseutil.util.MapUtil;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Map;
 
@@ -11,18 +13,24 @@ import java.util.Map;
  * @author : chenbo
  * @date : 2019-12-07
  */
+@ApiModel("Ajax请求响应类")
 public class AjaxResult<T> {
     /**
      * 返回状态:参照HttpResultEnum枚举
      */
+    @ApiModelProperty("返回状态")
     private int state;
+
     /**
      * 返回的消息提示
      */
+    @ApiModelProperty("返回的消息提示")
     private String msg;
+
     /**
      * 返回的数据
      */
+    @ApiModelProperty("返回的数据")
     private T data;
 
     public AjaxResult(int state, String msg) {
