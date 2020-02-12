@@ -18,10 +18,15 @@ class DaoJpaApplicationTests {
     private UserRepository dao;
 
     @Test
-    void findAllTest() {
+    void findTest() {
         List<User> users = dao.findAll();
         users.forEach(v -> {
             log.info(v.toString());
+        });
+
+        users = dao.findByName("胡龙飞");
+        users.forEach(v -> {
+            log.info("findByName:" + v.toString());
         });
     }
 
