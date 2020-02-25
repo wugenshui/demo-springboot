@@ -1,8 +1,7 @@
 package com.chenbo.kafka.demo.provider;
 
+import com.alibaba.fastjson.JSON;
 import com.chenbo.kafka.demo.beans.Message;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -22,8 +21,6 @@ public class KafkaSender {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    private Gson gson = new GsonBuilder().create();
-
     /**
      * 发送消息方法
      */
@@ -32,7 +29,7 @@ public class KafkaSender {
         message.setId(System.currentTimeMillis());
         message.setMsg(UUID.randomUUID().toString());
         message.setSendTime(new Date());
-        String msg = gson.toJson(message);
+        String msg = JSON.toJSONString(message);
         log.info("生产数据：{}", msg);
         kafkaTemplate.send("test-kafka", msg);
     }
