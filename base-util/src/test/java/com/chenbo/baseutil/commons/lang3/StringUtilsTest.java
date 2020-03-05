@@ -21,9 +21,18 @@ public class StringUtilsTest {
         System.out.println("[\"\"]为空" + isBlank);
         Assert.assertTrue(isBlank);
 
-
         isBlank = StringUtils.isBlank(null);
         System.out.println("null为空" + isBlank);
         Assert.assertTrue(isBlank);
+
+        isBlank = StringUtils.isBlank(" ");
+        System.out.println("[\" \"]为空" + isBlank);
+        Assert.assertTrue(isBlank);
+    }
+
+    @Test
+    public void trimTest() {
+        String str = StringUtils.trim(" bob ");
+        Assert.assertEquals("bob", str);
     }
 }
