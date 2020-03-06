@@ -45,5 +45,6 @@
 
     <modules>
         <module>apache-poi</module>
+        <module>poi-tl</module>
     </modules>
 </project>
