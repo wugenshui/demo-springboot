@@ -43,5 +43,7 @@
         </dependency>
     </dependencies>
 
-
+    <modules>
+        <module>apache-poi-demo</module>
+    </modules>
 </project>
