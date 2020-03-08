@@ -1,6 +1,7 @@
 package com.chenbo.demo.easy.excel;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  * @date : 2020-03-08
  */
 @Slf4j
+@Component
 public class DemoDAO {
 
     public void save(List<DemoData> list) {

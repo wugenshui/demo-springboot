@@ -17,16 +17,9 @@ public class DemoDataListener extends AnalysisEventListener<DemoData> {
      * 每隔5条存储数据库，实际使用中可以3000条，然后清理list ，方便内存回收
      */
     private static final int BATCH_COUNT = 5;
-    List<DemoData> list = new ArrayList<DemoData>();
-    /**
-     * 假设这个是一个DAO，当然有业务逻辑这个也可以是一个service。当然如果不用存储这个对象没用。
-     */
-    private DemoDAO demoDAO;
+    List<DemoData> list = new ArrayList<>();
 
-    public DemoDataListener() {
-        // 这里是demo，所以随便new一个。实际使用如果到了spring,请使用下面的有参构造函数
-        demoDAO = new DemoDAO();
-    }
+    private DemoDAO demoDAO;
 
     /**
      * 如果使用了spring,请使用这个构造方法。每次创建Listener的时候需要把spring管理的类传进来
@@ -40,8 +33,7 @@ public class DemoDataListener extends AnalysisEventListener<DemoData> {
     /**
      * 这个每一条数据解析都会来调用
      *
-     * @param data
-     *            one row value. Is is same as {@link AnalysisContext#readRowHolder()}
+     * @param data    one row value. Is is same as {@link AnalysisContext#readRowHolder()}
      * @param context
      */
     @Override
@@ -68,11 +60,14 @@ public class DemoDataListener extends AnalysisEventListener<DemoData> {
     }
 
     /**
-     * 加上存储数据库
+     * 存储数据
      */
     private void saveData() {
-        log.info("{}条数据，开始存储数据库！", list.size());
-        demoDAO.save(list);
-        log.info("存储数据库成功！");
+        if (list.size() > 0) {
+            log.info("{}条数据，开始存储数据库！", list.size());
+            demoDAO.save(list);
+            log.info("存储数据库成功！");
+        }
     }
+
 }
