@@ -1,4 +1,4 @@
-package com.chenbo.demo.apache.poi.demo;
+package com.chenbo.demo.apache.poi;
 
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.HSSFColor;
