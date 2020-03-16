@@ -45,6 +45,7 @@
 
     <modules>
         <module>apache-poi</module>
+        <module>docx4j</module>
         <module>poi-tl</module>
         <module>easypoi</module>
         <module>easyexcel</module>
