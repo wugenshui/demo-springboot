@@ -1,0 +1,31 @@
+package com.chenbo.demo.netty.thirdexample;
+
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.SimpleChannelInboundHandler;
+
+import java.time.LocalDateTime;
+
+/**
+ * @author : chenbo
+ * @date : 2020-03-19
+ */
+public class MyChatClientHandler extends SimpleChannelInboundHandler<String> {
+    @Override
+    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+        System.out.println(ctx.channel().remoteAddress());
+        System.out.println("client output:" + msg);
+        ctx.writeAndFlush("from client:" + LocalDateTime.now());
+    }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        cause.printStackTrace();
+        ctx.close();
+    }
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        ctx.writeAndFlush("im registered" + LocalDateTime.now());
+        super.channelActive(ctx);
+    }
+}
