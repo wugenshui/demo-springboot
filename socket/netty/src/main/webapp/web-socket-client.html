@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WebSocket客户端</title>
+</head>
+<body>
+<form onsubmit="return false;">
+    <textarea id="message" style="width:400px;height:200px;"></textarea>
+
+    <input type="button" value="发送数据" onclick="send()"/>
+
+    <h3>服务端输出：</h3>
+    <textarea id="responseText" style="width:400px;height:300px;"></textarea>
+
+    <input type="button" value="清空输出" onclick="document.getElementById('responseText').value=''">
+</form>
+
+<script>
+    var socket = new WebSocket("ws://localhost:8899/ws");
+    var resquestText = document.getElementById("message");
+    var responseText = document.getElementById("responseText");
+
+    socket.onmessage = function (event) {
+        responseText.value += "\n" + event.data;
+    }
+
+    socket.onopen = function () {
+        responseText.value = "连接开启！";
+    }
+
+    socket.close = function () {
+        responseText.value += "\n连接关闭！";
+    }
+
+    function send() {
+        if (socket.readyState === WebSocket.OPEN) {
+            socket.send(resquestText.value);
+            resquestText.value = "";
+        }
+    }
+</script>
+</body>
+</html>
