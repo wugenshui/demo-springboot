@@ -11,7 +11,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * @date : 2020-03-19
  */
 public class MyChatServer {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws Exception {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
 
