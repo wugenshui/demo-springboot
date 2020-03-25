@@ -8,6 +8,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.nio.channels.FileChannel;
@@ -24,16 +25,36 @@ public class NIOTest {
     @Test
     public void intBufferTest() {
         IntBuffer buffer = IntBuffer.allocate(5);
+        System.out.println("init");
+        print(buffer);
 
-        for (int i = 0; i < buffer.capacity(); i++) {
+        System.out.println("put");
+        for (int i = 0; i < 2; i++) {
             int randomNumber = new SecureRandom().nextInt(20);
             buffer.put(randomNumber);
+            print(buffer);
         }
 
+        System.out.println("flip");
         buffer.flip();
+        print(buffer);
 
+        System.out.println("get");
         while (buffer.hasRemaining()) {
-            System.out.println(buffer.get());
+            // System.out.println(buffer.get());
+            buffer.get();
+            print(buffer);
+        }
+
+        System.out.println("flip");
+        buffer.flip();
+        print(buffer);
+
+        System.out.println("put");
+        for (int i = 0; i < 2; i++) {
+            int randomNumber = new SecureRandom().nextInt(20);
+            buffer.put(randomNumber);
+            print(buffer);
         }
     }
 
@@ -75,5 +96,11 @@ public class NIOTest {
 
         // 删除文件
         new File("1.txt").delete();
+    }
+
+    private void print(Buffer buffer) {
+        System.out.print("capacity = " + buffer.capacity());
+        System.out.print(" limit = " + buffer.limit());
+        System.out.println(" position = " + buffer.position());
     }
 }
