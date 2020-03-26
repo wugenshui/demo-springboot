@@ -60,7 +60,7 @@ public class GpsConvertUtilTest {
                 113.3246380000, 23.1201380000,
                 113.3311448400, 23.1260471300));
         // 允许的误差
-        double allowValue = 0.001;
+        double delta = 0.001;
         double[] transPoint = null;
         double dValue;
 
@@ -69,55 +69,55 @@ public class GpsConvertUtilTest {
             transPoint = GpsConvertUtil.wgs84ToGcj02(allMap.wgs.lat, allMap.wgs.lng);
             dValue = transPoint[0] - allMap.gcj.lat;
             System.out.println("纬度lat：" + allMap.wgs.lat + "->" + transPoint[0] + " 误差：" + dValue);
-            Assert.assertTrue(allowValue > Math.abs(dValue));
+            Assert.assertEquals(transPoint[0], allMap.gcj.lat, delta);
             dValue = transPoint[1] - allMap.gcj.lng;
             System.out.println("经度lon：" + allMap.wgs.lng + "->" + transPoint[1] + " 误差：" + dValue);
-            Assert.assertTrue(allowValue > Math.abs(dValue));
+            Assert.assertEquals(transPoint[1], allMap.gcj.lng, delta);
 
             System.out.println("gcj02ToWgs84");
             transPoint = GpsConvertUtil.gcj02ToWgs84(allMap.gcj.lat, allMap.gcj.lng);
             dValue = transPoint[0] - allMap.wgs.lat;
             System.out.println("纬度lat：" + allMap.gcj.lat + "->" + transPoint[0] + " 误差：" + dValue);
-            Assert.assertTrue(allowValue > Math.abs(dValue));
+            Assert.assertEquals(transPoint[0], allMap.wgs.lat, delta);
             dValue = transPoint[1] - allMap.wgs.lng;
             System.out.println("经度lon：" + allMap.gcj.lng + "->" + transPoint[1] + " 误差：" + dValue);
-            Assert.assertTrue(allowValue > Math.abs(dValue));
+            Assert.assertEquals(transPoint[1], allMap.wgs.lng, delta);
 
             System.out.println("gcj02ToBd09");
             transPoint = GpsConvertUtil.gcj02ToBd09(allMap.gcj.lat, allMap.gcj.lng);
             dValue = transPoint[0] - allMap.bd.lat;
             System.out.println("纬度lat：" + allMap.gcj.lat + "->" + transPoint[0] + " 误差：" + dValue);
-            Assert.assertTrue(allowValue > Math.abs(dValue));
+            Assert.assertEquals(transPoint[0], allMap.bd.lat, delta);
             dValue = transPoint[1] - allMap.bd.lng;
             System.out.println("经度lon：" + allMap.gcj.lng + "->" + transPoint[1] + " 误差：" + dValue);
-            Assert.assertTrue(allowValue > Math.abs(dValue));
+            Assert.assertEquals(transPoint[1], allMap.bd.lng, delta);
 
             System.out.println("bd09ToGcj02");
             transPoint = GpsConvertUtil.bd09ToGcj02(allMap.bd.lat, allMap.bd.lng);
             dValue = transPoint[0] - allMap.gcj.lat;
             System.out.println("纬度lat：" + allMap.bd.lat + "->" + transPoint[0] + " 误差：" + dValue);
-            Assert.assertTrue(allowValue > Math.abs(dValue));
+            Assert.assertEquals(transPoint[0], allMap.gcj.lat, delta);
             dValue = transPoint[1] - allMap.gcj.lng;
             System.out.println("经度lon：" + allMap.bd.lng + "->" + transPoint[1] + " 误差：" + dValue);
-            Assert.assertTrue(allowValue > Math.abs(dValue));
+            Assert.assertEquals(transPoint[1], allMap.gcj.lng, delta);
 
             System.out.println("wgs84ToBd09");
             transPoint = GpsConvertUtil.wgs84ToBd09(allMap.wgs.lat, allMap.wgs.lng);
             dValue = transPoint[0] - allMap.bd.lat;
             System.out.println("纬度lat：" + allMap.wgs.lat + "->" + transPoint[0] + " 误差：" + dValue);
-            Assert.assertTrue(allowValue > Math.abs(dValue));
+            Assert.assertEquals(transPoint[0], allMap.bd.lat, delta);
             dValue = transPoint[1] - allMap.bd.lng;
             System.out.println("经度lon：" + allMap.wgs.lng + "->" + transPoint[1] + " 误差：" + dValue);
-            Assert.assertTrue(allowValue > Math.abs(dValue));
+            Assert.assertEquals(transPoint[1], allMap.bd.lng, delta);
 
             System.out.println("bd09ToWgs84");
             transPoint = GpsConvertUtil.bd09ToWgs84(allMap.bd.lat, allMap.bd.lng);
             dValue = transPoint[0] - allMap.wgs.lat;
             System.out.println("纬度lat：" + allMap.bd.lat + "->" + transPoint[0] + " 误差：" + dValue);
-            Assert.assertTrue(allowValue > Math.abs(dValue));
+            Assert.assertEquals(transPoint[0], allMap.wgs.lat, delta);
             dValue = transPoint[1] - allMap.wgs.lng;
             System.out.println("经度lon：" + allMap.bd.lng + "->" + transPoint[1] + " 误差：" + dValue);
-            Assert.assertTrue(allowValue > Math.abs(dValue));
+            Assert.assertEquals(transPoint[1], allMap.wgs.lng, delta);
 
             System.out.println("------------------------------------------------------------");
         }
@@ -132,6 +132,7 @@ public class GpsConvertUtilTest {
 
     @Test
     public void distanceTest() {
+
         double distance = GpsConvertUtil.getDistance(23.14979204, 113.35368518, 23.143511618621396, 113.34764834035583);
         System.out.println("误差" + distance + "米");
     }
