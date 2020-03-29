@@ -48,17 +48,17 @@ public class GpsConvertUtilTest {
         // 坐标系(纬度lat,经度lon)
         List<AllMap> allMaps = new ArrayList<>();
         // 金星大厦
-        allMaps.add(new AllMap(23.1466403500, 113.3416945400,
-                23.1440792900, 113.3471489000,
-                23.1497583300, 113.3537030700));
+        allMaps.add(new AllMap(23.14664035, 113.34169454,
+                23.14407929, 113.3471489,
+                23.14975833, 113.35370307));
         // 广州塔
-        allMaps.add(new AllMap(23.1090977200, 113.3190660600,
-                23.1064700000, 113.3244600000,
-                23.1123809800, 113.3309751400));
+        allMaps.add(new AllMap(23.10909772, 113.31906606,
+                23.10647, 113.32446,
+                23.11238098, 113.33097514));
         // 花城汇
-        allMaps.add(new AllMap(23.1227614600, 113.3192433000,
-                23.1201380000, 113.3246380000,
-                23.1260471300, 113.3311448400));
+        allMaps.add(new AllMap(23.12276146, 113.3192433,
+                23.120138, 113.324638,
+                23.12604713, 113.33114484));
         // 允许的误差
         double delta = 30;
         double[] transPoint = null;
@@ -106,26 +106,22 @@ public class GpsConvertUtilTest {
     }
 
     @Test
-    public void outOfChinaTest() {
-        double lon = 113.34736228460538;
-        double lat = 23.144000709888573;
-        double[] a = GpsConvertUtil.gcj02ToWgs84(lat, lon);
-        System.out.println(a[0]);
-        System.out.println(a[1]);
-
-
-        List<double[]> points = new ArrayList<>();
-        points.add(new double[]{113.34712152, 23.14410896});
-        points.add(new double[]{113.3244600000, 23.1064700000});
-        for (double[] point : points) {
-            Assert.assertFalse(GpsConvertUtil.outOfChina(point[0], point[1]));
-        }
-    }
-
-    @Test
     public void mercatorTransTest() {
-        double[] mercator = GpsConvertUtil.lngLatToMercator(113.3473512844152, 23.14398871029491);
-        Assert.assertEquals(12617769.427747251, mercator[0], 0);
-        Assert.assertEquals(2649440.948904634, mercator[1], 0);
+        double lng = 113.34169454;
+        double lat = 23.14664035;
+        double mercatorX = 12617139.721839404;
+        double mercatorY = 2649761.967173373;
+
+        double delta = 0.000001;
+
+        double[] mercator = GpsConvertUtil.lngLatToMercator(lng, lat);
+        System.out.println(mercator[0] + "," + mercator[1]);
+        Assert.assertEquals(mercatorX, mercator[0], delta);
+        Assert.assertEquals(mercatorY, mercator[1], delta);
+
+        double[] lngLat = GpsConvertUtil.mercatorToLngLat(mercatorX, mercatorY);
+        System.out.println(lngLat[0] + "," + lngLat[1]);
+        Assert.assertEquals(lng, lngLat[0], delta);
+        Assert.assertEquals(lat, lngLat[1], delta);
     }
 }

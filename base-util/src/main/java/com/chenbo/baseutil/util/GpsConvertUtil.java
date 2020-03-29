@@ -36,11 +36,19 @@ public class GpsConvertUtil {
     /**
      * 中国经度下限
      */
-    private static final double CHINA_LNG_LOWER = 72.004;
+    private static final double CHINA_LNG_MIN = 72.004;
     /**
      * 中国经度上限
      */
-    private static final double CHINA_LNG_UPPER = 137.8347;
+    private static final double CHINA_LNG_MAX = 137.8347;
+    /**
+     * 中国纬度下限
+     */
+    private static final double CHINA_LAT_MIN = 0.8293;
+    /**
+     * 中国纬度上限
+     */
+    private static final double CHINA_LAT_MAX = 55.8271;
 
     /**
      * WGS84(大地坐标系) 转 GCJ02(火星坐标系)
@@ -74,7 +82,7 @@ public class GpsConvertUtil {
      * @return 经纬度数组 [纬度，经度]
      */
     public static double[] gcj02ToWgs84(double gcjLat, double gcjLng) {
-        double[] gps = transform(gcjLat, gcjLng);
+        double[] gps = wgs84ToGcj02(gcjLat, gcjLng);
         double lontitude = gcjLng * 2 - gps[1];
         double latitude = gcjLat * 2 - gps[0];
         return new double[]{latitude, lontitude};
@@ -143,15 +151,29 @@ public class GpsConvertUtil {
     /**
      * 经纬度转墨卡托投影坐标系
      *
-     * @param lat 纬度
      * @param lng 经度
-     * @return 经纬度数组 [纬度，经度]
+     * @param lat 纬度
+     * @return 经纬度数组 [墨卡托坐标x，墨卡托坐标y]
      */
-    public static double[] lngLatToMercator(double lat, double lng) {
-        double newLat = (lat * 20037508.342789 / 180);
-        double newLng = (Math.log(Math.tan((90 + lng) * Math.PI / 360)) / (Math.PI / 180));
-        newLng = newLng * 20037508.342789 / 180;
-        return new double[]{newLat, newLng};
+    public static double[] lngLatToMercator(double lng, double lat) {
+        double mercatorX = lng * 20037508.342789 / 180;
+        double mercatorY = Math.log(Math.tan((90 + lat) * PI / 360)) / (PI / 180);
+        mercatorY = mercatorY * 20037508.34789 / 180;
+        return new double[]{mercatorX, mercatorY};
+    }
+
+    /**
+     * 墨卡托投影坐标系转经纬度
+     *
+     * @param mercatorX 墨卡托坐标x
+     * @param mercatorY 墨卡托坐标y
+     * @return 经纬度数组 [经度，纬度]
+     */
+    public static double[] mercatorToLngLat(double mercatorX, double mercatorY) {
+        double lng = mercatorX / 20037508.342789 * 180;
+        double lat = mercatorY / 20037508.342789 * 180;
+        lat = 180 / PI * (2 * Math.atan(Math.exp(lat * PI / 180)) - PI / 2);
+        return new double[]{lng, lat};
     }
 
     /**
@@ -192,28 +214,16 @@ public class GpsConvertUtil {
         return ret;
     }
 
-    private static double[] transform(double lat, double lng) {
-        if (outOfChina(lat, lng)) {
-            return new double[]{lat, lng};
-        }
-        double dLat = transformLat(lng - 105.0, lat - 35.0);
-        double dLng = transformLng(lng - 105.0, lat - 35.0);
-        double radLat = lat / 180.0 * PI;
-        double magic = Math.sin(radLat);
-        magic = 1 - EE * magic * magic;
-        double sqrtMagic = Math.sqrt(magic);
-        dLat = (dLat * 180.0) / ((A * (1 - EE)) / (magic * sqrtMagic) * PI);
-        dLng = (dLng * 180.0) / (A / sqrtMagic * Math.cos(radLat) * PI);
-        double mgLat = lat + dLat;
-        double mgLng = lng + dLng;
-        return new double[]{mgLat, mgLng};
-    }
-
+    /**
+     * 坐标是否超出中国
+     *
+     * @param lat 纬度
+     * @param lng 经度
+     * @return
+     */
     public static boolean outOfChina(double lat, double lng) {
-        if (lng < CHINA_LNG_LOWER || lng > CHINA_LNG_UPPER) {
-            return true;
-        }
-        return lat < 0.8293 || lat > 55.8271;
+        // 若经纬度在中国经纬度范围之外则为国外坐标
+        return lng < CHINA_LNG_MIN || lng > CHINA_LNG_MAX || lat < CHINA_LAT_MIN || lat > CHINA_LAT_MAX;
     }
 
     /**
