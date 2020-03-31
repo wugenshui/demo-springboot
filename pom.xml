@@ -29,6 +29,7 @@
     </dependencyManagement>
 
     <modules>
+        <module>oauth</module>
         <module>office</module>
         <module>socket</module>
     </modules>
