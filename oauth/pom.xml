@@ -37,11 +37,7 @@
         </dependency>
     </dependencies>
 
-<!--    <modules>-->
-<!--        <module>apache-poi</module>-->
-<!--        <module>docx4j</module>-->
-<!--        <module>poi-tl</module>-->
-<!--        <module>easypoi</module>-->
-<!--        <module>easyexcel</module>-->
-<!--    </modules>-->
+    <modules>
+        <module>java-jwt</module>
+    </modules>
 </project>
