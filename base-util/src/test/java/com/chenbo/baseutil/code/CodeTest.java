@@ -18,7 +18,9 @@ import java.util.List;
 public class CodeTest {
     @Test
     public void deCode() throws UnsupportedEncodingException {
-        String str = "娌℃湁閭ｄ釜鏂囦欢鎴栫洰褰�";
+        String str = "娌℃湁閭ｄ釜鏂囦欢鎴栫洰褰�"; // 没有那个文件或目录
+        str = "鏉冮檺涓嶅\uE644"; // 权限不够
+        str = "绗� 5 琛�:kill: (6592) - 娌℃湁閭ｄ釜杩涚▼"; // 没有那个进程
 
         List<String> list = new ArrayList<>();
         list.add("UTF-8");
