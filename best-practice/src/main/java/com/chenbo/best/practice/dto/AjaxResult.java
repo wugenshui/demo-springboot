@@ -1,6 +1,6 @@
 package com.chenbo.best.practice.dto;
 
-import com.chenbo.best.practice.enums.HttpResultEnum;
+import com.chenbo.best.practice.enums.AjaxResultEnum;
 
 /**
  * Ajax请求响应类
@@ -10,7 +10,7 @@ import com.chenbo.best.practice.enums.HttpResultEnum;
  */
 public class AjaxResult<T> {
     /**
-     * 返回状态:参照HttpResultEnum枚举
+     * 返回状态:参照AjaxResultEnum枚举
      */
     private int state;
     /**
@@ -39,7 +39,7 @@ public class AjaxResult<T> {
      * @return
      */
     public static AjaxResult success() {
-        HttpResultEnum model = HttpResultEnum.SUCCESS;
+        AjaxResultEnum model = AjaxResultEnum.SUCCESS;
         return new AjaxResult(model.getStatus(), model.getMessage());
     }
 
@@ -50,7 +50,7 @@ public class AjaxResult<T> {
      * @return
      */
     public static <T> AjaxResult success(T data) {
-        HttpResultEnum model = HttpResultEnum.SUCCESS;
+        AjaxResultEnum model = AjaxResultEnum.SUCCESS;
         return new AjaxResult(model.getStatus(), model.getMessage(), data);
     }
 
@@ -62,7 +62,7 @@ public class AjaxResult<T> {
      * @return
      */
     public static <T> AjaxResult success(String message, T data) {
-        return new AjaxResult(HttpResultEnum.SUCCESS.getStatus(), message, data);
+        return new AjaxResult(AjaxResultEnum.SUCCESS.getStatus(), message, data);
     }
 
     /**
@@ -71,7 +71,7 @@ public class AjaxResult<T> {
      * @return
      */
     public static AjaxResult error() {
-        HttpResultEnum model = HttpResultEnum.ERROR;
+        AjaxResultEnum model = AjaxResultEnum.ERROR;
         return new AjaxResult(model.getStatus(), model.getMessage());
     }
 
@@ -82,7 +82,7 @@ public class AjaxResult<T> {
      * @return
      */
     public static AjaxResult error(String message) {
-        return new AjaxResult(HttpResultEnum.ERROR.getStatus(), message);
+        return new AjaxResult(AjaxResultEnum.ERROR.getStatus(), message);
     }
 
     public int getState() {

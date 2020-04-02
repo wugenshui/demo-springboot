@@ -6,7 +6,7 @@ package com.chenbo.best.practice.enums;
  * @author : chenbo
  * @date : 2020-02-13
  */
-public enum HttpResultEnum {
+public enum AjaxResultEnum {
 
     /**
      * 操作成功
@@ -50,7 +50,7 @@ public enum HttpResultEnum {
      */
     private final String message;
 
-    HttpResultEnum(Integer status, String message) {
+    AjaxResultEnum(Integer status, String message) {
         this.status = status;
         this.message = message;
     }
