@@ -2,6 +2,7 @@ package com.chenbo.java.jwt;
 
 import com.alibaba.fastjson.JSONObject;
 import com.chenbo.java.jwt.entity.User;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,12 +19,14 @@ import org.springframework.web.client.RestTemplate;
 public class JavaJwtApplicationTests {
 
     @Test(expected = HttpServerErrorException.class)
+    @Ignore
     public void noOauthTest() {
         RestTemplate restTemplate = new RestTemplate();
         Object obj = restTemplate.getForObject("http://localhost:8080/api/getMessage", Object.class);
     }
 
     @Test
+    @Ignore
     public void loginTest() {
         RestTemplate restTemplate = new RestTemplate();
         User user = new User("1", "zhangsan", "123");

@@ -1,8 +1,15 @@
 package com.chenbo.demo.apache.poi;
 
-import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFCreationHelper;
+import org.apache.poi.hssf.usermodel.HSSFDataFormat;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFFormulaEvaluator;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.CellType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +17,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.swing.filechooser.FileSystemView;
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Date;
 
 /**
@@ -93,35 +103,35 @@ public class ExcelTest {
         outputStream.close();
     }
 
-    @Test
-    public void readExcelTest() throws IOException {
-        FileSystemView fsv = FileSystemView.getFileSystemView();
-        String desktop = fsv.getHomeDirectory().getPath();
-        String filePath = desktop + "/template.xls";
-
-        FileInputStream fileInputStream = new FileInputStream(filePath);
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
-        POIFSFileSystem fileSystem = new POIFSFileSystem(bufferedInputStream);
-        HSSFWorkbook workbook = new HSSFWorkbook(fileSystem);
-        HSSFSheet sheet = workbook.getSheet("Sheet1");
-
-        int lastRowIndex = sheet.getLastRowNum();
-        System.out.println(lastRowIndex);
-        for (int i = 0; i <= lastRowIndex; i++) {
-            HSSFRow row = sheet.getRow(i);
-            if (row == null) {
-                break;
-            }
-
-            short lastCellNum = row.getLastCellNum();
-            for (int j = 0; j < lastCellNum; j++) {
-                // 防止null或数值列读取报错
-                if (j == 0 && row.getCell(j) != null) {
-                    row.getCell(j).setCellType(CellType.STRING);
-                }
-                String cellValue = row.getCell(j).getStringCellValue();
-                System.out.println(cellValue);
-            }
-        }
-    }
+//    @Test
+//    public void readExcelTest() throws IOException {
+//        FileSystemView fsv = FileSystemView.getFileSystemView();
+//        String desktop = fsv.getHomeDirectory().getPath();
+//        String filePath = desktop + "/template.xls";
+//
+//        FileInputStream fileInputStream = new FileInputStream(filePath);
+//        BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+//        POIFSFileSystem fileSystem = new POIFSFileSystem(bufferedInputStream);
+//        HSSFWorkbook workbook = new HSSFWorkbook(fileSystem);
+//        HSSFSheet sheet = workbook.getSheet("Sheet1");
+//
+//        int lastRowIndex = sheet.getLastRowNum();
+//        System.out.println(lastRowIndex);
+//        for (int i = 0; i <= lastRowIndex; i++) {
+//            HSSFRow row = sheet.getRow(i);
+//            if (row == null) {
+//                break;
+//            }
+//
+//            short lastCellNum = row.getLastCellNum();
+//            for (int j = 0; j < lastCellNum; j++) {
+//                // 防止null或数值列读取报错
+//                if (j == 0 && row.getCell(j) != null) {
+//                    row.getCell(j).setCellType(CellType.STRING);
+//                }
+//                String cellValue = row.getCell(j).getStringCellValue();
+//                System.out.println(cellValue);
+//            }
+//        }
+//    }
 }
