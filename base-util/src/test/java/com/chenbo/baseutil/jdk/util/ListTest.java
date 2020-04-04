@@ -1,4 +1,4 @@
-package com.chenbo.baseutil.jdk.collection;
+package com.chenbo.baseutil.jdk.util;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,6 +23,10 @@ public class ListTest {
         list.add("1");
         list.add("2");
         list.add("3");
+        list.add("4");
+
+        list.remove("4");
+        list.remove("2");
 
         System.out.println("for (Iterator iterator = list.iterator(); iterator.hasNext(); )");
         for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
