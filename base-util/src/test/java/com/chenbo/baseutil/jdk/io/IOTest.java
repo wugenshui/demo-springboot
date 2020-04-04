@@ -1,4 +1,4 @@
-package com.chenbo.baseutil.java;
+package com.chenbo.baseutil.jdk.io;
 
 import com.chenbo.baseutil.entity.User;
 import org.junit.Test;
