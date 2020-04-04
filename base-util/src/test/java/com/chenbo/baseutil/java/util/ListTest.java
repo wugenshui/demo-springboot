@@ -1,4 +1,4 @@
-package com.chenbo.baseutil.jdk.util;
+package com.chenbo.baseutil.java.util;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +26,7 @@ public class ListTest {
         list.add("4");
 
         list.remove("4");
-        list.remove("2");
+        list.remove("3");
 
         System.out.println("for (Iterator iterator = list.iterator(); iterator.hasNext(); )");
         for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
@@ -48,10 +48,19 @@ public class ListTest {
 
         System.out.println("for (int i = 0; i < list.size(); i++)");
         for (int i = 0; i < list.size(); i++) {
+            list.set(i, "change" + list.get(i));
             System.out.println(list.get(i));
         }
 
+        System.out.println("list.forEach(s -> System.out.println(s))");
+        list.forEach(s -> {
+            System.out.println(s);
+        });
+
         System.out.println("list.forEach(System.out::println)");
         list.forEach(System.out::println);
+
+        System.out.println("list");
+        System.out.println(list);
     }
 }

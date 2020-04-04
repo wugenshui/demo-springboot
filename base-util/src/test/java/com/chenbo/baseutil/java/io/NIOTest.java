@@ -1,4 +1,4 @@
-package com.chenbo.baseutil.jdk.io;
+package com.chenbo.baseutil.java.io;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
