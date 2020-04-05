@@ -41,7 +41,7 @@ public class DbWordTest {
             List<TableFileds> fileds = mapper.getTable(t.getName());
             val rowData = new ArrayList<RowData>();
             fileds.forEach(f -> {
-                rowData.add(new RowData(f.getField(), f.getType(), ("YES".equals(f.getKey()) ? "是" : ""), f.getDefault(), f.getComment()));
+                rowData.add(new RowData(f.getField(), f.getType(), ("PRI".equals(f.getKey()) ? "是" : ""), f.getDefault(), f.getComment()));
             });
             tables.add(TablePartData.builder().title(t.getComment() + "：" + t.getName()).rows(rowData).build());
         });
