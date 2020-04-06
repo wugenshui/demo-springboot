@@ -47,7 +47,7 @@ public class CodeGenerator {
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        String projectPath = System.getProperty("user.dir") + "/dao-mybatis-plus";
+        String projectPath = System.getProperty("user.dir") + "/db/mybatis-plus";
         // 【输出文件路径】
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("chenbo");

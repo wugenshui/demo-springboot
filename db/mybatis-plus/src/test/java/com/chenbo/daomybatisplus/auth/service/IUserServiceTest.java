@@ -6,7 +6,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author : chenbo
@@ -14,6 +16,8 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Transactional // 支持事物，@SpringBootTest 事物默认自动回滚
+@Rollback // 事务自动回滚，不自动回滚@Rollback(false)
 public class IUserServiceTest {
     @Autowired
     IUserService userService;
