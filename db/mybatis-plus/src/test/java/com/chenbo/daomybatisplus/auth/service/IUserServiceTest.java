@@ -10,6 +10,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * @author : chenbo
  * @date : 2019/12/1
@@ -23,8 +25,21 @@ public class IUserServiceTest {
     IUserService userService;
 
     @Test
+    public void listTest() {
+        List<User> users = userService.list();
+        users.forEach(System.out::println);
+    }
+
+    @Test
     public void getByIdTest() {
         User user = userService.getById(1088248166370832385L);
+        System.out.println(user);
+        Assert.assertNotNull(user);
+    }
+
+    @Test
+    public void getByName() {
+        User user = userService.getByName("王天风");
         System.out.println(user);
         Assert.assertNotNull(user);
     }
@@ -53,6 +68,16 @@ public class IUserServiceTest {
 
         int rows = userService.resumeVersion(1094590409767661570L);
         Assert.assertEquals(1, rows);
+    }
+
+    @Test
+    public void updateByNameTest() {
+        User user = new User();
+        user.setVersion(1);
+        user.setId(1094590409767661570L);
+        user.setEmail("soft@gmail.com");
+        boolean updateState = userService.updateByName("胡龙飞", user);
+        Assert.assertTrue(updateState);
     }
 
     /**

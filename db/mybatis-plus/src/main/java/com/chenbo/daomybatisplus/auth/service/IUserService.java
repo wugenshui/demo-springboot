@@ -1,7 +1,7 @@
 package com.chenbo.daomybatisplus.auth.service;
 
-import com.chenbo.daomybatisplus.auth.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.chenbo.daomybatisplus.auth.entity.User;
 
 /**
  * <p>
@@ -28,4 +28,22 @@ public interface IUserService extends IService<User> {
      * @return 影响行数
      */
     int resumeVersion(Long id);
+
+    /**
+     * 根据用户名查找用户
+     *
+     * @param name 用户名
+     * @return
+     */
+    User getByName(String name);
+
+
+    /**
+     * 根据用户名批量更新
+     *
+     * @param name 用户名
+     * @param user 用户实体
+     * @return
+     */
+    boolean updateByName(String name, User user);
 }
