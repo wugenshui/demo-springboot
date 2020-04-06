@@ -8,6 +8,7 @@ import com.deepoove.poi.data.RowRenderData;
 import com.deepoove.poi.data.TextRenderData;
 import com.deepoove.poi.data.style.Style;
 import com.deepoove.poi.data.style.TableStyle;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.STJc;
@@ -25,6 +26,7 @@ import java.util.Map;
 public class PoiTlApplicationTests {
 
     @Test
+    @Ignore
     public void wordExportTest() throws IOException {
 
         Map<String, Object> data = new HashMap<>();

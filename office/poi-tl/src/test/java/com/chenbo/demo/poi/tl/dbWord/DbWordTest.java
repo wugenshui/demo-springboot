@@ -8,6 +8,7 @@ import com.deepoove.poi.config.Configure;
 import com.deepoove.poi.data.DocxRenderData;
 import com.deepoove.poi.policy.HackLoopTableRenderPolicy;
 import lombok.val;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class DbWordTest {
     private TableMapper mapper;
 
     @Test
+    @Ignore
     public void dbWordTest() throws IOException {
 
         List<Tables> allTables = mapper.getAllTables("export");
