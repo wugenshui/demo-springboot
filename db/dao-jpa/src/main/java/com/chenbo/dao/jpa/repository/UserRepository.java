@@ -12,5 +12,19 @@ import java.util.List;
  */
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+    /**
+     * 查找同名用户
+     *
+     * @param name
+     * @return
+     */
     List<User> findByName(String name);
+
+    /**
+     * 查找指定用户
+     *
+     * @param name
+     * @return
+     */
+    User getOneByName(String name);
 }

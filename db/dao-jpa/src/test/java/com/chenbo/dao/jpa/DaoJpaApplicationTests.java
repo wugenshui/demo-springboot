@@ -3,22 +3,25 @@ package com.chenbo.dao.jpa;
 import com.chenbo.dao.jpa.entity.User;
 import com.chenbo.dao.jpa.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
+@RunWith(SpringRunner.class)
 @Slf4j
-class DaoJpaApplicationTests {
+public class DaoJpaApplicationTests {
 
     @Autowired
     private UserRepository dao;
 
     @Test
-    void findTest() {
+    public void findTest() {
         List<User> users = dao.findAll();
         users.forEach(v -> {
             log.info(v.toString());
@@ -28,11 +31,13 @@ class DaoJpaApplicationTests {
         users.forEach(v -> {
             log.info("findByName:" + v.toString());
         });
+
+        User user = dao.getOneByName("王天风");
+        log.info("user:" + user.toString());
     }
 
-
     @Test
-    void insertTest() {
+    public void insertTest() {
         User user = new User();
         user.setId(1L);
         user.setName("");
