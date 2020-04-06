@@ -14,5 +14,6 @@
 
     <modules>
         <module>dao-jpa</module>
+        <module>mybatis</module>
     </modules>
 </project>

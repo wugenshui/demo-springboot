@@ -17,7 +17,8 @@
 
         <fastjson.version>1.2.66</fastjson.version>
         <mysql.version>8.0.19</mysql.version>
-        <mybatis-plus-boot-starter.version>2.2.0</mybatis-plus-boot-starter.version>
+        <mybatis.version>2.1.1</mybatis.version>
+        <mybatis-plus.version>3.3.1</mybatis-plus.version>
         <poi-tl.version>1.7.3</poi-tl.version>
     </properties>
 
@@ -35,9 +36,19 @@
                 <version>${mysql.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus-boot-starter.version}</version>
+                <version>${mybatis-plus.version}</version>
             </dependency>
             <!-- office -->
             <dependency>
