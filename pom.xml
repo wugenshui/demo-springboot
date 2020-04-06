@@ -14,7 +14,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        
+
         <fastjson.version>1.2.66</fastjson.version>
         <mysql.version>8.0.19</mysql.version>
         <mybatis-plus-boot-starter.version>2.2.0</mybatis-plus-boot-starter.version>
@@ -49,9 +49,22 @@
     </dependencyManagement>
 
     <modules>
+        <module>db</module>
         <module>oauth</module>
         <module>office</module>
         <module>socket</module>
     </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
