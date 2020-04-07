@@ -1,6 +1,7 @@
 package com.chenbo.daomybatisplus.auth.service;
 
 import com.chenbo.daomybatisplus.auth.entity.User;
+import lombok.val;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,6 +36,14 @@ public class IUserServiceTest {
         User user = userService.getById(1088248166370832385L);
         System.out.println(user);
         Assert.assertNotNull(user);
+    }
+
+    @Test
+    public void getOneTest() {
+        // 第二个参数可以隐藏异常
+        val one = userService.getOne(null, false);
+        System.out.println("one = " + one);
+        Assert.assertNotNull(one);
     }
 
     @Test
