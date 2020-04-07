@@ -1,8 +1,8 @@
 package com.chenbo.daomybatisplus.auth.service.impl;
 
-import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.toolkit.ChainWrappers;
 import com.chenbo.daomybatisplus.auth.entity.User;
 import com.chenbo.daomybatisplus.auth.mapper.UserMapper;
 import com.chenbo.daomybatisplus.auth.service.IUserService;
@@ -35,9 +35,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public User getByName(String name) {
-        LambdaQueryChainWrapper<User> lambdaQuery = new LambdaQueryChainWrapper<>(userMapper);
-        User user = lambdaQuery().eq(User::getName, name).one();
-        return user;
+        // QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        // QueryWrapper<User> queryWrapper = Wrappers.query();
+        // queryWrapper.eq("name", name);
+        // return userMapper.selectOne(queryWrapper);
+
+        // new LambdaQueryChainWrapper<>(userMapper);
+        // ChainWrappers.lambdaQueryChain(userMapper);
+        return ChainWrappers.lambdaQueryChain(userMapper)
+                .eq(User::getName, name).one();
     }
 
     @Override
