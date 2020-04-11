@@ -1,0 +1,10 @@
+spring:
+  elasticsearch:
+    host: 192.168.0.222
+    port: 9200
+    scheme: http
+    username: elastic
+    password: changeme
+    connection-timeout: 30000
+    socket-timout: 30000
+    connection-request-timout: 30000

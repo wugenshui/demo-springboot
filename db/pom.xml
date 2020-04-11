@@ -14,6 +14,7 @@
 
     <modules>
         <module>dao-jpa</module>
+        <module>elasticsearch</module>
         <module>mybatis</module>
         <module>mybatis-plus</module>
     </modules>
