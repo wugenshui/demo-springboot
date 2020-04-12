@@ -1,6 +1,7 @@
 spring:
   elasticsearch:
-    host: 192.168.0.222
+    #    host: 192.168.0.222
+    host: 192.168.192.170
     port: 9200
     scheme: http
     username: elastic

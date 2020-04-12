@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
  * @author : chenbo
  * @date : 2020-04-11
@@ -14,5 +16,6 @@ import lombok.NoArgsConstructor;
 public class News {
     private String title;
     private String tag;
-    private String publishTime;
+    private int count;
+    private Date publishTime;
 }
