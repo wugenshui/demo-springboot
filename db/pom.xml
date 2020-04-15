@@ -5,8 +5,9 @@
 
     <parent>
         <groupId>com.chenbo.demo</groupId>
-        <artifactId>demo-spring-boot</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <artifactId>parent</artifactId>
+        <version>${revision}</version>
+        <relativePath>../parent</relativePath>
     </parent>
 
     <artifactId>db</artifactId>
@@ -14,6 +15,7 @@
 
     <modules>
         <module>dao-jpa</module>
+        <module>dao-mongodb</module>
         <module>elasticsearch</module>
         <module>mybatis</module>
         <module>mybatis-plus</module>

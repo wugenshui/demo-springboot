@@ -5,8 +5,9 @@
 
     <parent>
         <groupId>com.chenbo.demo</groupId>
-        <artifactId>demo-spring-boot</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <artifactId>parent</artifactId>
+        <version>${revision}</version>
+        <relativePath>../parent</relativePath>
     </parent>
 
     <artifactId>socket</artifactId>
@@ -14,7 +15,6 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <netty.version>4.1.47.Final</netty.version>
     </properties>
 
     <dependencies>
@@ -33,13 +33,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-            <version>${netty.version}</version>
         </dependency>
 
     </dependencies>

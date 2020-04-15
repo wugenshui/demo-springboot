@@ -2,31 +2,29 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.4.RELEASE</version>
+        <groupId>com.chenbo.demo</groupId>
+        <artifactId>demo-spring-boot</artifactId>
+        <version>${revision}</version>
+        <relativePath>../</relativePath>
     </parent>
 
-    <groupId>com.chenbo.demo</groupId>
-    <artifactId>demo-spring-boot</artifactId>
-    <version>${revision}</version>
+    <artifactId>dependency</artifactId>
     <packaging>pom</packaging>
 
     <properties>
-        <revision>0.0.1-SNAPSHOT</revision>
-
-        <java.version>1.8</java.version>
-
         <fastjson.version>1.2.66</fastjson.version>
         <mysql.version>8.0.19</mysql.version>
         <mybatis.version>2.1.1</mybatis.version>
         <mybatis-plus.version>3.3.1</mybatis-plus.version>
         <p6spy.version>3.8.1</p6spy.version>
         <elasticsearch.version>7.1.1</elasticsearch.version>
+        <jwt.version>3.4.0</jwt.version>
         <swagger.version>2.9.2</swagger.version>
         <poi-tl.version>1.7.3</poi-tl.version>
         <velocity.version>2.1</velocity.version>
+        <netty.version>4.1.47.Final</netty.version>
     </properties>
 
     <dependencyManagement>
@@ -85,6 +83,11 @@
             </dependency>
             <!-- api -->
             <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
                 <version>${swagger.version}</version>
@@ -106,16 +109,12 @@
                 <artifactId>velocity-engine-core</artifactId>
                 <version>${velocity.version}</version>
             </dependency>
+            <!-- socket -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <modules>
-        <module>dependency</module>
-        <module>parent</module>
-        <module>db</module>
-        <module>oauth</module>
-        <module>office</module>
-        <module>socket</module>
-    </modules>
-
 </project>

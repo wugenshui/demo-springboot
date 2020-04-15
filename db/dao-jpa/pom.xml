@@ -5,11 +5,10 @@
     <parent>
         <groupId>com.chenbo.demo</groupId>
         <artifactId>db</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>dao-jpa</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
