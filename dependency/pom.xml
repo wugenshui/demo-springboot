@@ -28,7 +28,13 @@
     </properties>
 
     <dependencyManagement>
+        <!-- 自己的项目 -->
         <dependencies>
+            <dependency>
+                <groupId>com.chenbo.demo</groupId>
+                <artifactId>base-util</artifactId>
+                <version>${revision}</version>
+            </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
