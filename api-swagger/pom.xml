@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>api-swagger</artifactId>
+    <packaging>war</packaging>
 
     <dependencies>
         <dependency>
@@ -19,7 +20,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.chenbo.demo</groupId>
