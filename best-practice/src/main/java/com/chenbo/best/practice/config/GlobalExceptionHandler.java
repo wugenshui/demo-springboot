@@ -44,6 +44,6 @@ public class GlobalExceptionHandler {
         if (log.isInfoEnabled()) {
             return AjaxResult.error(ex.getMessage());
         }
-        return AjaxResult.error(AjaxResultEnum.ERROR.getMessage());
+        return AjaxResult.error(AjaxResultEnum.ERROR.getMsg());
     }
 }

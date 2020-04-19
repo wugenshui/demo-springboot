@@ -44,22 +44,22 @@ public enum AjaxResultEnum {
     /**
      * 响应HTTP状态码
      */
-    private final Integer status;
+    private final Integer state;
     /**
      * 响应消息
      */
-    private final String message;
+    private final String msg;
 
-    AjaxResultEnum(Integer status, String message) {
-        this.status = status;
-        this.message = message;
+    AjaxResultEnum(Integer state, String msg) {
+        this.state = state;
+        this.msg = msg;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Integer getState() {
+        return state;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMsg() {
+        return msg;
     }
 }

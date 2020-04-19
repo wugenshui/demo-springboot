@@ -40,7 +40,7 @@ public class AjaxResult<T> {
      */
     public static AjaxResult success() {
         AjaxResultEnum model = AjaxResultEnum.SUCCESS;
-        return new AjaxResult(model.getStatus(), model.getMessage());
+        return new AjaxResult(model.getState(), model.getMsg());
     }
 
     /**
@@ -51,7 +51,7 @@ public class AjaxResult<T> {
      */
     public static <T> AjaxResult success(T data) {
         AjaxResultEnum model = AjaxResultEnum.SUCCESS;
-        return new AjaxResult(model.getStatus(), model.getMessage(), data);
+        return new AjaxResult(model.getState(), model.getMsg(), data);
     }
 
     /**
@@ -62,7 +62,7 @@ public class AjaxResult<T> {
      * @return
      */
     public static <T> AjaxResult success(String message, T data) {
-        return new AjaxResult(AjaxResultEnum.SUCCESS.getStatus(), message, data);
+        return new AjaxResult(AjaxResultEnum.SUCCESS.getState(), message, data);
     }
 
     /**
@@ -72,7 +72,7 @@ public class AjaxResult<T> {
      */
     public static AjaxResult error() {
         AjaxResultEnum model = AjaxResultEnum.ERROR;
-        return new AjaxResult(model.getStatus(), model.getMessage());
+        return new AjaxResult(model.getState(), model.getMsg());
     }
 
     /**
@@ -82,7 +82,7 @@ public class AjaxResult<T> {
      * @return
      */
     public static AjaxResult error(String message) {
-        return new AjaxResult(AjaxResultEnum.ERROR.getStatus(), message);
+        return new AjaxResult(AjaxResultEnum.ERROR.getState(), message);
     }
 
     public int getState() {
