@@ -34,7 +34,7 @@ public class SpringDataUserDetailsService implements UserDetailsService {
             return null;
         }
         // 根据用户的id查询用户的权限
-        List<String> permissions = findPermissionsByUserId(userDto.getId());
+        List<String> permissions = findPermissionsByUserId(userDto.getUsername());
         // 将permissions转成数组
         String[] permissionArray = new String[permissions.size()];
         permissions.toArray(permissionArray);
@@ -57,7 +57,11 @@ public class SpringDataUserDetailsService implements UserDetailsService {
     }
 
     private List<String> findPermissionsByUserId(String id) {
-        return Arrays.asList("f1", "f2", "f3");
+        if ("admin".equals(id)) {
+            return Arrays.asList("f1", "f2");
+        } else {
+            return Arrays.asList("f1");
+        }
     }
 
 }
