@@ -40,5 +40,6 @@
     <modules>
         <module>java-jwt</module>
         <module>spring-security</module>
+        <module>spring-security-oauth</module>
     </modules>
 </project>
