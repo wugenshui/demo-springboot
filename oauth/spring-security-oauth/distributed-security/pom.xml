@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.chenbo.demo</groupId>
-        <artifactId>oauth</artifactId>
+        <artifactId>spring-security-oauth</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>spring-security-oauth</artifactId>
+    <artifactId>distributed-security</artifactId>
 
     <dependencies>
         <dependency>
@@ -25,9 +25,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <modules>
-        <module>distributed-security</module>
-        <module>distributed-security-uaa</module>
-    </modules>
 </project>

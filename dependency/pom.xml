@@ -14,6 +14,7 @@
     <packaging>pom</packaging>
 
     <properties>
+        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <fastjson.version>1.2.66</fastjson.version>
         <mysql.version>8.0.19</mysql.version>
         <mybatis.version>2.1.1</mybatis.version>
@@ -45,6 +46,12 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+            <!-- spring-cloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
             </dependency>
             <!-- db -->
             <dependency>
