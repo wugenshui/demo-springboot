@@ -12,9 +12,17 @@ code:rv6z6k
 
 
 
+# 简化模式 implicit
+### 回调地址上显示token
+get http://localhost:8080/oauth/authorize?response_type=token&client_id=client
+ 
+
+
 # 客户端模式 client_credentials
 
 ### get http://client:secret@localhost:8080/oauth/token?grant_type=client_credentials&scope=all
+
+
 
 # 密码模式 password
 
@@ -23,6 +31,8 @@ username:admin
 password:admin  
 grant_type:password  
 scope:all  
+
+
 
 # 通用接口
 
