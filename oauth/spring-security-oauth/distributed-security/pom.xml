@@ -9,6 +9,7 @@
     </parent>
 
     <artifactId>distributed-security</artifactId>
+    <packaging>pom</packaging>
 
     <dependencies>
         <dependency>

@@ -6,15 +6,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+
+import javax.sql.DataSource;
 
 /**
  * @author : chenbo
@@ -33,6 +37,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private ClientDetailsService clientDetailsService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private ClientDetailsService dbClientDetailsService;
+
 
     /**
      * 密码加密工具
@@ -44,14 +54,28 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * 客户端信息
+     *
+     * @param dataSource
+     * @return
+     */
+    @Bean
+    public ClientDetailsService clientDetailsService(DataSource dataSource) {
+        ClientDetailsService clientDetailsService = new JdbcClientDetailsService(dataSource);
+        ((JdbcClientDetailsService) clientDetailsService).setPasswordEncoder(passwordEncoder);
+        return clientDetailsService;
+    }
+
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory()
-                .withClient("client")
-                .secret(passwordEncoder().encode("secret"))
-                .authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit", "refresh_token")
-                .scopes("all")
-                .redirectUris("https://wwww.baidu.com");
+        clients.withClientDetails(dbClientDetailsService);
+        //.inMemory()
+        //.withClient("client")
+        //.secret(passwordEncoder().encode("secret"))
+        //.authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit", "refresh_token")
+        //.scopes("all")
+        //.redirectUris("https://wwww.baidu.com");
     }
 
     @Override

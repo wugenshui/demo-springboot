@@ -9,6 +9,7 @@
     </parent>
 
     <artifactId>spring-security-oauth</artifactId>
+    <packaging>pom</packaging>
 
 <!--    <dependencies>-->
 <!--        <dependency>-->
