@@ -3,6 +3,8 @@ package com.chenbo.demo.security.uaa.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -20,7 +22,17 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
  */
 @Configuration
 @EnableAuthorizationServer
-public class AuthConfig extends AuthorizationServerConfigurerAdapter {
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private TokenStore tokenStore;
+
+    @Autowired
+    private ClientDetailsService clientDetailsService;
+
 
     /**
      * 密码加密工具
@@ -53,21 +65,16 @@ public class AuthConfig extends AuthorizationServerConfigurerAdapter {
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-        //endpoints
-        //        //用户管理
-        //        .userDetailsService(userDetailsService)
-        //        //token存到redis
-        //        .tokenStore(new RedisTokenStore(redisConnectionFactory))
-        //        //启用oauth2管理
-        //        .authenticationManager(authenticationManager)
-        //        //接收GET和POST
-        //        .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
+        endpoints
+                //        //用户管理
+                //        .userDetailsService(userDetailsService)
+                //        //token存到redis
+                //        .tokenStore(new RedisTokenStore(redisConnectionFactory))
+                //启用oauth2管理
+                .authenticationManager(authenticationManager)
+                //接收GET和POST
+                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
     }
-
-    @Autowired
-    private TokenStore tokenStore;
-    @Autowired
-    private ClientDetailsService clientDetailsService;
 
     @Bean
     public AuthorizationServerTokenServices tokenService() {
