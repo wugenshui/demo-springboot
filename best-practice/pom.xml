@@ -15,5 +15,6 @@
     <modules>
         <module>commons</module>
         <module>admin-service</module>
+        <module>uaa</module>
     </modules>
 </project>

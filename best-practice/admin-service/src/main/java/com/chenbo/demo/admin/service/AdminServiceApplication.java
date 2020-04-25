@@ -1,4 +1,4 @@
-package com.chenbo.admin.service;
+package com.chenbo.demo.admin.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

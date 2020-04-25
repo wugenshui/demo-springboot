@@ -1,6 +1,6 @@
-package com.chenbo.admin.service.dto;
+package com.chenbo.demo.admin.service.dto;
 
-import com.chenbo.admin.service.enums.AjaxResultEnum;
+import com.chenbo.demo.admin.service.enums.AjaxResultEnum;
 
 /**
  * Ajax请求响应类

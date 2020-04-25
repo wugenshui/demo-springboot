@@ -1,7 +1,7 @@
-package com.chenbo.admin.service.controller;
+package com.chenbo.demo.admin.service.controller;
 
-import com.chenbo.admin.service.dto.AjaxResult;
-import com.chenbo.admin.service.vo.UserVo;
+import com.chenbo.demo.admin.service.dto.AjaxResult;
+import com.chenbo.demo.admin.service.vo.UserVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

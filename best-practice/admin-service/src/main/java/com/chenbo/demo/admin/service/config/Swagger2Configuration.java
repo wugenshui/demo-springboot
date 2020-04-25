@@ -1,4 +1,4 @@
-package com.chenbo.admin.service.config;
+package com.chenbo.demo.admin.service.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ public class Swagger2Configuration {
     /**
      * api接口包扫描路径
      */
-    public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.chenbo.admin.service.controller";
+    public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.chenbo.demo.admin.service.controller";
 
     public static final String VERSION = "1.0.0";
 
@@ -29,8 +29,10 @@ public class Swagger2Configuration {
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
+                .groupName("admin")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage(SWAGGER_SCAN_BASE_PACKAGE))
+                //.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 // 可以根据url路径设置哪些请求加入文档，忽略哪些请求
                 .paths(PathSelectors.any())
                 .build();
