@@ -1,4 +1,4 @@
-package com.chenbo.best.practice.config;
+package com.chenbo.admin.service.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ public class Swagger2Configuration {
     /**
      * api接口包扫描路径
      */
-    public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.chenbo.best.practice.controller";
+    public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.chenbo.admin.service.controller";
 
     public static final String VERSION = "1.0.0";
 

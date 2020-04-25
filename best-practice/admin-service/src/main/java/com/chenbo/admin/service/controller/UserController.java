@@ -1,7 +1,7 @@
-package com.chenbo.best.practice.controller;
+package com.chenbo.admin.service.controller;
 
-import com.chenbo.best.practice.dto.AjaxResult;
-import com.chenbo.best.practice.vo.UserVo;
+import com.chenbo.admin.service.dto.AjaxResult;
+import com.chenbo.admin.service.vo.UserVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

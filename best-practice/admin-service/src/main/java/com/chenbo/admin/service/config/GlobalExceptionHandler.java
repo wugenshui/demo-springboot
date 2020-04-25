@@ -1,7 +1,7 @@
-package com.chenbo.best.practice.config;
+package com.chenbo.admin.service.config;
 
-import com.chenbo.best.practice.dto.AjaxResult;
-import com.chenbo.best.practice.enums.AjaxResultEnum;
+import com.chenbo.admin.service.dto.AjaxResult;
+import com.chenbo.admin.service.enums.AjaxResultEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.validation.FieldError;

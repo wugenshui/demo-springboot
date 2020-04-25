@@ -1,4 +1,4 @@
-package com.chenbo.best.practice;
+package com.chenbo.admin.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,10 +10,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date : 2020-02-13
  */
 @SpringBootApplication
-public class BestPracticeApplication {
+public class AdminServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BestPracticeApplication.class, args);
+        SpringApplication.run(AdminServiceApplication.class, args);
     }
 
 }

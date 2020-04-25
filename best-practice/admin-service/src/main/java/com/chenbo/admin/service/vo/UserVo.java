@@ -1,4 +1,4 @@
-package com.chenbo.best.practice.vo;
+package com.chenbo.admin.service.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

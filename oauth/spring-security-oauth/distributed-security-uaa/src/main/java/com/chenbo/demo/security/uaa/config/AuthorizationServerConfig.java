@@ -5,8 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -14,11 +12,12 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
-import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 import javax.sql.DataSource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author : chenbo
@@ -31,45 +30,36 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private TokenStore tokenStore;
+    //@Autowired
+    //private TokenStore tokenStore;
 
     @Autowired
     private ClientDetailsService clientDetailsService;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private DataSource dataSource;
 
-    @Autowired
-    private ClientDetailsService dbClientDetailsService;
-
-
-    /**
-     * 密码加密工具
-     *
-     * @return
-     */
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public TokenStore tokenStore() {
+        // 基于 JDBC 实现，令牌保存到数据
+        return new JdbcTokenStore(dataSource);
     }
 
     /**
      * 客户端信息
      *
-     * @param dataSource
      * @return
      */
     @Bean
-    public ClientDetailsService clientDetailsService(DataSource dataSource) {
+    public ClientDetailsService jdbcClientDetails() {
         ClientDetailsService clientDetailsService = new JdbcClientDetailsService(dataSource);
-        ((JdbcClientDetailsService) clientDetailsService).setPasswordEncoder(passwordEncoder);
+        //((JdbcClientDetailsService) clientDetailsService).setPasswordEncoder(passwordEncoder);
         return clientDetailsService;
     }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.withClientDetails(dbClientDetailsService);
+        clients.withClientDetails(jdbcClientDetails());
         //.inMemory()
         //.withClient("client")
         //.secret(passwordEncoder().encode("secret"))
@@ -78,39 +68,37 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         //.redirectUris("https://wwww.baidu.com");
     }
 
-    @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        // 放行校验令牌接口
-        security.checkTokenAccess("permitAll()");
-    }
-
     /**
      * 认证服务端点配置
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints
-                //        //用户管理
-                //        .userDetailsService(userDetailsService)
-                //        //token存到redis
-                //        .tokenStore(new RedisTokenStore(redisConnectionFactory))
+                //用户管理
+                //.userDetailsService(userDetailsService)
+                //token存到redis
+                //.tokenStore(new RedisTokenStore(redisConnectionFactory))
+                .tokenStore(tokenStore())
                 //启用oauth2管理
                 .authenticationManager(authenticationManager)
                 //接收GET和POST
                 .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
+
+        // 配置TokenServices参数
+        DefaultTokenServices tokenServices = new DefaultTokenServices();
+        tokenServices.setTokenStore(endpoints.getTokenStore());
+        tokenServices.setSupportRefreshToken(false);
+        tokenServices.setClientDetailsService(endpoints.getClientDetailsService());
+        tokenServices.setTokenEnhancer(endpoints.getTokenEnhancer());
+        // 30天
+        tokenServices.setAccessTokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(30));
+        endpoints.tokenServices(tokenServices);
     }
 
-    @Bean
-    public AuthorizationServerTokenServices tokenService() {
-        DefaultTokenServices service = new DefaultTokenServices();
-        service.setClientDetailsService(clientDetailsService);
-        service.setSupportRefreshToken(true);
-        service.setTokenStore(tokenStore);
-        // 令牌默认有效期2小时
-        service.setAccessTokenValiditySeconds(7200);
-        // 刷新令牌默认有效期3天
-        service.setRefreshTokenValiditySeconds(259200);
-        return service;
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        // 放行校验令牌接口
+        security.checkTokenAccess("permitAll()");
     }
 
 }

@@ -19,6 +19,6 @@ public class BCryptPasswordEncoderTest {
 
     @Test
     public void encodeTest() {
-        System.out.println(passwordEncoder.encode("sercet"));
+        System.out.println(passwordEncoder.encode("secret"));
     }
 }

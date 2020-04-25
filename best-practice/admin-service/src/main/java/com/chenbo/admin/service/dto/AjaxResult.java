@@ -1,6 +1,6 @@
-package com.chenbo.best.practice.dto;
+package com.chenbo.admin.service.dto;
 
-import com.chenbo.best.practice.enums.AjaxResultEnum;
+import com.chenbo.admin.service.enums.AjaxResultEnum;
 
 /**
  * Ajax请求响应类

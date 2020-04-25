@@ -1,6 +1,5 @@
 package com.chenbo.demo.security.uaa.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,8 +18,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+
+    /**
+     * 密码加密工具
+     *
+     * @return
+     */
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     /**
      * 认证管理器
@@ -44,9 +51,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // 基于内存验证
         auth.inMemoryAuthentication()
-                .withUser("admin").password(passwordEncoder.encode("admin")).roles("ADMIN")
+                .withUser("admin").password(passwordEncoder().encode("admin")).roles("ADMIN")
                 .and()
-                .withUser("user").password(passwordEncoder.encode("user")).roles("USER");
+                .withUser("user").password(passwordEncoder().encode("user")).roles("USER");
     }
 
     /**

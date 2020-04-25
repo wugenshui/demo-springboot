@@ -1,4 +1,4 @@
-package com.chenbo.best.practice.enums;
+package com.chenbo.admin.service.enums;
 
 /**
  * 请求响应状态码与消息对应的枚举
