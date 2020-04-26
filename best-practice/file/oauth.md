@@ -12,7 +12,7 @@ code:rv6z6k
 
 
 
-# 简化模式 implicit
+# 隐式授权模式 implicit
 ### 回调地址上显示token
 get http://localhost:9527/oauth/authorize?response_type=token&client_id=client
  
