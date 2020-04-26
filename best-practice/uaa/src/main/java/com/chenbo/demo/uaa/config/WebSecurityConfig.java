@@ -55,7 +55,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // 安全拦截机制
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/admin*").hasAnyAuthority("admin")
+                .antMatchers("/**").permitAll()
+                //        //.antMatchers("/admin*").hasAnyAuthority("admin")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin();

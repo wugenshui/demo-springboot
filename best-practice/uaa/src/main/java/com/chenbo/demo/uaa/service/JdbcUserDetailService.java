@@ -20,7 +20,10 @@ public class JdbcUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDetails userDetails = User.withUsername(username).password(passwordEncoder.encode(username)).authorities(username).build();
+        UserDetails userDetails = User.withUsername(username).password(passwordEncoder.encode(username))
+                .roles("USER")
+                .authorities(username).build();
+        System.out.println("userDetails = " + userDetails);
         return userDetails;
     }
 }
