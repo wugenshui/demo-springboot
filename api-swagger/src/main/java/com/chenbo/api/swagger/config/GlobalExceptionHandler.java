@@ -2,14 +2,12 @@ package com.chenbo.api.swagger.config;
 
 import com.chenbo.api.swagger.entity.AjaxResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * @author : chenbo
@@ -29,8 +27,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public AjaxResult<String> MethodArgumentNotValidHandler(HttpServletRequest request, MethodArgumentNotValidException exception) throws Exception {
-        List<FieldError> errors = exception.getBindingResult().getFieldErrors();
-        ObjectError error = errors.get(0);
+        FieldError error = exception.getBindingResult().getFieldError();
         return AjaxResult.error("参数校验失败:" + error.getDefaultMessage());
     }
 

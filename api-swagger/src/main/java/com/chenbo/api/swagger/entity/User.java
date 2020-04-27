@@ -26,6 +26,10 @@ public class User {
     @NotEmpty(message = "请输入用户名!")
     private String name;
 
+    @ApiModelProperty("密码")
+    @NotEmpty(message = "请输入用户密码!")
+    private String password;
+
     @ApiModelProperty("用户年龄")
     @Max(value = 150, message = "用户年龄应小于150岁!")
     @Min(value = 0, message = "用户年龄应大于0岁!")
