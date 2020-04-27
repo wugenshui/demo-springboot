@@ -14,10 +14,12 @@ import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 import javax.sql.DataSource;
+import java.util.Arrays;
 
 /**
  * @author : chenbo
@@ -33,11 +35,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private AuthenticationManager authenticationManagerBean;
 
-    @Bean
-    public TokenStore tokenStore() {
-        // 基于 JDBC 实现，令牌保存到数据
-        return new JdbcTokenStore(dataSource);
-    }
+    @Autowired
+    private TokenStore tokenStore;
+
+    @Autowired
+    private JwtAccessTokenConverter jwtAccessTokenConverter;
 
     @Bean
     public ClientDetailsService clientDetailService() {
@@ -50,7 +52,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         DefaultTokenServices tokenServices = new DefaultTokenServices();
         tokenServices.setClientDetailsService(clientDetailService());
         tokenServices.setSupportRefreshToken(true);
-        tokenServices.setTokenStore(tokenStore());
+        tokenServices.setTokenStore(tokenStore);
+
+        // JWT令牌增强
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(jwtAccessTokenConverter));
+        tokenServices.setTokenEnhancer(tokenEnhancerChain);
+
         // 令牌默认有效期2h
         tokenServices.setAccessTokenValiditySeconds(7200);
         // 刷新令牌默认有效期3d
