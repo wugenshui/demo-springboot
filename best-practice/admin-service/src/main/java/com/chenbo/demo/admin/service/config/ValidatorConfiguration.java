@@ -9,6 +9,8 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
 /**
+ * Validator配置类
+ *
  * @author : chenbo
  * @date : 2020-04-27
  */
@@ -16,7 +18,7 @@ import javax.validation.ValidatorFactory;
 public class ValidatorConfiguration {
 
     /**
-     * Validator配置类
+     * Validator配置
      * 快速返回模式，当有一个参数校验异常，直接抛出异常
      *
      * @return
