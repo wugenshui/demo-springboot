@@ -4,6 +4,7 @@ import com.chenbo.demo.admin.service.dto.AjaxResult;
 import com.chenbo.demo.admin.service.enums.AjaxResultEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -29,7 +30,20 @@ public class GlobalExceptionHandler {
     public AjaxResult handlerMethodArgumentNotValid(MethodArgumentNotValidException ex) {
         FieldError error = ex.getBindingResult().getFieldError();
         assert error != null;
-        return AjaxResult.error(StringUtils.defaultIfBlank("参数校验异常:" + error.getDefaultMessage() + "!", "参数校验异常！"));
+        return AjaxResult.error(StringUtils.defaultIfBlank(error.getDefaultMessage(), "参数校验异常！"));
+    }
+
+    /**
+     * 处理参数校验异常
+     *
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler(BindException.class)
+    public AjaxResult handleBindException(BindException ex) {
+        FieldError error = ex.getBindingResult().getFieldError();
+        assert error != null;
+        return AjaxResult.error(StringUtils.defaultIfBlank(error.getDefaultMessage(), "参数校验异常！"));
     }
 
     /**
