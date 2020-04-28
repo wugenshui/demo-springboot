@@ -1,5 +1,8 @@
 package com.chenbo.demo.elasticsearch.config;
 
+import com.chenbo.demo.elasticsearch.bean.ElasticsearchConfigBean;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
@@ -10,13 +13,16 @@ import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
 import org.apache.http.impl.nio.reactor.IOReactorConfig;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.util.StringUtils;
 
 import java.util.Objects;
 
 /**
+ * Elasticsearch配置类
+ *
  * @author : chenbo
  * @date : 2020-04-11
  */
@@ -24,36 +30,10 @@ import java.util.Objects;
 @Configuration
 public class ElasticsearchConfiguration {
 
-    /**
-     * 集群地址，多个用使用 {*，*，。。。}
-     */
-    @Value("${spring.elasticsearch.host}")
-    private String host;
+    private static Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
-
-    @Value("${spring.elasticsearch.port}")
-    private Integer port;
-
-    /**
-     * 使用的协议（http或者https）
-     */
-    @Value("${spring.elasticsearch.scheme}")
-    private String scheme;
-
-    @Value("${spring.elasticsearch.connection-timeout}")
-    private Integer connectionTimeout;
-
-    @Value("${spring.elasticsearch.socket-timout}")
-    private Integer socketTimeout;
-
-    @Value("${spring.elasticsearch.connection-request-timout}")
-    private Integer connectionRequestTimout;
-
-    @Value("${spring.elasticsearch.username}")
-    private String username;
-
-    @Value("${spring.elasticsearch.password}")
-    private String password;
+    @Autowired
+    private ElasticsearchConfigBean config;
 
     /**
      * @return 封装 RestClient
@@ -61,49 +41,43 @@ public class ElasticsearchConfiguration {
     @Bean(destroyMethod = "close")
     public RestHighLevelClient restHighLevelClient() {
 
-        if (Objects.isNull(host)) {
+        if (Objects.isNull(config.getHost())) {
             log.error("必须指定ElasticSearch服务地址");
             return null;
         }
 
-        String[] hosts = host.split(",");
+        String[] hosts = config.getHost().split(",");
         HttpHost[] httpHosts = new HttpHost[hosts.length];
         for (int i = 0; i < hosts.length; i++) {
-            httpHosts[i] = new HttpHost(hosts[i], port, scheme);
+            httpHosts[i] = new HttpHost(hosts[i], config.getPort(), config.getScheme());
         }
 
-
-        return new RestHighLevelClient(RestClient.builder(httpHosts)
+        RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(httpHosts)
                 .setRequestConfigCallback(requestConfigBuilder -> {
-                            // 配置超时信息
-                            requestConfigBuilder.setConnectTimeout(connectionTimeout);
-                            requestConfigBuilder.setSocketTimeout(socketTimeout);
-                            requestConfigBuilder.setConnectionRequestTimeout(connectionRequestTimout);
+                            // 配置httpClient连接超时信息
+                            requestConfigBuilder.setConnectTimeout(config.getConnectionTimeout());
+                            requestConfigBuilder.setSocketTimeout(config.getSocketTimeout());
+                            requestConfigBuilder.setConnectionRequestTimeout(config.getConnectionTimeout());
                             return requestConfigBuilder;
                         }
                 )
                 .setHttpClientConfigCallback(httpClientBuilder -> {
                     // 设置线程数
-                    HttpAsyncClientBuilder httpAsyncClientBuilder = httpClientBuilder.setDefaultIOReactorConfig(
-                            IOReactorConfig.custom()
-                                    .setIoThreadCount(20)
-                                    .build());
+                    HttpAsyncClientBuilder httpAsyncClientBuilder = httpClientBuilder
+                            .setDefaultIOReactorConfig(IOReactorConfig.custom().setIoThreadCount(20).build());
+                    httpClientBuilder.setMaxConnTotal(config.getMaxConnectNum());
+                    httpClientBuilder.setMaxConnPerRoute(config.getMaxConnectPerRoute());
+
                     // 设置认证信息
-                    httpAsyncClientBuilder.setDefaultCredentialsProvider(getCredentialsProvider());
+                    if (!StringUtils.isEmpty(config.getUsername()) && !StringUtils.isEmpty(config.getPassword())) {
+                        CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+                        credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(config.getUsername(), config.getPassword()));
+                        httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
+                    }
                     return httpAsyncClientBuilder;
                 })
         );
-    }
 
-    /**
-     * 鉴权
-     *
-     * @return 鉴权配置
-     */
-    private CredentialsProvider getCredentialsProvider() {
-        CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-        System.out.println(username);
-        credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(username, password));
-        return credentialsProvider;
+        return client;
     }
 }

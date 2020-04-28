@@ -1,11 +1,16 @@
 spring:
   elasticsearch:
-    #    host: 192.168.0.222
-    host: 192.168.192.170
+    host: 192.168.0.222
+    #host: 192.168.192.170
     port: 9200
     scheme: http
     username: elastic
     password: changeme
-    connection-timeout: 30000
-    socket-timout: 30000
-    connection-request-timout: 30000
+    #    max-connect-num: 50
+    #    max-connect-per-route: 10
+    #    connection-request-timout: 1000
+    #    connection-timeout: 3000
+    #    socket-timout: 15000
+    #    index:
+    #      number-of-shards: 2
+    #      number-of-replicas: 0
