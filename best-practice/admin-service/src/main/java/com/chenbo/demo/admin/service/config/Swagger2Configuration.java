@@ -1,14 +1,25 @@
 package com.chenbo.demo.admin.service.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.OAuthBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.AuthorizationScope;
+import springfox.documentation.service.GrantType;
+import springfox.documentation.service.ResourceOwnerPasswordCredentialsGrant;
+import springfox.documentation.service.SecurityReference;
+import springfox.documentation.service.SecurityScheme;
 import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * @author : chenbo
@@ -17,6 +28,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class Swagger2Configuration {
+
+    /**
+     * 认证授权服务地址
+     */
+    @Value("${auth.server}")
+    private String AUTH_SERVER;
 
     /**
      * api接口包扫描路径
@@ -35,7 +52,9 @@ public class Swagger2Configuration {
                 //.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 // 可以根据url路径设置哪些请求加入文档，忽略哪些请求
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .securitySchemes(Collections.singletonList(securityScheme()))
+                .securityContexts(Collections.singletonList(securityContext()));
     }
 
     private ApiInfo apiInfo() {
@@ -43,5 +62,37 @@ public class Swagger2Configuration {
                 .title("admin")
                 .version(VERSION)
                 .build();
+    }
+
+    /**
+     * 认证方式：密码模式
+     */
+    private SecurityScheme securityScheme() {
+        GrantType grantType = new ResourceOwnerPasswordCredentialsGrant(AUTH_SERVER + "/oauth/token");
+
+        return new OAuthBuilder()
+                .name("OAuth认证授权")
+                .grantTypes(Collections.singletonList(grantType))
+                .scopes(Arrays.asList(scopes()))
+                .build();
+    }
+
+    /**
+     * 这里设置 swagger2 认证的安全上下文
+     */
+    private SecurityContext securityContext() {
+        return SecurityContext.builder()
+                .securityReferences(Collections.singletonList(new SecurityReference("OAuth认证授权", scopes())))
+                .forPaths(PathSelectors.any())
+                .build();
+    }
+
+    /**
+     * 允许认证的scope
+     */
+    private AuthorizationScope[] scopes() {
+        return new AuthorizationScope[]{
+                new AuthorizationScope("all", "全部认证范围")
+        };
     }
 }

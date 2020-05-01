@@ -1,1 +1,2 @@
-
+auth:
+  server: http://localhost:9527
