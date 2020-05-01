@@ -1,4 +1,4 @@
-package com.chenbo.demo.uaa.controller;
+package com.chenbo.demo.admin.service.controller;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ public class TestOaurhController {
     }
 
     @GetMapping("/f2")
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('f2')")
     public String f2() {
         return getUser() + "访问资源2";
     }

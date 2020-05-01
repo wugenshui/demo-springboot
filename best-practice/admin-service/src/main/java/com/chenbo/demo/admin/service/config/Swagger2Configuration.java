@@ -40,7 +40,7 @@ public class Swagger2Configuration {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("best-practice")
+                .title("admin")
                 .version(VERSION)
                 .build();
     }

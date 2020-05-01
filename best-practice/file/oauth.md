@@ -40,4 +40,9 @@ scope:all
 http://localhost:9527/oauth/check_token?token=8cafa4c4-3069-4571-87d9-e452ce794cde
 
 ### 刷新令牌
+POST http://localhost:9527/oauth/token
 
+grant_type:refresh_token
+refresh_token:我的token
+client_id:client
+client_secret:secret
