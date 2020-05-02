@@ -21,11 +21,11 @@ public class UserVo {
     private Integer id;
 
     @ApiModelProperty("用户名")
+    @NotEmpty(message = "请输入用户名")
     private String name;
 
     @Max(value = 120, message = "年龄不能大于120")
     @Min(value = 0, message = "年龄不能小于0")
-    @NotEmpty(message = "请输入用户名")
     @ApiModelProperty("用户年龄")
     private Integer age;
 }

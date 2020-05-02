@@ -13,11 +13,11 @@ demo project for spring-boot
 # storepass 密钥库口令
 keytool -genkeypair -alias practice -keyalg RSA -keypass practice -keystore practice.jks -storepass practice -validity 1000
 
-# 生成公钥
-#keytool -export -alias practice -keystore practice.jks -file practice.publicKey
-# keytool -list -rfc --keystore practice.jks | openssl x509 -inform pem -pubkey
-
 
 # 下载openssl工具
 windows版本： http://slproweb.com/products/Win32OpenSSL.html
+
+# 生成公钥
+# keytool -list -rfc --keystore practice.jks | openssl x509 -inform pem -pubkey
+
 ```
