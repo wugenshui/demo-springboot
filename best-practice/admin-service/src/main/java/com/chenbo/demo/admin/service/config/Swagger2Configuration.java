@@ -16,6 +16,8 @@ import springfox.documentation.service.SecurityScheme;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger.web.SecurityConfiguration;
+import springfox.documentation.swagger.web.SecurityConfigurationBuilder;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Arrays;
@@ -34,6 +36,11 @@ public class Swagger2Configuration {
      */
     @Value("${auth.server}")
     private String AUTH_SERVER;
+
+    /**
+     * 授权服务名称
+     */
+    private static final String OAUTH_NAME = "OAuth2认证授权";
 
     /**
      * api接口包扫描路径
@@ -71,7 +78,7 @@ public class Swagger2Configuration {
         GrantType grantType = new ResourceOwnerPasswordCredentialsGrant(AUTH_SERVER + "/oauth/token");
 
         return new OAuthBuilder()
-                .name("OAuth认证授权")
+                .name(OAUTH_NAME)
                 .grantTypes(Collections.singletonList(grantType))
                 .scopes(Arrays.asList(scopes()))
                 .build();
@@ -82,7 +89,7 @@ public class Swagger2Configuration {
      */
     private SecurityContext securityContext() {
         return SecurityContext.builder()
-                .securityReferences(Collections.singletonList(new SecurityReference("OAuth认证授权", scopes())))
+                .securityReferences(Collections.singletonList(new SecurityReference(OAUTH_NAME, scopes())))
                 .forPaths(PathSelectors.any())
                 .build();
     }
@@ -94,5 +101,16 @@ public class Swagger2Configuration {
         return new AuthorizationScope[]{
                 new AuthorizationScope("all", "全部认证范围")
         };
+    }
+
+    @Bean
+    SecurityConfiguration security() {
+        return SecurityConfigurationBuilder.builder()
+                .clientId("client")
+                .clientSecret("secret")
+                .scopeSeparator(",")
+                .additionalQueryStringParams(null)
+                .useBasicAuthenticationWithAccessCodeGrant(false)
+                .build();
     }
 }

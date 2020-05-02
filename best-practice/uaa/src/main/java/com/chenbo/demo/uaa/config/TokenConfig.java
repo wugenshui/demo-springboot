@@ -2,9 +2,12 @@ package com.chenbo.demo.uaa.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
 /**
  * @author : chenbo
@@ -12,14 +15,15 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
  */
 @Configuration
 public class TokenConfig {
-
-    private static final String SIGNING_KEY = "SigningKey";
-
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        // 对称密钥，资源服务器使用该密钥加密
-        converter.setSigningKey(SIGNING_KEY);
+
+        Resource resource = new ClassPathResource("key/jwt.jks");
+        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(resource, "practice".toCharArray());
+        // 私钥加密
+        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("practice"));
+
         return converter;
     }
 

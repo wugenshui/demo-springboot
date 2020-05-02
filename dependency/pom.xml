@@ -37,19 +37,9 @@
         <netty.version>4.1.47.Final</netty.version>
     </properties>
 
+    <!-- 统一依赖管理 -->
     <dependencyManagement>
-        <!-- 自己的项目 -->
         <dependencies>
-            <dependency>
-                <groupId>com.chenbo.demo</groupId>
-                <artifactId>base-util</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
-            </dependency>
             <!-- spring-cloud -->
             <dependency>
                 <groupId>org.springframework.security</groupId>
@@ -195,6 +185,22 @@
                 <groupId>io.netty</groupId>
                 <artifactId>netty-all</artifactId>
                 <version>${netty.version}</version>
+            </dependency>
+            <!-- 自己的项目 -->
+            <dependency>
+                <groupId>com.chenbo.demo</groupId>
+                <artifactId>base-util</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.chenbo.demo</groupId>
+                <artifactId>commons</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

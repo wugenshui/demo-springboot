@@ -2,9 +2,14 @@ package com.chenbo.demo.admin.service.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.util.FileCopyUtils;
+
+import java.io.IOException;
 
 /**
  * @author : chenbo
@@ -12,14 +17,18 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
  */
 @Configuration
 public class TokenConfig {
-
-    private static final String SIGNING_KEY = "SigningKey";
-
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        // 对称密钥，资源服务器使用该密钥加密
-        converter.setSigningKey(SIGNING_KEY);
+        Resource resource = new ClassPathResource("key/jwt.pub");
+        try {
+            String publicKey = new String(FileCopyUtils.copyToByteArray(resource.getInputStream()));
+            // 公钥解密
+            converter.setVerifierKey(publicKey);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         return converter;
     }
 
