@@ -1,3 +1,6 @@
+server:
+  port: 8000
+
 spring:
   application:
     name: uaa
@@ -15,6 +18,3 @@ spring:
       max-lifetime: 1800000
       connection-timeout: 30000
       connection-test-query: SELECT 1
-
-server:
-  port: 9527
