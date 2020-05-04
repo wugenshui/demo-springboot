@@ -54,4 +54,16 @@ public class UserController {
         user.setCreateTime(LocalDateTime.now());
         return user;
     }
+
+    @ApiOperation("测试gateway-a")
+    @GetMapping("/a")
+    public AjaxResult a() {
+        return AjaxResult.success("a");
+    }
+
+    @ApiOperation("测试gateway-b")
+    @GetMapping("/b")
+    public AjaxResult b() {
+        return AjaxResult.success("b");
+    }
 }
