@@ -1,6 +1,7 @@
 package com.chenbo.demo.admin.service.controller;
 
 
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author : chenbo
  * @date : 2020-04-26
  */
+@Api(tags = "测试认证授权接口")
 @RestController
 @RequestMapping("/test")
 @Slf4j

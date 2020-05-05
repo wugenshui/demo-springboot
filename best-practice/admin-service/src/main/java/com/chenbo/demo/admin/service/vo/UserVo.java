@@ -2,8 +2,9 @@ package com.chenbo.demo.admin.service.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
  * @date : 2020-04-02
  */
 @Data
-@Builder
+@NoArgsConstructor
 @ApiModel("用户")
 public class UserVo {
     @ApiModelProperty("用户id")
@@ -24,6 +25,7 @@ public class UserVo {
     private String username;
 
     @ApiModelProperty(value = "密码，加密存储")
+    @Ignore
     private String password;
 
     @ApiModelProperty(value = "注册手机号")
