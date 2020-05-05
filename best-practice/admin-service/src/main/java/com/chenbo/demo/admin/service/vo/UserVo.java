@@ -5,9 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDateTime;
 
 /**
  * @author : chenbo
@@ -18,14 +17,22 @@ import javax.validation.constraints.NotEmpty;
 @ApiModel("用户")
 public class UserVo {
     @ApiModelProperty("用户id")
-    private Integer id;
+    private Long id;
 
-    @ApiModelProperty("用户名")
+    @ApiModelProperty(value = "用户名")
     @NotEmpty(message = "请输入用户名")
-    private String name;
+    private String username;
 
-    @Max(value = 120, message = "年龄不能大于120")
-    @Min(value = 0, message = "年龄不能小于0")
-    @ApiModelProperty("用户年龄")
-    private Integer age;
+    @ApiModelProperty(value = "密码，加密存储")
+    private String password;
+
+    @ApiModelProperty(value = "注册手机号")
+    private String phone;
+
+    @ApiModelProperty(value = "注册邮箱")
+    private String email;
+
+    private LocalDateTime created;
+
+    private LocalDateTime updated;
 }

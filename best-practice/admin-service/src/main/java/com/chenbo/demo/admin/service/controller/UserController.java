@@ -32,8 +32,8 @@ public class UserController {
     @ApiOperation("根据id查询用户")
     @ApiParam(name = "id", required = true, value = "用户ID")
     @GetMapping("/{id}")
-    public AjaxResult<UserVo> findById(@PathVariable int id) {
-        UserVo user = UserVo.builder().id(id).age(age).name("张三").build();
+    public AjaxResult<UserVo> findById(@PathVariable Long id) {
+        UserVo user = UserVo.builder().id(id).username("张三").build();
         return AjaxResult.success(user);
     }
 

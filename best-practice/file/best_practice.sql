@@ -96,8 +96,8 @@ CREATE TABLE `tb_role` (
   `name` varchar(64) NOT NULL COMMENT '角色名称',
   `enname` varchar(64) NOT NULL COMMENT '角色英文名称',
   `description` varchar(200) DEFAULT NULL COMMENT '备注',
-  `created` datetime NOT NULL,
-  `updated` datetime NOT NULL,
+  `created` datetime NOT NULL COMMENT '创建时间',
+  `updated` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='角色表';
 
@@ -114,8 +114,8 @@ CREATE TABLE `tb_user` (
   `password` varchar(64) NOT NULL COMMENT '密码，加密存储',
   `phone` varchar(20) DEFAULT NULL COMMENT '注册手机号',
   `email` varchar(50) DEFAULT NULL COMMENT '注册邮箱',
-  `created` datetime NOT NULL,
-  `updated` datetime NOT NULL,
+  `created` datetime NOT NULL COMMENT '创建时间',
+  `updated` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`) USING BTREE,
   UNIQUE KEY `phone` (`phone`) USING BTREE,
