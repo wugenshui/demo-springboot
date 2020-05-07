@@ -1,9 +1,7 @@
 package com.chenbo.baseutil.spring.utils;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.backoff.BackOff;
 import org.springframework.util.backoff.BackOffExecution;
 import org.springframework.util.backoff.ExponentialBackOff;
@@ -14,7 +12,6 @@ import org.springframework.util.backoff.FixedBackOff;
  * @date : 2020-03-06
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class BackOffTest {
     @Test
     public void fixedBackOffTest() {

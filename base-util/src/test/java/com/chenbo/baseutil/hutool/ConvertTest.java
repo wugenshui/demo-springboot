@@ -4,9 +4,7 @@ import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.CharsetUtil;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 
@@ -15,7 +13,6 @@ import java.util.Arrays;
  * @date : 2020-05-07
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class ConvertTest {
     @Test
     public void toStrTest() {

@@ -5,9 +5,7 @@ import com.chenbo.baseutil.bean.StudentVO;
 import com.chenbo.baseutil.util.bean.dozer.BeanMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +15,6 @@ import java.util.List;
  * @date : 2020-05-07
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
 @Slf4j
 public class BeanMapperTest {
 

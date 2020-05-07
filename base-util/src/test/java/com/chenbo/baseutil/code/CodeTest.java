@@ -1,9 +1,7 @@
 package com.chenbo.baseutil.code;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -14,7 +12,6 @@ import java.util.List;
  * @date : 2020-04-01
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class CodeTest {
     @Test
     public void deCode() throws UnsupportedEncodingException {

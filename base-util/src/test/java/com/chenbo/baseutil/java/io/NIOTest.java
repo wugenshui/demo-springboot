@@ -1,9 +1,7 @@
 package com.chenbo.baseutil.java.io;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,7 +17,6 @@ import java.security.SecureRandom;
  * @date : 2020-03-23
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class NIOTest {
 
     @Test

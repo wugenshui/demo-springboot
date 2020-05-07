@@ -2,18 +2,22 @@ package com.chenbo.baseutil.java.io;
 
 import com.chenbo.baseutil.entity.User;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 
 /**
  * @author : chenbo
  * @date : 2020-03-22
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class IOTest {
     @Test
     public void OutputStreamTest() throws Exception {

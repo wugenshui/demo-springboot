@@ -1,9 +1,7 @@
 package com.chenbo.baseutil.java.util;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,7 +12,6 @@ import java.util.List;
  * @date : 2020-04-04
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class ListTest {
     @Test
     public void foreachTest() {
