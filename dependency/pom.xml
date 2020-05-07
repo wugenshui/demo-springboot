@@ -37,6 +37,7 @@
         <docx4j.version>6.1.2</docx4j.version>
         <easyexcel.version>2.1.6</easyexcel.version>
         <velocity.version>2.1</velocity.version>
+        <dozer.version>5.5.1</dozer.version>
         <netty.version>4.1.47.Final</netty.version>
     </properties>
 
@@ -207,6 +208,11 @@
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity-engine-core</artifactId>
                 <version>${velocity.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.dozer</groupId>
+                <artifactId>dozer</artifactId>
+                <version>${dozer.version}</version>
             </dependency>
             <!-- socket -->
             <dependency>
