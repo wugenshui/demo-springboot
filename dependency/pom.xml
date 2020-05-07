@@ -36,8 +36,9 @@
         <easypoi.version>4.1.0</easypoi.version>
         <docx4j.version>6.1.2</docx4j.version>
         <easyexcel.version>2.1.6</easyexcel.version>
-        <velocity.version>2.1</velocity.version>
+        <hutool.verison>5.3.3</hutool.verison>
         <dozer.version>5.5.1</dozer.version>
+        <velocity.version>2.1</velocity.version>
         <netty.version>4.1.47.Final</netty.version>
     </properties>
 
@@ -205,14 +206,19 @@
             </dependency>
             <!-- util -->
             <dependency>
-                <groupId>org.apache.velocity</groupId>
-                <artifactId>velocity-engine-core</artifactId>
-                <version>${velocity.version}</version>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.verison}</version>
             </dependency>
             <dependency>
                 <groupId>net.sf.dozer</groupId>
                 <artifactId>dozer</artifactId>
                 <version>${dozer.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity.version}</version>
             </dependency>
             <!-- socket -->
             <dependency>
