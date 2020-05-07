@@ -1,8 +1,6 @@
-package com.chenbo.baseutil.bean.dozer;
+package com.chenbo.baseutil.bean;
 
-import com.chenbo.baseutil.bean.StudentDO;
-import com.chenbo.baseutil.bean.StudentVO;
-import com.chenbo.baseutil.util.bean.dozer.BeanMapper;
+import com.chenbo.baseutil.util.bean.BeanMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,24 +17,26 @@ import java.util.List;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Slf4j
-public class DozerTest {
+public class BeanMapperTest {
 
     @Test
-    public void copyBeanTest() {
+    public void mapTest() {
         StudentDO studentDO = new StudentDO(1024L, "张三", 18, "11122223333");
-        StudentVO studentVO = BeanMapper.map(studentDO, StudentVO.class);
-        log.info("StudentVo: [{}]", studentVO);
-        studentVO.setAge(16);
+        StudentVO studentVO1 = BeanMapper.map(studentDO, StudentVO.class);
+        log.info("StudentVo: [{}]", studentVO1);
+        studentVO1.setAge(16);
         log.info("studentDO: [{}]", studentDO);
+
+        StudentVO studentVO2 = new StudentVO();
+        BeanMapper.map(studentDO, studentVO2);
+        log.info("studentVO: [{}]", studentDO);
     }
 
     @Test
-    public void copyListTest() {
+    public void mapListTest() {
         List<StudentDO> studentDO = Arrays.asList(new StudentDO(1024L, "张三", 18, "11122223333"));
         List<StudentVO> studentVO = BeanMapper.mapList(studentDO, StudentVO.class);
         log.info("StudentVo: [{}]", studentVO);
         log.info("studentDO: [{}]", studentDO);
     }
-
-
 }

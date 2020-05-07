@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Bean转换工具类
+ * Bean转换工具类(基于Dozer)
  *
  * @author : chenbo
  * @date : 2020-05-07
@@ -20,7 +20,7 @@ public class BeanMapper {
     private static final DozerBeanMapper DOZER_BEAN_MAPPER = new DozerBeanMapper();
 
     /**
-     * 基于Dozer映射对象的属性
+     * 映射对象的属性
      */
     public static <T> T map(Object source, Class<T> destinationClass) {
         if (source == null || destinationClass == null) {
@@ -30,7 +30,7 @@ public class BeanMapper {
     }
 
     /**
-     * 基于Dozer将源对象的值映射到目标对象中
+     * 将源对象的值映射到目标对象中
      */
     public static void map(Object source, Object destinationObject) {
         if (source == null || destinationObject == null) {
@@ -40,7 +40,7 @@ public class BeanMapper {
     }
 
     /**
-     * 基于Dozer映射Collection中对象的属性
+     * 映射Collection中对象的属性
      */
     public static <T> List<T> mapList(Collection sourceList, Class<T> destinationClass) {
         List<T> destinationList = new ArrayList<>();
