@@ -1,6 +1,5 @@
 package com.chenbo.baseutil.java.util;
 
-import org.apache.commons.lang3.time.DateFormatUtils;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,6 +8,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
@@ -25,8 +25,21 @@ import java.util.concurrent.RejectedExecutionException;
 public class DateTest {
     @Test
     public void bestTest() {
+        Date date = new Date();
         LocalDateTime localDateTime = LocalDateTime.now();
+
+        // Date to LocalDateTime
+        localDateTime = date.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
         System.out.println("localDateTime = " + localDateTime);
+
+        // LocalDateTime to Date
+        date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        System.out.println("date = " + date);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        System.out.println(formatter.format(localDateTime));
     }
 
     @Test
@@ -67,26 +80,20 @@ public class DateTest {
         for (; ; ) {
             executorService.execute(() -> {
                 Random random = new Random();
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(Math.abs(random.nextInt(5000)),
-                        Math.abs(random.nextInt(11)),
-                        Math.abs(random.nextInt(20)),
-                        Math.abs(random.nextInt(24)),
-                        Math.abs(random.nextInt(60)),
-                        Math.abs(random.nextInt(60)));
-                Date date = calendar.getTime();
-                // format 方法存在多线程的问题
-                //df.format(date);
-
-                // 使用第三方工具类 DateFormatUtils
-                String dateStr = DateFormatUtils.format(date, "yyyy-MM-dd'T'HH:mm:ss.SSS");
-
                 try {
+                    Date date = new Date(System.currentTimeMillis() + new Random().nextInt());
+                    // format 方法存在多线程的问题
+                    System.out.println(df.format(date));
+                    ;
+
+                    // 使用第三方工具类 DateFormatUtils
+                    //String dateStr = DateFormatUtils.format(date, "yyyy-MM-dd'T'HH:mm:ss.SSS");
+
+
                     // 使用线程安全的类 DateTimeFormatter
-                    LocalDateTime localDateTime = LocalDateTime.parse(dateStr);
-                    df2.format(localDateTime);
+                    //LocalDateTime localDateTime = LocalDateTime.parse(dateStr);
+                    //df2.format(localDateTime);
                 } catch (Exception e) {
-                    System.out.println(calendar + "$" + dateStr);
                     e.printStackTrace();
                     executorService.shutdown();
                 }
