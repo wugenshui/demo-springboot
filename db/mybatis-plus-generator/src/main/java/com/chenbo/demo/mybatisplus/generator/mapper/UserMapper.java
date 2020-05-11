@@ -1,6 +1,6 @@
 package com.chenbo.demo.mybatisplus.generator.mapper;
 
-import com.chenbo.demo.mybatisplus.generator.entity.TbUser;
+import com.chenbo.demo.mybatisplus.generator.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author chenbo
  * @since 2020-05-11
  */
-public interface TbUserMapper extends BaseMapper<TbUser> {
+public interface UserMapper extends BaseMapper<User> {
 
 }

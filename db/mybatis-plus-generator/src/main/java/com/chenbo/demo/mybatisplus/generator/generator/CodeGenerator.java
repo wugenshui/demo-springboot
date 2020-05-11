@@ -47,6 +47,7 @@ public class CodeGenerator {
         gc.setServiceName("%sService");
         mpg.setGlobalConfig(gc);
 
+
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setUrl("jdbc:mysql://localhost:3306/best_practice?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC");
@@ -68,27 +69,25 @@ public class CodeGenerator {
                 // to do nothing
             }
         };
+        mpg.setCfg(cfg);
 
+        // 自定义输出配置
+        List<FileOutConfig> focList = new ArrayList<>();
+        // xml文件模板
         // 如果模板引擎是 freemarker
         //String templatePath = "/templates/mapper.xml.ftl";
         // 如果模板引擎是 velocity
         String templatePath = "/templates/mapper.xml.vm";
-
-        // 自定义输出配置
-        List<FileOutConfig> focList = new ArrayList<>();
         // 自定义配置会被优先输出
         focList.add(new FileOutConfig(templatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                //return projectPath + "/src/main/resources/mapper/" + pc.getModuleName()
-                //        + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
-                return projectPath + "/src/main/resources/mapper/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
+                return projectPath + "/src/main/resources/mapper/" + (StringUtils.isNotBlank(pc.getModuleName()) ? pc.getModuleName() + "/" : "")
+                        + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });
-
         cfg.setFileOutConfigList(focList);
-        mpg.setCfg(cfg);
 
         // 配置模板
         TemplateConfig templateConfig = new TemplateConfig();
@@ -108,13 +107,13 @@ public class CodeGenerator {
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
-
         // 写于父类中的公共字段
         // strategy.setSuperEntityColumns("id");  // 设置父类属性，例如id等公用属性不需要每个实体写一次
         strategy.setInclude("tb_user");
+        //strategy.setLikeTable(new LikeTable(scanner("表名,模糊匹配")));
         //strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         strategy.setControllerMappingHyphenStyle(true);
-        strategy.setTablePrefix(pc.getModuleName() + "_");
+        strategy.setTablePrefix(pc.getModuleName() + "_", "oauth_", "tb_");
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new VelocityTemplateEngine());
         mpg.execute();

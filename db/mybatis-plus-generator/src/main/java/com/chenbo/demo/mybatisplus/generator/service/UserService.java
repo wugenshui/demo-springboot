@@ -1,6 +1,6 @@
 package com.chenbo.demo.mybatisplus.generator.service;
 
-import com.chenbo.demo.mybatisplus.generator.entity.TbUser;
+import com.chenbo.demo.mybatisplus.generator.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author chenbo
  * @since 2020-05-11
  */
-public interface TbUserService extends IService<TbUser> {
+public interface UserService extends IService<User> {
 
 }
