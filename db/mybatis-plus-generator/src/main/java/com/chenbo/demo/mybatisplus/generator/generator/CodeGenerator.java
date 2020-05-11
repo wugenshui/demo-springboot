@@ -36,10 +36,15 @@ public class CodeGenerator {
         String projectPath = System.getProperty("user.dir") + "/db/mybatis-plus-generator";
         // 【输出文件路径】
         gc.setOutputDir(projectPath + "/src/main/java");
+        // 是否覆盖已有文件,谨慎开启
+        gc.setFileOverride(true);
         gc.setAuthor("chenbo");
         gc.setOpen(false);
         // 实体属性 Swagger2 注解
         gc.setSwagger2(true);
+        gc.setBaseResultMap(true);
+        gc.setBaseColumnList(true);
+        gc.setServiceName("%sService");
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
@@ -76,8 +81,9 @@ public class CodeGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                return projectPath + "/src/main/resources/mapper/" + pc.getModuleName()
-                        + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
+                //return projectPath + "/src/main/resources/mapper/" + pc.getModuleName()
+                //        + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
+                return projectPath + "/src/main/resources/mapper/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });
 
@@ -105,7 +111,8 @@ public class CodeGenerator {
 
         // 写于父类中的公共字段
         // strategy.setSuperEntityColumns("id");  // 设置父类属性，例如id等公用属性不需要每个实体写一次
-        strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
+        strategy.setInclude("tb_user");
+        //strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);

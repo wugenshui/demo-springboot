@@ -15,12 +15,17 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapping/*Mapper.xml
-  #type-aliases-package: com.chenbo.daomybatis
+  type-aliases-package: com.chenbo.demo.mybatisplus.generator.entity
 
 # showSql
 logging:
   level:
     root: warn
-    com.chenbo.daomybatisplus.auth.mapper: trace
+    com:
+      chenbo:
+        demo:
+          mybatisplus:
+            generator:
+              mapper: trace
   pattern:
     console: '%p%m%n'

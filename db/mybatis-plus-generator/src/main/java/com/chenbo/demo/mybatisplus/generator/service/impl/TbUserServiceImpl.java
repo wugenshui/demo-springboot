@@ -2,7 +2,7 @@ package com.chenbo.demo.mybatisplus.generator.service.impl;
 
 import com.chenbo.demo.mybatisplus.generator.entity.TbUser;
 import com.chenbo.demo.mybatisplus.generator.mapper.TbUserMapper;
-import com.chenbo.demo.mybatisplus.generator.service.ITbUserService;
+import com.chenbo.demo.mybatisplus.generator.service.TbUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2020-05-11
  */
 @Service
-public class TbUserServiceImpl extends ServiceImpl<TbUserMapper, TbUser> implements ITbUserService {
+public class TbUserServiceImpl extends ServiceImpl<TbUserMapper, TbUser> implements TbUserService {
 
 }
