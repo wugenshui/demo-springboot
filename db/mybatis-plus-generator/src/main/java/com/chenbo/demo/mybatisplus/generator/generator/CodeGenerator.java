@@ -1,4 +1,4 @@
-package com.chenbo.demo.admin.service.generator;
+package com.chenbo.demo.mybatisplus.generator.generator;
 
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
@@ -27,32 +27,13 @@ import java.util.Scanner;
  */
 public class CodeGenerator {
 
-    /**
-     * <p>
-     * 读取控制台内容
-     * </p>
-     */
-    private static String scanner(String tip) {
-        Scanner scanner = new Scanner(System.in);
-        StringBuilder help = new StringBuilder();
-        help.append("请输入" + tip + "：");
-        System.out.println(help.toString());
-        if (scanner.hasNext()) {
-            String ipt = scanner.next();
-            if (StringUtils.isNotBlank(ipt)) {
-                return ipt;
-            }
-        }
-        throw new MybatisPlusException("请输入正确的" + tip + "！");
-    }
-
     public static void main(String[] args) {
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        String projectPath = System.getProperty("user.dir") + "/best-practice/admin-service";
+        String projectPath = System.getProperty("user.dir") + "/db/mybatis-plus-generator";
         // 【输出文件路径】
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("chenbo");
@@ -63,7 +44,7 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/best_practice?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai");
+        dsc.setUrl("jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("root");
@@ -71,8 +52,8 @@ public class CodeGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        // pc.setModuleName(scanner("模块名"));
-        pc.setParent("com.chenbo.demo.admin.service");
+        pc.setModuleName(scanner("模块名"));
+        pc.setParent("com.chenbo.demo.mybatisplus.generator");
         mpg.setPackageInfo(pc);
 
         // 自定义配置
@@ -95,7 +76,8 @@ public class CodeGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                return projectPath + "/src/main/resources/mapper/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
+                return projectPath + "/src/main/resources/mapper/" + pc.getModuleName()
+                        + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });
 
@@ -125,10 +107,29 @@ public class CodeGenerator {
         // strategy.setSuperEntityColumns("id");  // 设置父类属性，例如id等公用属性不需要每个实体写一次
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         strategy.setControllerMappingHyphenStyle(true);
-        // strategy.setTablePrefix(pc.getModuleName() + "_");
-        strategy.setTablePrefix("tb_");
+        strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new VelocityTemplateEngine());
         mpg.execute();
     }
+
+    /**
+     * <p>
+     * 读取控制台内容
+     * </p>
+     */
+    private static String scanner(String tip) {
+        Scanner scanner = new Scanner(System.in);
+        StringBuilder help = new StringBuilder();
+        help.append("请输入" + tip + "：");
+        System.out.println(help.toString());
+        if (scanner.hasNext()) {
+            String ipt = scanner.next();
+            if (StringUtils.isNotBlank(ipt)) {
+                return ipt;
+            }
+        }
+        throw new MybatisPlusException("请输入正确的" + tip + "！");
+    }
+
 }

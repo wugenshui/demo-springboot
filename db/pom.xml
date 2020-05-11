@@ -20,5 +20,6 @@
         <module>elasticsearch</module>
         <module>mybatis</module>
         <module>mybatis-plus</module>
+        <module>mybatis-plus-generator</module>
     </modules>
 </project>
