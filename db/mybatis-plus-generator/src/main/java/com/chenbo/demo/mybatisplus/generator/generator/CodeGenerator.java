@@ -95,7 +95,7 @@ public class CodeGenerator {
         // 配置自定义输出模板
         // 指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
         // 自定义实体层模板路径
-        templateConfig.setEntityKt("templates/entity2.kt");
+        templateConfig.setEntity("templates/entity2.java");
         // templateConfig.setService(); // 自定义服务层模板路径
         // templateConfig.setController(); // 自定义控制器层模板路径
 
