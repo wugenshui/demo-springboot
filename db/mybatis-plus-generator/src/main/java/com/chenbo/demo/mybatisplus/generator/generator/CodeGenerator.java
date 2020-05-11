@@ -44,7 +44,7 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC");
+        dsc.setUrl("jdbc:mysql://localhost:3306/best_practice?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("root");
@@ -52,7 +52,7 @@ public class CodeGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName(scanner("模块名"));
+        //pc.setModuleName(scanner("模块名"));
         pc.setParent("com.chenbo.demo.mybatisplus.generator");
         mpg.setPackageInfo(pc);
 
