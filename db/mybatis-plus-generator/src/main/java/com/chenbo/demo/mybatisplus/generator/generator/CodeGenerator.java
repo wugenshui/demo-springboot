@@ -68,8 +68,17 @@ public class CodeGenerator {
         InjectionConfig cfg = new InjectionConfig() {
             @Override
             public void initMap() {
-                Map<String, Object> map = new HashMap<>();
+                Map<String, Object> map = new HashMap<>(2);
                 map.put("VOPackageName", this.getConfig().getPackageInfo().get("Entity").replace("entity", "vo"));
+                //List<TableInfo> tableInfoList = this.getConfig().getTableInfoList();
+                //Map<String, Set<String>> maps = new HashMap<>();
+                //for (int i = 0; i < tableInfoList.size(); i++) {
+                //    TableInfo table = tableInfoList.get(i);
+                //    Set<String> packages = table.getImportPackages();
+                //    packages.removeAll(Arrays.asList("com.baomidou.mybatisplus.annotation.IdType", "com.baomidou.mybatisplus.annotation.TableId"));
+                //    maps.put(table.getName(), packages);
+                //}
+                //map.put("VOImportPackage", maps);
                 this.setMap(map);
             }
         };

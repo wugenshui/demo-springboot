@@ -60,4 +60,19 @@ public class ListTest {
         System.out.println("list");
         System.out.println(list);
     }
+
+    /**
+     * ArrayList 之类的才可以调用
+     */
+    @Test
+    public void removeAllTest() {
+        ArrayList list = new ArrayList();
+        list.add(1);
+        list.add(2);
+        ArrayList removeList = new ArrayList();
+        removeList.add(2);
+        boolean deleted = list.removeAll(removeList);
+        System.out.println("deleted = " + deleted);
+        System.out.println("list = " + list);
+    }
 }

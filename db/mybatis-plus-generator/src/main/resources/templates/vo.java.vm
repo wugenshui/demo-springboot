@@ -1,9 +1,10 @@
 package $!{cfg.VOPackageName};
 
 #foreach($pkg in ${table.importPackages})
+#if("$!pkg" != "com.baomidou.mybatisplus.annotation.IdType" && "$!pkg" != "com.baomidou.mybatisplus.annotation.TableId" && "$!pkg" != "com.baomidou.mybatisplus.annotation.TableName")
 import ${pkg};
 #end
-
+#end
 #if(${entityLombokModel})
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -27,9 +28,6 @@ import lombok.experimental.Accessors;
 #end
 @Accessors(chain = true)
 #end
-#if(${swagger2})
-@ApiModel(value="${entity}VO对象", description="$!{table.comment}")
-#end
 #if(${superEntityClass})
 public class ${entity}VO extends ${superEntityClass}#if(${activeRecord})<${entity}>VO#end {
 #elseif(${activeRecord})
@@ -48,23 +46,11 @@ public class ${entity}VO implements Serializable {
     #set($keyPropertyName=${field.propertyName})
 #end
 #if("$!field.comment" != "")
-    #if(${swagger2})
-    @ApiModelProperty(value = "${field.comment}")
-    #else
     /**
      * ${field.comment}
      */
-    #end
 #end
 #if(${field.keyFlag})
-## 主键
-#if(${field.keyIdentityFlag})
-    @TableId(value = "${field.name}", type = IdType.AUTO)
-#elseif(!$null.isNull(${idType}) && "$!idType" != "")
-    @TableId(value = "${field.name}", type = IdType.${idType})
-#elseif(${field.convert})
-    @TableId("${field.name}")
-#end
 ## 普通字段
 #elseif(${field.fill})
 ## -----   存在字段填充设置   -----
