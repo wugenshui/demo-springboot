@@ -16,7 +16,9 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -66,7 +68,9 @@ public class CodeGenerator {
         InjectionConfig cfg = new InjectionConfig() {
             @Override
             public void initMap() {
-                // to do nothing
+                Map<String, Object> map = new HashMap<>();
+                map.put("VOPackageName", this.getConfig().getPackageInfo().get("Entity").replace("entity", "vo"));
+                this.setMap(map);
             }
         };
         mpg.setCfg(cfg);
@@ -77,14 +81,24 @@ public class CodeGenerator {
         // 如果模板引擎是 freemarker
         //String templatePath = "/templates/mapper.xml.ftl";
         // 如果模板引擎是 velocity
-        String templatePath = "/templates/mapper.xml.vm";
+        String mapTemplatePath = "/templates/mapper.xml.vm";
         // 自定义配置会被优先输出
-        focList.add(new FileOutConfig(templatePath) {
+        focList.add(new FileOutConfig(mapTemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                 return projectPath + "/src/main/resources/mapper/" + (StringUtils.isNotBlank(pc.getModuleName()) ? pc.getModuleName() + "/" : "")
                         + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
+            }
+        });
+        String voTemplatePath = "/templates/vo.java.vm";
+        focList.add(new FileOutConfig(voTemplatePath) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出路径
+                return projectPath + "/src/main/java/" + pc.getParent().replace('.', '/')
+                        + (StringUtils.isNotBlank(pc.getModuleName()) ? pc.getModuleName() + "/" : "/")
+                        + "vo/" + tableInfo.getEntityName() + "VO" + StringPool.DOT_JAVA;
             }
         });
         cfg.setFileOutConfigList(focList);
