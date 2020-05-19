@@ -1,11 +1,16 @@
 package com.chenbo.baseutil.java.util;
 
+import com.chenbo.baseutil.bean.StudentVO;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @author : chenbo
@@ -74,5 +79,16 @@ public class ListTest {
         boolean deleted = list.removeAll(removeList);
         System.out.println("deleted = " + deleted);
         System.out.println("list = " + list);
+    }
+
+    @Test
+    public void list2MapTest() {
+        List<StudentVO> data = Arrays.asList(
+                new StudentVO(1L, "李一", 17, "12136"),
+                new StudentVO(3L, "张三", 22, "12137")
+        );
+
+        Map<Long, StudentVO> mapStudent = data.stream().collect(Collectors.toMap(StudentVO::getId, Function.identity()));
+        System.out.println("mapStudent = " + mapStudent);
     }
 }
