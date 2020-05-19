@@ -90,5 +90,9 @@ public class ListTest {
 
         Map<Long, StudentVO> mapStudent = data.stream().collect(Collectors.toMap(StudentVO::getId, Function.identity()));
         System.out.println("mapStudent = " + mapStudent);
+
+
+        Map<Long, String> mapStudent2 = data.stream().collect(Collectors.toMap(StudentVO::getId, m -> m.getAge() > 18 ? "成年" : "未成年"));
+        System.out.println("mapStudent2 = " + mapStudent2);
     }
 }
