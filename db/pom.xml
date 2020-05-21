@@ -21,5 +21,6 @@
         <module>mybatis</module>
         <module>mybatis-plus</module>
         <module>mybatis-plus-generator</module>
+        <module>redis-jedis</module>
     </modules>
 </project>
