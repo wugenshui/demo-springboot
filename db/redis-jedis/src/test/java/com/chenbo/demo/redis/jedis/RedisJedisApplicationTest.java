@@ -30,6 +30,5 @@ public class RedisJedisApplicationTest {
         value = jedis.get("foo");
         Assert.assertEquals("bar", value);
         System.out.println("value = " + value);
-
     }
 }
