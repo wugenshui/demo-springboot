@@ -9,14 +9,14 @@ import java.util.List;
  * @author : chenbo
  * @date : 2020-05-22
  */
-public class Customer extends Thread {
+public class Consumer extends Thread {
 
-    private String customerName;
+    private String consumerName;
     private volatile int count;
     private Jedis jedis;
 
-    public Customer(String name) {
-        this.customerName = name;
+    public Consumer(String name) {
+        this.consumerName = name;
         init();
     }
 
@@ -65,11 +65,11 @@ public class Customer extends Thread {
 
     public void handle(String message) {
         count++;
-        System.out.println(customerName + " 正在处理消息,消息内容是: " + message + " 这是第" + count + "条");
+        System.out.println(consumerName + " 正在处理消息,消息内容是: " + message + " 这是第" + count + "条");
     }
 
     public static void main(String[] args) {
-        Customer customer = new Customer("queue-customer");
-        customer.start();
+        Consumer consumer = new Consumer("queue-customer");
+        consumer.start();
     }
 }
