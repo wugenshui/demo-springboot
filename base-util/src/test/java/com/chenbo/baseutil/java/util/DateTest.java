@@ -25,9 +25,9 @@ import java.util.concurrent.RejectedExecutionException;
 public class DateTest {
     @Test
     public void bestTest() {
-        Date date = new Date();
         LocalDateTime localDateTime = LocalDateTime.now();
 
+        Date date = new Date();
         // Date to LocalDateTime
         localDateTime = date.toInstant()
                 .atZone(ZoneId.systemDefault())
@@ -64,8 +64,6 @@ public class DateTest {
     public void formatTest() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         System.out.println(simpleDateFormat.format(new Date()));
-
-
     }
 
     /**
@@ -84,11 +82,9 @@ public class DateTest {
                     Date date = new Date(System.currentTimeMillis() + new Random().nextInt());
                     // format 方法存在多线程的问题
                     System.out.println(df.format(date));
-                    ;
 
                     // 使用第三方工具类 DateFormatUtils
                     //String dateStr = DateFormatUtils.format(date, "yyyy-MM-dd'T'HH:mm:ss.SSS");
-
 
                     // 使用线程安全的类 DateTimeFormatter
                     //LocalDateTime localDateTime = LocalDateTime.parse(dateStr);
