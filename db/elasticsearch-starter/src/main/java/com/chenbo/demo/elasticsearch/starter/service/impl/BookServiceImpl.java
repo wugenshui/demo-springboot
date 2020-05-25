@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.elasticsearch.core.aggregation.impl.AggregatedPageImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,7 +48,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookBean> findAll() {
-        return (List<BookBean>) bookRepository.findAll();
+        return ((AggregatedPageImpl) bookRepository.findAll()).getContent();
     }
 
     @Override

@@ -21,5 +21,4 @@ public interface BookRepository extends ElasticsearchRepository<BookBean, String
     Page<BookBean> findByAuthor(String author, Pageable pageable);
 
     Page<BookBean> findByTitle(String title, Pageable pageable);
-
 }

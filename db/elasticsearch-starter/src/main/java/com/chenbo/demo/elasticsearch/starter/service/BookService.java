@@ -26,4 +26,5 @@ public interface BookService {
     Page<BookBean> findByAuthor(String author, PageRequest pageRequest);
 
     Page<BookBean> findByTitle(String title, PageRequest pageRequest);
+
 }
