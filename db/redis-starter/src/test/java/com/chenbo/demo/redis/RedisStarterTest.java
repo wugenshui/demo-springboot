@@ -37,12 +37,12 @@ public class RedisStarterTest {
     public void testOperations() {
         String key = String.format("sample:user:cache:%s", "xxx");
         ValueOperations<String, User> operations = redisTemplate.opsForValue();
-        //set,get测试
+        // set,get测试
         operations.set(key, new User(100L, "chenzz", "666666"));
         User value = operations.get(key);
         log.info("[{}]: {}", value.getUsername(), value.getPassword());
-        //-------------------------
-        //一次性设置获取多个key值
+
+        // 一次性设置获取多个key值
         Map<String, User> maps = new HashMap<>();
         maps.put("user:1", new User(1L, "chenzz", "111111"));
         maps.put("user:2", new User(2L, "chenym", "222222"));
@@ -53,18 +53,18 @@ public class RedisStarterTest {
         operations.multiSet(maps);
         log.info("[第3个] - [{}]", operations.get("user:3").toString());
 
-        //一次获取多个值
+        // 一次获取多个值
         List<String> keys = new ArrayList<>();
         keys.add("user:2");
         keys.add("user:5");
         List<User> multiValues = operations.multiGet(keys);
         multiValues.forEach(x -> log.info("[{}]: {}", x.getUsername(), x.getPassword()));
-        //----------------------------------------------
-        //设置值时设置过期时间(2分钟后过期)
+
+        // 设置值时设置过期时间(2分钟后过期)
         operations.set("user:xx", new User(20L, "czz", "xxxxxx"), Duration.ofMinutes(2));
 
-        Set<String> allkeys = redisTemplate.keys("*user*");
-        allkeys.forEach(x -> log.info("key=" + x));
+        Set<String> allKeys = redisTemplate.keys("*user*");
+        allKeys.forEach(x -> log.info("key=" + x));
 
     }
 
