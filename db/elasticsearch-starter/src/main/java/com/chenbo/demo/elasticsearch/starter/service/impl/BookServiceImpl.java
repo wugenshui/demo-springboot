@@ -6,8 +6,8 @@ import com.chenbo.demo.elasticsearch.starter.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.elasticsearch.core.aggregation.impl.AggregatedPageImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,7 +48,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookBean> findAll() {
-        return ((AggregatedPageImpl) bookRepository.findAll()).getContent();
+        return ((PageImpl) bookRepository.findAll()).getContent();
     }
 
     @Override

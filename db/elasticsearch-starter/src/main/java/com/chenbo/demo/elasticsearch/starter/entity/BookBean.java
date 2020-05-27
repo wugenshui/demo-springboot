@@ -9,7 +9,8 @@ import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
-import org.springframework.data.elasticsearch.annotations.InnerField;
+
+import java.time.LocalDateTime;
 
 /**
  * @author : chenbo
@@ -17,6 +18,7 @@ import org.springframework.data.elasticsearch.annotations.InnerField;
  */
 @Document(indexName = "book", type = "_doc", shards = 5, replicas = 2)
 @TypeAlias("allbook")
+//@Setting()
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,16 +27,16 @@ public class BookBean {
     private String id;
 
     @Field(type = FieldType.Keyword)
-    @InnerField(suffix = "text", type = FieldType.Text)
+    //@InnerField(suffix = "text", type = FieldType.Text)
     private String title;
 
     @Field(type = FieldType.Text)
-    @InnerField(suffix = "keyword", type = FieldType.Keyword)
+    //@InnerField(suffix = "keyword", type = FieldType.Keyword)
     private String author;
 
     @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss || date || epoch_millis")
     private String updateTime;
 
-    //@Field(type = FieldType.Date, format = DateFormat.date_optional_time)
-    //private LocalDateTime creatTime;
+    @Field(type = FieldType.Date, format = DateFormat.date_optional_time)
+    private LocalDateTime creatTime;
 }

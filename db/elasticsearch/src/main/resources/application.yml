@@ -5,7 +5,7 @@ spring:
     port: 9200
     scheme: http
     username: elastic
-    password: changeme
+    password: 123456
     #    max-connect-num: 50
     #    max-connect-per-route: 10
     #    connection-request-timout: 1000

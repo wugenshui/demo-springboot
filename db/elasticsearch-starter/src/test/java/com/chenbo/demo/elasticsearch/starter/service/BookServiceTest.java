@@ -9,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.CollectionUtils;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -25,22 +28,30 @@ public class BookServiceTest {
     private ElasticsearchRestTemplate elasticsearchRestTemplate;
 
     @Autowired
+    private ElasticsearchOperations elasticsearchOperations;
+
+    @Autowired
     private BookService bookService;
 
     @Before
     public void initData() {
-        elasticsearchRestTemplate.deleteIndex(BookBean.class);
+        //deleteIndex();
+        //createIndex();
+        List<BookBean> all = bookService.findAll();
+        System.out.println("all = " + all);
+        if (CollectionUtils.isEmpty(all)) {
+            bookService.save(new BookBean("1", "ES入门教程1", "张三", "2016-10-01", LocalDateTime.now()));
+            bookService.save(new BookBean("2", "ES入门教程2", "李四", "2017-10-01", LocalDateTime.now()));
+            bookService.save(new BookBean("3", "ES入门教程3", "王五", "2018-10-01", LocalDateTime.now()));
+            bookService.save(new BookBean(null, "ES入门教程4", "何六", "2019-10-01", LocalDateTime.now()));
+            bookService.save(new BookBean(null, "ES入门教程4", "张七", "2019-10-01", LocalDateTime.now()));
+        }
+    }
 
-        elasticsearchRestTemplate.createIndex(BookBean.class);
-        //List<BookBean> all = bookService.findAll();
-        //System.out.println("all = " + all);
-        //if (CollectionUtils.isEmpty(all)) {
-        bookService.save(new BookBean("1", "ES入门教程1", "张三", "2016-10-01"));
-        bookService.save(new BookBean("2", "ES入门教程2", "李四", "2017-10-01"));
-        bookService.save(new BookBean("3", "ES入门教程3", "王五", "2018-10-01"));
-        bookService.save(new BookBean(null, "ES入门教程4", "何六", "2019-10-01"));
-        bookService.save(new BookBean(null, "ES入门教程4", "张七", "2019-10-01"));
-        //}
+    @Test
+    public void findAll() {
+        List<BookBean> all = bookService.findAll();
+        System.out.println("all = " + all);
     }
 
     @Test
@@ -50,18 +61,12 @@ public class BookServiceTest {
 
     @Test
     public void delete() {
-        bookService.delete(new BookBean("1", null, null, null));
+        bookService.delete(new BookBean("1", null, null, null, null));
     }
 
     @Test
     public void findOne() {
         System.out.println("elasticsearchRestTemplate = " + bookService.findOne("2"));
-    }
-
-    @Test
-    public void findAll() {
-        List<BookBean> all = bookService.findAll();
-        System.out.println("all = " + all);
     }
 
     @Test
@@ -86,11 +91,20 @@ public class BookServiceTest {
 
         byTitle = bookService.findByTitle("入门", PageRequest.of(0, 20));
         System.out.println("入门" + byTitle.getContent());
+
+        byTitle = bookService.findByTitle("入", PageRequest.of(0, 20));
+        System.out.println("入" + byTitle.getContent());
     }
 
-    // 删除索引
-    @Test
-    public void deleteIndex() {
-        elasticsearchRestTemplate.deleteIndex(BookBean.class);
+    private void deleteIndex() {
+        System.out.println("删除索引");
+        elasticsearchOperations.indexOps(BookBean.class).delete();
     }
+
+    private void createIndex() {
+        System.out.println("创建索引");
+        elasticsearchOperations.indexOps(BookBean.class).create();
+    }
+
+
 }
