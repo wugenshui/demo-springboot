@@ -1,6 +1,7 @@
 package com.chenbo.demo.elasticsearch.starter.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -20,6 +21,7 @@ import java.time.LocalDateTime;
 @TypeAlias("allbook")
 //@Setting()
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookBean {
@@ -36,6 +38,8 @@ public class BookBean {
 
     @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss || date || epoch_millis")
     private String updateTime;
+
+    private Integer sex;
 
     @Field(type = FieldType.Date, format = DateFormat.date_optional_time)
     private LocalDateTime creatTime;
