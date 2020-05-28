@@ -1,10 +1,11 @@
 spring:
   redis:
+    host: 192.168.192.170
+    port: 6379
+    password: 1q2w#E$R
+    database: 2
     lettuce:
       pool:
         max-active: 8
         max-idle: 8
         min-idle: 0
-    host: 192.168.192.170
-    password: 1q2w#E$R
-    database: 2
