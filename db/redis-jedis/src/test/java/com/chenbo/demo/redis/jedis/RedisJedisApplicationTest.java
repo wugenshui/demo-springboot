@@ -43,7 +43,7 @@ public class RedisJedisApplicationTest {
 
         JedisPool jedisPool = new JedisPool("192.168.192.170", 6379);
         Jedis jedis = jedisPool.getResource();
-        jedis.auth("1q2w#E$R");
+        jedis.auth("123456");
 
         // 清空数据
         jedis.flushDB();

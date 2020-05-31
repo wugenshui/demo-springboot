@@ -1,0 +1,11 @@
+server:
+  port: 8888
+
+logging:
+  level:
+    root: info
+    org:
+      redisson:
+        command:
+          RedisExecutor: warn
+
