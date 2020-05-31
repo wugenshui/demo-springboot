@@ -28,6 +28,7 @@
         <tk.mybatis.version>2.1.5</tk.mybatis.version>
         <pagehelper.version>1.2.12</pagehelper.version>
         <p6spy.version>3.8.1</p6spy.version>
+        <redisson.version>3.13.0</redisson.version>
         <elasticsearch.version>7.1.1</elasticsearch.version>
         <jwt.version>3.4.0</jwt.version>
         <swagger.version>2.9.2</swagger.version>
@@ -135,6 +136,11 @@
                 <groupId>p6spy</groupId>
                 <artifactId>p6spy</artifactId>
                 <version>${p6spy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>${redisson.version}</version>
             </dependency>
             <!-- es -->
             <dependency>

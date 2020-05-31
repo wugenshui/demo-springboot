@@ -7,22 +7,18 @@
         <artifactId>db</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>redis</artifactId>
+
+    <artifactId>redis-redisson</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>io.lettuce</groupId>-->
-        <!--            <artifactId>lettuce-core</artifactId>-->
-        <!--            <version>5.1.8.RELEASE</version>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -33,9 +29,5 @@
             <artifactId>lombok</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>redis.clients</groupId>-->
-        <!--            <artifactId>jedis</artifactId>-->
-        <!--        </dependency>-->
     </dependencies>
 </project>
