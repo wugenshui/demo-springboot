@@ -66,6 +66,39 @@ public class ListTest {
         System.out.println(list);
     }
 
+    @Test
+    public void emptyListTest() {
+        // 空集合 遍历时会报NullPointerException,因此遍历前需要进去集合空判断
+        List<String> nullList = null;
+
+        //for (String s : nullList) {
+        //    System.out.println("s = " + s);
+        //}
+
+        //nullList.forEach(l -> {
+        //    System.out.println("l = " + l);
+        //});
+
+        //for (int i = 0; i < nullList.size(); i++) {
+        //    System.out.println("nullList.get(i) = " + nullList.get(i));
+        //}
+
+        // emptyList则无影响
+        List<String> emptyList = new ArrayList<>();
+
+        for (String s : emptyList) {
+            System.out.println("s = " + s);
+        }
+
+        emptyList.forEach(l -> {
+            System.out.println("l = " + l);
+        });
+
+        for (int i = 0; i < emptyList.size(); i++) {
+            System.out.println("emptyList.get(i) = " + emptyList.get(i));
+        }
+    }
+
     /**
      * ArrayList 之类的才可以调用
      */
