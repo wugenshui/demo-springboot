@@ -4,13 +4,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.chenbo.demo</groupId>
-        <artifactId>parent</artifactId>
+        <artifactId>api</artifactId>
         <version>${revision}</version>
-        <relativePath>../parent</relativePath>
     </parent>
 
     <artifactId>api-swagger</artifactId>
     <packaging>war</packaging>
+
+<!--    <properties>-->
+<!--        <revision>0.0.1-SNAPSHOT</revision>-->
+<!--    </properties>-->
 
     <dependencies>
         <dependency>
