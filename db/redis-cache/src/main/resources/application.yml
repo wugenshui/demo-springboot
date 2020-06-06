@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    username: root
+    password: root
+  redis:
+    host: 192.168.192.170
+    port: 6379
+    password: 123456
+    database: 2
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+  cache:
+    redis:
+      ## Entry expiration in milliseconds. By default the entries never expire.
+      time-to-live: 1d
+      #写入redis时是否使用键前缀。
+      use-key-prefix: true
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.chenbo.daomybatis.entity
+
+# showSql
+logging:
+  level:
+    com:
+      chenbo:
+        demo:
+          redis:
+            cache:
+              mapper: debug
