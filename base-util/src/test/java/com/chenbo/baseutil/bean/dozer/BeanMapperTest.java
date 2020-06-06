@@ -7,7 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,7 +22,8 @@ public class BeanMapperTest {
 
     @Test
     public void mapTest() {
-        StudentDO studentDO = new StudentDO(1024L, "张三", 18, "11122223333");
+        StudentDO studentDO = getStudentDO("张三");
+
         StudentVO studentVO1 = BeanMapper.map(studentDO, StudentVO.class);
         log.info("StudentVo: [{}]", studentVO1);
         studentVO1.setAge(16);
@@ -33,9 +36,22 @@ public class BeanMapperTest {
 
     @Test
     public void mapListTest() {
-        List<StudentDO> studentDO = Arrays.asList(new StudentDO(1024L, "张三", 18, "11122223333"));
+        List<StudentDO> studentDO = Arrays.asList(getStudentDO("张三"), getStudentDO("李四"));
         List<StudentVO> studentVO = BeanMapper.mapList(studentDO, StudentVO.class);
         log.info("StudentVo: [{}]", studentVO);
         log.info("studentDO: [{}]", studentDO);
     }
+
+
+    private StudentDO getStudentDO(String name) {
+        return StudentDO.builder()
+                .id(1024L)
+                .name(name)
+                .age(18)
+                .mobile("11122223333")
+                .createTime(new Date())
+                .updateTime(LocalDateTime.now())
+                .build();
+    }
+
 }

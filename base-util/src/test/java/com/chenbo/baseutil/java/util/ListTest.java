@@ -4,8 +4,10 @@ import com.chenbo.baseutil.bean.StudentVO;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -117,8 +119,8 @@ public class ListTest {
     @Test
     public void list2MapTest() {
         List<StudentVO> data = Arrays.asList(
-                new StudentVO(1L, "李一", 17, "12136"),
-                new StudentVO(3L, "张三", 22, "12137")
+                getStudentDO("李一"),
+                getStudentDO("张三")
         );
 
         Map<Long, StudentVO> mapStudent = data.stream().collect(Collectors.toMap(StudentVO::getId, Function.identity()));
@@ -127,5 +129,16 @@ public class ListTest {
 
         Map<Long, String> mapStudent2 = data.stream().collect(Collectors.toMap(StudentVO::getId, m -> m.getAge() > 18 ? "成年" : "未成年"));
         System.out.println("mapStudent2 = " + mapStudent2);
+    }
+
+    private StudentVO getStudentDO(String name) {
+        return StudentVO.builder()
+                .id(1024L)
+                .name(name)
+                .age(18)
+                .mobile("11122223333")
+                .createTime(new Date())
+                .updateTime(LocalDateTime.now())
+                .build();
     }
 }
