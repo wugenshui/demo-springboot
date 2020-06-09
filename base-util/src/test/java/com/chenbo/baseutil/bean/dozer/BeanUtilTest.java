@@ -20,7 +20,7 @@ import java.util.List;
  */
 @SpringBootTest
 @Slf4j
-public class BeanMapperTest {
+public class BeanUtilTest {
 
     @Test
     public void baseTest() {

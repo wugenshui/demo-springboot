@@ -14,100 +14,100 @@
         </encoder>
     </appender>
 
-    <!-- 日志文件-ERROR -->    
-    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">  
-        <file>${LOG_HOME}/error.log</file>
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>ERROR</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!--日志文件输出的文件名-->            
-            <fileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}/error.log</fileNamePattern>
-            <maxHistory>${MAX_HISTORY}</maxHistory>
-        </rollingPolicy>
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>${ENCODER_PATTERN}</pattern>
-            <charset>UTF-8</charset>
-        </encoder>
-    </appender>
+<!--    &lt;!&ndash; 日志文件-ERROR &ndash;&gt;    -->
+<!--    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">  -->
+<!--        <file>${LOG_HOME}/error.log</file>-->
+<!--        <filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+<!--            <level>ERROR</level>-->
+<!--            <onMatch>ACCEPT</onMatch>-->
+<!--            <onMismatch>DENY</onMismatch>-->
+<!--        </filter>-->
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+<!--            &lt;!&ndash;日志文件输出的文件名&ndash;&gt;            -->
+<!--            <fileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}/error.log</fileNamePattern>-->
+<!--            <maxHistory>${MAX_HISTORY}</maxHistory>-->
+<!--        </rollingPolicy>-->
+<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+<!--            <pattern>${ENCODER_PATTERN}</pattern>-->
+<!--            <charset>UTF-8</charset>-->
+<!--        </encoder>-->
+<!--    </appender>-->
 
-    <!-- 日志文件-WARN -->    
-    <appender name="WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">  
-        <file>${LOG_HOME}/warn.log</file>
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>WARN</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!--日志文件输出的文件名-->            
-            <fileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}/warn.log</fileNamePattern>
-            <maxHistory>${MAX_HISTORY}</maxHistory>
-        </rollingPolicy>
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>${ENCODER_PATTERN}</pattern>
-            <charset>UTF-8</charset>
-        </encoder>
-    </appender>
+<!--    &lt;!&ndash; 日志文件-WARN &ndash;&gt;    -->
+<!--    <appender name="WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">  -->
+<!--        <file>${LOG_HOME}/warn.log</file>-->
+<!--        <filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+<!--            <level>WARN</level>-->
+<!--            <onMatch>ACCEPT</onMatch>-->
+<!--            <onMismatch>DENY</onMismatch>-->
+<!--        </filter>-->
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+<!--            &lt;!&ndash;日志文件输出的文件名&ndash;&gt;            -->
+<!--            <fileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}/warn.log</fileNamePattern>-->
+<!--            <maxHistory>${MAX_HISTORY}</maxHistory>-->
+<!--        </rollingPolicy>-->
+<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+<!--            <pattern>${ENCODER_PATTERN}</pattern>-->
+<!--            <charset>UTF-8</charset>-->
+<!--        </encoder>-->
+<!--    </appender>-->
 
-    <!-- 日志文件-INFO -->    
-    <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">  
-        <file>${LOG_HOME}/info.log</file>
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>INFO</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!--日志文件输出的文件名-->            
-            <fileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}/info.log</fileNamePattern>
-            <maxHistory>${MAX_HISTORY}</maxHistory>
-        </rollingPolicy>
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>${ENCODER_PATTERN}</pattern>
-            <charset>UTF-8</charset>
-        </encoder>
-    </appender>
+<!--    &lt;!&ndash; 日志文件-INFO &ndash;&gt;    -->
+<!--    <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">  -->
+<!--        <file>${LOG_HOME}/info.log</file>-->
+<!--        <filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+<!--            <level>INFO</level>-->
+<!--            <onMatch>ACCEPT</onMatch>-->
+<!--            <onMismatch>DENY</onMismatch>-->
+<!--        </filter>-->
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+<!--            &lt;!&ndash;日志文件输出的文件名&ndash;&gt;            -->
+<!--            <fileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}/info.log</fileNamePattern>-->
+<!--            <maxHistory>${MAX_HISTORY}</maxHistory>-->
+<!--        </rollingPolicy>-->
+<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+<!--            <pattern>${ENCODER_PATTERN}</pattern>-->
+<!--            <charset>UTF-8</charset>-->
+<!--        </encoder>-->
+<!--    </appender>-->
 
-    <!-- 日志文件-DEBUG -->    
-    <appender name="DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">  
-        <file>${LOG_HOME}/debug.log</file>
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>DEBUG</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!--日志文件输出的文件名-->            
-            <fileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}/debug.log</fileNamePattern>
-            <maxHistory>${MAX_HISTORY}</maxHistory>
-        </rollingPolicy>
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>${ENCODER_PATTERN}</pattern>
-            <charset>UTF-8</charset>
-        </encoder>
-    </appender>
+<!--    &lt;!&ndash; 日志文件-DEBUG &ndash;&gt;    -->
+<!--    <appender name="DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">  -->
+<!--        <file>${LOG_HOME}/debug.log</file>-->
+<!--        <filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+<!--            <level>DEBUG</level>-->
+<!--            <onMatch>ACCEPT</onMatch>-->
+<!--            <onMismatch>DENY</onMismatch>-->
+<!--        </filter>-->
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+<!--            &lt;!&ndash;日志文件输出的文件名&ndash;&gt;            -->
+<!--            <fileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}/debug.log</fileNamePattern>-->
+<!--            <maxHistory>${MAX_HISTORY}</maxHistory>-->
+<!--        </rollingPolicy>-->
+<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+<!--            <pattern>${ENCODER_PATTERN}</pattern>-->
+<!--            <charset>UTF-8</charset>-->
+<!--        </encoder>-->
+<!--    </appender>-->
 
-    <!-- 日志文件-TRACE -->    
-    <appender name="TRACE" class="ch.qos.logback.core.rolling.RollingFileAppender">  
-        <file>${LOG_HOME}/trace.log</file>
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>TRACE</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!--日志文件输出的文件名-->            
-            <fileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}/trace.log</fileNamePattern>
-            <maxHistory>${MAX_HISTORY}</maxHistory>
-        </rollingPolicy>
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>${ENCODER_PATTERN}</pattern>
-            <charset>UTF-8</charset>
-        </encoder>
-    </appender>
+<!--    &lt;!&ndash; 日志文件-TRACE &ndash;&gt;    -->
+<!--    <appender name="TRACE" class="ch.qos.logback.core.rolling.RollingFileAppender">  -->
+<!--        <file>${LOG_HOME}/trace.log</file>-->
+<!--        <filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+<!--            <level>TRACE</level>-->
+<!--            <onMatch>ACCEPT</onMatch>-->
+<!--            <onMismatch>DENY</onMismatch>-->
+<!--        </filter>-->
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+<!--            &lt;!&ndash;日志文件输出的文件名&ndash;&gt;            -->
+<!--            <fileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}/trace.log</fileNamePattern>-->
+<!--            <maxHistory>${MAX_HISTORY}</maxHistory>-->
+<!--        </rollingPolicy>-->
+<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+<!--            <pattern>${ENCODER_PATTERN}</pattern>-->
+<!--            <charset>UTF-8</charset>-->
+<!--        </encoder>-->
+<!--    </appender>-->
 
     <!--<logger name="java.sql.PreparedStatement" value="DEBUG" />-->
     <!--<logger name="java.sql.Connection" value="DEBUG" />-->
