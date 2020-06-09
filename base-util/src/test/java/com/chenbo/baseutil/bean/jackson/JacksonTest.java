@@ -56,6 +56,7 @@ public class JacksonTest {
                 .createTime(new Date())
                 .updateTime(LocalDateTime.now())
                 .updateDate(LocalDate.now())
+                .tempName(name)
                 .build();
     }
 }

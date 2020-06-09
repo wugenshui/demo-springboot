@@ -46,4 +46,9 @@ public class StudentDO {
      * 更新时间
      */
     private LocalDateTime updateTime;
+
+    /**
+     * transient属性
+     */
+    private transient String tempName;
 }

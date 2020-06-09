@@ -20,11 +20,11 @@ import java.util.List;
  */
 @SpringBootTest
 @Slf4j
-public class BeanUtilTest {
+public class BeanMapperTest {
 
     @Test
     public void baseTest() {
-        ShoppingCar sourceObject = ShoppingCar.builder().buyer("张三").createTime(new Date()).build();
+        ShoppingCar sourceObject = ShoppingCar.builder().buyer("张三").createTime(new Date()).tempName("新的名称").build();
         ShoppingCar destinationObject = ShoppingCar.builder().buyer("李四").goodCount(1).build();
 
         // 执行初始化
@@ -43,6 +43,7 @@ public class BeanUtilTest {
         //sourceObject.setUpdateTime(LocalDateTime.now());
         sourceObject.setGoods(Arrays.asList(Goods.builder().name("香水").price(1200L).build()));
         destinationObject.setCreateTime(new Date(2132132124132L));
+        destinationObject.setTempName("临时名称");
         System.out.println("拷贝前 S = " + sourceObject);
         System.out.println("拷贝前 T = " + destinationObject);
         BeanMapper.map(sourceObject, destinationObject);

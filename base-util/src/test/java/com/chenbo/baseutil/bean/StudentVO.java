@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -18,7 +19,7 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class StudentVO {
+public class StudentVO implements Serializable {
     /**
      * 身份ID
      */
@@ -55,4 +56,9 @@ public class StudentVO {
      * 更新时间
      */
     private LocalDate updateDate;
+
+    /**
+     * transient属性
+     */
+    private transient String tempName;
 }
