@@ -1,5 +1,7 @@
 package com.chenbo.baseutil.bean.dozer;
 
+import com.chenbo.baseutil.bean.Goods;
+import com.chenbo.baseutil.bean.ShoppingCar;
 import com.chenbo.baseutil.bean.StudentDO;
 import com.chenbo.baseutil.bean.StudentVO;
 import com.chenbo.baseutil.util.bean.dozer.BeanMapper;
@@ -19,6 +21,34 @@ import java.util.List;
 @SpringBootTest
 @Slf4j
 public class BeanMapperTest {
+
+    @Test
+    public void baseTest() {
+        ShoppingCar sourceObject = ShoppingCar.builder().buyer("张三").createTime(new Date()).build();
+        ShoppingCar destinationObject = ShoppingCar.builder().buyer("李四").goodCount(1).build();
+
+        // 执行初始化
+        destinationObject = BeanMapper.map(destinationObject, ShoppingCar.class);
+        System.out.println("将source属性名与destination属性名相同的值进行拷贝覆盖，即使为null");
+        System.out.println("-----------------------------------------------");
+
+        System.out.println("拷贝前 S = " + sourceObject);
+        System.out.println("拷贝前 T = " + destinationObject);
+        BeanMapper.map(sourceObject, destinationObject);
+        System.out.println("拷贝后 R = " + destinationObject);
+        System.out.println("-----------------------------------------------");
+
+        sourceObject.setGoodCount(123);
+        // docker 默认不支持LocalDateTime的映射
+        //sourceObject.setUpdateTime(LocalDateTime.now());
+        sourceObject.setGoods(Arrays.asList(Goods.builder().name("香水").price(1200L).build()));
+        destinationObject.setCreateTime(new Date(2132132124132L));
+        System.out.println("拷贝前 S = " + sourceObject);
+        System.out.println("拷贝前 T = " + destinationObject);
+        BeanMapper.map(sourceObject, destinationObject);
+        System.out.println("拷贝后 R = " + destinationObject);
+        System.out.println("-----------------------------------------------");
+    }
 
     @Test
     public void mapTest() {
@@ -53,5 +83,4 @@ public class BeanMapperTest {
                 .updateTime(LocalDateTime.now())
                 .build();
     }
-
 }
