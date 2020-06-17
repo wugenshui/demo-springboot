@@ -47,4 +47,21 @@ public class RegexTest {
 
 
     }
+
+    @Test
+    public void excludeTest() {
+        // 不相符文本段匹配
+        String pattern = "^application-((?!dev).)*$";
+
+        Map<String, Boolean> map = new HashMap<>();
+        map.put("application-dev.yml", false);
+        map.put("application-test.yml", true);
+        map.put("application-prod.yml", true);
+
+        map.forEach((key, value) -> {
+            boolean isMatch = Pattern.matches(pattern, key);
+            Assert.assertEquals(key, value, isMatch);
+            System.out.println((value ? " 成功" : " 失败") + " : " + key);
+        });
+    }
 }
