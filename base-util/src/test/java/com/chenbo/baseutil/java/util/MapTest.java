@@ -5,6 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author : chenbo
@@ -13,7 +14,7 @@ import java.util.Map;
 @SpringBootTest
 public class MapTest {
     @Test
-    public void Test() {
+    public void HashMapTest() {
         Map<Integer, String> map = new HashMap<>();
         map.put(3, "张三");
         map.put(4, "李四");
@@ -39,5 +40,27 @@ public class MapTest {
         for (String value : map.values()) {
             System.out.println(value);
         }
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void ConTest() {
+        ConcurrentHashMap<String, String> map = new ConcurrentHashMap();
+        map.put("key", "oldValue");
+
+        String put = map.put("key", "newValue");
+        System.out.println(put);
+        System.out.println(map);
+
+        put = map.putIfAbsent("key", "newValue2");
+        System.out.println(put);
+        System.out.println(map);
+
+        put = map.put("key", null);
+        System.out.println(put);
+        System.out.println(map);
+
+        put = map.putIfAbsent("key", "newValue3");
+        System.out.println(put);
+        System.out.println(map);
     }
 }
