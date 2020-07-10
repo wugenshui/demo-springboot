@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -61,7 +62,26 @@ public class RegexTest {
         map.forEach((key, value) -> {
             boolean isMatch = Pattern.matches(pattern, key);
             Assert.assertEquals(key, value, isMatch);
-            System.out.println((value ? " 成功" : " 失败") + " : " + key);
+            System.out.println((value ? " 匹配" : " 不匹配") + " : " + key);
         });
+    }
+
+    @Test
+    public void versionTest() {
+        Pattern versionRegex = Pattern.compile("^(\\d+)\\.(\\d+|x)\\.(\\d+|x)(?:[.-]([^0-9]+)(\\d+)?)?$");
+
+        Map<String, Boolean> map = new HashMap<>();
+        map.put("2.4.0.M1", true);
+        map.put("2.0.1.RELEASE", true);
+        map.put("2.4.0M1", false);
+        map.put("2.4.0-SNAPSHOT", true);
+        map.put("M1.2.3.4", false);
+
+        map.forEach((key, value) -> {
+            Matcher matcher = versionRegex.matcher(key);
+            Assert.assertEquals(key, value, matcher.matches());
+            System.out.println((value ? " 匹配" : " 不匹配") + " : " + key);
+        });
+
     }
 }
