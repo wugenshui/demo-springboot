@@ -4,6 +4,9 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+  activiti:
+    # 默认activiti历史表不会自动生成
+    db-history-used: true
 
 logging:
   level:

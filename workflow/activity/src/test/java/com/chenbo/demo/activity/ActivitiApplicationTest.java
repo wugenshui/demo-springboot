@@ -23,9 +23,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class ActivitiApplicationTest {
     @Autowired
-    private ProcessRuntime processRuntime;
-    @Autowired
     private ProcessEngine processEngine;
+    @Autowired
+    private ProcessRuntime processRuntime;
     @Autowired
     private TaskRuntime taskRuntime;
     @Autowired
@@ -37,7 +37,7 @@ public class ActivitiApplicationTest {
      */
     @Test
     public void contextLoads() {
-        securityUtil.logInAs("salaboy");
+        securityUtil.logInAs("a");
         Page<ProcessDefinition> processDefinitionPage = processRuntime.processDefinitions(Pageable.of(0, 10));
         System.out.println("可用的流程定义数量：" + processDefinitionPage.getTotalItems());
         for (ProcessDefinition pd : processDefinitionPage.getContent()) {
@@ -66,7 +66,7 @@ public class ActivitiApplicationTest {
      */
     @Test
     public void testStartProcess() {
-        securityUtil.logInAs("ryandawsonuk");
+        securityUtil.logInAs("b");
         ProcessInstance processInstance = processRuntime.start(ProcessPayloadBuilder.start().withProcessDefinitionKey("approval").build());
         System.out.println(processInstance.getProcessDefinitionKey() + "创建实例ID：" + processInstance.getId());
 
@@ -82,7 +82,7 @@ public class ActivitiApplicationTest {
      */
     @Test
     public void testTask() {
-        securityUtil.logInAs("ryandawsonuk");
+        securityUtil.logInAs("b");
         for (int i = 0; i < 10; i++) {
             Page<Task> taskPage = taskRuntime.tasks(Pageable.of(0, 10));
             if (taskPage.getTotalItems() > 0) {

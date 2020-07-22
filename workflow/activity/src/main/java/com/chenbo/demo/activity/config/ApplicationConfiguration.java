@@ -54,9 +54,9 @@ public class ApplicationConfiguration extends WebSecurityConfigurerAdapter {
         InMemoryUserDetailsManager inMemoryUserDetailsManager = new InMemoryUserDetailsManager();
 
         String[][] usersGroupsAndRoles = {
-                {"salaboy", "password", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
-                {"ryandawsonuk", "password", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
-                {"erdemedeiros", "password", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
+                {"a", "password", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
+                {"b", "password", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
+                {"c", "password", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
                 {"other", "password", "ROLE_ACTIVITI_USER", "GROUP_otherTeam"},
                 {"admin", "password", "ROLE_ACTIVITI_ADMIN"},
         };
