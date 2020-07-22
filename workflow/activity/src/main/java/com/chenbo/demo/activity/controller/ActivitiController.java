@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 
 /**
  * @author : chenbo
@@ -33,41 +34,47 @@ public class ActivitiController {
      * 查询流程定义
      */
     @RequestMapping("/")
-    public void getProcess() {
+    public HashMap getProcess() {
+        HashMap hashMap = new HashMap(10);
         //查询所有流程定义信息
         Page<ProcessDefinition> processDefinitionPage = processRuntime.processDefinitions(Pageable.of(0, 10));
-        System.out.println("当前流程定义的数量：" + processDefinitionPage.getTotalItems());
+        hashMap.put("流程数量", processDefinitionPage.getTotalItems());
         //获取流程信息
         for (ProcessDefinition processDefinition : processDefinitionPage.getContent()) {
-            System.out.println("流程定义信息" + processDefinition);
+            hashMap.put(processDefinition.getKey(), processDefinition);
         }
+        return hashMap;
     }
 
     /**
      * 启动流程示例
      */
     @RequestMapping("/start")
-    public String startInstance() {
+    public HashMap startInstance() {
+        HashMap hashMap = new HashMap(10);
         ProcessInstance instance = processRuntime.start(ProcessPayloadBuilder.start().withProcessDefinitionKey("approval").build());
-        return "开始流程：" + instance.toString();
+        hashMap.put("启动流程", instance);
+        return hashMap;
     }
 
     /**
      * 获取任务，拾取任务，并且执行
      */
     @RequestMapping("/do")
-    public void getTask() {
+    public HashMap getTask() {
+        HashMap hashMap = new HashMap(10);
         // 指定组内任务人
         securityUtil.logInAs("a");
         Page<Task> tasks = taskRuntime.tasks(Pageable.of(0, 10));
         if (tasks.getTotalItems() > 0) {
             for (Task task : tasks.getContent()) {
-                System.out.println("任务名称：" + task.getName());
+                hashMap.put(task.getName(), task);
                 //拾取任务
                 taskRuntime.claim(TaskPayloadBuilder.claim().withTaskId(task.getId()).build());
                 //执行任务
                 taskRuntime.complete(TaskPayloadBuilder.complete().withTaskId(task.getId()).build());
             }
         }
+        return hashMap;
     }
 }
