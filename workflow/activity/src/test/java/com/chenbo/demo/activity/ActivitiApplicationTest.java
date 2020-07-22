@@ -10,6 +10,9 @@ import org.activiti.api.runtime.shared.query.Pageable;
 import org.activiti.api.task.model.Task;
 import org.activiti.api.task.model.builders.TaskPayloadBuilder;
 import org.activiti.api.task.runtime.TaskRuntime;
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.repository.Deployment;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class ActivitiApplicationTest {
     @Autowired
     private ProcessRuntime processRuntime;
+    @Autowired
+    private ProcessEngine processEngine;
     @Autowired
     private TaskRuntime taskRuntime;
     @Autowired
@@ -34,6 +39,22 @@ public class ActivitiApplicationTest {
     public void contextLoads() {
         securityUtil.logInAs("salaboy");
         Page<ProcessDefinition> processDefinitionPage = processRuntime.processDefinitions(Pageable.of(0, 10));
+        System.out.println("可用的流程定义数量：" + processDefinitionPage.getTotalItems());
+        for (ProcessDefinition pd : processDefinitionPage.getContent()) {
+            System.out.println("流程定义：" + pd);
+        }
+
+        // 手动部署流程
+        RepositoryService repositoryService = processEngine.getRepositoryService();
+        Deployment deployment = repositoryService.createDeployment()
+                .addClasspathResource("diagram/qingjia.bpmn")
+                //.addClasspathResource("diagram/myholiday.png")
+                .name("请假申请流程")
+                .deploy();
+        System.out.println("流程部署id:" + deployment.getId());
+        System.out.println("流程部署名称:" + deployment.getName());
+
+        processDefinitionPage = processRuntime.processDefinitions(Pageable.of(0, 10));
         System.out.println("可用的流程定义数量：" + processDefinitionPage.getTotalItems());
         for (ProcessDefinition pd : processDefinitionPage.getContent()) {
             System.out.println("流程定义：" + pd);
