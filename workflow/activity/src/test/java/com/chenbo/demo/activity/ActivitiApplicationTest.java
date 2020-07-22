@@ -51,6 +51,9 @@ public class ActivitiApplicationTest {
 
         processInstance = processRuntime.start(ProcessPayloadBuilder.start().withProcessDefinitionKey("qingjia").build());
         System.out.println(processInstance.getProcessDefinitionKey() + "创建实例ID：" + processInstance.getId());
+
+        processInstance = processRuntime.start(ProcessPayloadBuilder.start().withProcessDefinitionKey("bingjia").build());
+        System.out.println(processInstance.getProcessDefinitionKey() + "创建实例ID：" + processInstance.getId());
     }
 
     /**

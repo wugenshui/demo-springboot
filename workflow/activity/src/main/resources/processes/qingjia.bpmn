@@ -1,67 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL"
-                   xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
-                   xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
-                   id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn"
-                   xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
-    <bpmn2:process id="qingjia" name="请假">
-        <bpmn2:startEvent id="StartEvent_1">
-            <bpmn2:outgoing>SequenceFlow_0vef9x3</bpmn2:outgoing>
-        </bpmn2:startEvent>
-        <bpmn2:task id="Task_1t2vgf0" name="副总经理审核">
-            <bpmn2:incoming>SequenceFlow_0vef9x3</bpmn2:incoming>
-            <bpmn2:outgoing>SequenceFlow_0931qau</bpmn2:outgoing>
-        </bpmn2:task>
-        <bpmn2:sequenceFlow id="SequenceFlow_0vef9x3" sourceRef="StartEvent_1" targetRef="Task_1t2vgf0"/>
-        <bpmn2:task id="Task_1rouwxf" name="总经理审核">
-            <bpmn2:incoming>SequenceFlow_0931qau</bpmn2:incoming>
-            <bpmn2:outgoing>SequenceFlow_00b2mko</bpmn2:outgoing>
-        </bpmn2:task>
-        <bpmn2:sequenceFlow id="SequenceFlow_0931qau" sourceRef="Task_1t2vgf0" targetRef="Task_1rouwxf"/>
-        <bpmn2:task id="Task_02tq6nc" name="董事长审核">
-            <bpmn2:incoming>SequenceFlow_00b2mko</bpmn2:incoming>
-            <bpmn2:outgoing>SequenceFlow_14raprp</bpmn2:outgoing>
-        </bpmn2:task>
-        <bpmn2:sequenceFlow id="SequenceFlow_00b2mko" sourceRef="Task_1rouwxf" targetRef="Task_02tq6nc"/>
-        <bpmn2:endEvent id="EndEvent_0a297ri">
-            <bpmn2:incoming>SequenceFlow_14raprp</bpmn2:incoming>
-        </bpmn2:endEvent>
-        <bpmn2:sequenceFlow id="SequenceFlow_14raprp" sourceRef="Task_02tq6nc" targetRef="EndEvent_0a297ri"/>
-    </bpmn2:process>
-    <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-        <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="qingjia">
-            <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
-                <dc:Bounds x="412" y="240" width="36" height="36"/>
-            </bpmndi:BPMNShape>
-            <bpmndi:BPMNShape id="Task_1t2vgf0_di" bpmnElement="Task_1t2vgf0">
-                <dc:Bounds x="498" y="218" width="100" height="80"/>
-            </bpmndi:BPMNShape>
-            <bpmndi:BPMNEdge id="SequenceFlow_0vef9x3_di" bpmnElement="SequenceFlow_0vef9x3">
-                <di:waypoint x="448" y="258"/>
-                <di:waypoint x="498" y="258"/>
-            </bpmndi:BPMNEdge>
-            <bpmndi:BPMNShape id="Task_1rouwxf_di" bpmnElement="Task_1rouwxf">
-                <dc:Bounds x="648" y="218" width="100" height="80"/>
-            </bpmndi:BPMNShape>
-            <bpmndi:BPMNEdge id="SequenceFlow_0931qau_di" bpmnElement="SequenceFlow_0931qau">
-                <di:waypoint x="598" y="258"/>
-                <di:waypoint x="648" y="258"/>
-            </bpmndi:BPMNEdge>
-            <bpmndi:BPMNShape id="Task_02tq6nc_di" bpmnElement="Task_02tq6nc">
-                <dc:Bounds x="798" y="218" width="100" height="80"/>
-            </bpmndi:BPMNShape>
-            <bpmndi:BPMNEdge id="SequenceFlow_00b2mko_di" bpmnElement="SequenceFlow_00b2mko">
-                <di:waypoint x="748" y="258"/>
-                <di:waypoint x="798" y="258"/>
-            </bpmndi:BPMNEdge>
-            <bpmndi:BPMNShape id="EndEvent_0a297ri_di" bpmnElement="EndEvent_0a297ri">
-                <dc:Bounds x="948" y="240" width="36" height="36"/>
-            </bpmndi:BPMNShape>
-            <bpmndi:BPMNEdge id="SequenceFlow_14raprp_di" bpmnElement="SequenceFlow_14raprp">
-                <di:waypoint x="898" y="258"/>
-                <di:waypoint x="948" y="258"/>
-            </bpmndi:BPMNEdge>
-        </bpmndi:BPMNPlane>
-    </bpmndi:BPMNDiagram>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bpmn2:definitions xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://bpmn.io/schema/bpmn" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="sample-diagram" name="" targetNamespace="http://bpmn.io/schema/bpmn" typeLanguage="http://www.w3.org/2001/XMLSchema">
+  <bpmn2:process id="qingjia" isClosed="false" processType="None">
+    <bpmn2:startEvent id="StartEvent_1"/>
+    <bpmn2:userTask activiti:candidateGroups="activitiTeam" activiti:exclusive="true" id="_6" name="yibanqingjia"/>
+    <bpmn2:sequenceFlow id="_7" sourceRef="StartEvent_1" targetRef="_6"/>
+    <bpmn2:endEvent id="_8" name="EndEvent"/>
+    <bpmn2:sequenceFlow id="_9" sourceRef="_6" targetRef="_8"/>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram documentation="background=#3C3F41;count=1;horizontalcount=1;orientation=0;width=842.4;height=1195.2;imageableWidth=832.4;imageableHeight=1185.2;imageableX=5.0;imageableY=5.0" id="Diagram-_1" name="New Diagram">
+    <bpmndi:BPMNPlane bpmnElement="qingjia">
+      <bpmndi:BPMNShape bpmnElement="StartEvent_1" id="Shape-StartEvent_1">
+        <dc:Bounds height="32.0" width="32.0" x="245.0" y="155.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" id="Shape-_6">
+        <dc:Bounds height="55.0" width="90.0" x="345.0" y="200.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="55.0" width="90.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" id="Shape-_8">
+        <dc:Bounds height="32.0" width="32.0" x="505.0" y="190.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_7" id="BPMNEdge__7" sourceElement="StartEvent_1" targetElement="_6">
+        <di:waypoint x="277.0" y="171.0"/>
+        <di:waypoint x="345.0" y="227.5"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9" id="BPMNEdge__9" sourceElement="_6" targetElement="_8">
+        <di:waypoint x="435.0" y="227.5"/>
+        <di:waypoint x="505.0" y="206.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
 </bpmn2:definitions>
