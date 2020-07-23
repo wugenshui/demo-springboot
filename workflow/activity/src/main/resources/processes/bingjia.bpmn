@@ -1,60 +1,84 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/test" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="m1595402582991" name="" targetNamespace="http://www.activiti.org/test" typeLanguage="http://www.w3.org/2001/XMLSchema">
-  <process id="bingjia" isClosed="false" isExecutable="true" processType="None">
-    <startEvent id="_2" name="StartEvent"/>
-    <userTask activiti:exclusive="true" id="_3" name="一审"/>
-    <sequenceFlow id="_4" sourceRef="_2" targetRef="_3"/>
-    <userTask activiti:exclusive="true" id="_5" name="二审"/>
-    <sequenceFlow id="_6" sourceRef="_3" targetRef="_5"/>
-    <endEvent id="_7" name="EndEvent"/>
-    <sequenceFlow id="_8" sourceRef="_5" targetRef="_7"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://www.activiti.org/testm1574124674914" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="m1574124674914" name="" targetNamespace="http://www.activiti.org/testm1574124674914">
+  <process id="bingjia" name="病假流程" isExecutable="true">
+    <startEvent id="StartEvent_1" name="开始">
+      <outgoing>SequenceFlow_1hzegfq</outgoing>
+    </startEvent>
+    <userTask id="UserTask_bmjlsp" name="部门经理审批" activiti:assignee="${user}">
+      <incoming>SequenceFlow_1hzegfq</incoming>
+      <outgoing>SequenceFlow_1fiymxm</outgoing>
+    </userTask>
+    <sequenceFlow id="SequenceFlow_1hzegfq" sourceRef="StartEvent_1" targetRef="UserTask_bmjlsp" />
+    <exclusiveGateway id="ExclusiveGateway_qjtspd" name="请假天数判断" default="SequenceFlow_1l0rmtq">
+      <incoming>SequenceFlow_1fiymxm</incoming>
+      <outgoing>SequenceFlow_dayusantian</outgoing>
+      <outgoing>SequenceFlow_1l0rmtq</outgoing>
+    </exclusiveGateway>
+    <sequenceFlow id="SequenceFlow_1fiymxm" sourceRef="UserTask_bmjlsp" targetRef="ExclusiveGateway_qjtspd" />
+    <userTask id="UserTask_zjlsp" name="总经理审批" activiti:candidateGroups="leader">
+      <incoming>SequenceFlow_dayusantian</incoming>
+      <outgoing>SequenceFlow_08dav56</outgoing>
+    </userTask>
+    <sequenceFlow id="SequenceFlow_dayusantian" name="请假天数&#62;=3" sourceRef="ExclusiveGateway_qjtspd" targetRef="UserTask_zjlsp">
+      <conditionExpression xsi:type="tFormalExpression">${day&gt;=3}</conditionExpression>
+    </sequenceFlow>
+    <endEvent id="EndEvent_1fed98s" name="结束">
+      <incoming>SequenceFlow_08dav56</incoming>
+      <incoming>SequenceFlow_1l0rmtq</incoming>
+    </endEvent>
+    <sequenceFlow id="SequenceFlow_08dav56" sourceRef="UserTask_zjlsp" targetRef="EndEvent_1fed98s" />
+    <sequenceFlow id="SequenceFlow_1l0rmtq" sourceRef="ExclusiveGateway_qjtspd" targetRef="EndEvent_1fed98s" />
   </process>
-  <bpmndi:BPMNDiagram documentation="background=#3C3F41;count=1;horizontalcount=1;orientation=0;width=842.4;height=1195.2;imageableWidth=832.4;imageableHeight=1185.2;imageableX=5.0;imageableY=5.0" id="Diagram-_1" name="New Diagram">
-    <bpmndi:BPMNPlane bpmnElement="bingjia">
-      <bpmndi:BPMNShape bpmnElement="_2" id="Shape-_2">
-        <omgdc:Bounds height="32.0" width="32.0" x="25.0" y="210.0"/>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="bingjia">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="172" y="122" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+          <dc:Bounds x="179" y="165" width="23" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_3" id="Shape-_3">
-        <omgdc:Bounds height="55.0" width="85.0" x="100.0" y="210.0"/>
+      <bpmndi:BPMNShape id="UserTask_00h2jpd_di" bpmnElement="UserTask_bmjlsp">
+        <dc:Bounds x="270" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1hzegfq_di" bpmnElement="SequenceFlow_1hzegfq">
+        <di:waypoint x="208" y="140" />
+        <di:waypoint x="270" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_1ynzryv_di" bpmnElement="ExclusiveGateway_qjtspd" isMarkerVisible="true">
+        <dc:Bounds x="425" y="115" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+          <dc:Bounds x="416" y="85" width="67" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_5" id="Shape-_5">
-        <omgdc:Bounds height="55.0" width="85.0" x="265.0" y="220.0"/>
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
-        </bpmndi:BPMNLabel>
+      <bpmndi:BPMNEdge id="SequenceFlow_1fiymxm_di" bpmnElement="SequenceFlow_1fiymxm">
+        <di:waypoint x="370" y="140" />
+        <di:waypoint x="425" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_05ly415_di" bpmnElement="UserTask_zjlsp">
+        <dc:Bounds x="570" y="100" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_7" id="Shape-_7">
-        <omgdc:Bounds height="32.0" width="32.0" x="435.0" y="240.0"/>
+      <bpmndi:BPMNEdge id="SequenceFlow_0git3xg_di" bpmnElement="SequenceFlow_dayusantian">
+        <di:waypoint x="475" y="140" />
+        <di:waypoint x="570" y="140" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge bpmnElement="_4" id="BPMNEdge__4" sourceElement="_2" targetElement="_3">
-        <omgdi:waypoint x="57.0" y="226.0"/>
-        <omgdi:waypoint x="100.0" y="237.5"/>
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+          <dc:Bounds x="491" y="122" width="64" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_6" id="BPMNEdge__6" sourceElement="_3" targetElement="_5">
-        <omgdi:waypoint x="185.0" y="237.5"/>
-        <omgdi:waypoint x="265.0" y="247.5"/>
+      <bpmndi:BPMNShape id="EndEvent_1fed98s_di" bpmnElement="EndEvent_1fed98s">
+        <dc:Bounds x="752" y="292" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+          <dc:Bounds x="759" y="335" width="23" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_08dav56_di" bpmnElement="SequenceFlow_08dav56">
+        <di:waypoint x="670" y="140" />
+        <di:waypoint x="770" y="140" />
+        <di:waypoint x="770" y="292" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_8" id="BPMNEdge__8" sourceElement="_5" targetElement="_7">
-        <omgdi:waypoint x="350.0" y="247.5"/>
-        <omgdi:waypoint x="435.0" y="256.0"/>
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
-        </bpmndi:BPMNLabel>
+      <bpmndi:BPMNEdge id="SequenceFlow_1l0rmtq_di" bpmnElement="SequenceFlow_1l0rmtq">
+        <di:waypoint x="450" y="165" />
+        <di:waypoint x="450" y="310" />
+        <di:waypoint x="752" y="310" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

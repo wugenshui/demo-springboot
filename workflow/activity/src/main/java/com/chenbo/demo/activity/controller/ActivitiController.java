@@ -9,12 +9,18 @@ import org.activiti.api.runtime.shared.query.Page;
 import org.activiti.api.runtime.shared.query.Pageable;
 import org.activiti.api.task.model.Task;
 import org.activiti.api.task.model.builders.TaskPayloadBuilder;
+import org.activiti.api.task.model.payloads.ClaimTaskPayload;
 import org.activiti.api.task.runtime.TaskRuntime;
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.TaskService;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author : chenbo
@@ -23,6 +29,13 @@ import java.util.HashMap;
 @RestController
 @RequestMapping("/")
 public class ActivitiController {
+    /**
+     * 流程引擎对象
+     */
+    @Resource
+    ProcessEngine processEngine;
+    @Resource
+    TaskService taskService;
     @Resource
     private ProcessRuntime processRuntime;
     @Resource
@@ -49,10 +62,13 @@ public class ActivitiController {
     /**
      * 启动流程示例
      */
-    @RequestMapping("/start")
-    public HashMap startInstance() {
+    @RequestMapping("/start/{user}/{day}")
+    public HashMap startInstance(@PathVariable("user") String user, @PathVariable("day") Integer day) {
         HashMap hashMap = new HashMap(10);
-        ProcessInstance instance = processRuntime.start(ProcessPayloadBuilder.start().withProcessDefinitionKey("approval").build());
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("user", user);
+        variables.put("day", day);
+        ProcessInstance instance = processRuntime.start(ProcessPayloadBuilder.start().withProcessDefinitionKey("bingjia").withVariables(variables).build());
         hashMap.put("启动流程", instance);
         return hashMap;
     }
@@ -60,19 +76,45 @@ public class ActivitiController {
     /**
      * 获取任务，拾取任务，并且执行
      */
-    @RequestMapping("/do")
-    public HashMap getTask() {
+    @RequestMapping("/list/{user}")
+    public HashMap taskList(@PathVariable("user") String user) {
         HashMap hashMap = new HashMap(10);
         // 指定组内任务人
-        securityUtil.logInAs("a");
+        securityUtil.logInAs(user);
         Page<Task> tasks = taskRuntime.tasks(Pageable.of(0, 10));
         if (tasks.getTotalItems() > 0) {
             for (Task task : tasks.getContent()) {
                 hashMap.put(task.getName(), task);
-                //拾取任务
-                taskRuntime.claim(TaskPayloadBuilder.claim().withTaskId(task.getId()).build());
-                //执行任务
+            }
+        }
+        return hashMap;
+    }
+
+    /**
+     * 获取任务，拾取任务，并且执行
+     */
+    @RequestMapping("/do/{user}")
+    public HashMap getTaskA(@PathVariable("user") String user, String next) {
+        HashMap hashMap = new HashMap(10);
+        // 指定组内任务人
+        securityUtil.logInAs(user);
+        Page<Task> tasks = taskRuntime.tasks(Pageable.of(0, 10));
+        if (tasks.getTotalItems() > 0) {
+            for (Task task : tasks.getContent()) {
+                hashMap.put(task.getName(), task);
+                // 拾取任务
+                if (StringUtils.isEmpty(task.getAssignee())) {
+                    ClaimTaskPayload claim;
+                    if (StringUtils.isNoneEmpty(next)) {
+                        claim = TaskPayloadBuilder.claim().withAssignee(next).withTaskId(task.getId()).build();
+                    } else {
+                        claim = TaskPayloadBuilder.claim().withTaskId(task.getId()).build();
+                    }
+                    taskRuntime.claim(claim);
+                }
+                // 执行任务
                 taskRuntime.complete(TaskPayloadBuilder.complete().withTaskId(task.getId()).build());
+                hashMap.put(task.getName(), task);
             }
         }
         return hashMap;
