@@ -1,6 +1,7 @@
 package com.chenbo.demo.activity.controller;
 
 import com.chenbo.demo.activity.util.SecurityUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.activiti.api.process.model.ProcessDefinition;
 import org.activiti.api.process.model.ProcessInstance;
 import org.activiti.api.process.model.builders.ProcessPayloadBuilder;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,6 +31,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/")
 public class ActivitiController {
+    ObjectMapper objectMapper = new ObjectMapper();
+
     /**
      * 流程引擎对象
      */
@@ -69,25 +73,23 @@ public class ActivitiController {
         variables.put("user", user);
         variables.put("day", day);
         ProcessInstance instance = processRuntime.start(ProcessPayloadBuilder.start().withProcessDefinitionKey("bingjia").withVariables(variables).build());
-        hashMap.put("启动流程", instance);
+        hashMap.put("流程实例", instance);
+
+        org.activiti.engine.task.Task task = taskService.createTaskQuery().processInstanceId(instance.getId()).singleResult();
+        hashMap.put("当前步骤", task.toString());
+
+        Map<String, Object> variables1 = taskService.getVariables(task.getId());
+        hashMap.put("变量", variables1);
         return hashMap;
     }
 
     /**
-     * 获取任务，拾取任务，并且执行
+     * 待办任务
      */
-    @RequestMapping("/list/{user}")
-    public HashMap taskList(@PathVariable("user") String user) {
-        HashMap hashMap = new HashMap(10);
-        // 指定组内任务人
-        securityUtil.logInAs(user);
-        Page<Task> tasks = taskRuntime.tasks(Pageable.of(0, 10));
-        if (tasks.getTotalItems() > 0) {
-            for (Task task : tasks.getContent()) {
-                hashMap.put(task.getName(), task);
-            }
-        }
-        return hashMap;
+    @RequestMapping("/todo")
+    public String todo() {
+        List<org.activiti.engine.task.Task> list = taskService.createTaskQuery().list();
+        return list.toString();
     }
 
     /**
