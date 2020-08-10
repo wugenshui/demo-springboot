@@ -1,7 +1,6 @@
 package com.chenbo.baseutil.bean.jackson;
 
 import com.chenbo.baseutil.bean.StudentVO;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -9,6 +8,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,7 +22,7 @@ import java.util.TimeZone;
 @SpringBootTest
 public class JacksonTest {
     @Test
-    public void mapTest() throws JsonProcessingException {
+    public void mapTest() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         //json中多余的参数不报错
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
