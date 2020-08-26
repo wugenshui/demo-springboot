@@ -57,6 +57,7 @@ import java.util.TooManyListenersException;
 @Slf4j
 public class SipServer implements SipListener {
 
+    private static final String IP = "192.168.186.209";
     SipStack sipStack = null;
     HeaderFactory headerFactory = null;
     AddressFactory addressFactory = null;
@@ -79,7 +80,6 @@ public class SipServer implements SipListener {
     }
 
     public void init() {
-        String ip = "192.168.1.47";
         Properties prop = new Properties();
         prop.setProperty("javax.sip.STACK_NAME", "teststackname");
         prop.setProperty("javax.sip.IP_ADDRESS", "127.0.0.1");
@@ -103,7 +103,7 @@ public class SipServer implements SipListener {
             headerFactory = sipFactory.createHeaderFactory();
             addressFactory = sipFactory.createAddressFactory();
             messageFactory = sipFactory.createMessageFactory();
-            ListeningPoint listeningPoint = sipStack.createListeningPoint(ip, 5060, "udp");
+            ListeningPoint listeningPoint = sipStack.createListeningPoint(IP, 5060, "udp");
 
             sipProvider = sipStack.createSipProvider(listeningPoint);
             sipProvider.addSipListener(this);
@@ -272,7 +272,7 @@ public class SipServer implements SipListener {
                             } else {
                                 // 比较Authorization信息正确性
                                 String A1 = MD5Util.MD5(username + ":" + realm + ":12345678");
-                                String A2 = MD5Util.MD5("REGISTER:sip:servername@192.168.1.47:5060");
+                                String A2 = MD5Util.MD5("REGISTER:sip:servername@" + IP + ":5060");
                                 String resStr = MD5Util.MD5(A1 + ":" + nonce + ":" + A2);
                                 if (resStr.equals(res)) {
                                     //注册成功，标记true

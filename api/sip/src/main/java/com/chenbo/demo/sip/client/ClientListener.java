@@ -41,6 +41,8 @@ import java.util.List;
  */
 @Slf4j
 public class ClientListener implements SipListener {
+    private static final String IP = "192.168.186.209";
+
     private AddressFactory addressFactory;
 
     private HeaderFactory headerFactory;
@@ -94,25 +96,25 @@ public class ClientListener implements SipListener {
             String realm = wwwHeader.getRealm();
             String nonce = wwwHeader.getNonce();
             String A1 = MD5Util.MD5("Tom:" + realm + ":12345678");
-            String A2 = MD5Util.MD5("REGISTER:sip:servername@192.168.1.47:5060");
+            String A2 = MD5Util.MD5("REGISTER:sip:servername@" + IP + ":5060");
             String resStr = MD5Util.MD5(A1 + ":" + nonce + ":" + A2);
 
             try {
                 // requestURI
-                SipURI requestSipURI = addressFactory.createSipURI("gov.nist", "192.168.1.47:5060");
+                SipURI requestSipURI = addressFactory.createSipURI("gov.nist", IP + ":5060");
                 requestSipURI.setTransportParam("udp");
                 // from
-                SipURI fromSipURI = addressFactory.createSipURI("Tom", "192.168.1.47:5061");
+                SipURI fromSipURI = addressFactory.createSipURI("Tom", IP + ":5061");
                 Address fromAddress = addressFactory.createAddress(fromSipURI);
                 fromAddress.setDisplayName("a");
                 FromHeader fromHeader = headerFactory.createFromHeader(fromAddress, "mytag2");
                 // to
-                SipURI toSipURI = addressFactory.createSipURI("Tom", "192.168.1.47:5061");
+                SipURI toSipURI = addressFactory.createSipURI("Tom", IP + ":5061");
                 Address toAddress = addressFactory.createAddress(toSipURI);
                 toAddress.setDisplayName("b");
                 ToHeader toHeader = headerFactory.createToHeader(toAddress, null);
                 // via
-                ViaHeader viaHeader = headerFactory.createViaHeader("192.168.1.47", 5061, "udp", "branchingbranching");
+                ViaHeader viaHeader = headerFactory.createViaHeader(IP, 5061, "udp", "branchingbranching");
                 List<ViaHeader> viaHeaderList = new ArrayList<>();
                 viaHeaderList.add(viaHeader);
                 // callid,cseq,maxforwards
@@ -122,7 +124,7 @@ public class ClientListener implements SipListener {
                 //
                 Request request = messageFactory.createRequest(requestSipURI, Request.REGISTER, callIdHeader, cSeqHeader, fromHeader, toHeader, viaHeaderList, maxForwardsHeader);
                 // contant
-                SipURI contantURI = addressFactory.createSipURI("Tom", "192.168.1.47:5061");
+                SipURI contantURI = addressFactory.createSipURI("Tom", IP + ":5061");
                 contantURI.setPort(5061);
                 Address contantAddress = addressFactory.createAddress(contantURI);
                 contantAddress.setDisplayName("abc");

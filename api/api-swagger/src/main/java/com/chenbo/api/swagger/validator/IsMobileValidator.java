@@ -36,10 +36,7 @@ public class IsMobileValidator implements ConstraintValidator<IsMobile, String> 
      */
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        // 值是必须的就判断是否合法
-        //if (required) {
-        //    return isMobile(s);
-        //} else {
+        // 值不为空的就判断是否合法
         if (StringUtils.isEmpty(s)) {
             return true;
         } else {

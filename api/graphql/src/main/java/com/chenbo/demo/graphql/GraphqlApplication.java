@@ -13,7 +13,6 @@ import graphql.schema.idl.TypeDefinitionRegistry;
  * @author : chenbo
  * @date : 2020-06-06
  */
-//@SpringBootApplication
 public class GraphqlApplication {
     public static void main(String[] args) {
         String schema = "type Query{hello: String} schema{query: Query}";
@@ -33,8 +32,5 @@ public class GraphqlApplication {
 
         System.out.println(executionResult.getData().toString());
         // Prints: {hello=world}
-
-
-        //SpringApplication.run(GraphqlApplication.class, args);
     }
 }

@@ -41,4 +41,7 @@ public class User {
     @ApiModelProperty("手机号码")
     @IsMobile
     private String mobile;
+
+    @ApiModelProperty("爱好")
+    private String hobby;
 }

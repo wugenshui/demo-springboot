@@ -1,11 +1,7 @@
 package com.chenbo.api.swagger.entity;
 
-import com.chenbo.baseutil.enums.HttpResultEnum;
-import com.chenbo.baseutil.util.MapUtil;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import java.util.Map;
 
 /**
  * Ajax请求响应类
@@ -42,15 +38,6 @@ public class AjaxResult<T> {
         this.state = state;
         this.msg = msg;
         this.data = data;
-    }
-
-    /**
-     * 转换成map
-     *
-     * @return
-     */
-    public Map<String, Object> covMap() {
-        return MapUtil.build().put("state", this.state).put("message", this.msg).put("data", this.data).over();
     }
 
     /**

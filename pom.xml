@@ -21,12 +21,11 @@
         <module>dependency</module>
         <module>parent</module>
 
-        <module>api</module>
-        <module>db</module>
-        <module>oauth</module>
-        <module>office</module>
-        <module>socket</module>
-        <module>workflow</module>
+        <!--        <module>db</module>-->
+        <!--        <module>oauth</module>-->
+        <!--        <module>office</module>-->
+        <!--        <module>socket</module>-->
+        <!--        <module>workflow</module>-->
 
         <module>base-util</module>
         <module>best-practice</module>
