@@ -80,14 +80,14 @@ public class ChildTest {
         String keyValue = getAttribute(source, key);
         // 如果分组相同，代表为相同分组
         if (keyValue.equals(oldKeyValues.get(groupIndex))) {
-            //PurchaseStatsDto target = targetList.get(targetIndex);
-            //// 最后一组相同，则直接添加
-            //if (groupIndex == groups.size() - 1) {
-            //    target.getChild().add(source);
-            //} else {
-            //    targetList.add(source);
-            //    getChildList(sourceList, sourceIndex, target.getChild(), 0, groups, groupIndex + 1, oldKeyValues);
-            //}
+            PurchaseStatsDto target = targetList.get(targetIndex);
+            // 最后一组相同，则直接添加
+            if (groupIndex == groups.size() - 1) {
+                target.getChild().add(source);
+            } else {
+                targetList.add(source);
+                getChildList(sourceList, sourceIndex, target.getChild(), 0, groups, groupIndex + 1, oldKeyValues);
+            }
         } else {
             // 如果分组不同，代表为不同分组
 
@@ -108,11 +108,16 @@ public class ChildTest {
                 if (CollectionUtils.isEmpty(target.getChild())) {
                     target.setChild(new ArrayList<>());
                 }
-                target.getChild().add(source.clone());
-                getChildList(sourceList, sourceIndex + 1, targetList, 0, groups, 0, oldKeyValues);
+                PurchaseStatsDto child = source.clone();
+                child.setCurLevel(groups.size());
+                target.getChild().add(child);
+                //getChildList(sourceList, sourceIndex + 1, targetList, 0, groups, 0, oldKeyValues);
             } else {
                 target.setChild(getChildList(sourceList, sourceIndex, target.getChild(), 0, groups, groupIndex + 1, oldKeyValues));
             }
+        }
+        if (sourceIndex < sourceList.size() - 1) {
+            getChildList(sourceList, sourceIndex + 1, targetList, 0, groups, groupIndex, oldKeyValues);
         }
         return targetList;
     }
