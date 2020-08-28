@@ -26,11 +26,13 @@ public class MenuTest {
      * @return
      */
     public List<Menu> treeMenuList(List<Menu> source, List<Menu> target, int pid) {
+        System.out.println("循环调用"+pid);
         if (CollectionUtils.isEmpty(target)) {
             target = new ArrayList<>();
         }
         for (Menu menu : source) {
             // 遍历出父id等于参数的id，add进子节点集合
+            System.out.println("遍历menu" + menu.getName());
             if (menu.getPid() == pid) {
                 // 递归遍历下一级
                 target.add(menu);

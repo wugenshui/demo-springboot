@@ -1,5 +1,6 @@
 package com.chenbo.baseutil.child;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
@@ -23,49 +24,49 @@ public class PurchaseStatsDto implements Cloneable {
      */
     private BigDecimal totalPrice;
 
-    // 上级物资分类
-
-    /**
-     * 上级物资分类ID
-     */
-    private Integer parentTypeId;
-    /**
-     * 上级物资分类名称
-     */
-    private String parentTypeName;
+    //// 上级物资分类
+    //
+    ///**
+    // * 上级物资分类ID
+    // */
+    //private Integer parentTypeId;
+    ///**
+    // * 上级物资分类名称
+    // */
+    //private String parentTypeName;
 
     // 物资分类
 
-    /**
-     * 物资分类ID
-     */
-    private Integer typeId;
-    /**
-     * 物资分类名称
-     */
-    private String typeName;
+    ///**
+    // * 物资分类ID
+    // */
+    //private Integer typeId;
+    ///**
+    // * 物资分类名称
+    // */
+    //private String typeName;
 
     // 物资
 
-    /**
-     * 物资ID
-     */
-    private Integer modelId;
-    /**
-     * 规格型号
-     */
-    private String model;
-    /**
-     * 物资编号
-     */
-    private String modelCode;
+    ///**
+    // * 物资ID
+    // */
+    //private Integer modelId;
+    ///**
+    // * 规格型号
+    // */
+    //private String model;
+    ///**
+    // * 物资编号
+    // */
+    //private String modelCode;
 
     // 项目
 
-    /**
-     * 项目ID
-     */
-    private Integer projectId;
+    ///**
+    // * 项目ID
+    // */
+    //private Integer projectId;
 
     /**
      * 项目名称
@@ -103,6 +104,11 @@ public class PurchaseStatsDto implements Cloneable {
      * 最大层级
      */
     private Integer maxLevel;
+    /**
+     * 分组字段
+     */
+    @JSONField(name = "agroup")
+    private String subtotalKey;
     /**
      * 下级节点集合
      */
