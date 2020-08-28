@@ -17,7 +17,7 @@ import java.util.List;
  * @date : 2020-08-27
  */
 @SpringBootTest
-public class ChildTest {
+public class PurchaseStatsDtoTest {
 
     @Test
     public void trans() {
