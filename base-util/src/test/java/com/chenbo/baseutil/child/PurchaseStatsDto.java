@@ -135,7 +135,7 @@ public class PurchaseStatsDto implements Cloneable {
             //dto.setProjectName(null);
             dto.setCustomerName(null);
             //dto.setProjectGroupName(null);
-            dto.setBatchName(null);
+            //dto.setBatchName(null);
             dto.setOrganName(null);
             dto.setChild(Lists.newArrayList());
 
