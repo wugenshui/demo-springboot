@@ -45,7 +45,7 @@ public class PurchaseStatsDtoTest {
         List<String> oldKeyValues = Arrays.asList("projectGroupName", "projectName", "batchName");
         List<Integer> indexs = Arrays.asList(0, 0);
         //List<String> oldKeyValues = Arrays.asList("projectGroupName", "projectName", "batchName");
-        List<PurchaseStatsDto> targetList = getChildList(true, sourceList, 0, null, null, lstSubtotalKey, 0, oldKeyValues);
+        List<PurchaseStatsDto> targetList = getChildList(sourceList, 0, null, lstSubtotalKey, 0, oldKeyValues);
         System.out.println(FastJsonHelper.serialize(targetList));
     }
 
@@ -65,8 +65,8 @@ public class PurchaseStatsDtoTest {
         temp.add(source.clone());
     }
 
-    private List<PurchaseStatsDto> getChildList(Boolean isRoot, List<PurchaseStatsDto> sourceList, int deep, List<PurchaseStatsDto> targetList,
-                                                List<PurchaseStatsDto> childs, List<String> groups, int groupIndex, List<String> oldKeyValues) {
+    private List<PurchaseStatsDto> getChildList(List<PurchaseStatsDto> sourceList, int deep, List<PurchaseStatsDto> targetList,
+                                                List<String> groups, int groupIndex, List<String> oldKeyValues) {
         System.out.println("-----------\t第" + (deep + 1) + "层,还剩 " + sourceList.size() + "条数据 groupIndex = " + groupIndex + " oldKeyValues = " + oldKeyValues + "\t---------- - ");
         if (CollectionUtils.isEmpty(targetList)) {
             targetList = new ArrayList<>();
@@ -77,7 +77,6 @@ public class PurchaseStatsDtoTest {
 
         String key = groups.get(groupIndex);
         String keyValue = getAttribute(source, key);
-        //System.out.println("ProjectGroupName=" + source.getProjectGroupName() + " ProjectName=" + source.getProjectName() + " batchName=" + source.getBatchName());
         String groupAttrs = source.getProjectGroupName() + " " + source.getProjectName() + " " + source.getBatchName() + " " + source.getMaterial();
         // **************** 分组相同 ****************
         if (keyValue.equals(oldKeyValues.get(groupIndex))) {
@@ -88,21 +87,8 @@ public class PurchaseStatsDtoTest {
                 // 添加数据后移除该条记录
                 sourceList.remove(0);
                 System.out.println("+ 数据2 " + source.getMaterial());
-                //PurchaseStatsDto purchaseStatsDto = sourceList.get(0).clone();
-                //purchaseStatsDto.setCurLevel(groups.size());
-                //purchaseStatsDto.setMaxLevel(groups.size());
-                //addData(purchaseStatsDto, targetList, deep);
-                //// 添加数据后移除该条记录
-                //sourceList.remove(0);
-                //System.out.println("+ 数据 " + purchaseStatsDto.getMaterial());
-                //return targetList;
-                if (isRoot) {
-
-                } else {
-                    // return targetList;
-                }
             } else {
-                getChildList(false, sourceList, deep, targetList, childs, groups, groupIndex + 1, oldKeyValues);
+                getChildList(sourceList, deep, targetList, groups, groupIndex + 1, oldKeyValues);
             }
         } else {
             // **************** 分组不同 ****************
@@ -115,16 +101,10 @@ public class PurchaseStatsDtoTest {
             System.out.println("+ 分组 " + source.getSubtotalKey() + " " + source.getCurLevel() + "/" + source.getMaxLevel());
             oldKeyValues.set(groupIndex, keyValue);
 
-            cur.setChild(getChildList(false, sourceList, deep + 1, targetList, childs, groups, (groupIndex + 1) % groups.size(), oldKeyValues));
-            //if (groupIndex == groups.size() - 1) {
-            //    return targetList;
-            //}
+            cur.setChild(getChildList(sourceList, deep + 1, targetList, groups, (groupIndex + 1) % groups.size(), oldKeyValues));
         }
-        //if (!CollectionUtils.isEmpty(sourceList) && isRoot) {
-        //    sourceList.remove(0);
-        //}
-        if (!CollectionUtils.isEmpty(sourceList) && isRoot) {
-            getChildList(true, sourceList, 0, targetList, childs, groups, 0, oldKeyValues);
+        if (!CollectionUtils.isEmpty(sourceList) && deep == 0) {
+            getChildList(sourceList, 0, targetList, groups, 0, oldKeyValues);
         }
 
         return targetList;
