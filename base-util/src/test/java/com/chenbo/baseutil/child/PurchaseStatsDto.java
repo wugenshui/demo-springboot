@@ -1,6 +1,7 @@
 package com.chenbo.baseutil.child;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
@@ -125,6 +126,19 @@ public class PurchaseStatsDto implements Cloneable {
         PurchaseStatsDto dto = null;
         try {
             dto = (PurchaseStatsDto) super.clone();
+
+
+            dto.setAmount(null);
+            dto.setAvgPrice(null);
+            dto.setTotalPrice(null);
+            //dto.setMaterial(null);
+            //dto.setProjectName(null);
+            dto.setCustomerName(null);
+            //dto.setProjectGroupName(null);
+            dto.setBatchName(null);
+            dto.setOrganName(null);
+            dto.setChild(Lists.newArrayList());
+
         } catch (CloneNotSupportedException e) {
             // 这里一般不会出现异常
         }
