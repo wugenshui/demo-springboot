@@ -1,7 +1,9 @@
 package com.chenbo.baseutil.child;
 
+import cn.hutool.core.io.file.FileReader;
 import com.chenbo.baseutil.util.FastJsonHelper;
 import com.google.common.collect.Lists;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.CollectionUtils;
@@ -9,7 +11,9 @@ import org.springframework.util.CollectionUtils;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 遍历生成子元素测试类
@@ -22,31 +26,29 @@ public class PurchaseStatsDtoTest {
 
     @Test
     public void trans() {
-        String str = "";
-        StringBuilder sb = new StringBuilder();
-        sb.append("[{\"amount\":25.00,\"avgPrice\":0.880000,\"batchName\":\"scpc-01\",\"customerName\":\"aaa\",\"material\":\"A\",\"model\":\"大号黑皮笔记本\",\"modelCode\":\"\",\"modelId\":1525,\"organName\":\"无部门\",\"parentTypeId\":203,\"parentTypeName\":\"办公文具\",\"projectGroupName\":\"华为项目群\",\"projectName\":\"上海智能停车系统\",\"totalPrice\":22.2200,\"typeId\":203002,\"typeName\":\"本子\"}");
-        sb.append(",{\"amount\":10.00,\"avgPrice\":1500.000000,\"batchName\":\"无批次\",\"customerName\":\"无供应商\",\"material\":\"B\",\"model\":\"转接板/V1.0\",\"modelId\":2,\"organName\":\"无部门\",\"parentTypeId\":201,\"parentTypeName\":\"PCB\",\"projectGroupName\":\"无项目群\",\"projectName\":\"非项目\",\"totalPrice\":12800.0000,\"typeId\":201001,\"typeName\":\"安全门PCB\"}");
-        sb.append(",{\"amount\":500.00,\"avgPrice\":0.000000,\"batchName\":\"无批次\",\"customerName\":\"广州市惠美科技发展有限公司\",\"material\":\"C\",\"model\":\"转接板/V1.0\",\"modelId\":2,\"organName\":\"无部门\",\"parentTypeId\":201,\"parentTypeName\":\"PCB\",\"projectGroupName\":\"无项目群\",\"projectName\":\"非项目\",\"totalPrice\":0.0000,\"typeId\":201001,\"typeName\":\"安全门PCB\"}");
-        sb.append(",{\"amount\":66.00,\"avgPrice\":111.000000,\"batchName\":\"无批次\",\"customerName\":\"无供应商\",\"material\":\"D\",\"model\":\"2层/100*100*1.6mm/2.54mm\",\"modelCode\":\"\",\"modelId\":3,\"organName\":\"无部门\",\"parentTypeId\":201,\"parentTypeName\":\"PCB\",\"projectGroupName\":\"无项目群\",\"projectName\":\"非项目\",\"totalPrice\":222.0000,\"typeId\":201002,\"typeName\":\"万能板\"},{\"amount\":2.00,\"avgPrice\":91.000000,\"batchName\":\"无批次\",\"customerName\":\"广州华精电电子有限公司\",\"material\":\"E\",\"model\":\"2层/100*100*1.6mm/2.54mm\",\"modelCode\":\"\",\"modelId\":3,\"organName\":\"无部门\",\"parentTypeId\":201,\"parentTypeName\":\"PCB\",\"projectGroupName\":\"无项目群\",\"projectName\":\"非项目\",\"totalPrice\":182.0000,\"typeId\":201002,\"typeName\":\"万能板\"}");
-        sb.append(",{\"amount\":5.00,\"avgPrice\":0.000000,\"batchName\":\"无批次\",\"customerName\":\"京东/淘宝\",\"material\":\"F\",\"model\":\"2层/100*100*1.6mm/2.54mm\",\"modelCode\":\"\",\"modelId\":3,\"organName\":\"无部门\",\"parentTypeId\":201,\"parentTypeName\":\"PCB\",\"projectGroupName\":\"无项目群\",\"projectName\":\"非项目\",\"totalPrice\":0.0000,\"typeId\":201002,\"typeName\":\"万能板\"},{\"amount\":1.00,\"avgPrice\":1011.000000,\"batchName\":\"无批次\",\"customerName\":\"京东/淘宝\",\"material\":\"G\",\"model\":\"核心主板/V1.0\",\"modelId\":5,\"organName\":\"无部门\",\"parentTypeId\":201,\"parentTypeName\":\"PCB\",\"projectGroupName\":\"无项目群\",\"projectName\":\"非项目\",\"totalPrice\":1011.0000,\"typeId\":201003,\"typeName\":\"智能头盔PCB\"},{\"amount\":1.00,\"avgPrice\":661.000000,\"batchName\":\"无批次\",\"customerName\":\"京东/淘宝\",\"material\":\"PCB-智能头盔PCB-核心主板/V2.0\",\"model\":\"核心主板/V2.0\",\"modelId\":6,\"organName\":\"无部门\",\"parentTypeId\":201,\"parentTypeName\":\"PCB\",\"projectGroupName\":\"无项目群\",\"projectName\":\"非项目\",\"totalPrice\":661.0000,\"typeId\":201003,\"typeName\":\"智能头盔PCB\"}");
-        sb.append(",{\"amount\":20.00,\"avgPrice\":5.750000,\"batchName\":\"无批次\",\"customerName\":\"京东/淘宝\",\"material\":\"PCB-智能头盔PCB-前置小板/V1.0\",\"model\":\"前置小板/V1.0\",\"modelId\":7,\"organName\":\"无部门\",\"parentTypeId\":201,\"parentTypeName\":\"PCB\",\"projectGroupName\":\"无项目群\",\"projectName\":\"非项目\",\"totalPrice\":115.0000,\"typeId\":201003,\"typeName\":\"智能头盔PCB\"},{\"amount\":63.00,\"avgPrice\":44.400000,\"batchName\":\"无批次\",\"customerName\":\"无供应商\",\"material\":\"办公生活-抽纸-90抽/盒\",\"model\":\"90抽/盒\",\"modelId\":8,\"organName\":\"无部门\",\"parentTypeId\":202,\"parentTypeName\":\"办公生活\",\"projectGroupName\":\"无项目群\",\"projectName\":\"非项目\",\"totalPrice\":888.0000,\"typeId\":202001,\"typeName\":\"抽纸\"},{\"amount\":5.00,\"avgPrice\":88.000000,\"batchName\":\"无批次\",\"customerName\":\"广州华精电电子有限公司\",\"material\":\"办公生活-抽纸-90抽/盒\",\"model\":\"90抽/盒\",\"modelId\":8,\"organName\":\"无部门\",\"parentTypeId\":202,\"parentTypeName\":\"办公生活\",\"projectGroupName\":\"无项目群\",\"projectName\":\"非项目\",\"totalPrice\":440.0000,\"typeId\":202001,\"typeName\":\"抽纸\"},{\"amount\":9.00,\"avgPrice\":13.890750,\"batchName\":\"无批次\",\"customerName\":\"京东/淘宝\",\"material\":\"办公生活-抽纸-90抽/盒\",\"model\":\"90抽/盒\",\"modelId\":8,\"organName\":\"无部门\",\"parentTypeId\":202,\"parentTypeName\":\"办公生活\",\"projectGroupName\":\"无项目群\",\"projectName\":\"非项目\",\"totalPrice\":131.7890,\"typeId\":202001,\"typeName\":\"抽纸\"}");
-        sb.append(",{\"amount\":100.00,\"avgPrice\":2.000000,\"batchName\":\"无批次\",\"customerName\":\"无供应商\",\"material\":\"办公生活-卷纸-清风3层270段24卷\",\"model\":\"清风3层270段24卷\",\"modelId\":9,\"organName\":\"无部门\",\"parentTypeId\":202,\"parentTypeName\":\"办公生活\",\"projectGroupName\":\"无项目群\",\"projectName\":\"非项目\",\"totalPrice\":200.0000,\"typeId\":202003,\"typeName\":\"卷纸\"}");
-        sb.append(",{\"amount\":130.00,\"avgPrice\":3.753328,\"batchName\":\"无批次\",\"customerName\":\"京东/淘宝\",\"material\":\"办公生活-卷纸-清风3层270段24卷\",\"model\":\"清风3层270段24卷\",\"modelId\":9,\"organName\":\"无部门\",\"parentTypeId\":202,\"parentTypeName\":\"办公生活\",\"projectGroupName\":\"无项目群\",\"projectName\":\"非项目\",\"totalPrice\":489.8999,\"typeId\":202003,\"typeName\":\"卷纸\"}");
-        sb.append(",{\"amount\":12.00,\"avgPrice\":11.000000,\"batchName\":\"A批次\",\"customerName\":\"广州市纬度资讯科技有限公司\",\"material\":\"办公生活-洗手液-蓝月亮/500g套装（6瓶）\",\"model\":\"蓝月亮/500g套装（6瓶）\",\"modelId\":11,\"organName\":\"无部门\",\"parentTypeId\":202,\"parentTypeName\":\"办公生活\",\"projectGroupName\":\"无项目群\",\"projectName\":\"小项目\",\"totalPrice\":132.0000,\"typeId\":202008,\"typeName\":\"洗手液\"}");
-        sb.append(",{\"amount\":10.00,\"avgPrice\":50.010000,\"batchName\":\"B批次\",\"customerName\":\"京东/淘宝\",\"material\":\"办公生活-洗手液-蓝月亮/500g套装（6瓶）\",\"model\":\"蓝月亮/500g套装（6瓶）\",\"modelId\":11,\"organName\":\"无部门\",\"parentTypeId\":202,\"parentTypeName\":\"办公生活\",\"projectGroupName\":\"无项目群\",\"projectName\":\"小项目\",\"totalPrice\":499.7400,\"typeId\":202008,\"typeName\":\"洗手液\"}");
-        sb.append("]");
+        Map<String, String> map = new HashMap<>();
+        map.put("source1.json", "target1.json");
 
-        List<PurchaseStatsDto> sourceList = FastJsonHelper.deserializeList(sb.toString(), PurchaseStatsDto.class);
-        //System.out.println(source);
-        List<String> lstSubtotalKey = Arrays.asList("projectGroupName", "projectName", "batchName");
-        //List<String> lstSubtotalKey = Arrays.asList("projectGroupName", "projectName", "batchName");
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            String sourceFileName = entry.getKey();
+            String targetFileName = entry.getValue();
 
-        // 分组键值集合
-        List<String> oldKeyValues = Arrays.asList("projectGroupName", "projectName", "batchName");
-        List<Integer> indexs = Arrays.asList(0, 0);
-        //List<String> oldKeyValues = Arrays.asList("projectGroupName", "projectName", "batchName");
-        List<PurchaseStatsDto> targetList = getChildList(sourceList, 0, null, lstSubtotalKey, 0, oldKeyValues);
-        System.out.println(FastJsonHelper.serialize(targetList));
+            FileReader fileReader = new FileReader(sourceFileName);
+            String source = fileReader.readString();
+
+            List<PurchaseStatsDto> sourceList = FastJsonHelper.deserializeList(source, PurchaseStatsDto.class);
+            List<String> lstSubtotalKey = Arrays.asList("projectGroupName", "projectName", "batchName");
+
+            // 分组键值集合
+            List<String> oldKeyValues = new ArrayList<>();
+            oldKeyValues.addAll(lstSubtotalKey);
+            List<PurchaseStatsDto> targetList = getChildList(sourceList, 0, null, lstSubtotalKey, 0, oldKeyValues);
+            String actual = FastJsonHelper.serialize(targetList);
+            System.out.println(actual);
+            FileReader targetFileReader = new FileReader(targetFileName);
+            String target = targetFileReader.readString();
+            Assert.assertEquals(target, actual);
+        }
     }
 
     private void addData(PurchaseStatsDto source, List<PurchaseStatsDto> targetList, int deep) {
