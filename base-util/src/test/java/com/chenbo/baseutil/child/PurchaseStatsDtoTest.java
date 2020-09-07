@@ -28,6 +28,7 @@ public class PurchaseStatsDtoTest {
     public void trans() {
         Map<String, String> map = new HashMap<>();
         map.put("source1.json", "target1.json");
+        map.put("source2.json", "target2.json");
 
         for (Map.Entry<String, String> entry : map.entrySet()) {
             String sourceFileName = entry.getKey();
@@ -73,41 +74,47 @@ public class PurchaseStatsDtoTest {
         if (CollectionUtils.isEmpty(targetList)) {
             targetList = new ArrayList<>();
         }
-        PurchaseStatsDto source = sourceList.get(0).clone();
-        source.setCurLevel(groupIndex);
-        source.setMaxLevel(groups.size());
+        if (CollectionUtils.isEmpty(sourceList)) {
+            return targetList;
+        }
+        do {
+            PurchaseStatsDto source = sourceList.get(0).clone();
+            source.setCurLevel(groupIndex);
+            source.setMaxLevel(groups.size());
 
-        String key = groups.get(groupIndex);
-        String keyValue = getAttribute(source, key);
-        String groupAttrs = source.getProjectGroupName() + " " + source.getProjectName() + " " + source.getBatchName() + " " + source.getMaterial();
-        // **************** 分组相同 ****************
-        if (keyValue.equals(oldKeyValues.get(groupIndex))) {
-            System.out.println(groupAttrs + "\t[ " + groups.get(groupIndex) + " 分组相同" + " ]");
-            if (groupIndex >= groups.size() - 1) {
-                // 最后一组相同，则直接添加
-                addData(source, targetList, groups.size());
-                // 添加数据后移除该条记录
-                sourceList.remove(0);
-                System.out.println("+ 数据2 " + source.getMaterial());
+            String key = groups.get(groupIndex);
+            String keyValue = getAttribute(source, key);
+            String groupAttrs = source.getProjectGroupName() + " " + source.getProjectName() + " " + source.getBatchName() + " " + source.getMaterial();
+            // **************** 分组相同 ****************
+            if (keyValue.equals(oldKeyValues.get(groupIndex))) {
+                System.out.println(groupAttrs + "\t[ " + groups.get(groupIndex) + " 分组相同" + " ]");
+                if (groupIndex >= groups.size() - 1) {
+                    // 最后一组相同，则直接添加
+                    addData(source, targetList, groups.size());
+                    // 添加数据后移除该条记录
+                    sourceList.remove(0);
+                    System.out.println("+ 数据2 " + source.getMaterial());
+                } else {
+                    getChildList(sourceList, deep + 1, targetList, groups, (groupIndex + 1) % groups.size(), oldKeyValues);
+                }
             } else {
-                getChildList(sourceList, deep, targetList, groups, groupIndex + 1, oldKeyValues);
+                // **************** 分组不同 ****************
+                System.out.println(groupAttrs + "\t[ " + groups.get(groupIndex) + " 分组不同" + " ]");
+                // 如果分组不同，代表为不同分组
+                source.setSubtotalKey(keyValue);
+                PurchaseStatsDto cur = removeOtherAttr(source.clone());
+                addGroup(cur, targetList, groupIndex);
+
+                for (int i = groupIndex; i < oldKeyValues.size(); i++) {
+                    oldKeyValues.set(i, groups.get(i));
+                }
+
+                System.out.println("+ 分组 " + source.getSubtotalKey() + " " + source.getCurLevel() + "/" + source.getMaxLevel());
+                oldKeyValues.set(groupIndex, keyValue);
+
+                getChildList(sourceList, deep + 1, targetList, groups, (groupIndex + 1) % groups.size(), oldKeyValues);
             }
-        } else {
-            // **************** 分组不同 ****************
-            System.out.println(groupAttrs + "\t[ " + groups.get(groupIndex) + " 分组不同" + " ]");
-            // 如果分组不同，代表为不同分组
-            source.setSubtotalKey(keyValue);
-            PurchaseStatsDto cur = removeOtherAttr(source.clone()).clone();
-            addGroup(cur, targetList, groupIndex);
-
-            System.out.println("+ 分组 " + source.getSubtotalKey() + " " + source.getCurLevel() + "/" + source.getMaxLevel());
-            oldKeyValues.set(groupIndex, keyValue);
-
-            cur.setChild(getChildList(sourceList, deep + 1, targetList, groups, (groupIndex + 1) % groups.size(), oldKeyValues));
-        }
-        if (!CollectionUtils.isEmpty(sourceList) && deep == 0) {
-            getChildList(sourceList, 0, targetList, groups, 0, oldKeyValues);
-        }
+        } while (!CollectionUtils.isEmpty(sourceList) && deep == 0 && groupIndex == 0);
 
         return targetList;
     }
