@@ -128,9 +128,9 @@ public class PurchaseStatsDto implements Cloneable {
             dto = (PurchaseStatsDto) super.clone();
 
 
-            dto.setAmount(null);
-            dto.setAvgPrice(null);
-            dto.setTotalPrice(null);
+            //dto.setAmount(null);
+            //dto.setAvgPrice(null);
+            //dto.setTotalPrice(null);
             //dto.setMaterial(null);
             //dto.setProjectName(null);
             dto.setCustomerName(null);
