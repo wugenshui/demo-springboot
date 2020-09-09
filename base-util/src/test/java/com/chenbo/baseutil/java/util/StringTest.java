@@ -27,4 +27,17 @@ public class StringTest {
             System.out.println("last = " + last);
         }
     }
+
+    @Test
+    public void StringTest() {
+        String a = "ab";
+        String b = "ab";
+        System.out.println(a == b);
+        System.out.println(a.equals(b));
+
+        a = new String("ab");
+        b = new String("ab");
+        System.out.println(a == b);
+        System.out.println(a.equals(b));
+    }
 }
