@@ -1,4 +1,4 @@
-package com.chenbo.baseutil.java.util;
+package com.chenbo.baseutil.java.lang;
 
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,7 +29,7 @@ public class StringTest {
     }
 
     @Test
-    public void StringTest() {
+    public void EqualsTest() {
         String a = "ab";
         String b = "ab";
         System.out.println(a == b);
@@ -37,6 +37,11 @@ public class StringTest {
 
         a = new String("ab");
         b = new String("ab");
+        System.out.println(a == b);
+        System.out.println(a.equals(b));
+
+        a = "张三";
+        b = "张三";
         System.out.println(a == b);
         System.out.println(a.equals(b));
     }
