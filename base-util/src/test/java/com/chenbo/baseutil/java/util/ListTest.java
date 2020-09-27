@@ -66,6 +66,24 @@ public class ListTest {
 
         System.out.println("list");
         System.out.println(list);
+
+    }
+
+    @Test
+    public void eachTest2() {
+        int listSize = 4;
+
+        for (int i = 0; i < listSize; i++) {
+            loop:
+            for (int j = 0; j < listSize; j++) {
+                for (int k = 0; k < listSize; k++) {
+                    if (i + j + k == 3) {
+                        continue loop;
+                    }
+                    System.out.println("" + i + j + k + " = " + (i + j + k));
+                }
+            }
+        }
     }
 
     @Test
