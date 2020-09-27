@@ -3,17 +3,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!--    <parent>-->
-    <!--        <groupId>com.chenbo.demo</groupId>-->
-    <!--        <artifactId>db</artifactId>-->
-    <!--        <version>${revision}</version>-->
-    <!--    </parent>-->
+        <parent>
+            <groupId>com.chenbo.demo</groupId>
+            <artifactId>db</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </parent>
     <!-- 版本不一致，使用新版本的依赖 -->
-    <parent>
-        <artifactId>spring-boot-parent</artifactId>
-        <groupId>org.springframework.boot</groupId>
-        <version>2.3.0.RELEASE</version>
-    </parent>
+<!--    <parent>-->
+    <!--        <artifactId>spring-boot-parent</artifactId>-->
+    <!--        <groupId>org.springframework.boot</groupId>-->
+    <!--        <version>2.3.0.RELEASE</version>-->
+    <!--    </parent>-->
 
     <artifactId>elasticsearch-starter</artifactId>
 

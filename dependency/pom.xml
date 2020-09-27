@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.chenbo.demo</groupId>
         <artifactId>demo-spring-boot</artifactId>
-        <version>${revision}</version>
+        <version>0.0.1-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
 
@@ -250,12 +250,12 @@
             <dependency>
                 <groupId>com.chenbo.demo</groupId>
                 <artifactId>base-util</artifactId>
-                <version>${revision}</version>
+                <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.chenbo.demo</groupId>
                 <artifactId>commons</artifactId>
-                <version>${revision}</version>
+                <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>

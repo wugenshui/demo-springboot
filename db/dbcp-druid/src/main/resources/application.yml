@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # serverTimezone=GMT%2B8 Asia/Shanghai 东八区，领先全球标准时间UTC八个小时
+    url: jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm
+
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.chenbo.dbcp.druid.entity
+
+# showSql
+#logging:
+#  level:
+#    root: warn
+#    com.chenbo.daomybatisplus.auth.mapper: trace
+#  pattern:
+#    console: '%p%m%n'
