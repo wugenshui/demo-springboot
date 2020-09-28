@@ -81,5 +81,6 @@ public class CloneTest {
         Assert.assertNotEquals(source.getAge(), target.getAge());
         Assert.assertNotEquals(source.getDeep(), target.getDeep());
         Assert.assertNotEquals(source.getInts(), target.getInts());
+
     }
 }
