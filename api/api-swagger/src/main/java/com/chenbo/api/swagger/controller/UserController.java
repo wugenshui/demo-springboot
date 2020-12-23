@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author : chenbo
@@ -42,7 +42,7 @@ public class UserController {
     @ApiOperation("保存用户")
     @PostMapping
     @ApiParam(name = "user", value = "用户")
-    public AjaxResult<User> saveUser(@RequestBody @Valid User user) {
+    public AjaxResult<User> saveUser(@RequestBody @Validated User user) {
         return AjaxResult.success(user);
     }
 
@@ -51,7 +51,7 @@ public class UserController {
         user.setId(10086L);
         user.setName("张三");
         user.setAge(18);
-        user.setCreateTime(LocalDateTime.now());
+        user.setCreateTime(new Date());
         return user;
     }
 

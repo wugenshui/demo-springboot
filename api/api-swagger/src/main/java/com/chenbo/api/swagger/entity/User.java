@@ -4,11 +4,14 @@ import com.chenbo.api.swagger.validator.IsMobile;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import java.time.LocalDateTime;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 用户
@@ -18,7 +21,11 @@ import java.time.LocalDateTime;
  */
 @ApiModel("用户")
 @Data
-public class User {
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @ApiModelProperty("用户ID")
     private Long id;
 
@@ -36,7 +43,7 @@ public class User {
     private Integer age;
 
     @ApiModelProperty("创建时间")
-    private LocalDateTime createTime;
+    private Date createTime;
 
     @ApiModelProperty("手机号码")
     @IsMobile
