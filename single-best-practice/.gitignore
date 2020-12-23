@@ -1,3 +1,10 @@
+### user customization ###
+/logs/
+.mvn
+mvnw
+mvnw.cmd
+
+### mvn ###
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
