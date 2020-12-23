@@ -50,7 +50,7 @@
 
     <!-- 时间滚动输出 level为 INFO 日志 -->
     <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_HOME}/log_info.log</file>
+        <file>${LOG_HOME}/info.log</file>
         <encoder>
             <pattern>${FILE_LOG_PATTERN}</pattern>
             <charset>UTF-8</charset>
