@@ -41,7 +41,6 @@
         <hutool.verison>5.3.3</hutool.verison>
         <dozer.version>5.5.1</dozer.version>
         <velocity.version>2.1</velocity.version>
-        <p6spy.version>3.8.1</p6spy.version>
         <netty.version>4.1.47.Final</netty.version>
         <jgit.version>5.8.0.202006091008-r</jgit.version>
         <activiti.version>7.0.0.SR1</activiti.version>
@@ -234,11 +233,6 @@
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity-engine-core</artifactId>
                 <version>${velocity.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>p6spy</groupId>
-                <artifactId>p6spy</artifactId>
-                <version>${p6spy.version}</version>
             </dependency>
             <!-- socket -->
             <dependency>
