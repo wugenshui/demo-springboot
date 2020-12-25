@@ -7,7 +7,10 @@ import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author : chenbo
@@ -16,30 +19,10 @@ import java.util.List;
 @SpringBootTest
 @Slf4j
 public class GpsConvertUtilTest {
-    @Data
-    public class MapPoint {
-        private double lat;
-        private double lng;
 
-        public MapPoint(double lat, double lng) {
-            this.lat = lat;
-            this.lng = lng;
-        }
-    }
-
-    @Data
-    public class AllMap {
-        private MapPoint wgs;
-        private MapPoint gcj;
-        private MapPoint bd;
-
-        public AllMap(double wgsLat, double wgsLng, double gcjLat, double gcjLng, double bdLat, double bdLng) {
-            this.wgs = new MapPoint(wgsLat, wgsLng);
-            this.gcj = new MapPoint(gcjLat, gcjLng);
-            this.bd = new MapPoint(bdLat, bdLng);
-        }
-    }
-
+    /**
+     * 坐标转换测试
+     */
     @Test
     public void gpsTransTest() {
         // 坐标系(纬度lat,经度lon)
@@ -102,6 +85,9 @@ public class GpsConvertUtilTest {
         }
     }
 
+    /**
+     * 墨卡托坐标转换
+     */
     @Test
     public void mercatorTransTest() {
         double lng = 113.34169454;
@@ -120,5 +106,46 @@ public class GpsConvertUtilTest {
         System.out.println(lngLat[0] + "," + lngLat[1]);
         Assert.assertEquals(lng, lngLat[0], delta);
         Assert.assertEquals(lat, lngLat[1], delta);
+    }
+
+    @Test
+    public void getDistanceTest() {
+        Map<Double, List<MapPoint>> maps = new HashMap();
+        maps.put(284.6439379583341, Arrays.asList(new MapPoint(22.514519, 113.380301), new MapPoint(22.511962, 113.380301)));
+        maps.put(932.2997762326453, Arrays.asList(new MapPoint(22.514866, 113.388444), new MapPoint(22.514866, 113.379378)));
+        // 允许的误差,单位米
+        double delta = 1;
+
+        maps.entrySet().forEach(entry -> {
+            List<MapPoint> points = entry.getValue();
+            double distance = GpsConvertUtil.getDistance(points.get(0).getLat(), points.get(0).getLng(), points.get(1).getLat(), points.get(1).getLng());
+            System.out.println("distance = " + distance);
+            Assert.assertTrue(Math.abs(distance - entry.getKey()) < delta);
+        });
+
+    }
+
+    @Data
+    class MapPoint {
+        private double lat;
+        private double lng;
+
+        public MapPoint(double lat, double lng) {
+            this.lat = lat;
+            this.lng = lng;
+        }
+    }
+
+    @Data
+    class AllMap {
+        private MapPoint wgs;
+        private MapPoint gcj;
+        private MapPoint bd;
+
+        public AllMap(double wgsLat, double wgsLng, double gcjLat, double gcjLng, double bdLat, double bdLng) {
+            this.wgs = new MapPoint(wgsLat, wgsLng);
+            this.gcj = new MapPoint(gcjLat, gcjLng);
+            this.bd = new MapPoint(bdLat, bdLng);
+        }
     }
 }
