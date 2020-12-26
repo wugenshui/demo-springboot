@@ -1,6 +1,5 @@
 package com.chenbo.demo.single.best.practice.service.impl;
 
-import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chenbo.demo.single.best.practice.entity.User;
 import com.chenbo.demo.single.best.practice.mapper.UserMapper;
@@ -40,7 +39,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public boolean updateByName(String name, User user) {
-        LambdaUpdateChainWrapper<User> lambdaUpdate = new LambdaUpdateChainWrapper<>(userMapper);
         return lambdaUpdate().eq(User::getName, name).update(user);
     }
 }
