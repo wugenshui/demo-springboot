@@ -114,7 +114,7 @@ public class GpsConvertUtilTest {
         maps.put(284.6439379583341, Arrays.asList(new MapPoint(22.514519, 113.380301), new MapPoint(22.511962, 113.380301)));
         maps.put(932.2997762326453, Arrays.asList(new MapPoint(22.514866, 113.388444), new MapPoint(22.514866, 113.379378)));
         // 允许的误差,单位米
-        double delta = 1;
+        double delta = 2;
 
         maps.entrySet().forEach(entry -> {
             List<MapPoint> points = entry.getValue();
@@ -122,7 +122,6 @@ public class GpsConvertUtilTest {
             System.out.println("distance = " + distance);
             Assert.assertTrue(Math.abs(distance - entry.getKey()) < delta);
         });
-
     }
 
     @Data
