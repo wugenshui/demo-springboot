@@ -1,7 +1,7 @@
 package com.chenbo.demo.single.best.practice.service;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.chenbo.demo.single.best.practice.entity.BaseEntity;
 import com.chenbo.demo.single.best.practice.entity.User;
 import com.chenbo.demo.single.best.practice.mapper.UserMapper;
@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,7 +35,9 @@ public class UserServiceTest {
         User user = userService.getById(list.get(0).getId());
         System.out.println("user = " + user);
 
-        List<User> users = userMapper.customQueryList(new QueryWrapper<User>());
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.le(User::getCreateTime, new Date());
+        List<User> users = userMapper.customQueryList(queryWrapper);
         System.out.println("users = " + users);
 
         BaseEntity baseEntity = new BaseEntity();
