@@ -1,5 +1,8 @@
 package com.chenbo.demo.single.best.practice.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.util.Date;
 
 /**
@@ -17,21 +20,25 @@ public class BaseEntity {
     /**
      * 创建人id
      */
+    @TableField(fill = FieldFill.INSERT)
     private Integer createrId;
 
     /**
      * 创建时间
      */
+    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
 
     /**
      * 更新人id
      */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Integer updaterId;
 
     /**
      * 更新时间
      */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
     public Integer getId() {
