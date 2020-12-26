@@ -9,3 +9,8 @@ spring:
     url: jdbc:p6spy:mysql://192.168.0.151:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2B8
     username: root
     password: root
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: deleted
