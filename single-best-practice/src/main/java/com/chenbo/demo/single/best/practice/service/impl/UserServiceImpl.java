@@ -2,7 +2,6 @@ package com.chenbo.demo.single.best.practice.service.impl;
 
 import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.baomidou.mybatisplus.extension.toolkit.ChainWrappers;
 import com.chenbo.demo.single.best.practice.entity.User;
 import com.chenbo.demo.single.best.practice.mapper.UserMapper;
 import com.chenbo.demo.single.best.practice.service.UserService;
@@ -36,15 +35,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public User getByName(String name) {
-        // QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        // QueryWrapper<User> queryWrapper = Wrappers.query();
-        // queryWrapper.eq("name", name);
-        // return userMapper.selectOne(queryWrapper);
-
-        // new LambdaQueryChainWrapper<>(userMapper);
-        // ChainWrappers.lambdaQueryChain(userMapper);
-        return ChainWrappers.lambdaQueryChain(userMapper)
-                .eq(User::getName, name).one();
+        return lambdaQuery().eq(User::getName, name).one();
     }
 
     @Override
