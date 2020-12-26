@@ -2,7 +2,7 @@ package com.chenbo.demo.single.best.practice.service;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.chenbo.demo.single.best.practice.entity.BaseEntity;
+import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.chenbo.demo.single.best.practice.entity.User;
 import com.chenbo.demo.single.best.practice.mapper.UserMapper;
 import org.junit.Test;
@@ -40,7 +40,8 @@ public class UserServiceTest {
         List<User> users = userMapper.customQueryList(queryWrapper);
         System.out.println("users = " + users);
 
-        BaseEntity baseEntity = new BaseEntity();
-        baseEntity.getCreateTime();
+        User one = new LambdaQueryChainWrapper<>(userMapper).eq(User::getName, "王天风").one();
+        System.out.println("one = " + one);
+
     }
 }
