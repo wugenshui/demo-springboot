@@ -4,6 +4,7 @@ package com.chenbo.demo.single.best.practice.service;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.chenbo.demo.single.best.practice.entity.User;
 import com.chenbo.demo.single.best.practice.mapper.UserMapper;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,6 +31,7 @@ public class UserServiceTest {
     public void queryTest() {
         List<User> list = userService.list();
         System.out.println("list = " + list);
+        Assert.assertNotNull(list);
 
         User user = userService.getById(list.get(0).getId());
         System.out.println("user = " + user);
@@ -41,6 +43,5 @@ public class UserServiceTest {
 
         User one = userService.getByName("王天风");
         System.out.println("one = " + one);
-
     }
 }

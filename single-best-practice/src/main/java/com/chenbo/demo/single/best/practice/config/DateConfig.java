@@ -2,7 +2,6 @@ package com.chenbo.demo.single.best.practice.config;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -63,7 +62,7 @@ public class DateConfig {
         });
         javaTimeModule.addDeserializer(Date.class, new JsonDeserializer<Date>() {
             @Override
-            public Date deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+            public Date deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
                 return new DateConverter().convert(jsonParser.getText());
             }
         });

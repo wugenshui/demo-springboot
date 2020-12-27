@@ -15,28 +15,25 @@ import java.util.Map;
 @Slf4j
 public class DateConverter implements Converter<String, Date> {
 
-    private static final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
-    private static final String DATE_FORMAT = "yyyy-MM-dd";
     private static final String TIMESTAMP_FORMAT = "^\\d+$";
 
-    private static final String DATETIME_FORMAT_MARK = "-";
-    private static final String DATE_FORMAT_MARK = ":";
+    private static final Map<String, String> FORMAT_MAP = new HashMap<>();
 
-    private static final Map<String, String> formatMap = new HashMap<>();
+    private static final String EMPTY_STR = "";
+
+    private static final String NULL_STR = "null";
 
     static {
-        formatMap.put("^\\d{4}-\\d{1,2}-\\d{1,2} {1}\\d{1,2}:\\d{1,2}:\\d{1,2}$", "yyyy-MM-dd HH:mm:ss");
-        formatMap.put("^\\d{4}-\\d{1,2}-\\d{1,2}$", "yyyy-MM-dd");
-        formatMap.put("^\\d{4}-\\d{1,2}-\\d{1,2}T{1}\\d{1,2}:\\d{1,2}:\\d{1,2}[.]\\d{1,3}Z$", "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        formatMap.put("^\\d{4}-\\d{1,2}-\\d{1,2} {1}\\d{1,2}:\\d{1,2}$", "yyyy-MM-dd HH:mm");
-        formatMap.put("^\\d{4}-\\d{1,2}$", "yyyy-MM");
+        FORMAT_MAP.put("yyyy-MM-dd HH:mm:ss", "^\\d{4}-\\d{1,2}-\\d{1,2} {1}\\d{1,2}:\\d{1,2}:\\d{1,2}$");
+        FORMAT_MAP.put("yyyy-MM-dd", "^\\d{4}-\\d{1,2}-\\d{1,2}$");
+        FORMAT_MAP.put("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", "^\\d{4}-\\d{1,2}-\\d{1,2}T{1}\\d{1,2}:\\d{1,2}:\\d{1,2}[.]\\d{1,3}Z$");
+        FORMAT_MAP.put("yyyy-MM-dd HH:mm", "^\\d{4}-\\d{1,2}-\\d{1,2} {1}\\d{1,2}:\\d{1,2}$");
+        FORMAT_MAP.put("yyyy-MM", "^\\d{4}-\\d{1,2}$");
     }
-
 
     @Override
     public Date convert(String value) {
-        String nullStr = "null";
-        if (value == null || value.trim().equals("") || nullStr.equalsIgnoreCase(value)) {
+        if (value == null || value.trim().equals(EMPTY_STR) || NULL_STR.equalsIgnoreCase(value)) {
             return null;
         }
 
@@ -47,10 +44,10 @@ public class DateConverter implements Converter<String, Date> {
                 Long lDate = Long.valueOf(value);
                 return new Date(lDate);
             } else {
-                for (Map.Entry<String, String> entry : formatMap.entrySet()) {
-                    String regex = entry.getKey();
+                for (Map.Entry<String, String> entry : FORMAT_MAP.entrySet()) {
+                    String regex = entry.getValue();
                     if (value.matches(regex)) {
-                        String format = entry.getValue();
+                        String format = entry.getKey();
                         SimpleDateFormat formatter = new SimpleDateFormat(format);
                         return formatter.parse(value);
                     }
