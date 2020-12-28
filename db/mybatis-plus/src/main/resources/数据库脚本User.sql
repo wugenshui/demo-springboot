@@ -23,3 +23,17 @@ VALUES (1087982257332887553, '大boss', 40, 'boss@baomidou.com', NULL, '2019-01-
 	(1088250446457389058, '李艺伟', 28, 'lyw@baomidou.com', 1088248166370832385, '2019-02-14 08:31:16'),
 	(1094590409767661570, '张雨琪', 31, 'zjq@baomidou.com', 1088248166370832385, '2019-01-14 09:15:15'),
 	(1094592041087729666, '刘红雨', 32, 'lhm@baomidou.com', 1088248166370832385, '2019-01-14 09:48:16');
+
+
+
+
+DROP TABLE IF EXISTS `map`;
+CREATE TABLE `map`  (
+                        `id` int(11) NOT NULL AUTO_INCREMENT,
+                        `location` geometry NOT NULL,
+                        PRIMARY KEY (`id`) USING BTREE,
+                        SPATIAL INDEX `idx_location`(`location`)
+);
+
+
+INSERT INTO `map`(`id`, `location`) VALUES (1, ST_GeomFromText('POINT(121.366961 31.190049)'));
