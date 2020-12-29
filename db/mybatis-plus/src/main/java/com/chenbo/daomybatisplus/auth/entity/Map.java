@@ -1,5 +1,7 @@
 package com.chenbo.daomybatisplus.auth.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.chenbo.daomybatisplus.config.GeometryTypeHandler;
 import lombok.Data;
 
 /**
@@ -10,5 +12,6 @@ import lombok.Data;
 public class Map {
     private int id;
 
-    private String location;
+    @TableField(typeHandler = GeometryTypeHandler.class)
+    private String coordinate;
 }

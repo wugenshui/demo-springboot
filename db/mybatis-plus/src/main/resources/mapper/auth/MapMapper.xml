@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenbo.daomybatisplus.auth.mapper.MapMapper">
+
+    <resultMap id="default" type="com.chenbo.daomybatisplus.auth.entity.Map">
+        <result column="coordinate" property="coordinate"
+                typeHandler="com.chenbo.daomybatisplus.config.GeometryTypeHandler"/>
+    </resultMap>
+
+</mapper>

@@ -25,4 +25,12 @@ public class MapMapperTest {
         List<Map> maps = mapMapper.selectList(new QueryWrapper<>());
         System.out.println("maps = " + maps);
     }
+
+    @Test
+    public void insert() {
+        Map map = new Map();
+        map.setCoordinate("POINT(121.366961 25.190049)");
+        mapMapper.insert(map);
+        System.out.println("map = " + map);
+    }
 }

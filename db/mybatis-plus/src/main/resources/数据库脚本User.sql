@@ -30,10 +30,10 @@ VALUES (1087982257332887553, '大boss', 40, 'boss@baomidou.com', NULL, '2019-01-
 DROP TABLE IF EXISTS `map`;
 CREATE TABLE `map`  (
                         `id` int(11) NOT NULL AUTO_INCREMENT,
-                        `location` geometry NOT NULL,
+                        `coordinate` geometry NOT NULL,
                         PRIMARY KEY (`id`) USING BTREE,
                         SPATIAL INDEX `idx_location`(`location`)
 );
 
 
-INSERT INTO `map`(`id`, `location`) VALUES (1, ST_GeomFromText('POINT(121.366961 31.190049)'));
+INSERT INTO `map`(`id`, `coordinate`) VALUES (1, ST_GeomFromText('POINT(121.366961 31.190049)'));
