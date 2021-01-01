@@ -64,6 +64,7 @@ public class CacheConfig extends CachingConfigurerSupport {
 
         RedisCacheConfiguration cacheConfiguration =
                 defaultCacheConfig()
+                        .prefixCacheNameWith("cache:")
                         .entryTtl(Duration.ofMinutes(3))
                         .disableCachingNullValues()
                         .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jackson2JsonRedisSerializer));
@@ -71,7 +72,7 @@ public class CacheConfig extends CachingConfigurerSupport {
         return build;
 
     }
-    
+
     @Override
     @Bean
     public KeyGenerator keyGenerator() {

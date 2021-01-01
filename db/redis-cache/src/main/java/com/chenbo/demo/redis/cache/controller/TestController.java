@@ -34,7 +34,7 @@ public class TestController {
 
     @Cacheable("num")
     @GetMapping("/{num}")
-    public int square(@PathVariable int num) {
-        return num * num;
+    public String square(@PathVariable int num) {
+        return "num * num = " + (num * num);
     }
 }
