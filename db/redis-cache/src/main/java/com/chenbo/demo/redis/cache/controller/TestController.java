@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.io.IOException;
 
 /**
  * @author : chenbo
@@ -19,10 +18,15 @@ public class TestController {
     @Resource
     private RedisTemplate redisTemplate;
 
-    @Cacheable("cache:user")
+    @GetMapping("save")
+    public void save() {
+        redisTemplate.opsForValue().set("name", User.builder().age(18).build());
+    }
+
+    @Cacheable(value = "cache:user")
     @GetMapping
-    public User test() throws InterruptedException, IOException {
-        Thread.sleep(3000);
+    public User test() throws InterruptedException {
+        Thread.sleep(2000);
         User user = User.builder().age(18).build();
         return user;
     }
