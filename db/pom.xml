@@ -15,19 +15,19 @@
     <packaging>pom</packaging>
 
     <modules>
-        <!--        <module>dao-hikari</module>-->
-        <!--        <module>dao-jpa</module>-->
-        <!--        <module>dao-mongodb</module>-->
-        <module>dbcp-druid</module>
-        <!--        <module>elasticsearch</module>-->
-        <!--        <module>elasticsearch-starter</module>-->
-        <!--        <module>mybatis</module>-->
-        <!--        <module>mybatis-plus</module>-->
-        <!--        <module>mybatis-plus-generator</module>-->
-        <!--        <module>redis-cache</module>-->
-        <!--        <module>redis-redisson</module>-->
-        <!--        <module>redis-jedis</module>-->
-        <!--        <module>redis-starter</module>-->
+        <!-- <module>dao-hikari</module> -->
+        <!-- <module>dao-jpa</module> -->
+        <!-- <module>dao-mongodb</module> -->
+        <!--        <module>dbcp-druid</module>-->
+        <!-- <module>elasticsearch</module> -->
+        <!-- <module>elasticsearch-starter</module> -->
+        <!-- <module>mybatis</module> -->
+        <!-- <module>mybatis-plus</module> -->
+        <!-- <module>mybatis-plus-generator</module> -->
+<!--        <module>redis-cache</module>-->
+        <!-- <module>redis-redisson</module> -->
+        <!-- <module>redis-jedis</module> -->
+        <!-- <module>redis-starter</module> -->
     </modules>
 
     <dependencyManagement>
