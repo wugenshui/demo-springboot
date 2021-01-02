@@ -65,7 +65,7 @@ public class CacheConfig extends CachingConfigurerSupport {
         RedisCacheConfiguration cacheConfiguration =
                 defaultCacheConfig()
                         .prefixCacheNameWith("cache:")
-                        .entryTtl(Duration.ofMinutes(3))
+                        .entryTtl(Duration.ofMinutes(5))
                         .disableCachingNullValues()
                         .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jackson2JsonRedisSerializer));
         RedisCacheManager build = RedisCacheManager.builder(factory).cacheDefaults(cacheConfiguration).build();
@@ -81,7 +81,7 @@ public class CacheConfig extends CachingConfigurerSupport {
             sb.append(target.getClass().getName());
             sb.append(method.getName());
             for (Object obj : params) {
-                sb.append(obj.toString());
+                sb.append("-" + obj.toString());
             }
             return sb.toString();
         };

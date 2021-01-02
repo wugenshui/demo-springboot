@@ -1,6 +1,7 @@
 package com.chenbo.demo.redis.cache.controller;
 
 import com.chenbo.demo.redis.cache.entity.User;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,4 +38,17 @@ public class TestController {
     public String square(@PathVariable int num) {
         return "num * num = " + (num * num);
     }
+
+    @CacheEvict(value = "num", allEntries = true)
+    @GetMapping("/delete/{num}")
+    public String delete(@PathVariable int num) {
+        return "delete:" + num;
+    }
+
+    @Cacheable("ab")
+    @GetMapping("/{a}/{b}")
+    public String square(@PathVariable int a, @PathVariable int b) {
+        return "a * b = " + (a * b);
+    }
+
 }
