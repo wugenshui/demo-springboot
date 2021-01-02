@@ -2,6 +2,7 @@ package com.chenbo.demo.redis.cache.controller;
 
 import com.chenbo.demo.redis.cache.entity.User;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +26,17 @@ public class TestController {
         redisTemplate.opsForValue().set("name", User.builder().age(18).build());
     }
 
-    @Cacheable(value = "cache:user")
+    @Cacheable(value = "user")
     @GetMapping
     public User test() throws InterruptedException {
+        Thread.sleep(2000);
+        User user = User.builder().age(18).build();
+        return user;
+    }
+
+    @CachePut(value = "put")
+    @GetMapping("/put")
+    public User put() throws InterruptedException {
         Thread.sleep(2000);
         User user = User.builder().age(18).build();
         return user;
