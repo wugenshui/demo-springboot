@@ -42,13 +42,13 @@ public class TestController {
         return user;
     }
 
-    @Cacheable("num")
+    @Cacheable(value = "num", key = "#num")
     @GetMapping("/{num}")
     public String square(@PathVariable int num) {
         return "num * num = " + (num * num);
     }
 
-    @CacheEvict(value = "num", allEntries = true)
+    @CacheEvict(value = "num", key = "#num")
     @GetMapping("/delete/{num}")
     public String delete(@PathVariable int num) {
         return "delete:" + num;
