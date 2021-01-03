@@ -4,15 +4,21 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.7.RELEASE</version>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+<!--    <parent>-->
+<!--        <groupId>org.springframework.boot</groupId>-->
+<!--        <artifactId>spring-boot-starter-parent</artifactId>-->
+<!--        <version>2.3.7.RELEASE</version>-->
+<!--        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+<!--    </parent>-->
 
     <groupId>com.github.wugenshui</groupId>
     <artifactId>quick-start-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -302,5 +308,27 @@
             </plugin>
         </plugins>
     </build>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <tag>master</tag>
+        <url>https://github.com/wugenshui/demo-spring-boot</url>
+        <connection>scm:git:git@github.com:wugenshui/demo-spring-boot.git</connection>
+        <developerConnection>scm:git:git@github.com:wugenshui/demo-spring-boot.git</developerConnection>
+    </scm>
+    <developers>
+        <developer>
+            <name>chenbo</name>
+            <email>chenboprogrammer@gmail.com</email>
+            <organization>chenbo</organization>
+        </developer>
+    </developers>
+
 
 </project>

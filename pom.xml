@@ -19,7 +19,7 @@
 
     <modules>
         <module>dependency</module>
-        <module>parent</module>
+        <module>quick-start-parent</module>
         <!-- <module>db</module> -->
         <!-- <module>oauth</module> -->
         <!-- <module>office</module> -->

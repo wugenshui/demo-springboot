@@ -1,9 +1,16 @@
 # demo-spring-boot
+
 demo-springboot
 
 demo project for spring-boot
 
+# 上传至 Maven 中央仓库
+cd quick-start-parent
+mvn clean package deploy
+
+
 ### JWT密钥生成命令
+
 ```
 # 生成私钥文件
 # alias 别名
