@@ -1,4 +1,4 @@
-package com.chenbo.demo.spring.cloud.alibaba.nacos;
+package com.chenbo.demo.spring.cloud.alibaba.nacos.provider;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date : 2021-01-07
  */
 @SpringBootApplication
-public class NacosApplication {
+public class NacosProviderApplication {
     public static void main(String[] args) {
-        SpringApplication.run(NacosApplication.class, args);
+        SpringApplication.run(NacosProviderApplication.class, args);
     }
 }

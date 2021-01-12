@@ -1,4 +1,4 @@
-package com.chenbo.demo.spring.cloud.alibaba.nacos.controller;
+package com.chenbo.demo.spring.cloud.alibaba.nacos.provider.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;

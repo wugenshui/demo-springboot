@@ -3,4 +3,6 @@ spring:
     name: nacos-demo
   cloud:
     nacos:
+      config:
+        file-extension: yaml
       server-addr: 192.168.0.222:8848
