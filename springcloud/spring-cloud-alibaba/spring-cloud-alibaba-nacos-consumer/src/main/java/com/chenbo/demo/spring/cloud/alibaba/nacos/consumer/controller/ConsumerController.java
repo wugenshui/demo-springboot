@@ -1,10 +1,12 @@
-package com.chenbo.demo.spring.cloud.alibaba.nacos.provider.controller;
+package com.chenbo.demo.spring.cloud.alibaba.nacos.consumer.controller;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import javax.annotation.Resource;
 
 /**
  * @author : chenbo
@@ -13,13 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RefreshScope
 @RequestMapping("/")
-public class RefreshController {
+public class ConsumerController {
 
-    @Value("${value:default}")
-    private String value;
+    @Resource
+    private RestTemplate restTemplate;
 
     @GetMapping
     public String getValue() {
-        return value;
+        return restTemplate.getForObject("http://nacos-demo", String.class);
     }
+
 }

@@ -9,7 +9,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>spring-cloud-alibaba-nacos-provider</artifactId>
+    <artifactId>spring-cloud-alibaba-nacos-consumer</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>

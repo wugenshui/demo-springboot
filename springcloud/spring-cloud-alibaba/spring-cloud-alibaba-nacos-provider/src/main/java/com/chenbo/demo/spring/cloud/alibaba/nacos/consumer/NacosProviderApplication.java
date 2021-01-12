@@ -1,4 +1,4 @@
-package com.chenbo.demo.spring.cloud.alibaba.nacos.provider;
+package com.chenbo.demo.spring.cloud.alibaba.nacos.consumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
