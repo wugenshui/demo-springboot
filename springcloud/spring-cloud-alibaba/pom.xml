@@ -17,6 +17,7 @@
     <modules>
         <module>spring-cloud-alibaba-nacos-provider</module>
         <module>spring-cloud-alibaba-nacos-consumer</module>
+        <module>spring-cloud-alibaba-sentinel</module>
     </modules>
 
     <dependencyManagement>
