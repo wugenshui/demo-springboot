@@ -25,4 +25,8 @@ public class ConsumerController {
         return restTemplate.getForObject("http://nacos-demo", String.class);
     }
 
+    @GetMapping("/ip")
+    public String getIP() {
+        return restTemplate.getForObject("http://nacos-demo/ip", String.class);
+    }
 }
