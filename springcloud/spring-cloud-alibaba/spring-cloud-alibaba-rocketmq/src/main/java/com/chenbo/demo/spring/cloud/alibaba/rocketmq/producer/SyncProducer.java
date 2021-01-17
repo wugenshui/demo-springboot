@@ -1,27 +1,30 @@
 package com.chenbo.demo.spring.cloud.alibaba.rocketmq.producer;
 
+import com.chenbo.demo.spring.cloud.alibaba.rocketmq.config.SystemConfig;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
 
 /**
+ * Producer端发送同步消息
+ *
  * @author : chenbo
  * @date : 2021-01-15
  */
 public class SyncProducer {
     public static void sendMsg() throws Exception {
         // 实例化消息生产者Producer
-        DefaultMQProducer producer = new DefaultMQProducer("TopicTest");
+        DefaultMQProducer producer = new DefaultMQProducer(SystemConfig.GROUP);
         producer.setVipChannelEnabled(false);
         // 设置NameServer的地址
-        producer.setNamesrvAddr("192.168.0.222:9876");
+        producer.setNamesrvAddr(SystemConfig.ADDRESS);
         // 启动Producer实例
         producer.start();
         for (int i = 0; i < 100; i++) {
             // 创建消息，并指定Topic，Tag和消息体
-            Message msg = new Message("TopicTest",
-                    "TagA",
+            Message msg = new Message(SystemConfig.TOPIC,
+                    SystemConfig.TAG,
                     ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET)
             );
             // 发送消息到一个Broker
