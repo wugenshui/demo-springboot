@@ -1,7 +1,7 @@
 package com.chenbo.demo.spring.cloud.alibaba.rocketmq;
 
 import com.chenbo.demo.spring.cloud.alibaba.rocketmq.config.SystemConfig;
-import com.chenbo.demo.spring.cloud.alibaba.rocketmq.producer.AsyncProducer;
+import com.chenbo.demo.spring.cloud.alibaba.rocketmq.producer.OnewayProducer;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
@@ -27,7 +27,7 @@ public class RocketmqApplication {
         consumer.subscribe(SystemConfig.TOPIC, "*");
         // 注册回调实现类来处理从broker拉取回来的消息
         consumer.registerMessageListener((MessageListenerConcurrently) (msg, context) -> {
-            System.out.printf("%s Receive New Messages: %s %n", Thread.currentThread().getName(), msg);
+            System.out.printf("消费数据：%s 线程：%s %n", new String(msg.get(0).getBody()), Thread.currentThread().getName());
             // 标记该消息已经被成功消费
             return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
         });
@@ -36,7 +36,8 @@ public class RocketmqApplication {
         System.out.printf("Consumer Started.%n");
 
         // SyncProducer.sendMsg();
-        AsyncProducer.sendMsg();
+        // AsyncProducer.sendMsg();
+        OnewayProducer.sendMsg();
     }
 
 }
