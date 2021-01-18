@@ -26,7 +26,7 @@
         <!-- <module>mybatis-plus</module> -->
         <!-- <module>mybatis-plus-generator</module> -->
         <!--        <module>redis-cache</module>-->
-        <module>redis-redisson</module>
+        <module>db-redis-redisson</module>
         <!-- <module>redis-jedis</module> -->
         <!-- <module>redis-starter</module> -->
     </modules>

@@ -9,7 +9,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>redis-redisson</artifactId>
+    <artifactId>db-redis-redisson</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
