@@ -20,6 +20,11 @@ import java.util.Scanner;
 @Component
 public class BlockQueueTest {
 
+    public static void main(String[] args) {
+        BlockQueueTest.receiver();
+        BlockQueueTest.sender();
+    }
+
     /**
      * 消息接收者
      */
@@ -31,8 +36,7 @@ public class BlockQueueTest {
                 Config config = new Config();
                 // 单机模式
                 config.useSingleServer()
-                        .setAddress("redis://192.168.0.222:6379")
-                        .setPassword("123456");
+                        .setAddress("redis://192.168.0.204:6379").setPassword("1q2w#E$R");
 
                 RedissonClient redisson = Redisson.create(config);
 
@@ -53,8 +57,7 @@ public class BlockQueueTest {
         Config config = new Config();
         // 单机模式
         config.useSingleServer()
-                .setAddress("redis://192.168.0.222:6379")
-                .setPassword("123456");
+                .setAddress("redis://192.168.0.204:6379").setPassword("1q2w#E$R");
 
         RedissonClient redisson = Redisson.create(config);
 

@@ -1,6 +1,6 @@
 package com.chenbo.demo.redisson;
 
-import com.chenbo.demo.redisson.queue.delay.DelayQueueTest;
+import com.chenbo.demo.redisson.queue.block.BlockQueueTest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,16 +10,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class RedissonApplication {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         SpringApplication.run(RedissonApplication.class, args);
 
         // 分布式锁测试
-        //LockTest.test();
+        // LockTest.test();
 
-        // BlockQueueTest.receiver();
+        BlockQueueTest.receiver();
+        BlockQueueTest.sender();
+
+        // DelayQueueTest.receiver();
         // DelayQueueTest.sender();
-
-        //DelayQueueTest.receiver();
-        DelayQueueTest.sender();
     }
 }
