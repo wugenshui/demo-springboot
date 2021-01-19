@@ -1,7 +1,9 @@
 package com.chenbo.demo.redission.starter.controller;
 
+import org.redisson.api.RBlockingQueue;
 import org.redisson.api.RedissonClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,8 +20,10 @@ public class TestController {
         this.redissonClient = redissonClient;
     }
 
-    @GetMapping
-    public String get() {
-        return redissonClient.toString();
+    @GetMapping("/save/{username}")
+    public String get(@PathVariable String username) {
+        RBlockingQueue<String> queue = redissonClient.getBlockingQueue("anyQueue");
+        queue.offer(username);
+        return "ok";
     }
 }
