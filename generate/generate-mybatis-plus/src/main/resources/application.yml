@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: fimp
+
+
+generate:
+  global-config:
+    open: true
+    author: 张三
+    output-dir: C://Users/chenbo/Desktop
