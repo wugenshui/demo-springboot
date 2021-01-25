@@ -35,7 +35,7 @@ public class FimpGenerate {
             AutoGenerator mpg = new AutoGenerator();
 
             // 输出目录
-            String outputDir = System.getProperty("user.dir") + "/booking-visit-api";
+            String outputDir = "D:\\WorkSpace\\fimp\\booking_visit_service\\booking-visit-api";
             // 开发人员
             String author = "chenbo";
 
