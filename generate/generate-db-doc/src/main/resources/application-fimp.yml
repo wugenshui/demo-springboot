@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@192.168.0.204:1521:helowin
+    username: simp
+    password: abcd-1234
+    driver-class-name: oracle.jdbc.OracleDriver
+
+export:
+  ignore-tables: "ABNORMAL_INFORM,FUNCTIONS,JOB,JOB_ROLE,JOB_USER,LOGS,OAUTH_ACCESS_TOKEN,OAUTH_APPROVALS,OAUTH_CLIENT_DETAILS,OAUTH_CLIENT_TOKEN,OAUTH_CODE,OAUTH_REFRESH_TOKEN,OU,OU_JOB,OU_ROLE,OU_USER,ROLES,ROLE_DATA,ROLE_FUNCTION,USER_ROLE"
