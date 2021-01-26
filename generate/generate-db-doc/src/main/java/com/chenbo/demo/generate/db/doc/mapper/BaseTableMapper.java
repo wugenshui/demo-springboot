@@ -2,7 +2,6 @@ package com.chenbo.demo.generate.db.doc.mapper;
 
 import com.chenbo.demo.generate.db.doc.entity.TableFileds;
 import com.chenbo.demo.generate.db.doc.entity.Tables;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.List;
  * @author : chenbo
  * @date : 2021-01-25
  */
-@Mapper
 public interface BaseTableMapper {
 
     /**

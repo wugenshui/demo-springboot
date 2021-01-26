@@ -15,7 +15,7 @@ import java.util.List;
  * @date : 2020-10-19
  */
 @Mapper
-public interface OracleTableMapper {
+public interface OracleTableMapper extends BaseTableMapper {
 
     /**
      * 获取指定数据库下所有表名和注释
@@ -23,6 +23,7 @@ public interface OracleTableMapper {
      * @param dbName 数据库名
      * @return 表集合
      */
+    @Override
     @Select("SELECT t.TABLE_NAME NAME,c.COMMENTS \"COMMENT\" FROM USER_TABLES t\n" +
             "LEFT JOIN USER_TAB_COMMENTS c\n" +
             "ON c.TABLE_NAME=t.TABLE_NAME")
@@ -34,6 +35,7 @@ public interface OracleTableMapper {
      * @param tableName 表名
      * @return 字段集合
      */
+    @Override
     @Select("SELECT \n" +
             "\tt.COLUMN_NAME FIELD,t.DATA_TYPE TYPE,t.NULLABLE \"NULL\",c.COMMENTS \"COMMENT\",t.DATA_DEFAULT \"DEFAULT\",DATA_PRECISION \"PRECISION\",DATA_SCALE \"SCALE\",DATA_LENGTH \"LENGTH\",\n" +
             "\t(SELECT con.CONSTRAINT_TYPE FROM SYS.USER_CONS_COLUMNS cc\n" +

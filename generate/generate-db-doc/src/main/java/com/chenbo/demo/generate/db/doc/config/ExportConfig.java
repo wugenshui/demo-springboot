@@ -16,4 +16,14 @@ public class ExportConfig {
      * 配置忽略的项目，用,分割
      */
     private String ignoreTables;
+
+    /**
+     * 数据库文档模板
+     */
+    private String dbTemplate;
+
+    /**
+     * 数据表模板
+     */
+    private String tableTemplate;
 }
