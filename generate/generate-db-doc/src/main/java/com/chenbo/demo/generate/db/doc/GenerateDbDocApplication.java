@@ -74,11 +74,11 @@ public class GenerateDbDocApplication {
                     row.setName(f.getField());
                     row.setType(f.getType());
                     // Oracle=P Mysql=PRI
-                    row.setKey(f.getKey().contains("P") ? "√" : "");
+                    row.setKey((f.getKey() != null && f.getKey().contains("P")) ? "√" : "");
                     row.setDefaultValue(f.getDefault());
                     row.setRemark(f.getComment());
-                    // Mysql=NO
-                    row.setIsNull(f.getNull().equals("NO") ? "√" : "");
+                    // Oracle=N Mysql=NO
+                    row.setIsNull(f.getNull().contains("N") ? "√" : "");
                     if (f.getType().equals("NUMBER")) {
                         row.setPrecision(f.getPrecision());
                         row.setScale(f.getScale());
