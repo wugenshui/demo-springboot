@@ -68,15 +68,26 @@ public class GenerateDbDocApplication {
             if (!ignoreTables.contains(table.getName())) {
                 log.info("查询：{} {}/{}", table.getName(), i + 1, allTables.size());
                 List<TableFileds> fileds = mapper.getTable(table.getName());
-                val rowData = new ArrayList<RowData>();
+                val rows = new ArrayList<RowData>();
                 fileds.forEach(f -> {
+                    RowData row = new RowData();
+                    row.setName(f.getField());
+                    row.setType(f.getType());
+                    // Oracle=P Mysql=PRI
+                    row.setKey(f.getKey().contains("P") ? "√" : "");
+                    row.setDefaultValue(f.getDefault());
+                    row.setRemark(f.getComment());
+                    // Mysql=NO
+                    row.setIsNull(f.getNull().equals("NO") ? "√" : "");
                     if (f.getType().equals("NUMBER")) {
-                        rowData.add(new RowData(f.getField(), f.getType(), ("P".equals(f.getKey()) ? "是" : ""), f.getDefault(), f.getComment(), f.getPrecision(), f.getScale()));
+                        row.setPrecision(f.getPrecision());
+                        row.setScale(f.getScale());
                     } else {
-                        rowData.add(new RowData(f.getField(), f.getType(), ("P".equals(f.getKey()) ? "是" : ""), f.getDefault(), f.getComment(), f.getLength(), null));
+                        row.setPrecision(f.getLength());
                     }
+                    rows.add(row);
                 });
-                tables.add(TablePartData.builder().title(table.getComment() + "：" + table.getName()).rows(rowData).build());
+                tables.add(TablePartData.builder().title(table.getComment() + "：" + table.getName()).rows(rows).build());
             } else {
                 log.info("忽略：{} {}/{}", table.getName(), i + 1, allTables.size());
             }

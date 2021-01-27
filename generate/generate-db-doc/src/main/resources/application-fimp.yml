@@ -8,4 +8,4 @@ spring:
 export:
   ignore-tables: "ABNORMAL_INFORM,FUNCTIONS,JOB,JOB_ROLE,JOB_USER,LOGS,OAUTH_ACCESS_TOKEN,OAUTH_APPROVALS,OAUTH_CLIENT_DETAILS,OAUTH_CLIENT_TOKEN,OAUTH_CODE,OAUTH_REFRESH_TOKEN,OU,OU_JOB,OU_ROLE,OU_USER,ROLES,ROLE_DATA,ROLE_FUNCTION,USER_ROLE"
   db-template: classpath:template/hw-db.docx
-  table-template: classpath:template/hw-table.docx
+  table-template: classpath:template/oracle-table.docx

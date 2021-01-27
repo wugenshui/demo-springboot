@@ -2,6 +2,7 @@ package com.chenbo.demo.generate.db.doc.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author : chenbo
@@ -9,6 +10,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class RowData {
     private String name;
 
@@ -23,4 +25,6 @@ public class RowData {
     private String precision;
 
     private String scale;
+
+    private String isNull;
 }
