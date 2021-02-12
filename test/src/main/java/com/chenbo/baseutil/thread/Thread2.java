@@ -1,6 +1,8 @@
 package com.chenbo.baseutil.thread;
 
 /**
+ * synchronized 需要锁定同一对象
+ *
  * @author : chenbo
  * @date : 2021-02-12
  */
