@@ -3,6 +3,8 @@ package com.chenbo.baseutil.java.util.cocurrent;
 import java.util.concurrent.Executors;
 
 /**
+ * 线程安全的概念：当多个线程访问某一个类（对象或方法）时，这个类始终都能表现出正确的行为，那么这个类（对象或方法）就是线程安全的
+ *
  * @author : chenbo
  * @date : 2020-06-02
  */
