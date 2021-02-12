@@ -9,7 +9,7 @@
         <relativePath>../dependency</relativePath>
     </parent>
 
-    <artifactId>base-util</artifactId>
+    <artifactId>test</artifactId>
 
     <dependencies>
         <dependency>
