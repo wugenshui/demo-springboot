@@ -1,4 +1,4 @@
-package com.chenbo.baseutil.java.net.simpleSocket;
+package com.chenbo.baseutil.java.io.simpleSocket;
 
 import java.net.ServerSocket;
 import java.net.Socket;
