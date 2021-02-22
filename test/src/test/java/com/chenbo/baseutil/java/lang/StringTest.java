@@ -45,4 +45,11 @@ public class StringTest {
         System.out.println(a == b);
         System.out.println(a.equals(b));
     }
+
+    @Test
+    public void replaceTest() {
+        String target = "340826199205725324";
+        String result = target.substring(0, 6) + "**********" + target.substring(16, 18);
+        System.out.println("result = " + result);
+    }
 }
