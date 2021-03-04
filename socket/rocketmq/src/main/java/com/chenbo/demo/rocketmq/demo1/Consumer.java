@@ -19,7 +19,8 @@ import java.util.List;
 public class Consumer {
     public static void main(String[] args) {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("demo1");
-        consumer.setNamesrvAddr("127.0.0.1:9876;127.0.0.1:9877");
+        consumer.setNamesrvAddr("127.0.0.1:9876");
+        consumer.setConsumeTimeout(10000);
 
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
         try {
