@@ -1,9 +1,7 @@
 package com.chenbo.demo.single.best.practice.controller.oss;
 
-import io.minio.GetObjectArgs;
-import io.minio.MinioClient;
-import io.minio.ObjectWriteResponse;
-import io.minio.PutObjectArgs;
+import com.chenbo.demo.single.best.practice.entity.AjaxResult;
+import io.minio.*;
 import io.minio.errors.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -30,14 +28,14 @@ public class FileController {
     private MinioClient minioClient;
 
     @ApiOperation("上传附件")
-    @PostMapping
-    public String upload(@RequestParam("file") MultipartFile file) throws IOException, InvalidKeyException, InvalidResponseException, InsufficientDataException, NoSuchAlgorithmException, ServerException, InternalException, XmlParserException, InvalidBucketNameException, ErrorResponseException {
-        if (file.isEmpty()) {
-            return "上传失败，请选择文件";
+    @PostMapping(headers = "content-type=multipart/form-data")
+    public AjaxResult<String> upload(@RequestParam("file") MultipartFile file) throws IOException, InvalidKeyException, InvalidResponseException, InsufficientDataException, NoSuchAlgorithmException, ServerException, InternalException, XmlParserException, InvalidBucketNameException, ErrorResponseException {
+        if (file == null || file.isEmpty()) {
+            return AjaxResult.error("上传失败，请选择文件");
         }
         InputStream inputStream = file.getInputStream();
         log.info(file.getOriginalFilename() + ':' + file.getContentType());
-        ObjectWriteResponse writeResponse = minioClient.putObject(
+        minioClient.putObject(
                 PutObjectArgs.builder()
                         .stream(inputStream, file.getSize(), 0)
                         .bucket("file")
@@ -45,44 +43,37 @@ public class FileController {
                         .object(file.getOriginalFilename())
                         .build()
         );
-        return file.getOriginalFilename();
+        return AjaxResult.success(file.getOriginalFilename());
     }
 
     @ApiOperation("下载附件")
     @GetMapping("/{name}")
-    public String download(@PathVariable String name, HttpServletResponse response) throws IOException, InvalidKeyException, InvalidResponseException, InsufficientDataException, NoSuchAlgorithmException, ServerException, InternalException, XmlParserException, InvalidBucketNameException, ErrorResponseException {
+    public AjaxResult<String> download(@PathVariable String name, HttpServletResponse response) throws IOException, InvalidKeyException, InvalidResponseException, InsufficientDataException, NoSuchAlgorithmException, ServerException, InternalException, XmlParserException, InvalidBucketNameException, ErrorResponseException {
 
+        ObjectStat objectStat = minioClient.statObject(StatObjectArgs.builder().bucket("file").object(name).build());
+        System.out.println(objectStat);
+        // 读取文件输入流
         InputStream inputSteam = minioClient.getObject(
                 GetObjectArgs.builder().bucket("file")
                         .object(name).build());
 
-        response.setContentType("application/vnd.ms-excel;charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        // response.setContentType("application/force-download");
+        response.setContentType(objectStat.contentType());
         response.setHeader("Content-Disposition", "attachment;fileName=" + java.net.URLEncoder.encode(name, "UTF-8"));
         byte[] buffer = new byte[1024];
-        FileInputStream fis = null; //文件输入流
-        BufferedInputStream bis = null;
 
-        OutputStream os = null; //输出流
-        try {
-            os = response.getOutputStream();
-            bis = new BufferedInputStream(inputSteam);
+        try (BufferedInputStream bis = new BufferedInputStream(inputSteam);
+             OutputStream os = response.getOutputStream()) {
+            ;
             int i = bis.read(buffer);
             while (i != -1) {
-                os.write(buffer);
+                os.write(buffer, 0, i);
                 i = bis.read(buffer);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        try {
-            bis.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            return AjaxResult.error("下载失败");
         }
 
-        return null;
+        return AjaxResult.success("下载成功");
     }
 }
