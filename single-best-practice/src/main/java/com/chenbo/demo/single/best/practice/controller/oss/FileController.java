@@ -28,8 +28,8 @@ public class FileController {
     private MinioClient minioClient;
 
     @ApiOperation("上传附件")
-    @PostMapping(headers = "content-type=multipart/form-data")
-    public AjaxResult<String> upload(@RequestParam("file") MultipartFile file) throws IOException, InvalidKeyException, InvalidResponseException, InsufficientDataException, NoSuchAlgorithmException, ServerException, InternalException, XmlParserException, InvalidBucketNameException, ErrorResponseException {
+    @PostMapping
+    public AjaxResult<String> upload(@RequestPart MultipartFile file) throws IOException, InvalidKeyException, InvalidResponseException, InsufficientDataException, NoSuchAlgorithmException, ServerException, InternalException, XmlParserException, InvalidBucketNameException, ErrorResponseException {
         if (file == null || file.isEmpty()) {
             return AjaxResult.error("上传失败，请选择文件");
         }
