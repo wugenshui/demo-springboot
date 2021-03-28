@@ -1,5 +1,6 @@
 package com.chenbo.demo.single.best.practice.config;
 
+import com.chenbo.demo.single.best.practice.constant.MinioConstant;
 import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
@@ -23,11 +24,10 @@ public class InitRunner implements CommandLineRunner {
 
     private final static String IMAGE = "image";
     private final static String VIDEO = "video";
-    private final static String FILE = "file";
     private final static List<String> BUCKETS = new ArrayList() {{
         add(IMAGE);
         add(VIDEO);
-        add(FILE);
+        add(MinioConstant.DEFAULT_BUCKET);
     }};
 
 
