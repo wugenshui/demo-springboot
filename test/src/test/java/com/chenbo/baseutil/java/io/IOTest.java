@@ -4,14 +4,7 @@ import com.chenbo.baseutil.entity.User;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 
 /**
  * @author : chenbo
@@ -55,5 +48,21 @@ public class IOTest {
         System.out.println(bufferedReader.readLine());
 
         bufferedReader.close();
+    }
+
+    @Test
+    public void fileTest() {
+        File file = new File("E://a/b.jpg");
+        System.out.println(file.exists());
+        System.out.println(file.canExecute());
+        System.out.println(file.isFile());
+        System.out.println(file.getAbsoluteFile());
+        System.out.println(file.getAbsolutePath());
+        System.out.println(file.getFreeSpace());
+        System.out.println(file.getParentFile());
+        System.out.println(file.getParent());
+        System.out.println(file.getPath());
+        System.out.println(file.getName());
+        System.out.println(file.getUsableSpace());
     }
 }
