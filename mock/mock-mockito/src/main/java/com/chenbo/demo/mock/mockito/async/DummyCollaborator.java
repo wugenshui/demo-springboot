@@ -18,8 +18,11 @@ public class DummyCollaborator {
             @Override
             public void run() {
                 try {
+                    System.out.println("doSomethingAsynchronously start");
                     Thread.sleep(5000);
+                    System.out.println("doSomethingAsynchronously start after 5s");
                     callback.onSuccess(Collections.EMPTY_LIST);
+                    System.out.println("doSomethingAsynchronously call onSuccess");
                 } catch (InterruptedException e) {
                     callback.onFail(ERROR_CODE);
                     e.printStackTrace();
