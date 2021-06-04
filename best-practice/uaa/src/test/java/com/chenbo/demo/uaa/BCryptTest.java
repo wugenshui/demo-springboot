@@ -21,10 +21,10 @@ public class BCryptTest {
 
     @Test
     public void encodeTest() {
-        String password = "1";
+        String password = "secret";
 
         // 加密密码
-        String result1 = "$2a$10$59jf9HAJqDZ2YkIz3WQEsuZKlmMfpdkZDo2rCnmcYslZxP.d.FDXm";
+        String result1 = "$2a$10$VmNaOAWKo2Ob9NYhh0.kLef8Z5ca8uvW3v1BfDE41LAOwROgWRG7q";
 
         String result2 = bCryptPasswordEncoder.encode(password);
         System.out.println(password + "加密后密码：" + result2);

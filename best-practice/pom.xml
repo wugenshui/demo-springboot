@@ -83,16 +83,16 @@
 <!--                <artifactId>nacos-config-spring-boot-actuator</artifactId>-->
 <!--                <version>${nacos-config-spring-boot.version}</version>-->
 <!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.cloud</groupId>-->
-<!--                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>-->
-<!--                <version>${spring-cloud-nacos.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.cloud</groupId>-->
-<!--                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
-<!--                <version>${spring-cloud-nacos.version}</version>-->
-<!--            </dependency>-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+                <version>${spring-cloud-nacos.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                <version>${spring-cloud-nacos.version}</version>
+            </dependency>
 <!--            <dependency>-->
 <!--                <groupId>com.alibaba.boot</groupId>-->
 <!--                <artifactId>nacos-discovery-spring-boot-starter</artifactId>-->
@@ -104,21 +104,21 @@
 <!--                <artifactId>mybatis-spring-boot-starter</artifactId>-->
 <!--                <version>${mybatis.version}</version>-->
 <!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.baomidou</groupId>-->
-<!--                <artifactId>mybatis-plus</artifactId>-->
-<!--                <version>${mybatis-plus.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.baomidou</groupId>-->
-<!--                <artifactId>mybatis-plus-boot-starter</artifactId>-->
-<!--                <version>${mybatis-plus.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.baomidou</groupId>-->
-<!--                <artifactId>mybatis-plus-generator</artifactId>-->
-<!--                <version>${mybatis-plus.version}</version>-->
-<!--            </dependency>-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
 <!--            <dependency>-->
 <!--                <groupId>tk.mybatis</groupId>-->
 <!--                <artifactId>mapper-spring-boot-starter</artifactId>-->
@@ -223,11 +223,11 @@
 <!--                <artifactId>dozer</artifactId>-->
 <!--                <version>${dozer.version}</version>-->
 <!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.apache.velocity</groupId>-->
-<!--                <artifactId>velocity-engine-core</artifactId>-->
-<!--                <version>${velocity.version}</version>-->
-<!--            </dependency>-->
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity.version}</version>
+            </dependency>
 <!--            &lt;!&ndash; socket &ndash;&gt;-->
 <!--            <dependency>-->
 <!--                <groupId>io.netty</groupId>-->
@@ -272,7 +272,7 @@
 
     <modules>
 <!--        <module>commons</module>-->
-<!--        <module>admin-service</module>-->
+        <module>admin-service</module>
 <!--        <module>gateway</module>-->
         <module>uaa</module>
     </modules>
