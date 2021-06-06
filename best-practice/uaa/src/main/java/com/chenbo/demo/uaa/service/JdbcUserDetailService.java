@@ -34,6 +34,5 @@ public class JdbcUserDetailService implements UserDetailsService {
                 .roles("ADMIN")
                 .authorities("f1").build();
         return userDetails;
-        //return new User(username, passwordEncoder.encode(username), grantedAuthorities);
     }
 }
