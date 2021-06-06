@@ -273,7 +273,7 @@
     <modules>
 <!--        <module>commons</module>-->
         <module>admin-service</module>
-        <module>gateway</module>
+        <module>best-gateway</module>
         <module>best-oauth</module>
     </modules>
 
