@@ -9,8 +9,7 @@
     </parent>
 
     <groupId>com.chenbo.demo</groupId>
-    <artifactId>uaa</artifactId>
-    <version>0.0.1</version>
+    <artifactId>best-oauth</artifactId>
 
     <packaging>jar</packaging>
 

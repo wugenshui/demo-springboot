@@ -1,4 +1,4 @@
-package com.chenbo.demo.uaa.controller;
+package com.chenbo.demo.best.oauth.controller;
 
 
 import lombok.extern.slf4j.Slf4j;

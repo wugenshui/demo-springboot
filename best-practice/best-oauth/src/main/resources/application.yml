@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: uaa
+    name: oauth
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/best_practice?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai

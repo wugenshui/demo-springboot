@@ -1,4 +1,4 @@
-package com.chenbo.demo.uaa;
+package com.chenbo.demo.best.oauth;
 
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -28,8 +28,8 @@ public class DataSourceTest {
         try {
             val source = dataSource.getConnection();
             log.info("source = " + source);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

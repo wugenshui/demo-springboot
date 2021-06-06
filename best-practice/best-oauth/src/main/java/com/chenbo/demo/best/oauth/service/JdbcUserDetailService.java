@@ -1,4 +1,4 @@
-package com.chenbo.demo.uaa.service;
+package com.chenbo.demo.best.oauth.service;
 
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.chenbo.demo.uaa.config;
+package com.chenbo.demo.best.oauth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

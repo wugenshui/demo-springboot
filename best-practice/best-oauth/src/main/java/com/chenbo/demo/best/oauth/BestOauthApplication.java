@@ -1,4 +1,4 @@
-package com.chenbo.demo.uaa;
+package com.chenbo.demo.best.oauth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date : 2020-04-25
  */
 @SpringBootApplication
-public class UaaApplication {
+public class BestOauthApplication {
     public static void main(String[] args) {
-        SpringApplication.run(UaaApplication.class, args);
+        SpringApplication.run(BestOauthApplication.class, args);
     }
 }
