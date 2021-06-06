@@ -20,6 +20,7 @@
     <modules>
 <!--        <module>dependency</module>-->
 <!--        <module>quick-start-parent</module>-->
+        <module>best-practice</module>
         <!-- <module>db</module> -->
         <!-- <module>oauth</module> -->
         <!-- <module>office</module> -->
