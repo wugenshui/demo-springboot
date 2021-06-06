@@ -68,21 +68,21 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba.spring</groupId>-->
-<!--                <artifactId>spring-context-support</artifactId>-->
-<!--                <version>${alibaba-spring-context-support.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba.boot</groupId>-->
-<!--                <artifactId>nacos-config-spring-boot-starter</artifactId>-->
-<!--                <version>${nacos-config-spring-boot.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba.boot</groupId>-->
-<!--                <artifactId>nacos-config-spring-boot-actuator</artifactId>-->
-<!--                <version>${nacos-config-spring-boot.version}</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.alibaba.spring</groupId>-->
+            <!--                <artifactId>spring-context-support</artifactId>-->
+            <!--                <version>${alibaba-spring-context-support.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.alibaba.boot</groupId>-->
+            <!--                <artifactId>nacos-config-spring-boot-starter</artifactId>-->
+            <!--                <version>${nacos-config-spring-boot.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.alibaba.boot</groupId>-->
+            <!--                <artifactId>nacos-config-spring-boot-actuator</artifactId>-->
+            <!--                <version>${nacos-config-spring-boot.version}</version>-->
+            <!--            </dependency>-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
@@ -93,17 +93,17 @@
                 <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
                 <version>${spring-cloud-nacos.version}</version>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba.boot</groupId>-->
-<!--                <artifactId>nacos-discovery-spring-boot-starter</artifactId>-->
-<!--                <version>${nacos-discovery-spring-boot.version}</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.alibaba.boot</groupId>-->
+            <!--                <artifactId>nacos-discovery-spring-boot-starter</artifactId>-->
+            <!--                <version>${nacos-discovery-spring-boot.version}</version>-->
+            <!--            </dependency>-->
             <!-- db -->
-<!--            <dependency>-->
-<!--                <groupId>org.mybatis.spring.boot</groupId>-->
-<!--                <artifactId>mybatis-spring-boot-starter</artifactId>-->
-<!--                <version>${mybatis.version}</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.mybatis.spring.boot</groupId>-->
+            <!--                <artifactId>mybatis-spring-boot-starter</artifactId>-->
+            <!--                <version>${mybatis.version}</version>-->
+            <!--            </dependency>-->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus</artifactId>
@@ -119,53 +119,53 @@
                 <artifactId>mybatis-plus-generator</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>tk.mybatis</groupId>-->
-<!--                <artifactId>mapper-spring-boot-starter</artifactId>-->
-<!--                <version>${tk.mybatis.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.github.pagehelper</groupId>-->
-<!--                <artifactId>pagehelper-spring-boot-starter</artifactId>-->
-<!--                <version>${pagehelper.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>p6spy</groupId>-->
-<!--                <artifactId>p6spy</artifactId>-->
-<!--                <version>${p6spy.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.redisson</groupId>-->
-<!--                <artifactId>redisson</artifactId>-->
-<!--                <version>${redisson.version}</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>tk.mybatis</groupId>-->
+            <!--                <artifactId>mapper-spring-boot-starter</artifactId>-->
+            <!--                <version>${tk.mybatis.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.github.pagehelper</groupId>-->
+            <!--                <artifactId>pagehelper-spring-boot-starter</artifactId>-->
+            <!--                <version>${pagehelper.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>p6spy</groupId>-->
+            <!--                <artifactId>p6spy</artifactId>-->
+            <!--                <version>${p6spy.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.redisson</groupId>-->
+            <!--                <artifactId>redisson</artifactId>-->
+            <!--                <version>${redisson.version}</version>-->
+            <!--            </dependency>-->
             <!-- es -->
-<!--            <dependency>-->
-<!--                <groupId>org.elasticsearch</groupId>-->
-<!--                <artifactId>elasticsearch</artifactId>-->
-<!--                <version>${elasticsearch.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.elasticsearch.client</groupId>-->
-<!--                <artifactId>elasticsearch-rest-client</artifactId>-->
-<!--                <version>${elasticsearch.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.elasticsearch.client</groupId>-->
-<!--                <artifactId>elasticsearch-rest-high-level-client</artifactId>-->
-<!--                <version>${elasticsearch.version}</version>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash; api &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.graphql-java</groupId>-->
-<!--                <artifactId>graphql-java</artifactId>-->
-<!--                <version>${graphql-java.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.auth0</groupId>-->
-<!--                <artifactId>java-jwt</artifactId>-->
-<!--                <version>${jwt.version}</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.elasticsearch</groupId>-->
+            <!--                <artifactId>elasticsearch</artifactId>-->
+            <!--                <version>${elasticsearch.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.elasticsearch.client</groupId>-->
+            <!--                <artifactId>elasticsearch-rest-client</artifactId>-->
+            <!--                <version>${elasticsearch.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.elasticsearch.client</groupId>-->
+            <!--                <artifactId>elasticsearch-rest-high-level-client</artifactId>-->
+            <!--                <version>${elasticsearch.version}</version>-->
+            <!--            </dependency>-->
+            <!--            &lt;!&ndash; api &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.graphql-java</groupId>-->
+            <!--                <artifactId>graphql-java</artifactId>-->
+            <!--                <version>${graphql-java.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.auth0</groupId>-->
+            <!--                <artifactId>java-jwt</artifactId>-->
+            <!--                <version>${jwt.version}</version>-->
+            <!--            </dependency>-->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
@@ -177,102 +177,102 @@
                 <version>${swagger.version}</version>
             </dependency>
             <!-- office -->
-<!--            <dependency>-->
-<!--                <groupId>org.apache.poi</groupId>-->
-<!--                <artifactId>poi</artifactId>-->
-<!--                <version>${poi.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.deepoove</groupId>-->
-<!--                <artifactId>poi-tl</artifactId>-->
-<!--                <version>${poi-tl.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>cn.afterturn</groupId>-->
-<!--                <artifactId>easypoi-base</artifactId>-->
-<!--                <version>${easypoi.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>cn.afterturn</groupId>-->
-<!--                <artifactId>easypoi-web</artifactId>-->
-<!--                <version>${easypoi.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>cn.afterturn</groupId>-->
-<!--                <artifactId>easypoi-annotation</artifactId>-->
-<!--                <version>${easypoi.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.docx4j</groupId>-->
-<!--                <artifactId>docx4j</artifactId>-->
-<!--                <version>${docx4j.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba</groupId>-->
-<!--                <artifactId>easyexcel</artifactId>-->
-<!--                <version>${easyexcel.version}</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.apache.poi</groupId>-->
+            <!--                <artifactId>poi</artifactId>-->
+            <!--                <version>${poi.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.deepoove</groupId>-->
+            <!--                <artifactId>poi-tl</artifactId>-->
+            <!--                <version>${poi-tl.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>cn.afterturn</groupId>-->
+            <!--                <artifactId>easypoi-base</artifactId>-->
+            <!--                <version>${easypoi.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>cn.afterturn</groupId>-->
+            <!--                <artifactId>easypoi-web</artifactId>-->
+            <!--                <version>${easypoi.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>cn.afterturn</groupId>-->
+            <!--                <artifactId>easypoi-annotation</artifactId>-->
+            <!--                <version>${easypoi.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.docx4j</groupId>-->
+            <!--                <artifactId>docx4j</artifactId>-->
+            <!--                <version>${docx4j.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.alibaba</groupId>-->
+            <!--                <artifactId>easyexcel</artifactId>-->
+            <!--                <version>${easyexcel.version}</version>-->
+            <!--            </dependency>-->
             <!-- util -->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.verison}</version>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>net.sf.dozer</groupId>-->
-<!--                <artifactId>dozer</artifactId>-->
-<!--                <version>${dozer.version}</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>net.sf.dozer</groupId>-->
+            <!--                <artifactId>dozer</artifactId>-->
+            <!--                <version>${dozer.version}</version>-->
+            <!--            </dependency>-->
             <dependency>
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity-engine-core</artifactId>
                 <version>${velocity.version}</version>
             </dependency>
-<!--            &lt;!&ndash; socket &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>io.netty</groupId>-->
-<!--                <artifactId>netty-all</artifactId>-->
-<!--                <version>${netty.version}</version>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash; 自己的项目 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.chenbo.demo</groupId>-->
-<!--                <artifactId>base-util</artifactId>-->
-<!--                <version>0.0.1-SNAPSHOT</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.chenbo.demo</groupId>-->
-<!--                <artifactId>commons</artifactId>-->
-<!--                <version>0.0.1-SNAPSHOT</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba</groupId>-->
-<!--                <artifactId>fastjson</artifactId>-->
-<!--                <version>${fastjson.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.eclipse.jgit</groupId>-->
-<!--                <artifactId>org.eclipse.jgit</artifactId>-->
-<!--                <version>${jgit.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.eclipse.jgit</groupId>-->
-<!--                <artifactId>org.eclipse.jgit.archive</artifactId>-->
-<!--                <version>${jgit.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.activiti.dependencies</groupId>-->
-<!--                <artifactId>activiti-dependencies</artifactId>-->
-<!--                <version>${activiti.version}</version>-->
-<!--                <scope>import</scope>-->
-<!--                <type>pom</type>-->
-<!--            </dependency>-->
+            <!--            &lt;!&ndash; socket &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>io.netty</groupId>-->
+            <!--                <artifactId>netty-all</artifactId>-->
+            <!--                <version>${netty.version}</version>-->
+            <!--            </dependency>-->
+            <!--            &lt;!&ndash; 自己的项目 &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.chenbo.demo</groupId>-->
+            <!--                <artifactId>base-util</artifactId>-->
+            <!--                <version>0.0.1-SNAPSHOT</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.chenbo.demo</groupId>-->
+            <!--                <artifactId>commons</artifactId>-->
+            <!--                <version>0.0.1-SNAPSHOT</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.alibaba</groupId>-->
+            <!--                <artifactId>fastjson</artifactId>-->
+            <!--                <version>${fastjson.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.eclipse.jgit</groupId>-->
+            <!--                <artifactId>org.eclipse.jgit</artifactId>-->
+            <!--                <version>${jgit.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.eclipse.jgit</groupId>-->
+            <!--                <artifactId>org.eclipse.jgit.archive</artifactId>-->
+            <!--                <version>${jgit.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.activiti.dependencies</groupId>-->
+            <!--                <artifactId>activiti-dependencies</artifactId>-->
+            <!--                <version>${activiti.version}</version>-->
+            <!--                <scope>import</scope>-->
+            <!--                <type>pom</type>-->
+            <!--            </dependency>-->
         </dependencies>
     </dependencyManagement>
 
     <modules>
-<!--        <module>commons</module>-->
-        <module>admin-service</module>
+        <module>best-admin-service</module>
+        <module>best-commons</module>
         <module>best-gateway</module>
         <module>best-oauth</module>
     </modules>

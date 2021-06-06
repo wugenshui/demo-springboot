@@ -1,0 +1,19 @@
+package com.chenbo.demo.best.gateway;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+
+/**
+ * @author : chenbo
+ * @date : 2020-04-28
+ */
+@SpringBootApplication
+@EnableDiscoveryClient
+@EnableFeignClients
+public class BestGatewayApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(BestGatewayApplication.class, args);
+    }
+}
