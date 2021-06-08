@@ -31,7 +31,7 @@
         <!--    阿里巴巴微服务demo    -->
 <!--        <module>springcloud/spring-cloud-alibaba</module>-->
         <!-- 测试项目 -->
-<!--        <module>test</module>-->
+        <module>test</module>
     </modules>
 
     <build>

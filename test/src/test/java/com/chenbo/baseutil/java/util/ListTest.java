@@ -4,6 +4,8 @@ import com.chenbo.baseutil.bean.StudentVO;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -137,8 +139,8 @@ public class ListTest {
     @Test
     public void list2MapTest() {
         List<StudentVO> data = Arrays.asList(
-                getStudentDO("李一"),
-                getStudentDO("张三")
+                getStudentDO("李一", 1L),
+                getStudentDO("张三", 3L)
         );
 
         Map<Long, StudentVO> mapStudent = data.stream().collect(Collectors.toMap(StudentVO::getId, Function.identity()));
@@ -149,14 +151,29 @@ public class ListTest {
         System.out.println("mapStudent2 = " + mapStudent2);
     }
 
-    private StudentVO getStudentDO(String name) {
+    private StudentVO getStudentDO(String name, Long id) {
         return StudentVO.builder()
-                .id(1024L)
+                .id(id == null ? 1024L : id)
                 .name(name)
                 .age(18)
                 .mobile("11122223333")
                 .createTime(new Date())
                 .updateTime(LocalDateTime.now())
                 .build();
+    }
+
+    @Test
+    public void genericsTest() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        List<Integer> list = new ArrayList<>();
+
+        list.add(12);
+        // 这里直接添加会报错
+        // list.add("a");
+        Class<? extends List> clazz = list.getClass();
+        Method add = clazz.getDeclaredMethod("add", Object.class);
+        // 但是通过反射添加，是可以的
+        add.invoke(list, "kl");
+
+        System.out.println(list);
     }
 }
