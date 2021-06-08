@@ -9,7 +9,7 @@
         <version>2.3.11.RELEASE</version>
     </parent>
 
-    <groupId>com.chenbo.demo</groupId>
+    <groupId>com.github.wugenshui</groupId>
     <artifactId>mock-mockito</artifactId>
     <packaging>jar</packaging>
 

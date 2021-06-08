@@ -1,4 +1,4 @@
-package com.chenbo.demo.elasticsearch.entity;
+package com.github.wugenshui.elasticsearch.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

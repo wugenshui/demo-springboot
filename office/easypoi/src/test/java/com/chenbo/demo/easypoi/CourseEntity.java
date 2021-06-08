@@ -1,4 +1,4 @@
-package com.chenbo.demo.easypoi;
+package com.github.wugenshui.easypoi;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import cn.afterturn.easypoi.excel.annotation.ExcelTarget;

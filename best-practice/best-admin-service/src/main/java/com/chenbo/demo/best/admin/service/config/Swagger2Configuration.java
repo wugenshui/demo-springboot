@@ -1,4 +1,4 @@
-package com.chenbo.demo.best.admin.service.config;
+package com.github.wugenshui.best.admin.service.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -45,7 +45,7 @@ public class Swagger2Configuration {
     /**
      * api接口包扫描路径
      */
-    public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.chenbo.demo.admin.service.controller";
+    public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.github.wugenshui.admin.service.controller";
 
     public static final String VERSION = "1.0.0";
 

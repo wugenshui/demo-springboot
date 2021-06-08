@@ -1,4 +1,4 @@
-package com.chenbo.demo.redission.starter.controller;
+package com.github.wugenshui.redission.starter.controller;
 
 import org.redisson.api.RBlockingQueue;
 import org.redisson.api.RedissonClient;

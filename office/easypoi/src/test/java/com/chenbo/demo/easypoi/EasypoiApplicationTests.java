@@ -1,4 +1,4 @@
-package com.chenbo.demo.easypoi;
+package com.github.wugenshui.easypoi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

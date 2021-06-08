@@ -1,7 +1,7 @@
-package com.chenbo.demo.best.admin.service.config;
+package com.github.wugenshui.best.admin.service.config;
 
-import com.chenbo.demo.best.admin.service.dto.AjaxResult;
-import com.chenbo.demo.best.admin.service.enums.AjaxResultEnum;
+import com.github.wugenshui.best.admin.service.dto.AjaxResult;
+import com.github.wugenshui.best.admin.service.enums.AjaxResultEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.validation.BindException;

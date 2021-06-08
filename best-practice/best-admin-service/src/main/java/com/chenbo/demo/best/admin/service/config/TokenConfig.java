@@ -1,4 +1,4 @@
-package com.chenbo.demo.best.admin.service.config;
+package com.github.wugenshui.best.admin.service.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

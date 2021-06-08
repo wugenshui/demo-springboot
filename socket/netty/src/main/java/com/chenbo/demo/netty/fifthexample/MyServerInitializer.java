@@ -1,4 +1,4 @@
-package com.chenbo.demo.netty.fifthexample;
+package com.github.wugenshui.netty.fifthexample;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;

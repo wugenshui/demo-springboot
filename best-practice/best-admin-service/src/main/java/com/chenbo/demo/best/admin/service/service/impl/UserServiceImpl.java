@@ -1,8 +1,8 @@
-package com.chenbo.demo.best.admin.service.service.impl;
+package com.github.wugenshui.best.admin.service.service.impl;
 
-import com.chenbo.demo.best.admin.service.entity.User;
-import com.chenbo.demo.best.admin.service.mapper.UserMapper;
-import com.chenbo.demo.best.admin.service.service.IUserService;
+import com.github.wugenshui.best.admin.service.entity.User;
+import com.github.wugenshui.best.admin.service.mapper.UserMapper;
+import com.github.wugenshui.best.admin.service.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

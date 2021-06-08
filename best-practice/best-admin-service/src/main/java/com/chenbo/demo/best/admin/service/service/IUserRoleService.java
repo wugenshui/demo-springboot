@@ -1,6 +1,6 @@
-package com.chenbo.demo.best.admin.service.service;
+package com.github.wugenshui.best.admin.service.service;
 
-import com.chenbo.demo.best.admin.service.entity.UserRole;
+import com.github.wugenshui.best.admin.service.entity.UserRole;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

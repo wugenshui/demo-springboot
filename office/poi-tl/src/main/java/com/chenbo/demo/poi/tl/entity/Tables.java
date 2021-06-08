@@ -1,4 +1,4 @@
-package com.chenbo.demo.poi.tl.entity;
+package com.github.wugenshui.poi.tl.entity;
 
 import lombok.Data;
 

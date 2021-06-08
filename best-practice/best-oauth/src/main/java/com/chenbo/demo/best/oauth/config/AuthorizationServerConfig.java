@@ -1,4 +1,4 @@
-package com.chenbo.demo.best.oauth.config;
+package com.github.wugenshui.best.oauth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

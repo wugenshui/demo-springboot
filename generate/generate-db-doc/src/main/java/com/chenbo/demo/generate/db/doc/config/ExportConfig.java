@@ -1,4 +1,4 @@
-package com.chenbo.demo.generate.db.doc.config;
+package com.github.wugenshui.generate.db.doc.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

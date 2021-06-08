@@ -1,9 +1,9 @@
-package com.chenbo.demo.best.admin.service.controller;
+package com.github.wugenshui.best.admin.service.controller;
 
-import com.chenbo.demo.best.admin.service.dto.AjaxResult;
-import com.chenbo.demo.best.admin.service.entity.User;
-import com.chenbo.demo.best.admin.service.service.IUserService;
-import com.chenbo.demo.best.admin.service.vo.UserVo;
+import com.github.wugenshui.best.admin.service.dto.AjaxResult;
+import com.github.wugenshui.best.admin.service.entity.User;
+import com.github.wugenshui.best.admin.service.service.IUserService;
+import com.github.wugenshui.best.admin.service.vo.UserVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

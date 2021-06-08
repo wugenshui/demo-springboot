@@ -15,7 +15,7 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapping/*Mapper.xml
-  type-aliases-package: com.chenbo.demo.mybatisplus.generator.entity
+  type-aliases-package: com.github.wugenshui.mybatisplus.generator.entity
 
 # showSql
 logging:

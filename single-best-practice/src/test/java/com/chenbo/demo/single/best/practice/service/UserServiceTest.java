@@ -1,9 +1,9 @@
-package com.chenbo.demo.single.best.practice.service;
+package com.github.wugenshui.single.best.practice.service;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.chenbo.demo.single.best.practice.entity.User;
-import com.chenbo.demo.single.best.practice.mapper.UserMapper;
+import com.github.wugenshui.single.best.practice.entity.User;
+import com.github.wugenshui.single.best.practice.mapper.UserMapper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

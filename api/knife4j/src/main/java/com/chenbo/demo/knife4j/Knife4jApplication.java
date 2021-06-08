@@ -1,4 +1,4 @@
-package com.chenbo.demo.knife4j;
+package com.github.wugenshui.knife4j;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.chenbo.demo.easypoi;
+package com.github.wugenshui.easypoi;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;

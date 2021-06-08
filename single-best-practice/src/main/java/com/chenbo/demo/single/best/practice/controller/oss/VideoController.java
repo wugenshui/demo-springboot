@@ -1,4 +1,4 @@
-package com.chenbo.demo.single.best.practice.controller.oss;
+package com.github.wugenshui.single.best.practice.controller.oss;
 
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;

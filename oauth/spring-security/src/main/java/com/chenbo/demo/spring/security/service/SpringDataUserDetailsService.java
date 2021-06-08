@@ -1,6 +1,6 @@
-package com.chenbo.demo.spring.security.service;
+package com.github.wugenshui.spring.security.service;
 
-import com.chenbo.demo.spring.security.dto.UserDto;
+import com.github.wugenshui.spring.security.dto.UserDto;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

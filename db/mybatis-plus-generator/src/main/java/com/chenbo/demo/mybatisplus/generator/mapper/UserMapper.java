@@ -1,6 +1,6 @@
-package com.chenbo.demo.mybatisplus.generator.mapper;
+package com.github.wugenshui.mybatisplus.generator.mapper;
 
-import com.chenbo.demo.mybatisplus.generator.entity.User;
+import com.github.wugenshui.mybatisplus.generator.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

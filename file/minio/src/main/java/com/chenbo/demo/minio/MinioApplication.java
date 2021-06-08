@@ -1,4 +1,4 @@
-package com.chenbo.demo.minio;
+package com.github.wugenshui.minio;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

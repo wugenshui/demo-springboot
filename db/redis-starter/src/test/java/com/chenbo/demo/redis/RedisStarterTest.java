@@ -1,6 +1,6 @@
-package com.chenbo.demo.redis;
+package com.github.wugenshui.redis;
 
-import com.chenbo.demo.redis.vo.User;
+import com.github.wugenshui.redis.vo.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.chenbo.demo.easy.excel;
+package com.github.wugenshui.easy.excel;
 
 import lombok.Data;
 

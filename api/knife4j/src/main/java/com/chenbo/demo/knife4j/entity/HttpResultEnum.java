@@ -1,4 +1,4 @@
-package com.chenbo.demo.knife4j.entity;
+package com.github.wugenshui.knife4j.entity;
 
 /**
  * 请求响应状态码与消息对应的枚举

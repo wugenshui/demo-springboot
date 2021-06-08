@@ -1,4 +1,4 @@
-package com.chenbo.demo.mock.moco;
+package com.github.wugenshui.mock.moco;
 
 import org.junit.Assert;
 import org.junit.Test;

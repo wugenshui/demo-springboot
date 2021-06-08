@@ -1,11 +1,11 @@
-package com.chenbo.demo.elasticsearch.starter.dao;
+package com.github.wugenshui.elasticsearch.starter.dao;
 
 /**
  * @author : chenbo
  * @date : 2020-05-25
  */
 
-import com.chenbo.demo.elasticsearch.starter.entity.BookBean;
+import com.github.wugenshui.elasticsearch.starter.entity.BookBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;

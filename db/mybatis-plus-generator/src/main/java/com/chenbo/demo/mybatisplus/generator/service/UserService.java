@@ -1,6 +1,6 @@
-package com.chenbo.demo.mybatisplus.generator.service;
+package com.github.wugenshui.mybatisplus.generator.service;
 
-import com.chenbo.demo.mybatisplus.generator.entity.User;
+import com.github.wugenshui.mybatisplus.generator.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

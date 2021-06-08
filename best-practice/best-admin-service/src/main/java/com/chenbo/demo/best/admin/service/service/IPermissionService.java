@@ -1,6 +1,6 @@
-package com.chenbo.demo.best.admin.service.service;
+package com.github.wugenshui.best.admin.service.service;
 
-import com.chenbo.demo.best.admin.service.entity.Permission;
+import com.github.wugenshui.best.admin.service.entity.Permission;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

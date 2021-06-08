@@ -1,4 +1,4 @@
-package com.chenbo.demo.activity.util;
+package com.github.wugenshui.activity.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

@@ -1,4 +1,4 @@
-package com.chenbo.demo.mybatisplus.generator.generator;
+package com.github.wugenshui.mybatisplus.generator.generator;
 
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
@@ -61,7 +61,7 @@ public class CodeGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
         //pc.setModuleName(scanner("模块名"));
-        pc.setParent("com.chenbo.demo.mybatisplus.generator");
+        pc.setParent("com.github.wugenshui.mybatisplus.generator");
         mpg.setPackageInfo(pc);
 
         // 自定义配置

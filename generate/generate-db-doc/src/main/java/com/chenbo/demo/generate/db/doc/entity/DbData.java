@@ -1,4 +1,4 @@
-package com.chenbo.demo.generate.db.doc.entity;
+package com.github.wugenshui.generate.db.doc.entity;
 
 import com.deepoove.poi.data.DocxRenderData;
 import lombok.Data;

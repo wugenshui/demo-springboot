@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.chenbo.demo.activity.config;
+package com.github.wugenshui.activity.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

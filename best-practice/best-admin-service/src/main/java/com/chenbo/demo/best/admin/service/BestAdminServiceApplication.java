@@ -1,4 +1,4 @@
-package com.chenbo.demo.best.admin.service;
+package com.github.wugenshui.best.admin.service;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +13,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan("com.chenbo.demo.best.admin.service.mapper")
+@MapperScan("com.github.wugenshui.best.admin.service.mapper")
 public class BestAdminServiceApplication {
 
     public static void main(String[] args) {

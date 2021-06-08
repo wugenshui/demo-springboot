@@ -1,6 +1,6 @@
-package com.chenbo.demo.best.admin.service.dto;
+package com.github.wugenshui.best.admin.service.dto;
 
-import com.chenbo.demo.best.admin.service.enums.AjaxResultEnum;
+import com.github.wugenshui.best.admin.service.enums.AjaxResultEnum;
 
 /**
  * Ajax请求响应类

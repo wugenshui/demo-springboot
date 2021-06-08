@@ -1,4 +1,4 @@
-package com.chenbo.demo.mock.mockito;
+package com.github.wugenshui.mock.mockito;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

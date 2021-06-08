@@ -1,4 +1,4 @@
-package com.chenbo.demo.best.practice.best.commons.util;
+package com.github.wugenshui.best.practice.best.commons.util;
 
 import java.io.File;
 import java.io.IOException;

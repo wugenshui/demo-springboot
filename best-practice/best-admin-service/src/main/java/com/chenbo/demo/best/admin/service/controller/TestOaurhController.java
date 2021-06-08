@@ -1,4 +1,4 @@
-package com.chenbo.demo.best.admin.service.controller;
+package com.github.wugenshui.best.admin.service.controller;
 
 
 import io.swagger.annotations.Api;

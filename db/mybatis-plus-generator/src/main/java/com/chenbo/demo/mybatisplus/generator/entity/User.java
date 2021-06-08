@@ -1,4 +1,4 @@
-package com.chenbo.demo.mybatisplus.generator.entity;
+package com.github.wugenshui.mybatisplus.generator.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

@@ -1,4 +1,4 @@
-package com.chenbo.demo.knife4j.validator;
+package com.github.wugenshui.knife4j.validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

@@ -1,6 +1,6 @@
-package com.chenbo.demo.activity;
+package com.github.wugenshui.activity;
 
-import com.chenbo.demo.activity.util.SecurityUtil;
+import com.github.wugenshui.activity.util.SecurityUtil;
 import org.activiti.api.process.model.ProcessDefinition;
 import org.activiti.api.process.model.ProcessInstance;
 import org.activiti.api.process.model.builders.ProcessPayloadBuilder;

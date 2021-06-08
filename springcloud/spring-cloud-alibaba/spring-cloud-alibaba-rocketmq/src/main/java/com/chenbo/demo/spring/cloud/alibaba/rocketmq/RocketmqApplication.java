@@ -1,7 +1,7 @@
-package com.chenbo.demo.spring.cloud.alibaba.rocketmq;
+package com.github.wugenshui.spring.cloud.alibaba.rocketmq;
 
-import com.chenbo.demo.spring.cloud.alibaba.rocketmq.config.SystemConfig;
-import com.chenbo.demo.spring.cloud.alibaba.rocketmq.producer.OnewayProducer;
+import com.github.wugenshui.spring.cloud.alibaba.rocketmq.config.SystemConfig;
+import com.github.wugenshui.spring.cloud.alibaba.rocketmq.producer.OnewayProducer;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;

@@ -1,4 +1,4 @@
-package com.chenbo.demo.redis.jedis;
+package com.github.wugenshui.redis.jedis;
 
 import org.json.JSONException;
 import org.json.JSONObject;

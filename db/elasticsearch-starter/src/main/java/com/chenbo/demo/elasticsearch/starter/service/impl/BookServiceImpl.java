@@ -1,8 +1,8 @@
-package com.chenbo.demo.elasticsearch.starter.service.impl;
+package com.github.wugenshui.elasticsearch.starter.service.impl;
 
-import com.chenbo.demo.elasticsearch.starter.dao.BookRepository;
-import com.chenbo.demo.elasticsearch.starter.entity.BookBean;
-import com.chenbo.demo.elasticsearch.starter.service.BookService;
+import com.github.wugenshui.elasticsearch.starter.dao.BookRepository;
+import com.github.wugenshui.elasticsearch.starter.entity.BookBean;
+import com.github.wugenshui.elasticsearch.starter.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;

@@ -1,4 +1,4 @@
-package com.chenbo.demo.netty.fourtheexample;
+package com.github.wugenshui.netty.fourtheexample;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;

@@ -1,6 +1,6 @@
-package com.chenbo.demo.knife4j.entity;
+package com.github.wugenshui.knife4j.entity;
 
-import com.chenbo.demo.knife4j.validator.IsMobile;
+import com.github.wugenshui.knife4j.validator.IsMobile;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

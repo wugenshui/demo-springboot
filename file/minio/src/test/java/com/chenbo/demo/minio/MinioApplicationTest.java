@@ -1,4 +1,4 @@
-package com.chenbo.demo.minio;
+package com.github.wugenshui.minio;
 
 import io.minio.*;
 import io.minio.errors.*;

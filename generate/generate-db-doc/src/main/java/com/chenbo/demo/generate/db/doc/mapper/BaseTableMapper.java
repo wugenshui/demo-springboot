@@ -1,7 +1,7 @@
-package com.chenbo.demo.generate.db.doc.mapper;
+package com.github.wugenshui.generate.db.doc.mapper;
 
-import com.chenbo.demo.generate.db.doc.entity.TableFileds;
-import com.chenbo.demo.generate.db.doc.entity.Tables;
+import com.github.wugenshui.generate.db.doc.entity.TableFileds;
+import com.github.wugenshui.generate.db.doc.entity.Tables;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

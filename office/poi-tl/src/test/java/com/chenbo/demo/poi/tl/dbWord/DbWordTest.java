@@ -1,8 +1,8 @@
-package com.chenbo.demo.poi.tl.dbWord;
+package com.github.wugenshui.poi.tl.dbWord;
 
-import com.chenbo.demo.poi.tl.entity.TableFileds;
-import com.chenbo.demo.poi.tl.entity.Tables;
-import com.chenbo.demo.poi.tl.mapper.TableMapper;
+import com.github.wugenshui.poi.tl.entity.TableFileds;
+import com.github.wugenshui.poi.tl.entity.Tables;
+import com.github.wugenshui.poi.tl.mapper.TableMapper;
 import com.deepoove.poi.XWPFTemplate;
 import com.deepoove.poi.config.Configure;
 import com.deepoove.poi.data.DocxRenderData;

@@ -1,11 +1,11 @@
-package com.chenbo.demo.sip.server;
+package com.github.wugenshui.sip.server;
 
 /**
  * @author : chenbo
  * @date : 2020-07-02
  */
 
-import com.chenbo.demo.sip.MD5Util;
+import com.github.wugenshui.sip.MD5Util;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.sip.ClientTransaction;

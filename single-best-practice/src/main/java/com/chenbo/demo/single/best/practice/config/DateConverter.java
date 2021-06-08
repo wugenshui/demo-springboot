@@ -1,4 +1,4 @@
-package com.chenbo.demo.single.best.practice.config;
+package com.github.wugenshui.single.best.practice.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;

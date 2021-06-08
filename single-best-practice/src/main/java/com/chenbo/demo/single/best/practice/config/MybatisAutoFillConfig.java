@@ -1,4 +1,4 @@
-package com.chenbo.demo.single.best.practice.config;
+package com.github.wugenshui.single.best.practice.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;

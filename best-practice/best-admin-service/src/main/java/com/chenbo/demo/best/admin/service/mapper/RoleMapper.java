@@ -1,6 +1,6 @@
-package com.chenbo.demo.best.admin.service.mapper;
+package com.github.wugenshui.best.admin.service.mapper;
 
-import com.chenbo.demo.best.admin.service.entity.Role;
+import com.github.wugenshui.best.admin.service.entity.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

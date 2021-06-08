@@ -1,4 +1,4 @@
-package com.chenbo.demo.redis.cache.entity;
+package com.github.wugenshui.redis.cache.entity;
 
 import lombok.Builder;
 import lombok.Data;

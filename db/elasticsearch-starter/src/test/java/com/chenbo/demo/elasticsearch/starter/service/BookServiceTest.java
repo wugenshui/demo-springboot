@@ -1,7 +1,7 @@
-package com.chenbo.demo.elasticsearch.starter.service;
+package com.github.wugenshui.elasticsearch.starter.service;
 
 
-import com.chenbo.demo.elasticsearch.starter.entity.BookBean;
+import com.github.wugenshui.elasticsearch.starter.entity.BookBean;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.Aggregations;
 import org.elasticsearch.search.aggregations.bucket.terms.ParsedLongTerms;

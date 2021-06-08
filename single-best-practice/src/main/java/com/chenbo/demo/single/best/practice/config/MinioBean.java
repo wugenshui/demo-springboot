@@ -1,4 +1,4 @@
-package com.chenbo.demo.single.best.practice.config;
+package com.github.wugenshui.single.best.practice.config;
 
 import io.minio.MinioClient;
 import org.springframework.context.annotation.Bean;

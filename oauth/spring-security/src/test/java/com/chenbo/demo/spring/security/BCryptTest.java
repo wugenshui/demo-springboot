@@ -1,4 +1,4 @@
-package com.chenbo.demo.spring.security;
+package com.github.wugenshui.spring.security;
 
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package com.chenbo.demo.elasticsearch.bean;
+package com.github.wugenshui.elasticsearch.bean;
 
 import java.io.Serializable;
 import java.util.List;

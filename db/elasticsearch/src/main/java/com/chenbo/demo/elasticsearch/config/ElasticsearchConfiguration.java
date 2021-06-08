@@ -1,6 +1,6 @@
-package com.chenbo.demo.elasticsearch.config;
+package com.github.wugenshui.elasticsearch.config;
 
-import com.chenbo.demo.elasticsearch.bean.ElasticsearchConfigBean;
+import com.github.wugenshui.elasticsearch.bean.ElasticsearchConfigBean;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.extern.slf4j.Slf4j;

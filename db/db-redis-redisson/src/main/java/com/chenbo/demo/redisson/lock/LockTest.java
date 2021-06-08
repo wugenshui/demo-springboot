@@ -1,4 +1,4 @@
-package com.chenbo.demo.redisson.lock;
+package com.github.wugenshui.redisson.lock;
 
 import lombok.SneakyThrows;
 import org.redisson.Redisson;

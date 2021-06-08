@@ -1,4 +1,4 @@
-package com.chenbo.demo.sip;
+package com.github.wugenshui.sip;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.chenbo.demo.redis.jedis;
+package com.github.wugenshui.redis.jedis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

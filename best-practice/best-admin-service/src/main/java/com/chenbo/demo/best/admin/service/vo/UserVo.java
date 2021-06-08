@@ -1,4 +1,4 @@
-package com.chenbo.demo.best.admin.service.vo;
+package com.github.wugenshui.best.admin.service.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

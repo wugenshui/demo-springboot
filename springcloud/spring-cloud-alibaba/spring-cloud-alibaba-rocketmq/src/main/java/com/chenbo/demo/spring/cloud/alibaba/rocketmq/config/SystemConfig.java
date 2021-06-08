@@ -1,4 +1,4 @@
-package com.chenbo.demo.spring.cloud.alibaba.rocketmq.config;
+package com.github.wugenshui.spring.cloud.alibaba.rocketmq.config;
 
 /**
  * @author : chenbo

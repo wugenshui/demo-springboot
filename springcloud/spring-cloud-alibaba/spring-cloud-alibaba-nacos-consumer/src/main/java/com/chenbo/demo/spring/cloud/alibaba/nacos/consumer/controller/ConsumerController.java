@@ -1,4 +1,4 @@
-package com.chenbo.demo.spring.cloud.alibaba.nacos.consumer.controller;
+package com.github.wugenshui.spring.cloud.alibaba.nacos.consumer.controller;
 
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;

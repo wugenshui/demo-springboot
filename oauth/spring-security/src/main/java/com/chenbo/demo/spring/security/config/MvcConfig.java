@@ -1,4 +1,4 @@
-package com.chenbo.demo.spring.security.config;
+package com.github.wugenshui.spring.security.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

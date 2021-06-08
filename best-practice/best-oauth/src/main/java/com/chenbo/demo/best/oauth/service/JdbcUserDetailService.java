@@ -1,4 +1,4 @@
-package com.chenbo.demo.best.oauth.service;
+package com.github.wugenshui.best.oauth.service;
 
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;

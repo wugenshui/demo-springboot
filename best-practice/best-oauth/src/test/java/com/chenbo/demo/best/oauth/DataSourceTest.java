@@ -1,4 +1,4 @@
-package com.chenbo.demo.best.oauth;
+package com.github.wugenshui.best.oauth;
 
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;

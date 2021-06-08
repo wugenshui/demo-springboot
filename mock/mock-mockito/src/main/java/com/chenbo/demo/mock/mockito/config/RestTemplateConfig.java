@@ -1,4 +1,4 @@
-package com.chenbo.demo.mock.mockito.config;
+package com.github.wugenshui.mock.mockito.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;

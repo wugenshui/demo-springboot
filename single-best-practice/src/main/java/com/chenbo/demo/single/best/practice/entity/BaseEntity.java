@@ -1,4 +1,4 @@
-package com.chenbo.demo.single.best.practice.entity;
+package com.github.wugenshui.single.best.practice.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;

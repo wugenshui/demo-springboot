@@ -1,4 +1,4 @@
-package com.chenbo.demo.mock.moco;
+package com.github.wugenshui.mock.moco;
 
 import com.github.dreamhead.moco.HttpServer;
 import com.github.dreamhead.moco.Runner;

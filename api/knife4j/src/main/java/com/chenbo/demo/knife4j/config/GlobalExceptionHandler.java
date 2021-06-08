@@ -1,6 +1,6 @@
-package com.chenbo.demo.knife4j.config;
+package com.github.wugenshui.knife4j.config;
 
-import com.chenbo.demo.knife4j.entity.AjaxResult;
+import com.github.wugenshui.knife4j.entity.AjaxResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;

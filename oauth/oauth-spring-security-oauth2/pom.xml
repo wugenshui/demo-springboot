@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.chenbo.demo</groupId>
+        <groupId>com.github.wugenshui</groupId>
         <artifactId>oauth</artifactId>
         <version>0.0.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>com.chenbo.demo</groupId>
+    <groupId>com.github.wugenshui</groupId>
     <artifactId>oauth-spring-security-oauth2</artifactId>
     <version>0.0.1</version>
 

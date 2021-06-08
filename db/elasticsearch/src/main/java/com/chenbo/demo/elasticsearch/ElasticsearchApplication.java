@@ -1,4 +1,4 @@
-package com.chenbo.demo.elasticsearch;
+package com.github.wugenshui.elasticsearch;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

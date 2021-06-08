@@ -1,7 +1,7 @@
-package com.chenbo.demo.poi.tl.mapper;
+package com.github.wugenshui.poi.tl.mapper;
 
-import com.chenbo.demo.poi.tl.entity.TableFileds;
-import com.chenbo.demo.poi.tl.entity.Tables;
+import com.github.wugenshui.poi.tl.entity.TableFileds;
+import com.github.wugenshui.poi.tl.entity.Tables;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

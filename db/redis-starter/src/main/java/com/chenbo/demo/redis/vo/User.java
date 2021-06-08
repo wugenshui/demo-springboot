@@ -1,4 +1,4 @@
-package com.chenbo.demo.redis.vo;
+package com.github.wugenshui.redis.vo;
 
 import java.io.Serializable;
 

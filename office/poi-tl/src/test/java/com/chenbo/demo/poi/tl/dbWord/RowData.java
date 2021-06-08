@@ -1,4 +1,4 @@
-package com.chenbo.demo.poi.tl.dbWord;
+package com.github.wugenshui.poi.tl.dbWord;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.chenbo.demo.rocketmq.demo1;
+package com.github.wugenshui.rocketmq.demo1;
 
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;

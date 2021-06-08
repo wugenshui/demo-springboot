@@ -1,7 +1,7 @@
-package com.chenbo.demo.elasticsearch;
+package com.github.wugenshui.elasticsearch;
 
 
-import com.chenbo.demo.elasticsearch.entity.News;
+import com.github.wugenshui.elasticsearch.entity.News;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.extern.slf4j.Slf4j;

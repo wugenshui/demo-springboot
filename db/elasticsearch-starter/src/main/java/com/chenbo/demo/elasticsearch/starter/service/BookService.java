@@ -1,6 +1,6 @@
-package com.chenbo.demo.elasticsearch.starter.service;
+package com.github.wugenshui.elasticsearch.starter.service;
 
-import com.chenbo.demo.elasticsearch.starter.entity.BookBean;
+import com.github.wugenshui.elasticsearch.starter.entity.BookBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 

@@ -1,4 +1,4 @@
-package com.chenbo.demo.mock.moco.config;
+package com.github.wugenshui.mock.moco.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

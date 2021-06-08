@@ -1,6 +1,6 @@
-package com.chenbo.demo.activity.controller;
+package com.github.wugenshui.activity.controller;
 
-import com.chenbo.demo.activity.util.SecurityUtil;
+import com.github.wugenshui.activity.util.SecurityUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.activiti.api.process.model.ProcessDefinition;
 import org.activiti.api.process.model.ProcessInstance;

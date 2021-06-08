@@ -1,4 +1,4 @@
-package com.chenbo.demo.spring.cloud.alibaba.sentinel.controller;
+package com.github.wugenshui.spring.cloud.alibaba.sentinel.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;

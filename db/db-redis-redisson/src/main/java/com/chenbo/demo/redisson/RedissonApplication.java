@@ -1,6 +1,6 @@
-package com.chenbo.demo.redisson;
+package com.github.wugenshui.redisson;
 
-import com.chenbo.demo.redisson.queue.block.BlockQueueTest;
+import com.github.wugenshui.redisson.queue.block.BlockQueueTest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

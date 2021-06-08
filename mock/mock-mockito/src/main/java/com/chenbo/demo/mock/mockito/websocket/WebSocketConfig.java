@@ -1,4 +1,4 @@
-package com.chenbo.demo.mock.mockito.websocket;
+package com.github.wugenshui.mock.mockito.websocket;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

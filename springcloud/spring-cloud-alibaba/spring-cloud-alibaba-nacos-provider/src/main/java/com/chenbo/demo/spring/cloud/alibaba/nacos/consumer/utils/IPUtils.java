@@ -1,4 +1,4 @@
-package com.chenbo.demo.spring.cloud.alibaba.nacos.consumer.utils;
+package com.github.wugenshui.spring.cloud.alibaba.nacos.consumer.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

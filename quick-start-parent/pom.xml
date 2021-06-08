@@ -251,12 +251,12 @@
             </dependency>
             <!-- 自己的项目 -->
             <dependency>
-                <groupId>com.chenbo.demo</groupId>
+                <groupId>com.github.wugenshui</groupId>
                 <artifactId>base-util</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>com.chenbo.demo</groupId>
+                <groupId>com.github.wugenshui</groupId>
                 <artifactId>commons</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>

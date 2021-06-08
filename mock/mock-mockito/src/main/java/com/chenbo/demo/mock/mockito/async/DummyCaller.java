@@ -1,4 +1,4 @@
-package com.chenbo.demo.mock.mockito.async;
+package com.github.wugenshui.mock.mockito.async;
 
 import java.util.ArrayList;
 import java.util.List;

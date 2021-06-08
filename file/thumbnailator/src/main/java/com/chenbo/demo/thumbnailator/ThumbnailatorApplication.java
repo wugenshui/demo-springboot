@@ -1,4 +1,4 @@
-package com.chenbo.demo.thumbnailator;
+package com.github.wugenshui.thumbnailator;
 
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.boot.SpringApplication;

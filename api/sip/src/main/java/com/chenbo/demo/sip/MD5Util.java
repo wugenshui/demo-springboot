@@ -1,4 +1,4 @@
-package com.chenbo.demo.sip;
+package com.github.wugenshui.sip;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;

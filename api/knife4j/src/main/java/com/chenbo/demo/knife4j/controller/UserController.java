@@ -1,7 +1,7 @@
-package com.chenbo.demo.knife4j.controller;
+package com.github.wugenshui.knife4j.controller;
 
-import com.chenbo.demo.knife4j.entity.AjaxResult;
-import com.chenbo.demo.knife4j.entity.User;
+import com.github.wugenshui.knife4j.entity.AjaxResult;
+import com.github.wugenshui.knife4j.entity.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

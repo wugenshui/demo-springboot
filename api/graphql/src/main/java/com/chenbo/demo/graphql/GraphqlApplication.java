@@ -1,4 +1,4 @@
-package com.chenbo.demo.graphql;
+package com.github.wugenshui.graphql;
 
 import graphql.ExecutionResult;
 import graphql.GraphQL;

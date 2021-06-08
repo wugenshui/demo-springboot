@@ -1,4 +1,4 @@
-package com.chenbo.demo.mybatisplus.generator.vo;
+package com.github.wugenshui.mybatisplus.generator.vo;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

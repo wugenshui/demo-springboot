@@ -9,7 +9,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.chenbo.demo</groupId>
+    <groupId>com.github.wugenshui</groupId>
     <artifactId>netty</artifactId>
     <packaging>jar</packaging>
 
@@ -32,7 +32,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.chenbo.demo.netty.firstexample.TestServer</mainClass>
+                    <mainClass>com.github.wugenshui.netty.firstexample.TestServer</mainClass>
                 </configuration>
             </plugin>
         </plugins>

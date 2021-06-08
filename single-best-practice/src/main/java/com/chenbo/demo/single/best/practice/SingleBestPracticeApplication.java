@@ -1,4 +1,4 @@
-package com.chenbo.demo.single.best.practice;
+package com.github.wugenshui.single.best.practice;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -11,7 +11,7 @@ import springfox.documentation.oas.annotations.EnableOpenApi;
  */
 @EnableOpenApi
 @SpringBootApplication
-@MapperScan("com.chenbo.demo.single.best.practice.**.mapper")
+@MapperScan("com.github.wugenshui.single.best.practice.**.mapper")
 public class SingleBestPracticeApplication {
 
     public static void main(String[] args) {

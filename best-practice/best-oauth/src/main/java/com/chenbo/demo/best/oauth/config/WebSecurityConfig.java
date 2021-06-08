@@ -1,6 +1,6 @@
-package com.chenbo.demo.best.oauth.config;
+package com.github.wugenshui.best.oauth.config;
 
-import com.chenbo.demo.best.oauth.service.JdbcUserDetailService;
+import com.github.wugenshui.best.oauth.service.JdbcUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

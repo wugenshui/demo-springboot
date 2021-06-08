@@ -1,4 +1,4 @@
-package com.chenbo.demo.video.handle;
+package com.github.wugenshui.video.handle;
 
 import org.springframework.util.StopWatch;
 import ws.schild.jave.*;

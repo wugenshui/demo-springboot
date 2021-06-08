@@ -1,4 +1,4 @@
-package com.chenbo.demo.spring.cloud.alibaba.sentinel;
+package com.github.wugenshui.spring.cloud.alibaba.sentinel;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

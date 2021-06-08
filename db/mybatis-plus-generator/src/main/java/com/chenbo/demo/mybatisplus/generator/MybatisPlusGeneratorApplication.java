@@ -1,4 +1,4 @@
-package com.chenbo.demo.mybatisplus.generator;
+package com.github.wugenshui.mybatisplus.generator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

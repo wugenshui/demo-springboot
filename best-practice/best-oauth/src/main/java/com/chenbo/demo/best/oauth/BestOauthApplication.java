@@ -1,4 +1,4 @@
-package com.chenbo.demo.best.oauth;
+package com.github.wugenshui.best.oauth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

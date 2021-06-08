@@ -1,4 +1,4 @@
-package com.chenbo.demo.single.best.practice.config;
+package com.github.wugenshui.single.best.practice.config;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;

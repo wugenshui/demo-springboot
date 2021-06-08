@@ -1,4 +1,4 @@
-package com.chenbo.demo.security.uaa.config;
+package com.github.wugenshui.security.uaa.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

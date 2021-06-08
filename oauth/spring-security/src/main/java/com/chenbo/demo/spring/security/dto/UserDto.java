@@ -1,4 +1,4 @@
-package com.chenbo.demo.spring.security.dto;
+package com.github.wugenshui.spring.security.dto;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.chenbo.demo.single.best.practice.enums;
+package com.github.wugenshui.single.best.practice.enums;
 
 /**
  * 请求响应状态码与消息对应的枚举

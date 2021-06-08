@@ -1,6 +1,6 @@
-package com.chenbo.demo.redisson.queue.block;
+package com.github.wugenshui.redisson.queue.block;
 
-import com.chenbo.demo.redisson.queue.User;
+import com.github.wugenshui.redisson.queue.User;
 import lombok.SneakyThrows;
 import org.redisson.Redisson;
 import org.redisson.api.RBlockingQueue;

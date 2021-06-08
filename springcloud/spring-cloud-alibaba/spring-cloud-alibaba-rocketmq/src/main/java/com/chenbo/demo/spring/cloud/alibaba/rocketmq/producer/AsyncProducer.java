@@ -1,6 +1,6 @@
-package com.chenbo.demo.spring.cloud.alibaba.rocketmq.producer;
+package com.github.wugenshui.spring.cloud.alibaba.rocketmq.producer;
 
-import com.chenbo.demo.spring.cloud.alibaba.rocketmq.config.SystemConfig;
+import com.github.wugenshui.spring.cloud.alibaba.rocketmq.config.SystemConfig;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;

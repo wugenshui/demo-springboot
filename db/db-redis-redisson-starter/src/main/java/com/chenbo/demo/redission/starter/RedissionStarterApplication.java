@@ -1,4 +1,4 @@
-package com.chenbo.demo.redission.starter;
+package com.github.wugenshui.redission.starter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

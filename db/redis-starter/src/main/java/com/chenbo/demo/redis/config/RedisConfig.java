@@ -1,4 +1,4 @@
-package com.chenbo.demo.redis.config;
+package com.github.wugenshui.redis.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

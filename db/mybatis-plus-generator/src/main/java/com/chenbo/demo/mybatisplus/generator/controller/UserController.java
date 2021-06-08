@@ -1,4 +1,4 @@
-package com.chenbo.demo.mybatisplus.generator.controller;
+package com.github.wugenshui.mybatisplus.generator.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;

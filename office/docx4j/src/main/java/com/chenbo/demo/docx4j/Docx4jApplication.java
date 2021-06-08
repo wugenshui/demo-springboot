@@ -1,4 +1,4 @@
-package com.chenbo.demo.docx4j;
+package com.github.wugenshui.docx4j;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

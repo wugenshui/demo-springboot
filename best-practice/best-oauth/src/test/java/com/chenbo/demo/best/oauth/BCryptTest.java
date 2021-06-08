@@ -1,4 +1,4 @@
-package com.chenbo.demo.best.oauth;
+package com.github.wugenshui.best.oauth;
 
 import org.junit.Assert;
 import org.junit.Test;

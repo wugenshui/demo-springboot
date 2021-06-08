@@ -1,4 +1,4 @@
-package com.chenbo.demo.easy.excel;
+package com.github.wugenshui.easy.excel;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

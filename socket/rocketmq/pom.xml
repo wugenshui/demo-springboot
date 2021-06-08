@@ -9,7 +9,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.chenbo.demo</groupId>
+    <groupId>com.github.wugenshui</groupId>
     <artifactId>rocketmq</artifactId>
     <packaging>jar</packaging>
 

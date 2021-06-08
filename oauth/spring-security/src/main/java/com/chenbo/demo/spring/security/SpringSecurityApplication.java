@@ -1,4 +1,4 @@
-package com.chenbo.demo.spring.security;
+package com.github.wugenshui.spring.security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

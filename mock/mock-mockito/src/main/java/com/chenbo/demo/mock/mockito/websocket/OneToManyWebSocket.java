@@ -1,4 +1,4 @@
-package com.chenbo.demo.mock.mockito.websocket;
+package com.github.wugenshui.mock.mockito.websocket;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

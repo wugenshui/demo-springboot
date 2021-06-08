@@ -1,4 +1,4 @@
-package com.chenbo.demo.knife4j.entity;
+package com.github.wugenshui.knife4j.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

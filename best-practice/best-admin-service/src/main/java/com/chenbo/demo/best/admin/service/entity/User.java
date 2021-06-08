@@ -1,4 +1,4 @@
-package com.chenbo.demo.best.admin.service.entity;
+package com.github.wugenshui.best.admin.service.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

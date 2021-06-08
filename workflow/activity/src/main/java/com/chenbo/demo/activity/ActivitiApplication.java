@@ -1,4 +1,4 @@
-package com.chenbo.demo.activity;
+package com.github.wugenshui.activity;
 
 import org.activiti.api.process.runtime.connector.Connector;
 import org.springframework.boot.SpringApplication;

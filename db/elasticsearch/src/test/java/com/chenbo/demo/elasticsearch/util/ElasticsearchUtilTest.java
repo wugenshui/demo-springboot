@@ -1,7 +1,7 @@
-package com.chenbo.demo.elasticsearch.util;
+package com.github.wugenshui.elasticsearch.util;
 
 
-import com.chenbo.demo.elasticsearch.entity.News;
+import com.github.wugenshui.elasticsearch.entity.News;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.elasticsearch.action.index.IndexResponse;

@@ -1,4 +1,4 @@
-package com.chenbo.demo.redis.jedis.message.queue;
+package com.github.wugenshui.redis.jedis.message.queue;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;

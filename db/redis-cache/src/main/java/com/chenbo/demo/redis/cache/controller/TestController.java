@@ -1,6 +1,6 @@
-package com.chenbo.demo.redis.cache.controller;
+package com.github.wugenshui.redis.cache.controller;
 
-import com.chenbo.demo.redis.cache.entity.User;
+import com.github.wugenshui.redis.cache.entity.User;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;

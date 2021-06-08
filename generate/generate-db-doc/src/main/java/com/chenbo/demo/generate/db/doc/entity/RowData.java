@@ -1,4 +1,4 @@
-package com.chenbo.demo.generate.db.doc.entity;
+package com.github.wugenshui.generate.db.doc.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

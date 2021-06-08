@@ -1,4 +1,4 @@
-package com.chenbo.demo.single.best.practice.constant;
+package com.github.wugenshui.single.best.practice.constant;
 
 /**
  * @author : chenbo

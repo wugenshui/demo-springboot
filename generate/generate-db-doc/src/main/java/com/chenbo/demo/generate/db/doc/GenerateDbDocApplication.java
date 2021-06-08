@@ -1,10 +1,10 @@
-package com.chenbo.demo.generate.db.doc;
+package com.github.wugenshui.generate.db.doc;
 
-import com.chenbo.demo.generate.db.doc.config.ExportConfig;
-import com.chenbo.demo.generate.db.doc.entity.*;
-import com.chenbo.demo.generate.db.doc.mapper.BaseTableMapper;
-import com.chenbo.demo.generate.db.doc.mapper.MySqlTableMapper;
-import com.chenbo.demo.generate.db.doc.mapper.OracleTableMapper;
+import com.github.wugenshui.generate.db.doc.config.ExportConfig;
+import com.github.wugenshui.generate.db.doc.entity.*;
+import com.github.wugenshui.generate.db.doc.mapper.BaseTableMapper;
+import com.github.wugenshui.generate.db.doc.mapper.MySqlTableMapper;
+import com.github.wugenshui.generate.db.doc.mapper.OracleTableMapper;
 import com.deepoove.poi.XWPFTemplate;
 import com.deepoove.poi.config.Configure;
 import com.deepoove.poi.data.DocxRenderData;

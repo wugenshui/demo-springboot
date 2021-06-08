@@ -1,4 +1,4 @@
-package com.chenbo.demo.mock.mockito;
+package com.github.wugenshui.mock.mockito;
 
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;

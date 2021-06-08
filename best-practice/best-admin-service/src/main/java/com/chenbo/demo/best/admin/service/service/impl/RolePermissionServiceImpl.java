@@ -1,8 +1,8 @@
-package com.chenbo.demo.best.admin.service.service.impl;
+package com.github.wugenshui.best.admin.service.service.impl;
 
-import com.chenbo.demo.best.admin.service.entity.RolePermission;
-import com.chenbo.demo.best.admin.service.mapper.RolePermissionMapper;
-import com.chenbo.demo.best.admin.service.service.IRolePermissionService;
+import com.github.wugenshui.best.admin.service.entity.RolePermission;
+import com.github.wugenshui.best.admin.service.mapper.RolePermissionMapper;
+import com.github.wugenshui.best.admin.service.service.IRolePermissionService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

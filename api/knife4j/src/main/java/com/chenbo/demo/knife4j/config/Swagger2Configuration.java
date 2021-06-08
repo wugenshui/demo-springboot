@@ -1,4 +1,4 @@
-package com.chenbo.demo.knife4j.config;
+package com.github.wugenshui.knife4j.config;
 
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.context.annotation.Bean;
@@ -26,7 +26,7 @@ public class Swagger2Configuration {
     /**
      * api接口包扫描路径
      */
-    public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.chenbo.demo.knife4j.controller";
+    public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.github.wugenshui.knife4j.controller";
     //
     public static final String VERSION = "1.0.0";
 

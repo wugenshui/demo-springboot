@@ -1,7 +1,7 @@
-package com.chenbo.demo.single.best.practice.config;
+package com.github.wugenshui.single.best.practice.config;
 
-import com.chenbo.demo.single.best.practice.entity.AjaxResult;
-import com.chenbo.demo.single.best.practice.enums.AjaxResultEnum;
+import com.github.wugenshui.single.best.practice.entity.AjaxResult;
+import com.github.wugenshui.single.best.practice.enums.AjaxResultEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.validation.BindException;

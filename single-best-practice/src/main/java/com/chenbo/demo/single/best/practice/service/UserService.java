@@ -1,7 +1,7 @@
-package com.chenbo.demo.single.best.practice.service;
+package com.github.wugenshui.single.best.practice.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.chenbo.demo.single.best.practice.entity.User;
+import com.github.wugenshui.single.best.practice.entity.User;
 
 /**
  * <p>

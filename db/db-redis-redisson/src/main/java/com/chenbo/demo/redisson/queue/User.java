@@ -1,4 +1,4 @@
-package com.chenbo.demo.redisson.queue;
+package com.github.wugenshui.redisson.queue;
 
 import lombok.Builder;
 import lombok.Data;

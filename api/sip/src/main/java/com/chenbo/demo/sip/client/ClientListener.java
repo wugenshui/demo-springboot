@@ -1,6 +1,6 @@
-package com.chenbo.demo.sip.client;
+package com.github.wugenshui.sip.client;
 
-import com.chenbo.demo.sip.MD5Util;
+import com.github.wugenshui.sip.MD5Util;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.sip.DialogTerminatedEvent;

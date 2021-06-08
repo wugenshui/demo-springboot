@@ -1,4 +1,4 @@
-package com.chenbo.demo.netty.fourtheexample;
+package com.github.wugenshui.netty.fourtheexample;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

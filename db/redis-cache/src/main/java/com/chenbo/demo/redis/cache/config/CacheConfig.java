@@ -1,4 +1,4 @@
-package com.chenbo.demo.redis.cache.config;
+package com.github.wugenshui.redis.cache.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
