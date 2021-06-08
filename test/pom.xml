@@ -90,4 +90,39 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>sonatype-nexus-staging</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>sonatype-nexus-snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <tag>master</tag>
+        <url>https://github.com/wugenshui/demo-spring-boot.git</url>
+        <connection>scm:git:https://github.com/wugenshui/demo-spring-boot.git</connection>
+        <developerConnection>scm:git:https://github.com/wugenshui/demo-spring-boot.git</developerConnection>
+    </scm>
+    <developers>
+        <developer>
+            <name>chenbo</name>
+            <email>chenboprogrammer@gmail.com</email>
+            <organization>chenbo</organization>
+        </developer>
+    </developers>
+
 </project>
