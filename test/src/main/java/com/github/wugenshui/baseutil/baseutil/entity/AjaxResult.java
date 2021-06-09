@@ -36,7 +36,7 @@ public class AjaxResult<T> {
     /**
      * 返回成功 默认提示
      *
-     * @return
+     * @return 返回结果
      */
     public static AjaxResult success() {
         HttpResultEnum model = HttpResultEnum.SUCCESS;
@@ -46,8 +46,8 @@ public class AjaxResult<T> {
     /**
      * 返回成功 默认提示
      *
-     * @param data
-     * @return
+     * @param data 响应数据
+     * @return 响应
      */
     public static <T> AjaxResult success(T data) {
         HttpResultEnum model = HttpResultEnum.SUCCESS;
@@ -57,9 +57,9 @@ public class AjaxResult<T> {
     /**
      * 返回成功 自定义提示
      *
-     * @param message
-     * @param data
-     * @return
+     * @param message 响应消息
+     * @param data    响应数据
+     * @return 响应
      */
     public static <T> AjaxResult success(String message, T data) {
         return new AjaxResult(HttpResultEnum.SUCCESS.getStatus(), message, data);
@@ -68,7 +68,7 @@ public class AjaxResult<T> {
     /**
      * 返回系统异常错误
      *
-     * @return
+     * @return 响应
      */
     public static AjaxResult error() {
         HttpResultEnum model = HttpResultEnum.ERROR;
@@ -78,8 +78,8 @@ public class AjaxResult<T> {
     /**
      * 返回失败 自定义错误
      *
-     * @param message
-     * @return
+     * @param message 响应消息
+     * @return 响应
      */
     public static AjaxResult error(String message) {
         return new AjaxResult(HttpResultEnum.ERROR.getStatus(), message);

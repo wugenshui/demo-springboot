@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @ApiOperation("用户")
 public class UserController {
 
-    @GetMapping("")
+    @GetMapping
     public AjaxResult<String> getUser() {
         return AjaxResult.success("返回用户信息");
     }

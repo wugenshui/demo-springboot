@@ -22,7 +22,7 @@ public class FileUploadController {
     /**
      * 文件上传具体实现方法;
      *
-     * @param file
+     * @param file 上传文件
      * @return
      */
     @PostMapping("/upload")

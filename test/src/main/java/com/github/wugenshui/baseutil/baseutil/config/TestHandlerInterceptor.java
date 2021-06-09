@@ -22,7 +22,7 @@ public class TestHandlerInterceptor implements HandlerInterceptor {
      * @param response 响应
      * @param handler  处理
      * @return
-     * @throws Exception
+     * @throws Exception 异常
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
