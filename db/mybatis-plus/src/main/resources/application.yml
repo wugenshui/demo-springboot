@@ -15,14 +15,14 @@ spring:
 #    password: root
 
 #    driver-class-name: oracle.jdbc.OracleDriver
-#    url: jdbc:p6spy:oracle:thin:@192.168.0.204:1521:helowin
-#    username: simp
-#    password: abcd-1234
+    url: jdbc:p6spy:oracle:thin:@192.168.0.204:1521:helowin
+    username: simp
+    password: abcd-1234
 
 #    driver-class-name: org.postgresql.Driver
-    url: jdbc:p6spy:postgresql://192.168.0.100:5432/test
-    username: test
-    password: test
+#    url: jdbc:p6spy:postgresql://192.168.0.100:5432/test
+#    username: test
+#    password: test
 
   jackson:
     time-zone: GMT+8
