@@ -1,5 +1,7 @@
 package com.chenbo.daomybatisplus.handle;
 
+import com.baomidou.mybatisplus.core.toolkit.Assert;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedTypes;
@@ -14,27 +16,40 @@ import java.sql.SQLException;
 public class JsonTypeHandler extends BaseTypeHandler<Object> {
 
     private static final PGobject jsonObject = new PGobject();
+    private Class<Object> type;
+
+    public JsonTypeHandler(Class<Object> type) {
+        Assert.notNull(type, "Type argument cannot be null", new Object[0]);
+        this.type = type;
+    }
 
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, Object parameter, JdbcType jdbcType) throws SQLException {
         jsonObject.setType("json");
-        jsonObject.setValue(parameter.toString());
+        jsonObject.setValue(JacksonSerializer.toJSONString(parameter));
         ps.setObject(i, jsonObject);
     }
 
     @Override
     public Object getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
-        return rs.getString(columnIndex);
+        String json = rs.getString(columnIndex);
+        return StringUtils.isBlank(json) ? null : this.parse(json);
     }
 
     @Override
     public Object getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
-        return cs.getString(columnIndex);
+        String json = cs.getString(columnIndex);
+        return StringUtils.isBlank(json) ? null : this.parse(json);
     }
 
     @Override
     public Object getNullableResult(ResultSet rs, String columnName) throws SQLException {
-        return rs.getString(columnName);
+        String json = rs.getString(columnName);
+        return StringUtils.isBlank(json) ? null : this.parse(json);
+    }
+
+    private Object parse(String json) {
+        return JacksonSerializer.parseObject(json, this.type);
     }
 
 }

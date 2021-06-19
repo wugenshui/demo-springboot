@@ -47,7 +47,7 @@ public class CodeGenerator {
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        String projectPath = System.getProperty("user.dir") + "/db/mybatis-plus";
+        String projectPath = System.getProperty("user.dir") + "/db/db-mybatis-plus-postgresql";
         // 【输出文件路径】
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("chenbo");
@@ -58,15 +58,16 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC");
-        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-        dsc.setUsername("root");
-        dsc.setPassword("root");
+        dsc.setUrl("jdbc:postgresql://192.168.0.100:5432/test");
+        dsc.setDriverName("org.postgresql.Driver");
+        dsc.setUsername("test");
+        dsc.setPassword("test");
         mpg.setDataSource(dsc);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName(scanner("模块名"));
+        pc.setModuleName("temp");
+//        pc.setModuleName(scanner("模块名"));
         pc.setParent("com.chenbo.daomybatisplus");
         mpg.setPackageInfo(pc);
 
