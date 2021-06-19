@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 @RequestMapping("/auth/user")
 public class UserController {
 
-    @GetMapping("")
+    @GetMapping
     public LocalDateTime getUser(LocalDateTime dateTime) {
         return dateTime;
     }
