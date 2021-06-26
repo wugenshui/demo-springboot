@@ -170,10 +170,7 @@
     </licenses>
 
     <scm>
-        <tag>master</tag>
         <url>https://github.com/wugenshui/demo-spring-boot.git</url>
-        <connection>scm:git:https://github.com/wugenshui/demo-spring-boot.git</connection>
-        <developerConnection>scm:git:https://github.com/wugenshui/demo-spring-boot.git</developerConnection>
     </scm>
 
     <developers>
