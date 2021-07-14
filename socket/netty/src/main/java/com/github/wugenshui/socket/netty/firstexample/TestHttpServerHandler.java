@@ -1,4 +1,4 @@
-package com.github.wugenshui.netty.firstexample;
+package com.github.wugenshui.socket.netty.firstexample;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

@@ -1,4 +1,4 @@
-package com.github.wugenshui.netty.secondexample;
+package com.github.wugenshui.socket.netty.firstexample;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -8,9 +8,10 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 /**
  * @author : chenbo
- * @date : 2020-03-19
+ * @date : 2020-03-15
  */
-public class MyServer {
+public class TestServer {
+
     public static void main(String[] args) throws InterruptedException {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -19,7 +20,7 @@ public class MyServer {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
-                    .childHandler(new MyServerInitializer());
+                    .childHandler(new TestServerInitializer());
 
             ChannelFuture channelFuture = serverBootstrap.bind(8899).sync();
             channelFuture.channel().closeFuture().sync();

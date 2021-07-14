@@ -1,4 +1,4 @@
-package com.github.wugenshui.netty.secondexample;
+package com.github.wugenshui.socket.netty.secondexample;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
