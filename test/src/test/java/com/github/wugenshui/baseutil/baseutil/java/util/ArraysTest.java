@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author : chenbo
@@ -12,6 +13,16 @@ import java.util.Arrays;
  */
 @SpringBootTest
 public class ArraysTest {
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void asListTest() {
+        List<Object> list = Arrays.asList(1, "2", 3.0);
+        System.out.println(list);
+
+        // asList 转换成的数组无法添加元素，会抛出 UnsupportedOperationException 异常
+        list.add(4.5f);
+    }
+
 
     /**
      * 数组内容输出，推荐使用 Arrays.deepToString
