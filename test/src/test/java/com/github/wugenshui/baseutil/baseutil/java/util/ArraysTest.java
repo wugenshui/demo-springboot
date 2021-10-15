@@ -3,18 +3,15 @@ package com.github.wugenshui.baseutil.baseutil.java.util;
 import com.github.wugenshui.baseutil.baseutil.entity.User;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.StopWatch;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author : chenbo
  * @date : 2020-04-04
  */
 @SpringBootTest
-public class ArrayTest {
+public class ArraysTest {
 
     /**
      * 数组内容输出，推荐使用 Arrays.deepToString
@@ -34,27 +31,4 @@ public class ArrayTest {
         System.out.println(Arrays.deepToString(users));
     }
 
-    @Test
-    public void forTest() {
-        List<Integer> listNumber = new ArrayList<>();
-        for (int i = 0; i < 1000000; i++) {
-            listNumber.add(i);
-        }
-
-        StopWatch stopWatch = new StopWatch();
-
-        stopWatch.start("foreach耗时");
-        listNumber.forEach(i -> {
-
-        });
-        stopWatch.stop();
-
-        stopWatch.start("for耗时");
-        for (int i = 0; i < listNumber.size(); i++) {
-
-        }
-        stopWatch.stop();
-
-        System.out.println(stopWatch.prettyPrint());
-    }
 }

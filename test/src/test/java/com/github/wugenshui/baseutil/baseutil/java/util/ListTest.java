@@ -3,6 +3,7 @@ package com.github.wugenshui.baseutil.baseutil.java.util;
 import com.github.wugenshui.baseutil.baseutil.bean.StudentVO;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.StopWatch;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -69,6 +70,33 @@ public class ListTest {
         System.out.println("list");
         System.out.println(list);
 
+    }
+
+    /**
+     * for 与 foreach 耗时对比
+     */
+    @Test
+    public void forTimeTest() {
+        List<Integer> listNumber = new ArrayList<>();
+        for (int i = 0; i < 1000000; i++) {
+            listNumber.add(i);
+        }
+
+        StopWatch stopWatch = new StopWatch();
+
+        stopWatch.start("foreach 耗时");
+        listNumber.forEach(i -> {
+
+        });
+        stopWatch.stop();
+
+        stopWatch.start("for 耗时");
+        for (int i = 0; i < listNumber.size(); i++) {
+
+        }
+        stopWatch.stop();
+
+        System.out.println(stopWatch.prettyPrint());
     }
 
     @Test
