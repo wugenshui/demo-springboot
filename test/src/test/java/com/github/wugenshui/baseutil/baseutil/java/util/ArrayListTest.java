@@ -17,6 +17,5 @@ public class ArrayListTest {
         System.out.println("arrayList.size() = " + arrayList.size());
         arrayList.remove(0);
         System.out.println("arrayList.size() = " + arrayList.size());
-
     }
 }
