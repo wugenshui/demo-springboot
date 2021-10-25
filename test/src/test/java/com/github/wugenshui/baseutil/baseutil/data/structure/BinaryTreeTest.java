@@ -1,7 +1,10 @@
 package com.github.wugenshui.baseutil.baseutil.data.structure;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.*;
 
 /**
  * 自定义二叉树测试
@@ -19,9 +22,32 @@ public class BinaryTreeTest {
         binaryTree.insert(5);
         binaryTree.insert(7);
         System.out.println(binaryTree);
+        System.out.println("中序遍历");
         binaryTree.infixOrder(binaryTree.root);
+        System.out.println("\n前序遍历");
         binaryTree.preOrder(binaryTree.root);
+        System.out.println("\n后序遍历");
         binaryTree.postOrder(binaryTree.root);
+        System.out.println("binaryTree.findMin() = " + binaryTree.findMin());
+        Assert.assertEquals(1, binaryTree.findMin());
+        System.out.println("binaryTree.findMax() = " + binaryTree.findMax());
+        Assert.assertEquals(7, binaryTree.findMax());
+        System.out.println("binaryTree.printFromTopToBottom() = " + binaryTree.printFromTopToBottom());
+        TreePrintUtil.pirnt(binaryTree.root);
+        System.out.println("-------");
+        // 打印树
+        binaryTree.insert(13);
+        binaryTree.insert(12);
+        binaryTree.insert(54);
+        binaryTree.insert(2);
+        binaryTree.insert(17);
+        binaryTree.insert(4);
+        binaryTree.insert(137);
+        binaryTree.insert(127);
+        binaryTree.insert(117);
+        binaryTree.insert(0);
+        binaryTree.insert(107);
+        TreePrintUtil.pirnt(binaryTree.root);
     }
 
     /**
@@ -29,7 +55,10 @@ public class BinaryTreeTest {
      */
     public class BinaryTree implements Tree {
 
-        Node root;
+        /**
+         * 内部数据存储，根节点
+         */
+        private Node root;
 
         @Override
         public Node find(int key) {
@@ -52,7 +81,8 @@ public class BinaryTreeTest {
         @Override
         public boolean insert(int key) {
             Node newNode = new Node(key);
-            if (root == null) {//当前树为空树，没有任何节点
+            // 当前树为空树，没有任何节点
+            if (root == null) {
                 root = newNode;
                 return true;
             } else {
@@ -60,15 +90,18 @@ public class BinaryTreeTest {
                 Node parentNode = null;
                 while (current != null) {
                     parentNode = current;
-                    if (current.data > key) {//当前值比插入值大，搜索左子节点
+                    // 当前值比插入值大，搜索左子节点
+                    if (current.data > key) {
                         current = current.leftChild;
-                        if (current == null) {//左子节点为空，直接将新值插入到该节点
+                        // 左子节点为空，直接将新值插入到该节点
+                        if (current == null) {
                             parentNode.leftChild = newNode;
                             return true;
                         }
                     } else {
                         current = current.rightChild;
-                        if (current == null) {//右子节点为空，直接将新值插入到该节点
+                        // 右子节点为空，直接将新值插入到该节点
+                        if (current == null) {
                             parentNode.rightChild = newNode;
                             return true;
                         }
@@ -83,7 +116,7 @@ public class BinaryTreeTest {
             Node current = root;
             Node parent = root;
             boolean isLeftChild = false;
-            //查找删除值，找不到直接返回false
+            // 查找删除值，找不到直接返回false
             while (current.data != key) {
                 parent = current;
                 if (current.data > key) {
@@ -97,7 +130,7 @@ public class BinaryTreeTest {
                     return false;
                 }
             }
-            //如果当前节点没有子节点
+            // 如果当前节点没有子节点
             if (current.leftChild == null && current.rightChild == null) {
                 if (current == root) {
                     root = null;
@@ -111,7 +144,11 @@ public class BinaryTreeTest {
             return false;
         }
 
-        // 中序遍历
+        /**
+         * 中序遍历:左子树 —> 根节点 —> 右子树
+         *
+         * @param current 当前节点
+         */
         public void infixOrder(Node current) {
             if (current != null) {
                 infixOrder(current.leftChild);
@@ -120,7 +157,11 @@ public class BinaryTreeTest {
             }
         }
 
-        // 前序遍历
+        /**
+         * 前序遍历:根节点 —> 左子树 —> 右子树
+         *
+         * @param current 当前节点
+         */
         public void preOrder(Node current) {
             if (current != null) {
                 System.out.print(current.data + " ");
@@ -129,7 +170,11 @@ public class BinaryTreeTest {
             }
         }
 
-        // 后序遍历
+        /**
+         * 后序遍历:左子树 —> 右子树 —> 根节点
+         *
+         * @param current 当前节点
+         */
         public void postOrder(Node current) {
             if (current != null) {
                 postOrder(current.leftChild);
@@ -138,26 +183,60 @@ public class BinaryTreeTest {
             }
         }
 
-        // 找到最大值
-        public Node findMax() {
+        /**
+         * 找到最大值
+         *
+         * @return 最大节点值
+         */
+        public int findMax() {
             Node current = root;
             Node maxNode = current;
             while (current != null) {
                 maxNode = current;
                 current = current.rightChild;
             }
-            return maxNode;
+            return maxNode.data;
         }
 
-        // 找到最小值
-        public Node findMin() {
+
+        /**
+         * 找到最小值
+         *
+         * @return 最小节点值
+         */
+        public int findMin() {
             Node current = root;
             Node minNode = current;
             while (current != null) {
                 minNode = current;
                 current = current.leftChild;
             }
-            return minNode;
+            return minNode.data;
+        }
+
+        @Override
+        public String toString() {
+            return root.toString();
+        }
+
+        public ArrayList<Integer> printFromTopToBottom() {
+            ArrayList<Integer> list = new ArrayList<>();
+            if (root == null) {
+                return null;
+            }
+            Queue<Node> queue = new LinkedList<>();
+            queue.offer(root);
+            while (!queue.isEmpty()) {
+                Node treeNode = queue.poll();
+                if (treeNode.leftChild != null) {
+                    queue.offer(treeNode.leftChild);
+                }
+                if (treeNode.rightChild != null) {
+                    queue.offer(treeNode.rightChild);
+                }
+                list.add(treeNode.data);
+            }
+            return list;
         }
     }
 
@@ -170,26 +249,29 @@ public class BinaryTreeTest {
         }
 
         // 节点数据
-        private int data;
+        public int data;
         // 左子节点的引用
-        private Node leftChild;
+        public Node leftChild;
         // 右子节点的引用
-        private Node rightChild;
+        public Node rightChild;
 
-        // 打印节点内容
-        public void display() {
-            System.out.println(data);
+        @Override
+        public String toString() {
+            return String.valueOf(data);
         }
     }
 
+    /**
+     * 树接口
+     */
     public interface Tree {
         // 查找节点
-        public Node find(int key);
+        Node find(int key);
 
         // 插入新节点
-        public boolean insert(int key);
+        boolean insert(int key);
 
         // 删除节点
-        public boolean delete(int key);
+        boolean delete(int key);
     }
 }
