@@ -37,12 +37,12 @@ public class MyHashTableTest {
 
         // 判断数组是否存储满了
         public boolean isFull() {
-            return (itemNum == arraySize);
+            return itemNum == arraySize;
         }
 
         // 判断数组是否为空
         public boolean isEmpty() {
-            return (itemNum == 0);
+            return itemNum == 0;
         }
 
         // 打印数组内容
@@ -52,7 +52,7 @@ public class MyHashTableTest {
                 if (hashArray[j] != null) {
                     System.out.print(hashArray[j].getKey() + " ");
                 } else {
-                    System.out.print("** ");
+                    System.out.print("* ");
                 }
             }
         }
@@ -65,7 +65,7 @@ public class MyHashTableTest {
         // 插入数据项
         public void insert(DataItem item) {
             if (isFull()) {
-                //扩展哈希表
+                // 扩展哈希表
                 System.out.println("哈希表已满，重新哈希化...");
                 extendHashTable();
             }
