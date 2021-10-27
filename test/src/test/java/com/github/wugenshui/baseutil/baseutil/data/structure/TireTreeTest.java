@@ -20,7 +20,8 @@ public class TireTreeTest {
         TreeNode rood = new TreeNode();
         TireTree tree = new TireTree();
 
-        String[] strs = {"public", "static", "void", "main", "maia", "maib", "maic", "NIHAO", "asb_wq"};
+        //String[] strs = {"public", "static", "void", "main", "maia", "maib", "maiccc", "NIHAO", "asb_wq", "webxr_z", "AZmai"};
+        String[] strs = {"maiccc", "maid"};
         for (int i = 0, j = strs.length; i < j; i++) {
             tree.createTireTree(rood, strs[i]);
         }
@@ -30,14 +31,16 @@ public class TireTreeTest {
 
         String str1 = "publicstaticvoidmain";
         List<String> list1 = tree.stringToWords(rood, str1);
-        Iterator iter1 = list1.iterator();
-        while (iter1.hasNext()) {
-            System.out.println(iter1.next());
+        if (list1 != null) {
+            Iterator iter1 = list1.iterator();
+            while (iter1.hasNext()) {
+                System.out.println(iter1.next());
+            }
         }
 
-        System.out.println("************************************************");
+        System.out.println("************************************************ wordFill");
 
-        String str2 = "mai";
+        String str2 = "ma";
         List<String> list2 = tree.wordFill(rood, str2);
         Iterator iter2 = list2.iterator();
         while (iter2.hasNext()) {
@@ -48,6 +51,8 @@ public class TireTreeTest {
 
 class TireTree {
 
+    private static final char startChar = '0';
+
     // 在字典树中创建词子树
     public void createTireTree(TreeNode node, String str) {
         char[] chars = str.toCharArray();
@@ -56,7 +61,7 @@ class TireTree {
         for (int i = 0, j = chars.length; i < j; i++) {
 
             // 字符映射下标
-            loc = chars[i] - 'A';
+            loc = chars[i] - startChar;
             if (node.childs[loc] == null) {
                 node.childs[loc] = new TreeNode(chars[i]);
             }
@@ -71,7 +76,7 @@ class TireTree {
         char[] chars = str.toCharArray();
         int loc = 0;
         for (int i = 0, j = chars.length; i < j; i++) {
-            loc = chars[i] - 'a';
+            loc = chars[i] - startChar;
             if (node.childs[loc] != null) {
                 node = node.childs[loc];
             } else {
@@ -93,7 +98,7 @@ class TireTree {
 
         int loc = 0;
         for (int i = 0, j = chars.length; i < j; i++) {
-            loc = chars[i] - 'a';
+            loc = chars[i] - startChar;
             if (p.childs[loc] != null) {
                 sb.append(chars[i]);
                 if (p.childs[loc].isEnd) {  // 如果单词结束
@@ -122,7 +127,7 @@ class TireTree {
 
         // 找到字符串末字符在字典树中的位置
         for (int i = 0, j = chars.length; i < j; i++) {
-            loc = chars[i] - 'a';
+            loc = chars[i] - startChar;
             if (node.childs[loc] != null) {
                 sb.append(chars[i]);
                 node = node.childs[loc];
@@ -142,8 +147,10 @@ class TireTree {
     public void scanFind(TreeNode node, String prefix, List<String> list) {
         for (int i = 0, j = node.childs.length; i < j; i++) {
             if (node.childs[i] != null) {
-                list.add(prefix + node.childs[i].data);
-                scanFind(node.childs[i], prefix, list);
+                if (node.childs[i].isEnd) {
+                    list.add(prefix + node.childs[i].data);
+                }
+                scanFind(node.childs[i], prefix + node.childs[i].data, list);
             }
         }
     }
@@ -151,7 +158,7 @@ class TireTree {
 
 class TreeNode {
 
-    static final int MAX_SIZE = 26;
+    static final int MAX_SIZE = 75;
     char data;
     TreeNode[] childs;
     boolean isEnd;
