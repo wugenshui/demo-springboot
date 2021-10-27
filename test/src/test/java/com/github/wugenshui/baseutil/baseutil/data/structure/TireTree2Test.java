@@ -3,8 +3,10 @@ package com.github.wugenshui.baseutil.baseutil.data.structure;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * TireTree 字典树,  快速找词、字符串分词、词语补全
@@ -60,20 +62,37 @@ class TireTree2 {
 
         List<String> list = new ArrayList<String>();
         StringBuffer sb = new StringBuffer();
-
+        TreeNode2 node = root;
         // 找到字符串末字符在字典树中的位置
         for (int i = 0, j = chars.length; i < j; i++) {
             loc = chars[i] - startChar;
-            if (root.childs[loc] != null) {
+            if (node.childs[loc] != null) {
                 sb.append(chars[i]);
-                root = root.childs[loc];
+                node = node.childs[loc];
             } else {
                 return null;
             }
         }
 
+        String prefix = String.valueOf(sb);
+        Queue<TreeNode3> queue = new ArrayDeque<TreeNode3>();
+        queue.add(new TreeNode3(prefix, node));
+        TreeNode3 treeNode3;
+        while (!queue.isEmpty()) {
+            treeNode3 = queue.remove();
+            if (treeNode3.node.isEnd) {
+                list.add(treeNode3.key);
+            }
+            if (treeNode3.node.childs != null) {
+                for (int i = 0, j = treeNode3.node.childs.length; i < j; i++) {
+                    if (treeNode3.node.childs[i] != null) {
+                        queue.add(new TreeNode3(treeNode3.key + treeNode3.node.childs[i].data, treeNode3.node.childs[i]));
+                    }
+                }
+            }
+        }
         // 子树将单词补齐
-        scanFind(root, String.valueOf(sb), list);
+        //scanFind(node, String.valueOf(sb), list);
 
         return list;
     }
@@ -107,5 +126,15 @@ class TreeNode2 {
         this.data = ch;
         this.childs = new TreeNode2[MAX_SIZE];
         this.isEnd = false;
+    }
+}
+
+class TreeNode3 {
+    public String key;
+    public TreeNode2 node;
+
+    public TreeNode3(String key, TreeNode2 node) {
+        this.node = node;
+        this.key = key;
     }
 }
