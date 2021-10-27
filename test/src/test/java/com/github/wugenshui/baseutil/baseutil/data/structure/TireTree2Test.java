@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -17,31 +16,28 @@ import java.util.List;
 public class TireTree2Test {
     @Test
     public void apiTest() {
-        TreeNode2 rood = new TreeNode2();
         TireTree2 tree = new TireTree2();
 
         //String[] strs = {"public", "static", "void", "main", "maia", "maib", "maiccc", "NIHAO", "asb_wq", "webxr_z", "AZmai"};
         String[] strs = {"maiccc", "maid", "ma"};
         for (int i = 0, j = strs.length; i < j; i++) {
-            tree.createTireTree(rood, strs[i]);
+            tree.createTireTree(strs[i]);
         }
 
         String str2 = "ma";
-        List<String> list2 = tree.wordFill(rood, str2);
+        List<String> list2 = tree.wordFill(str2);
         System.out.println("list2 = " + list2);
-        Iterator iter2 = list2.iterator();
-        while (iter2.hasNext()) {
-            System.out.println(iter2.next());
-        }
     }
 }
 
 class TireTree2 {
 
+    private TreeNode2 root = new TreeNode2();
     private static final char startChar = '0';
 
     // 在字典树中创建词子树
-    public void createTireTree(TreeNode2 node, String str) {
+    public void createTireTree(String str) {
+        TreeNode2 node = root;
         char[] chars = str.toCharArray();
         int loc = 0;
 
@@ -57,36 +53,8 @@ class TireTree2 {
         node.isEnd = true;
     }
 
-    // 连续字符串分词
-    public List<String> stringToWords(TreeNode2 node, String str) {
-        char[] chars = str.toCharArray();
-        TreeNode2 p = node;
-
-        List<String> list = new ArrayList<String>();
-        StringBuffer sb = new StringBuffer();
-
-        int loc = 0;
-        for (int i = 0, j = chars.length; i < j; i++) {
-            loc = chars[i] - startChar;
-            if (p.childs[loc] != null) {
-                sb.append(chars[i]);
-                if (p.childs[loc].isEnd) {  // 如果单词结束
-                    list.add(String.valueOf(sb));
-                    sb.delete(0, sb.length());
-                    p = node;
-                } else {
-                    p = p.childs[loc];
-                }
-            } else {
-                return null;
-            }
-        }
-
-        return list;
-    }
-
     // 单词补齐
-    public List<String> wordFill(TreeNode2 node, String str) {
+    public List<String> wordFill(String str) {
         char[] chars = str.toCharArray();
         int loc = 0;
 
@@ -96,16 +64,16 @@ class TireTree2 {
         // 找到字符串末字符在字典树中的位置
         for (int i = 0, j = chars.length; i < j; i++) {
             loc = chars[i] - startChar;
-            if (node.childs[loc] != null) {
+            if (root.childs[loc] != null) {
                 sb.append(chars[i]);
-                node = node.childs[loc];
+                root = root.childs[loc];
             } else {
                 return null;
             }
         }
 
         // 子树将单词补齐
-        scanFind(node, String.valueOf(sb), list);
+        scanFind(root, String.valueOf(sb), list);
 
         return list;
     }
@@ -125,7 +93,6 @@ class TireTree2 {
 }
 
 class TreeNode2 {
-
     static final int MAX_SIZE = 75;
     char data;
     TreeNode2[] childs;
