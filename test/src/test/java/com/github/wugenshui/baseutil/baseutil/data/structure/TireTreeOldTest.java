@@ -14,23 +14,23 @@ import java.util.List;
  * @date : 2021-10-27
  */
 @SpringBootTest
-public class TireTreeTest {
+public class TireTreeOldTest {
     @Test
     public void apiTest() {
-        TreeNode rood = new TreeNode();
-        TireTree tree = new TireTree();
+        TreeNodeOld root = new TreeNodeOld();
+        TireTreeOld tree = new TireTreeOld();
 
         //String[] strs = {"public", "static", "void", "main", "maia", "maib", "maiccc", "NIHAO", "asb_wq", "webxr_z", "AZmai"};
         String[] strs = {"maiccc", "maid"};
         for (int i = 0, j = strs.length; i < j; i++) {
-            tree.createTireTree(rood, strs[i]);
+            tree.createTireTree(root, strs[i]);
         }
 
-        System.out.println("tree.find(rood, \"main\")" + tree.find(rood, "main"));
-        System.out.println("tree.find(rood, \"ai\") = " + tree.find(rood, "ai"));
+        System.out.println("tree.find(root, \"main\")" + tree.find(root, "main"));
+        System.out.println("tree.find(root, \"ai\") = " + tree.find(root, "ai"));
 
         String str1 = "publicstaticvoidmain";
-        List<String> list1 = tree.stringToWords(rood, str1);
+        List<String> list1 = tree.stringToWords(root, str1);
         if (list1 != null) {
             Iterator iter1 = list1.iterator();
             while (iter1.hasNext()) {
@@ -41,7 +41,7 @@ public class TireTreeTest {
         System.out.println("************************************************ wordFill");
 
         String str2 = "ma";
-        List<String> list2 = tree.wordFill(rood, str2);
+        List<String> list2 = tree.wordFill(root, str2);
         Iterator iter2 = list2.iterator();
         while (iter2.hasNext()) {
             System.out.println(iter2.next());
@@ -49,12 +49,12 @@ public class TireTreeTest {
     }
 }
 
-class TireTree {
+class TireTreeOld {
 
     private static final char startChar = '0';
 
     // 在字典树中创建词子树
-    public void createTireTree(TreeNode node, String str) {
+    public void createTireTree(TreeNodeOld node, String str) {
         char[] chars = str.toCharArray();
         int loc = 0;
 
@@ -63,7 +63,7 @@ class TireTree {
             // 字符映射下标
             loc = chars[i] - startChar;
             if (node.childs[loc] == null) {
-                node.childs[loc] = new TreeNode(chars[i]);
+                node.childs[loc] = new TreeNodeOld(chars[i]);
             }
             node = node.childs[loc];
         }
@@ -72,7 +72,7 @@ class TireTree {
 
 
     // 在字典树中查找某单词
-    public boolean find(TreeNode node, String str) {
+    public boolean find(TreeNodeOld node, String str) {
         char[] chars = str.toCharArray();
         int loc = 0;
         for (int i = 0, j = chars.length; i < j; i++) {
@@ -89,9 +89,9 @@ class TireTree {
 
 
     // 连续字符串分词
-    public List<String> stringToWords(TreeNode node, String str) {
+    public List<String> stringToWords(TreeNodeOld node, String str) {
         char[] chars = str.toCharArray();
-        TreeNode p = node;
+        TreeNodeOld p = node;
 
         List<String> list = new ArrayList<String>();
         StringBuffer sb = new StringBuffer();
@@ -118,7 +118,7 @@ class TireTree {
 
 
     // 单词补齐
-    public List<String> wordFill(TreeNode node, String str) {
+    public List<String> wordFill(TreeNodeOld node, String str) {
         char[] chars = str.toCharArray();
         int loc = 0;
 
@@ -144,7 +144,7 @@ class TireTree {
 
 
     // 搜索子树
-    public void scanFind(TreeNode node, String prefix, List<String> list) {
+    public void scanFind(TreeNodeOld node, String prefix, List<String> list) {
         for (int i = 0, j = node.childs.length; i < j; i++) {
             if (node.childs[i] != null) {
                 if (node.childs[i].isEnd) {
@@ -156,21 +156,21 @@ class TireTree {
     }
 }
 
-class TreeNode {
+class TreeNodeOld {
 
     static final int MAX_SIZE = 75;
     char data;
-    TreeNode[] childs;
+    TreeNodeOld[] childs;
     boolean isEnd;
 
-    public TreeNode() {
-        this.childs = new TreeNode[MAX_SIZE];
+    public TreeNodeOld() {
+        this.childs = new TreeNodeOld[MAX_SIZE];
         this.isEnd = false;
     }
 
-    public TreeNode(char ch) {
+    public TreeNodeOld(char ch) {
         this.data = ch;
-        this.childs = new TreeNode[MAX_SIZE];
+        this.childs = new TreeNodeOld[MAX_SIZE];
         this.isEnd = false;
     }
 }

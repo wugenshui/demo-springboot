@@ -15,10 +15,10 @@ import java.util.Queue;
  * @date : 2021-10-27
  */
 @SpringBootTest
-public class TireTree2Test {
+public class TireTreeOld2Test {
     @Test
     public void apiTest() {
-        TireTree2 tree = new TireTree2();
+        TireTree tree = new TireTree();
 
         //String[] strs = {"public", "static", "void", "main", "maia", "maib", "maiccc", "NIHAO", "asb_wq", "webxr_z", "AZmai"};
         String[] strs = {"maiccc", "maid", "ma"};
@@ -32,23 +32,22 @@ public class TireTree2Test {
     }
 }
 
-class TireTree2 {
+class TireTree {
 
-    private TreeNode2 root = new TreeNode2();
+    private TreeNode root = new TreeNode();
     private static final char startChar = '0';
 
     // 在字典树中创建词子树
     public void createTireTree(String str) {
-        TreeNode2 node = root;
+        TreeNode node = root;
         char[] chars = str.toCharArray();
         int loc = 0;
 
         for (int i = 0, j = chars.length; i < j; i++) {
-
             // 字符映射下标
             loc = chars[i] - startChar;
             if (node.childs[loc] == null) {
-                node.childs[loc] = new TreeNode2(chars[i]);
+                node.childs[loc] = new TreeNode(chars[i]);
             }
             node = node.childs[loc];
         }
@@ -62,7 +61,7 @@ class TireTree2 {
 
         List<String> list = new ArrayList<String>();
         StringBuffer sb = new StringBuffer();
-        TreeNode2 node = root;
+        TreeNode node = root;
         // 找到字符串末字符在字典树中的位置
         for (int i = 0, j = chars.length; i < j; i++) {
             loc = chars[i] - startChar;
@@ -75,66 +74,42 @@ class TireTree2 {
         }
 
         String prefix = String.valueOf(sb);
-        Queue<TreeNode3> queue = new ArrayDeque<TreeNode3>();
-        queue.add(new TreeNode3(prefix, node));
-        TreeNode3 treeNode3;
+        Queue<TreeNode> queue = new ArrayDeque<TreeNode>();
+        node.str = prefix;
+        queue.add(node);
         while (!queue.isEmpty()) {
-            treeNode3 = queue.remove();
-            if (treeNode3.node.isEnd) {
-                list.add(treeNode3.key);
+            node = queue.remove();
+            if (node.isEnd) {
+                list.add(node.str);
             }
-            if (treeNode3.node.childs != null) {
-                for (int i = 0, j = treeNode3.node.childs.length; i < j; i++) {
-                    if (treeNode3.node.childs[i] != null) {
-                        queue.add(new TreeNode3(treeNode3.key + treeNode3.node.childs[i].data, treeNode3.node.childs[i]));
+            if (node.childs != null) {
+                for (int i = 0, j = node.childs.length; i < j; i++) {
+                    if (node.childs[i] != null) {
+                        node.childs[i].str = node.str + node.childs[i].data;
+                        queue.add(node.childs[i]);
                     }
                 }
             }
         }
-        // 子树将单词补齐
-        //scanFind(node, String.valueOf(sb), list);
-
         return list;
     }
-
-
-    // 搜索子树
-    public void scanFind(TreeNode2 node, String prefix, List<String> list) {
-        if (node.isEnd) {
-            list.add(prefix);
-        }
-        for (int i = 0, j = node.childs.length; i < j; i++) {
-            if (node.childs[i] != null) {
-                scanFind(node.childs[i], prefix + node.childs[i].data, list);
-            }
-        }
-    }
 }
 
-class TreeNode2 {
+class TreeNode {
     static final int MAX_SIZE = 75;
+    String str;
     char data;
-    TreeNode2[] childs;
+    TreeNode[] childs;
     boolean isEnd;
 
-    public TreeNode2() {
-        this.childs = new TreeNode2[MAX_SIZE];
+    public TreeNode() {
+        this.childs = new TreeNode[MAX_SIZE];
         this.isEnd = false;
     }
 
-    public TreeNode2(char ch) {
+    public TreeNode(char ch) {
         this.data = ch;
-        this.childs = new TreeNode2[MAX_SIZE];
+        this.childs = new TreeNode[MAX_SIZE];
         this.isEnd = false;
-    }
-}
-
-class TreeNode3 {
-    public String key;
-    public TreeNode2 node;
-
-    public TreeNode3(String key, TreeNode2 node) {
-        this.node = node;
-        this.key = key;
     }
 }
