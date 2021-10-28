@@ -46,11 +46,12 @@ class TireTree {
             // 字符映射下标
             loc = getIndex(chars[i]);
             if (node.childs[loc] == null) {
-                node.childs[loc] = new TreeNode(chars[i], true);
+                node.childs[loc] = new TreeNode(chars[i], i != chars.length);
             }
             node = node.childs[loc];
         }
         node.isEnd = true;
+
     }
 
     // 单词补齐
@@ -128,5 +129,9 @@ class TreeNode {
         }
         this.data = ch;
         this.isEnd = false;
+    }
+
+    public void initChild() {
+        this.childs = new TreeNode[MAX_SIZE];
     }
 }
