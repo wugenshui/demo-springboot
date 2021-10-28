@@ -20,8 +20,8 @@ public class TireTreeOld2Test {
     public void apiTest() {
         TireTree tree = new TireTree();
 
-        //String[] strs = {"public", "static", "void", "main", "maia", "maib", "maiccc", "NIHAO", "asb_wq", "webxr_z", "AZmai"};
-        String[] strs = {"maiccc", "maid", "ma"};
+        String[] strs = {"azAZ09_", "maiccc", "maid", "ma"};
+        // String[] strs = {"a"};
         for (int i = 0, j = strs.length; i < j; i++) {
             tree.createTireTree(strs[i]);
         }
@@ -34,8 +34,7 @@ public class TireTreeOld2Test {
 
 class TireTree {
 
-    private TreeNode root = new TreeNode();
-    private static final char startChar = '0';
+    private TreeNode root = new TreeNode(true);
 
     // 在字典树中创建词子树
     public void createTireTree(String str) {
@@ -45,9 +44,9 @@ class TireTree {
 
         for (int i = 0, j = chars.length; i < j; i++) {
             // 字符映射下标
-            loc = chars[i] - startChar;
+            loc = getIndex(chars[i]);
             if (node.childs[loc] == null) {
-                node.childs[loc] = new TreeNode(chars[i]);
+                node.childs[loc] = new TreeNode(chars[i], true);
             }
             node = node.childs[loc];
         }
@@ -64,7 +63,7 @@ class TireTree {
         TreeNode node = root;
         // 找到字符串末字符在字典树中的位置
         for (int i = 0, j = chars.length; i < j; i++) {
-            loc = chars[i] - startChar;
+            loc = getIndex(chars[i]);
             if (node.childs[loc] != null) {
                 sb.append(chars[i]);
                 node = node.childs[loc];
@@ -93,23 +92,41 @@ class TireTree {
         }
         return list;
     }
+
+    public int getIndex(char c) {
+        int result = 0;
+        if (c >= 'a' && c <= 'z') {
+            result = c - 'a';
+        } else if (c >= 'A' && c <= 'Z') {
+            result = c - 'A' + 26;
+        } else if (c >= '0' && c <= '9') {
+            result = c - '0' + 52;
+        } else {
+            result = 62;
+        }
+        return result;
+    }
 }
 
 class TreeNode {
-    static final int MAX_SIZE = 75;
+    static final int MAX_SIZE = 63;
     String str;
     char data;
     TreeNode[] childs;
     boolean isEnd;
 
-    public TreeNode() {
-        this.childs = new TreeNode[MAX_SIZE];
+    public TreeNode(boolean initChild) {
+        if (initChild) {
+            this.childs = new TreeNode[MAX_SIZE];
+        }
         this.isEnd = false;
     }
 
-    public TreeNode(char ch) {
+    public TreeNode(char ch, boolean initChild) {
+        if (initChild) {
+            this.childs = new TreeNode[MAX_SIZE];
+        }
         this.data = ch;
-        this.childs = new TreeNode[MAX_SIZE];
         this.isEnd = false;
     }
 }
