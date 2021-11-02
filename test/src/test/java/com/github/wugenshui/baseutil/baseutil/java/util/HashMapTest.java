@@ -17,15 +17,18 @@ public class HashMapTest {
         for (Map.Entry<Integer, String> entry : map.entrySet()) {
             System.out.println(entry.getKey() + " -> " + entry.getValue());
         }
+        // HashMap具体实现中的工具方法
         System.out.println(tableSizeFor(3));
         System.out.println(tableSizeFor(5));
     }
 
     public class Order {
         String date;
+
         private Order(String dateStr) {
             this.date = dateStr;
         }
+
         String getTransactionDay() {
             return date;
         }
@@ -80,47 +83,48 @@ public class HashMapTest {
                 iterator.remove();
             }
         }
-        System.out.println("orders = " +  Arrays.toString(orders.toArray()));
+        System.out.println("orders = " + Arrays.toString(orders.toArray()));
     }
-        // 返回大于等于initialCapacity的最小的二次幂数值。
-        // >>> 操作符表示无符号右移，高位取0。
-        // | 按位或运算
-        public int tableSizeFor ( int cap){
-            int n = cap - 1;
-            n |= n >>> 1;
-            n |= n >>> 2;
-            n |= n >>> 4;
-            n |= n >>> 8;
-            n |= n >>> 16;
-            return (n < 0) ? 1 : (n >= 100) ? 100 : n + 1;
+
+    // 返回大于等于initialCapacity的最小的二次幂数值。
+    // >>> 操作符表示无符号右移，高位取0。
+    // | 按位或运算
+    public int tableSizeFor(int cap) {
+        int n = cap - 1;
+        n |= n >>> 1;
+        n |= n >>> 2;
+        n |= n >>> 4;
+        n |= n >>> 8;
+        n |= n >>> 16;
+        return (n < 0) ? 1 : (n >= 100) ? 100 : n + 1;
+    }
+
+    @Test
+    public void forTest() {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(3, "张三");
+        map.put(4, "李四");
+        map.put(5, "王五");
+
+        // 推荐使用，支持修改，但不支持添加和删除
+        System.out.println("for (Map.Entry<Integer, String> entry : map.entrySet())");
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + " -> " + entry.getValue());
         }
 
-        @Test
-        public void forTest () {
-            Map<Integer, String> map = new HashMap<>();
-            map.put(3, "张三");
-            map.put(4, "李四");
-            map.put(5, "王五");
+        System.out.println("for (Integer i : map.keySet())");
+        for (Integer i : map.keySet()) {
+            System.out.println(i + " -> " + map.get(i));
+        }
 
-            // 推荐使用，支持修改，但不支持添加和删除
-            System.out.println("for (Map.Entry<Integer, String> entry : map.entrySet())");
-            for (Map.Entry<Integer, String> entry : map.entrySet()) {
-                System.out.println(entry.getKey() + " -> " + entry.getValue());
-            }
+        System.out.println("map.forEach((key, value))");
+        map.forEach((key, value) -> {
+            System.out.println(key + " -> " + value);
+        });
 
-            System.out.println("for (Integer i : map.keySet())");
-            for (Integer i : map.keySet()) {
-                System.out.println(i + " -> " + map.get(i));
-            }
-
-            System.out.println("map.forEach((key, value))");
-            map.forEach((key, value) -> {
-                System.out.println(key + " -> " + value);
-            });
-
-            System.out.println("for (String value : map.values())");
-            for (String value : map.values()) {
-                System.out.println(value);
-            }
+        System.out.println("for (String value : map.values())");
+        for (String value : map.values()) {
+            System.out.println(value);
         }
     }
+}
