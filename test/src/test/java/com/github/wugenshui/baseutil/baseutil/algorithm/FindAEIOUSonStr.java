@@ -16,6 +16,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class FindAEIOUSonStr {
     @Test
     public void test() {
+        Assert.assertEquals(4, countVowelSubstrings("aeiouua"));
+        System.out.println("---------------");
         Assert.assertEquals(2, countVowelSubstrings("aeiouu"));
         System.out.println("---------------");
         Assert.assertEquals(0, countVowelSubstrings("unicornarihan"));
@@ -34,7 +36,7 @@ public class FindAEIOUSonStr {
             return result;
         }
         String[] words = word.split("");
-        for (int i = 0; i < words.length - 5; i++) {
+        for (int i = 0; i < words.length - 4; i++) {
             for (int j = i; j < words.length; j++) {
                 if ("aeiou".indexOf(words[j]) == -1) {
                     break;
@@ -43,7 +45,7 @@ public class FindAEIOUSonStr {
                     String temp = word.substring(i, j + 1);
                     if (temp.indexOf("a") > -1 && temp.indexOf("e") > -1 && temp.indexOf("i") > -1 && temp.indexOf("o") > -1 && temp.indexOf("u") > -1) {
                         result++;
-                        System.out.println(temp);
+                        // System.out.println("找到了：" + result + " str:" + temp);
                     }
                 }
             }
