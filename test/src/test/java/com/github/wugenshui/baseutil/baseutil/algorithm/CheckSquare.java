@@ -4,10 +4,11 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * 检测四个点是否在正方形内部
+ * 检测四个点是否组成正方形
  *
  * @author : chenbo
  * @date : 2021-11-11
@@ -39,72 +40,33 @@ public class CheckSquare {
 }
 
 class DetectSquares {
-    private int[][] datas;
-    private int length = 0;
+    private Map<String, Integer> map = new HashMap<>();
 
     public DetectSquares() {
-        datas = new int[5000][2];
+
     }
 
     public void add(int[] point) {
-        datas[length] = point;
-        length++;
+        String key = point[0] + "," + point[1];
+        map.put(key, map.getOrDefault(key, 0) + 1);
     }
 
     public int count(int[] point) {
-        // System.out.println(Arrays.deepToString(datas));
         int counter = 0;
-        int[] tempX = null;
-        int[] tempY = null;
-        int[] tempOther = null;
-        for (int i = 0; i < length; i++) {
-            for (int j = i + 1; j < length; j++) {
-                for (int k = j + 1; k < length; k++) {
-                    // System.out.println(i + "," + j + "," + k);
-                    if (point[0] != datas[i][0] && point[1] != datas[i][1]) {
-                        tempOther = datas[i];
-                        if (point[0] == datas[j][0] && point[1] == datas[k][1]) {
-                            tempX = datas[j];
-                            tempY = datas[k];
-                        } else if (point[0] == datas[k][0] && point[1] == datas[j][1]) {
-                            tempX = datas[k];
-                            tempY = datas[j];
-                        } else {
-                            continue;
-                        }
-                    } else if (point[0] != datas[j][0] && point[1] != datas[j][1]) {
-                        tempOther = datas[j];
-                        if (point[0] == datas[i][0] && point[1] == datas[k][1]) {
-                            tempX = datas[i];
-                            tempY = datas[k];
-                        } else if (point[0] == datas[k][0] && point[1] == datas[i][1]) {
-                            tempX = datas[k];
-                            tempY = datas[i];
-                        } else {
-                            continue;
-                        }
-                    } else if (point[0] != datas[k][0] && point[1] != datas[k][1]) {
-                        tempOther = datas[k];
-                        if (point[0] == datas[j][0] && point[1] == datas[i][1]) {
-                            tempX = datas[j];
-                            tempY = datas[i];
-                        } else if (point[0] == datas[i][0] && point[1] == datas[j][1]) {
-                            tempX = datas[i];
-                            tempY = datas[j];
-                        } else {
-                            continue;
-                        }
-                    } else {
-                        continue;
-                    }
-                    if (tempY[0] == tempOther[0] && tempX[1] == tempOther[1] && Math.abs(point[1] - tempX[1]) == Math.abs(point[0] - tempY[0])) {
-                        System.out.println(i + "," + j + "," + k);
-                        System.out.println(Arrays.toString(point) + "," + Arrays.toString(tempX) + "," + Arrays.toString(tempY) + "," + Arrays.toString(tempOther) + ",");
-                        counter++;
-                    }
-                }
+        for (String key : map.keySet()) {
+            int countOther = map.get(key);
+            String[] other = key.split(",");
+            Integer otherX = Integer.valueOf(other[0]);
+            Integer otherY = Integer.valueOf(other[1]);
+            // 两点坐标不同说明为对角线的点，如果两边相减大小相同说明为正方形
+            if (point[0] != otherX && point[1] != otherY && Math.abs(point[0] - otherX) == Math.abs(point[1] - otherY)) {
+                // 通过对角线两点求得其它坐标数量
+                int countX = map.getOrDefault(point[0] + "," + otherY, 0);
+                int countY = map.getOrDefault(otherX + "," + point[1], 0);
+                counter += countX * countY * countOther;
             }
         }
+
         return counter;
     }
 }
