@@ -31,26 +31,25 @@ public class FindAEIOUSonStr {
     }
 
     public int countVowelSubstrings(String word) {
-        int result = 0;
-        if (word.length() < 5) {
-            return result;
-        }
-        String[] words = word.split("");
-        for (int i = 0; i < words.length - 4; i++) {
-            for (int j = i; j < words.length; j++) {
-                if ("aeiou".indexOf(words[j]) == -1) {
+        int counter = 0;
+        // 五个元音的状态
+        int vowel = 1 | 1 << 4 | 1 << 8 | 1 << 14 | 1 << 20;
+        for (int i = 0; i < word.length() - 4; i++) {
+            int mask = 0;
+            for (int j = i; j < word.length(); j++) {
+                int temp = 1 << word.charAt(j) - 'a';
+                // 碰到非元音结束内层循环
+                if ((vowel & temp) == 0) {
                     break;
                 }
-                if (j - i >= 4) {
-                    String temp = word.substring(i, j + 1);
-                    if (temp.indexOf("a") > -1 && temp.indexOf("e") > -1 && temp.indexOf("i") > -1 && temp.indexOf("o") > -1 && temp.indexOf("u") > -1) {
-                        result++;
-                        // System.out.println("找到了：" + result + " str:" + temp);
-                    }
+                mask |= temp;
+                if (vowel == mask) {
+                    // System.out.println("找到了：" + result + " str:" + word.substring(i, j + 1));
+                    counter++;
                 }
             }
         }
 
-        return result;
+        return counter;
     }
 }
