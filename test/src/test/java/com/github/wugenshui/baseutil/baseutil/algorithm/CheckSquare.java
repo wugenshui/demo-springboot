@@ -40,10 +40,10 @@ public class CheckSquare {
 }
 
 class DetectSquares {
-    private Map<Integer, Integer> map = new HashMap<>();
+    private Map<Integer, Integer> map;
 
     public DetectSquares() {
-
+        map = new HashMap<>();
     }
 
     public void add(int[] point) {
@@ -53,18 +53,26 @@ class DetectSquares {
 
     public int count(int[] point) {
         int counter = 0;
+        int x = point[0];
+        int y = point[1];
         for (Integer key : map.keySet()) {
             int countOther = map.get(key);
             Integer otherX = key >> 10;
             Integer otherY = key - (otherX << 10);
             // System.out.println(otherX + "," + otherY);
             // 两点坐标不同说明为对角线的点，如果两边相减大小相同说明为正方形
-            if (point[0] != otherX && point[1] != otherY && Math.abs(point[0] - otherX) == Math.abs(point[1] - otherY)) {
-                // 通过对角线两点求得其它坐标数量
-                int countX = map.getOrDefault((point[0] << 10) + otherY, 0);
-                int countY = map.getOrDefault((otherX << 10) + point[1], 0);
-                counter += countX * countY * countOther;
+            int a = Math.abs(x - otherX);
+            int b = Math.abs(y - otherY);
+            // 先检验边长,不同或者为0则中断本轮次
+            if (a != b || a == 0 || b == 0) {
+                continue;
             }
+            int key1 = (x << 10) + otherY;
+            int key2 = (otherX << 10) + y;
+            if (map.containsKey(key1) && map.containsKey(key2)) {
+                counter += map.get(key1) * map.get(key2) * countOther;
+            }
+
         }
 
         return counter;
