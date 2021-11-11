@@ -40,29 +40,29 @@ public class CheckSquare {
 }
 
 class DetectSquares {
-    private Map<String, Integer> map = new HashMap<>();
+    private Map<Integer, Integer> map = new HashMap<>();
 
     public DetectSquares() {
 
     }
 
     public void add(int[] point) {
-        String key = point[0] + "," + point[1];
+        int key = (point[0] << 10) + point[1];
         map.put(key, map.getOrDefault(key, 0) + 1);
     }
 
     public int count(int[] point) {
         int counter = 0;
-        for (String key : map.keySet()) {
+        for (Integer key : map.keySet()) {
             int countOther = map.get(key);
-            String[] other = key.split(",");
-            Integer otherX = Integer.valueOf(other[0]);
-            Integer otherY = Integer.valueOf(other[1]);
+            Integer otherX = key >> 10;
+            Integer otherY = key - (otherX << 10);
+            // System.out.println(otherX + "," + otherY);
             // 两点坐标不同说明为对角线的点，如果两边相减大小相同说明为正方形
             if (point[0] != otherX && point[1] != otherY && Math.abs(point[0] - otherX) == Math.abs(point[1] - otherY)) {
                 // 通过对角线两点求得其它坐标数量
-                int countX = map.getOrDefault(point[0] + "," + otherY, 0);
-                int countY = map.getOrDefault(otherX + "," + point[1], 0);
+                int countX = map.getOrDefault((point[0] << 10) + otherY, 0);
+                int countY = map.getOrDefault((otherX << 10) + point[1], 0);
                 counter += countX * countY * countOther;
             }
         }
