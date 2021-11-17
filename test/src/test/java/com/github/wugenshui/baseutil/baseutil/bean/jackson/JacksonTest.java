@@ -1,10 +1,12 @@
 package com.github.wugenshui.baseutil.baseutil.bean.jackson;
 
-import com.github.wugenshui.baseutil.baseutil.bean.StudentVO;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.github.wugenshui.baseutil.baseutil.bean.StudentVO;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -12,7 +14,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 /**
@@ -22,7 +26,30 @@ import java.util.TimeZone;
 @SpringBootTest
 public class JacksonTest {
     @Test
-    public void mapTest() throws IOException {
+    public void aTest() throws JsonProcessingException {
+        List<StudentVO> list = new ArrayList<>();
+        list.add(getStudentDO("张三"));
+        List<StudentVO> newList = read(list, StudentVO.class);
+        System.out.println(newList);
+    }
+
+    public <T> List<T> read(List<T> list, Class<T> clz) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        //json中多余的参数不报错
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        // Date 格式化格式
+        mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+        // 设置时区
+        mapper.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        // LocalDateTime 序列化反序列化
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        JavaType type = mapper.getTypeFactory().constructParametricType(List.class, clz);
+        return mapper.readValue(mapper.writeValueAsString(list), type);
+    }
+
+    @Test
+    public void apiTest() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         //json中多余的参数不报错
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
