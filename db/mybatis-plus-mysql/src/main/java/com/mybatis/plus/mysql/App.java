@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date : 2021-12-17
  */
 @SpringBootApplication
-@MapperScan("com.mybatis.plus.mysql.mapper")
+@MapperScan("com.mybatis.plus.mysql.**.mapper")
 public class App {
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
