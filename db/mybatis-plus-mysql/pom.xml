@@ -15,7 +15,6 @@
 
     <properties>
         <swagger.version>2.9.2</swagger.version>
-        <mybatis-plus.version>3.3.1</mybatis-plus.version>
         <velocity.version>2.1</velocity.version>
         <p6spy.version>3.8.1</p6spy.version>
         <mysql.version>8.0.19</mysql.version>
@@ -47,12 +46,16 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>${mybatis-plus.version}</version>
+            <version>3.4.3</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
             <version>3.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.velocity</groupId>

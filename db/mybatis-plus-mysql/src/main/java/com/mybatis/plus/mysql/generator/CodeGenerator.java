@@ -12,19 +12,20 @@ import java.util.Collections;
  */
 public class CodeGenerator {
     public static void main(String[] args) {
+        String projectPath = System.getProperty("user.dir") + "/db/mybatis-plus-mysql/";
         FastAutoGenerator.create("jdbc:p6spy:mysql://localhost:3306/test_school?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2B8", "root", "root")
                 .globalConfig(builder -> {
                     builder
                             .author("chenbo") // 设置作者
                             .enableSwagger() // 开启 swagger 模式
                             .fileOverride() // 覆盖已生成文件
-                            .outputDir("D://"); // 指定输出目录
+                            .outputDir(projectPath + "src/main/java"); // 指定输出目录
                 })
                 .packageConfig(builder -> {
                     builder
                             .parent("com.mybatis.plus.mysql") // 设置父包名
                             .moduleName("sims") // 设置父包模块名
-                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, "D://")); // 设置mapperXml生成路径
+                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, projectPath + "src/main/resources/mapper/")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
                     builder.addInclude("sims_class") // 设置需要生成的表名
