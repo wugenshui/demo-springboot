@@ -1,10 +1,12 @@
 package com.mybatis.plus.mysql.sims.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -20,14 +22,15 @@ public class Class implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId
+    @ApiModelProperty("班级ID")
+    private String classId;
+
     @ApiModelProperty("所在学院")
     private String collegeId;
 
     @ApiModelProperty("所属专业ID")
     private String majorId;
-
-    @ApiModelProperty("班级ID")
-    private String classId;
 
     @ApiModelProperty("班级名称")
     private String className;
@@ -69,6 +72,7 @@ public class Class implements Serializable {
     public void setCollegeId(String collegeId) {
         this.collegeId = collegeId;
     }
+
     public String getMajorId() {
         return majorId;
     }
@@ -76,6 +80,7 @@ public class Class implements Serializable {
     public void setMajorId(String majorId) {
         this.majorId = majorId;
     }
+
     public String getClassId() {
         return classId;
     }
@@ -83,6 +88,7 @@ public class Class implements Serializable {
     public void setClassId(String classId) {
         this.classId = classId;
     }
+
     public String getClassName() {
         return className;
     }
@@ -90,6 +96,7 @@ public class Class implements Serializable {
     public void setClassName(String className) {
         this.className = className;
     }
+
     public Integer getStudentNumber() {
         return studentNumber;
     }
@@ -97,6 +104,7 @@ public class Class implements Serializable {
     public void setStudentNumber(Integer studentNumber) {
         this.studentNumber = studentNumber;
     }
+
     public String getAdviser() {
         return adviser;
     }
@@ -104,6 +112,7 @@ public class Class implements Serializable {
     public void setAdviser(String adviser) {
         this.adviser = adviser;
     }
+
     public LocalDateTime getEstabDate() {
         return estabDate;
     }
@@ -111,6 +120,7 @@ public class Class implements Serializable {
     public void setEstabDate(LocalDateTime estabDate) {
         this.estabDate = estabDate;
     }
+
     public Integer getYearNumber() {
         return yearNumber;
     }
@@ -118,6 +128,7 @@ public class Class implements Serializable {
     public void setYearNumber(Integer yearNumber) {
         this.yearNumber = yearNumber;
     }
+
     public String getTenantId() {
         return tenantId;
     }
@@ -125,6 +136,7 @@ public class Class implements Serializable {
     public void setTenantId(String tenantId) {
         this.tenantId = tenantId;
     }
+
     public Integer getRevision() {
         return revision;
     }
@@ -132,6 +144,7 @@ public class Class implements Serializable {
     public void setRevision(Integer revision) {
         this.revision = revision;
     }
+
     public String getCreatedBy() {
         return createdBy;
     }
@@ -139,6 +152,7 @@ public class Class implements Serializable {
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
+
     public LocalDateTime getCreatedTime() {
         return createdTime;
     }
@@ -146,6 +160,7 @@ public class Class implements Serializable {
     public void setCreatedTime(LocalDateTime createdTime) {
         this.createdTime = createdTime;
     }
+
     public String getUpdatedBy() {
         return updatedBy;
     }
@@ -153,6 +168,7 @@ public class Class implements Serializable {
     public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
     }
+
     public LocalDateTime getUpdatedTime() {
         return updatedTime;
     }
@@ -164,20 +180,20 @@ public class Class implements Serializable {
     @Override
     public String toString() {
         return "Class{" +
-            "collegeId=" + collegeId +
-            ", majorId=" + majorId +
-            ", classId=" + classId +
-            ", className=" + className +
-            ", studentNumber=" + studentNumber +
-            ", adviser=" + adviser +
-            ", estabDate=" + estabDate +
-            ", yearNumber=" + yearNumber +
-            ", tenantId=" + tenantId +
-            ", revision=" + revision +
-            ", createdBy=" + createdBy +
-            ", createdTime=" + createdTime +
-            ", updatedBy=" + updatedBy +
-            ", updatedTime=" + updatedTime +
-        "}";
+                "collegeId=" + collegeId +
+                ", majorId=" + majorId +
+                ", classId=" + classId +
+                ", className=" + className +
+                ", studentNumber=" + studentNumber +
+                ", adviser=" + adviser +
+                ", estabDate=" + estabDate +
+                ", yearNumber=" + yearNumber +
+                ", tenantId=" + tenantId +
+                ", revision=" + revision +
+                ", createdBy=" + createdBy +
+                ", createdTime=" + createdTime +
+                ", updatedBy=" + updatedBy +
+                ", updatedTime=" + updatedTime +
+                "}";
     }
 }
