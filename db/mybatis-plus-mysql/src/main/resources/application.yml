@@ -17,4 +17,4 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapping/*Mapper.xml
-  type-aliases-package: com.mybatis.plus.mysql
+  type-aliases-package: com.mybatis.plus.mysql.sims.entity
