@@ -16,7 +16,8 @@
         <where>
             <!-- where 标签中第一个and会自动省略 -->
             <if test="className!=null and className!=''">
-                and class_name = #{className}
+                <!-- like匹配 -->
+                and class_name like concat('%', #{className}, '%')
             </if>
             <if test="collegeId!=null and collegeId!=''">
                 and college_id = #{collegeId}
