@@ -28,7 +28,7 @@ public class CodeGenerator {
                             .pathInfo(Collections.singletonMap(OutputFile.mapperXml, projectPath + "src/main/resources/mapper/")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
-                    builder.addInclude("sims_student") // 设置需要生成的表名
+                    builder.addInclude("sims_teacher") // 设置需要生成的表名
                             .addTablePrefix("sims_"); // 设置过滤表前缀
                 })
                 // 使用Freemarker引擎模板，默认的是Velocity引擎模板

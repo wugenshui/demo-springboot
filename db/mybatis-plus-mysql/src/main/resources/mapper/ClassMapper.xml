@@ -38,9 +38,9 @@
     </resultMap>
 
     <resultMap id="student" type="com.mybatis.plus.mysql.sims.entity.Student">
+        <id property="studentId" column="STUDENT_ID"/>
         <result property="collegeId" column="COLLEGE_ID"/>
         <result property="classId" column="CLASS_ID"/>
-        <result property="studentId" column="STUDENT_ID"/>
         <result property="studentName" column="STUDENT_NAME"/>
     </resultMap>
 </mapper>
