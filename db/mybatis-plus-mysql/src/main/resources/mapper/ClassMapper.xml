@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.plus.mysql.sims.mapper.ClassMapper">
-
     <select id="findByClassName" resultType="com.mybatis.plus.mysql.sims.entity.Class">
         select
         *
@@ -24,4 +23,24 @@
             </if>
         </where>
     </select>
+    <select id="findClassAndStudent" resultMap="classAndStudent">
+        select * from sims_class c,sims_student s
+        where c.CLASS_ID=s.CLASS_ID
+    </select>
+
+    <resultMap id="classAndStudent" type="com.mybatis.plus.mysql.sims.entity.ClassAndStudent">
+        <id property="collegeId" column="COLLEGE_ID"/>
+        <result property="majorId" column="MAJOR_ID"/>
+        <result property="classId" column="CLASS_ID"/>
+        <result property="className" column="CLASS_NAME"/>
+        <association property="students" column="STUDENT_ID" javaType="com.mybatis.plus.mysql.sims.entity.Student"
+                     resultMap="student"/>
+    </resultMap>
+
+    <resultMap id="student" type="com.mybatis.plus.mysql.sims.entity.Student">
+        <result property="collegeId" column="COLLEGE_ID"/>
+        <result property="classId" column="CLASS_ID"/>
+        <result property="studentId" column="STUDENT_ID"/>
+        <result property="studentName" column="STUDENT_NAME"/>
+    </resultMap>
 </mapper>

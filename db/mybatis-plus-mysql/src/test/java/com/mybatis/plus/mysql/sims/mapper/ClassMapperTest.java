@@ -16,7 +16,8 @@ class ClassMapperTest {
     private ClassMapper classMapper;
 
     @Test
-    void findByClassName() {
+    void findClassAndStudent() {
+        System.out.println(classMapper.findClassAndStudent());
     }
 
     @Test
