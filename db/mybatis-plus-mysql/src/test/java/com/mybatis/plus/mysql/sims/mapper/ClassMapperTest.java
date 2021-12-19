@@ -16,11 +16,6 @@ class ClassMapperTest {
     private ClassMapper classMapper;
 
     @Test
-    void findClassAndStudent() {
-        System.out.println(classMapper.findClassAndStudent());
-    }
-
-    @Test
     void findByClassNameOrCollegeId() {
         System.out.println(classMapper.findByClassNameOrCollegeId(null, "co"));
         System.out.println(classMapper.findByClassNameOrCollegeId("name", null));
