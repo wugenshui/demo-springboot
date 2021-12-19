@@ -2,6 +2,7 @@ package com.mybatis.plus.mysql.sims.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.mybatis.plus.mysql.sims.entity.College;
+import com.mybatis.plus.mysql.sims.entity.CollegeAndStudent;
 import com.mybatis.plus.mysql.sims.entity.CollegeAndTeacher;
 
 import java.util.List;
@@ -16,4 +17,5 @@ import java.util.List;
  */
 public interface CollegeMapper extends BaseMapper<College> {
     List<CollegeAndTeacher> findCollegeAndTeacher();
+    List<CollegeAndStudent> findCollegeAndStudent();
 }

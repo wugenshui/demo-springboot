@@ -18,4 +18,25 @@
         <id property="teacherId" column="TEACHER_ID"/>
         <result property="teacherName" column="TEACHER_NAME"/>
     </resultMap>
+
+
+    <select id="findCollegeAndStudent" resultMap="collegeAndStudent">
+        select
+        c.*,
+        s.*,
+        s.COLLEGE_ID as STUDENT_COLLEGE_ID
+        from sims_college c,sims_student s
+        where c.COLLEGE_ID=s.COLLEGE_ID
+    </select>
+
+    <resultMap id="collegeAndStudent" type="com.mybatis.plus.mysql.sims.entity.CollegeAndStudent">
+        <id property="collegeId" column="COLLEGE_ID"/>
+        <result property="collegeName" column="COLLEGE_NAME"/>
+        <collection property="students" ofType="com.mybatis.plus.mysql.sims.entity.Student" resultMap="student"/>
+    </resultMap>
+
+    <resultMap id="student" type="com.mybatis.plus.mysql.sims.entity.Student">
+        <id property="studentId" column="STUDENT_ID"/>
+        <result property="studentName" column="STUDENT_NAME"/>
+    </resultMap>
 </mapper>
