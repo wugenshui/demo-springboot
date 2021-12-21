@@ -1,10 +1,10 @@
-package com.github.wugenshui.single.best.practice.practice.controller.oss;
+package com.github.wugenshui.single.best.practice.controller.oss;
 
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
-import com.github.wugenshui.single.best.practice.practice.constant.MinioConstant;
-import com.github.wugenshui.single.best.practice.practice.entity.AjaxResult;
+import com.github.wugenshui.single.best.practice.constant.MinioConstant;
+import com.github.wugenshui.single.best.practice.entity.AjaxResult;
 import io.minio.*;
 import io.minio.errors.*;
 import io.swagger.annotations.Api;

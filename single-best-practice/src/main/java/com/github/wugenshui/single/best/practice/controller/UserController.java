@@ -1,11 +1,11 @@
-package com.github.wugenshui.single.best.practice.practice.controller;
+package com.github.wugenshui.single.best.practice.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
-import com.github.wugenshui.single.best.practice.practice.entity.User;
-import com.github.wugenshui.single.best.practice.practice.mapper.UserMapper;
-import com.github.wugenshui.single.best.practice.practice.service.UserService;
+import com.github.wugenshui.single.best.practice.entity.User;
+import com.github.wugenshui.single.best.practice.mapper.UserMapper;
+import com.github.wugenshui.single.best.practice.service.UserService;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

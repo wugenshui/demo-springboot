@@ -1,9 +1,9 @@
-package com.github.wugenshui.single.best.practice.practice.service.impl;
+package com.github.wugenshui.single.best.practice.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.github.wugenshui.single.best.practice.practice.entity.User;
-import com.github.wugenshui.single.best.practice.practice.mapper.UserMapper;
-import com.github.wugenshui.single.best.practice.practice.service.UserService;
+import com.github.wugenshui.single.best.practice.entity.User;
+import com.github.wugenshui.single.best.practice.mapper.UserMapper;
+import com.github.wugenshui.single.best.practice.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

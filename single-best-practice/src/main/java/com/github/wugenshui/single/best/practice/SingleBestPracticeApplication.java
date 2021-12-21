@@ -1,4 +1,4 @@
-package com.github.wugenshui.single.best.practice.practice;
+package com.github.wugenshui.single.best.practice;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

@@ -1,4 +1,4 @@
-package com.github.wugenshui.single.best.practice.practice.config;
+package com.github.wugenshui.single.best.practice.config;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;

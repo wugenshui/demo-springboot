@@ -2,9 +2,8 @@ package com.github.wugenshui.single.best.practice.service;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.github.wugenshui.single.best.practice.practice.entity.User;
-import com.github.wugenshui.single.best.practice.practice.mapper.UserMapper;
-import com.github.wugenshui.single.best.practice.practice.service.UserService;
+import com.github.wugenshui.single.best.practice.entity.User;
+import com.github.wugenshui.single.best.practice.mapper.UserMapper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

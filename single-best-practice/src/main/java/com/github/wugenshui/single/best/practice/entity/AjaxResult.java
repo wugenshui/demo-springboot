@@ -1,6 +1,6 @@
-package com.github.wugenshui.single.best.practice.practice.entity;
+package com.github.wugenshui.single.best.practice.entity;
 
-import com.github.wugenshui.single.best.practice.practice.enums.AjaxResultEnum;
+import com.github.wugenshui.single.best.practice.enums.AjaxResultEnum;
 
 /**
  * Ajax请求响应类

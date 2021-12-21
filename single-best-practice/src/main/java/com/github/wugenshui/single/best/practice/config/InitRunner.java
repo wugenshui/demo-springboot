@@ -1,6 +1,6 @@
-package com.github.wugenshui.single.best.practice.practice.config;
+package com.github.wugenshui.single.best.practice.config;
 
-import com.github.wugenshui.single.best.practice.practice.constant.MinioConstant;
+import com.github.wugenshui.single.best.practice.constant.MinioConstant;
 import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
