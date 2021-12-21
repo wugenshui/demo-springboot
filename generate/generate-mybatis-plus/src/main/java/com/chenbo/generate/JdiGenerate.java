@@ -82,8 +82,8 @@ public class JdiGenerate {
             gc.setOpen(false);
             // 实体属性 Swagger2 注解
             gc.setSwagger2(true);
-            gc.setBaseResultMap(false);
-            gc.setBaseColumnList(false);
+            gc.setBaseResultMap(true);
+            gc.setBaseColumnList(true);
             gc.setServiceName("%sService");
             gc.setDateType(DateType.ONLY_DATE);
             mpg.setGlobalConfig(gc);
