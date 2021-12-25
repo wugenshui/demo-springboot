@@ -38,5 +38,4 @@ public class JpaUser {
 
     private Boolean isAdmin;
 
-    // private List<String> hobby;
 }

@@ -24,16 +24,16 @@ public class DaoJpaApplicationTests {
     public void findTest() {
         List<JpaUser> jpaUsers = dao.findAll();
         jpaUsers.forEach(v -> {
-            log.info(v.toString());
+            log.info("findAll:" + v);
         });
 
         jpaUsers = dao.findByName("胡龙飞");
         jpaUsers.forEach(v -> {
-            log.info("findByName:" + v.toString());
+            log.info("findByName:" + v);
         });
 
         JpaUser jpaUser = dao.getOneByName("王天风");
-        log.info("user:" + jpaUser.toString());
+        log.info("user:" + jpaUser);
     }
 
     @Test
@@ -50,10 +50,10 @@ public class DaoJpaApplicationTests {
         jpaUser.setDeleted(0);
 
         jpaUser = dao.save(jpaUser);
-        log.info("save" + jpaUser.toString());
+        log.info("save" + jpaUser);
 
         jpaUser.setName("张三");
-        log.info("save" + jpaUser.toString());
+        log.info("save" + jpaUser);
 
         dao.delete(jpaUser);
         log.info("delete" + jpaUser);
