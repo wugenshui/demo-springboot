@@ -3,6 +3,7 @@ package com.chenbo.dao.jpa.entity;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 
@@ -12,9 +13,10 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Data
-public class User {
+public class JpaUser {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     private String name;
@@ -32,4 +34,8 @@ public class User {
     private Integer version;
 
     private Integer deleted;
+
+    private Boolean isAdmin;
+
+    // private List<String> hobby;
 }

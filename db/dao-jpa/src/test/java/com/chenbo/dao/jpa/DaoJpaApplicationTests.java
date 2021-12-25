@@ -1,6 +1,6 @@
 package com.chenbo.dao.jpa;
 
-import com.chenbo.dao.jpa.entity.User;
+import com.chenbo.dao.jpa.entity.JpaUser;
 import com.chenbo.dao.jpa.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -22,41 +22,41 @@ public class DaoJpaApplicationTests {
 
     @Test
     public void findTest() {
-        List<User> users = dao.findAll();
-        users.forEach(v -> {
+        List<JpaUser> jpaUsers = dao.findAll();
+        jpaUsers.forEach(v -> {
             log.info(v.toString());
         });
 
-        users = dao.findByName("胡龙飞");
-        users.forEach(v -> {
+        jpaUsers = dao.findByName("胡龙飞");
+        jpaUsers.forEach(v -> {
             log.info("findByName:" + v.toString());
         });
 
-        User user = dao.getOneByName("王天风");
-        log.info("user:" + user.toString());
+        JpaUser jpaUser = dao.getOneByName("王天风");
+        log.info("user:" + jpaUser.toString());
     }
 
     @Test
     public void insertTest() {
-        User user = new User();
-        user.setId(1L);
-        user.setName("");
-        user.setAge(0);
-        user.setEmail("");
-        user.setManagerId(2L);
-        user.setCreateTime(LocalDateTime.now());
-        user.setUpdateTime(LocalDateTime.now());
-        user.setVersion(0);
-        user.setDeleted(0);
+        JpaUser jpaUser = new JpaUser();
+        jpaUser.setId(1L);
+        jpaUser.setName("");
+        jpaUser.setAge(0);
+        jpaUser.setEmail("");
+        jpaUser.setManagerId(2L);
+        jpaUser.setCreateTime(LocalDateTime.now());
+        jpaUser.setUpdateTime(LocalDateTime.now());
+        jpaUser.setVersion(0);
+        jpaUser.setDeleted(0);
 
-        user = dao.save(user);
-        log.info("save" + user.toString());
+        jpaUser = dao.save(jpaUser);
+        log.info("save" + jpaUser.toString());
 
-        user.setName("张三");
-        log.info("save" + user.toString());
+        jpaUser.setName("张三");
+        log.info("save" + jpaUser.toString());
 
-        dao.delete(user);
-        log.info("delete" + user);
+        dao.delete(jpaUser);
+        log.info("delete" + jpaUser);
     }
 
 }
