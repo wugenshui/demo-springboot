@@ -1,0 +1,4 @@
+knife4j:
+  enable: true
+  # 开启增强后配置production为true则相当于屏蔽api
+  production: false
