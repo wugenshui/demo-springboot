@@ -32,11 +32,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         // 配置令牌端点的访问约束
-        // security
-        //         .tokenKeyAccess("permitAll()")
-        //         .checkTokenAccess("permitAll()")
-        //         .allowFormAuthenticationForClients();
-        super.configure(security);
+        security
+                .tokenKeyAccess("permitAll()")
+                .checkTokenAccess("permitAll()")
+                .allowFormAuthenticationForClients();
     }
 
     @Override

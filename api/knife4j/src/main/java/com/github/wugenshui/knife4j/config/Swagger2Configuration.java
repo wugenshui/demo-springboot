@@ -58,14 +58,13 @@ public class Swagger2Configuration {
         //scope方位
         List<AuthorizationScope> scopes = new ArrayList<>();
         scopes.add(new AuthorizationScope("read", "read all resources"));
+        scopes.add(new AuthorizationScope("write","write all resources"));
         SecurityReference securityReference = new SecurityReference("oauth2", scopes.toArray(new AuthorizationScope[]{}));
         SecurityContext securityContext = new SecurityContext(Arrays.asList(securityReference), PathSelectors.ant("/api/**"));
         //schemas
         List<SecurityScheme> securitySchemes = Arrays.asList(oAuth);
         //securyContext
         List<SecurityContext> securityContexts = Arrays.asList(securityContext);
-
-        String groupName = "2.X版本";
 
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(new ApiInfoBuilder()
