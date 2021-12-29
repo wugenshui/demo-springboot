@@ -2,7 +2,7 @@ package com.github.wugenshui.security.oauth2;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 
 /**
  * @author : chenbo
@@ -12,7 +12,8 @@ import org.springframework.web.client.RestTemplate;
 class Oauth2ApplicationTest {
     @Test
     public void oauth2Test() {
-        String response = new RestTemplate().postForObject("http://client:secret@localhost:8080/oauth/token", new Object(), String.class);
+        TestRestTemplate restTemplate = new TestRestTemplate();
+        String response = restTemplate.postForObject("http://client:secret@localhost:8080/oauth/token", null, String.class);
         System.out.println(response);
     }
 }
