@@ -3,7 +3,6 @@ package com.github.wugenshui.spring.security.service;
 import com.github.wugenshui.spring.security.dto.UserDto;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ import java.util.List;
  * @date : 2020-04-19
  */
 @Service
-public class SpringDataUserDetailsService implements UserDetailsService {
+public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
     /**
      * 根据 账号查询用户信息
      *
@@ -46,12 +45,12 @@ public class SpringDataUserDetailsService implements UserDetailsService {
         if ("admin".equals(username)) {
             return UserDto.builder()
                     .username("admin")
-                    .password(new BCryptPasswordEncoder().encode("admin"))
+                    .password(new BCryptPasswordEncoder().encode("123456"))
                     .build();
         } else {
             return UserDto.builder()
                     .username("user")
-                    .password(new BCryptPasswordEncoder().encode("user"))
+                    .password(new BCryptPasswordEncoder().encode("123456"))
                     .build();
         }
     }
