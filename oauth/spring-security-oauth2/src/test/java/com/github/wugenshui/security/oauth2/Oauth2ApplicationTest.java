@@ -18,12 +18,27 @@ import org.springframework.web.client.RestTemplate;
  */
 class Oauth2ApplicationTest {
     @Test
-    public void oauth2Test() {
+    public void clientCredentialsModeTest() {
         // basic身份认证
         RestTemplate restTemplate = new RestTemplateBuilder().basicAuthentication("client", "secret").build();
         // 请求参数
         MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "client_credentials");
+        params.add("scope", "any");
+        // 发起请求
+        JsonNode response = restTemplate.postForObject("http://localhost:8080/oauth/token", params, JsonNode.class);
+        System.out.println(response);
+    }
+
+    @Test
+    void passwordModeTest() {
+        // basic身份认证
+        RestTemplate restTemplate = new RestTemplateBuilder().basicAuthentication("client", "secret").build();
+        // 请求参数
+        MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
+        params.add("grant_type", "password");
+        params.add("username", "admin");
+        params.add("password", "123456");
         params.add("scope", "any");
         // 发起请求
         JsonNode response = restTemplate.postForObject("http://localhost:8080/oauth/token", params, JsonNode.class);
