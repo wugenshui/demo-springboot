@@ -37,6 +37,5 @@
         <!--        <module>java-jwt</module>-->
         <!--        <module>spring-security</module>-->
         <!--        <module>spring-security-oauth</module>-->
-        <module>oauth-spring-security-oauth2</module>
     </modules>
 </project>
