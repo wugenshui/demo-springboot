@@ -7,12 +7,15 @@ import freemarker.template.Template;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Writer;
 
 /**
@@ -81,20 +84,31 @@ public class GenerateService {
             Template template = configuration.getTemplate(templateName);
             // 调用模板对象的process方法输出文件。
             template.process(dataModel, out);
+            log.info("writeFile:{}->{}", templateName, targetDirectory.getAbsolutePath());
         } catch (Exception e) {
             log.error("文件写入失败", e);
         }
     }
 
-    private void copyFile(String directory, String templateName, String outputDirectory) throws FileNotFoundException {
+    private void copyFile(String directory, String templateName, String outputDirectory) throws Exception {
         File targetDirectory = new File(directory + outputDirectory);
         if (!FileUtil.exist(targetDirectory)) {
             log.info("mkdir:{}", targetDirectory.getAbsolutePath());
             FileUtil.mkdir(targetDirectory);
         }
+        ClassPathResource source = new ClassPathResource(directory + templateName);
+        InputStream input = source.getInputStream();
 
-        String sourceFile = FileUtil.getAbsolutePath(directory + templateName);
-        FileUtil.copyFile(sourceFile, directory + outputDirectory + templateName);
-        log.info("copyFile:{}->{}", sourceFile, directory + outputDirectory + templateName);
+        OutputStream os = new FileOutputStream(directory + outputDirectory + templateName);
+        int len = 2048;
+        byte[] buffer = new byte[len];
+
+        while ((len = input.read(buffer, 0, len)) != -1) {
+            os.write(buffer, 0, len);
+        }
+        os.close();
+        input.close();
+
+        log.info("copyFile:{}->{}", templateName, targetDirectory.getAbsolutePath());
     }
 }
