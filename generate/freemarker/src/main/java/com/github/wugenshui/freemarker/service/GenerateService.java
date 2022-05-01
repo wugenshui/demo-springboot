@@ -47,9 +47,8 @@ public class GenerateService {
 
         String directory = "java/";
 
-        File directoryFile = FileUtil.file(directory);
         // 设置模板文件所在的路径
-        configuration.setDirectoryForTemplateLoading(directoryFile);
+        configuration.setClassForTemplateLoading(GenerateService.class, "/java");
 
         File targetDirectory = new File(directory);
         FileUtil.del(targetDirectory);
