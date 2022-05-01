@@ -10,10 +10,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>${namespace}</groupId>
-	<artifactId>${name}</artifactId>
+	<groupId>com.huaweisoft</groupId>
+	<artifactId>test-service</artifactId>
 	<version>0.0.1</version>
-	<name>${name}</name>
+	<name>test-service</name>
 	<packaging>jar</packaging>
 
 	<description>Demo project for Spring Boot</description>
@@ -100,7 +100,7 @@
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
 				<includes>
-					<include>application-${r'${environment}'}.yml</include>
+					<include>application-${environment}.yml</include>
 				</includes>
 			</resource>
 		</resources>

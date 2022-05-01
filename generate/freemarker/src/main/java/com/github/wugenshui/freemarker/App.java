@@ -16,7 +16,7 @@ public class App {
         ConfigurableApplicationContext run = SpringApplication.run(App.class, args);
         GenerateService bean = run.getBean(GenerateService.class);
         JavaProperty property = new JavaProperty();
-        property.setName("testservice");
+        property.setName("test-service");
         property.setNamespace("com.huaweisoft");
         bean.generateJava(property);
     }

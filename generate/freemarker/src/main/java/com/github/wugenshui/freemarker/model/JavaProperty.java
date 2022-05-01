@@ -27,17 +27,17 @@ public class JavaProperty {
      *
      * @return
      */
-    public String packageName() {
+    public String getPackageName() {
         return name.replace("-", ".");
     }
 
     /**
-     * 命名空间与项目名称组合成的目录 /com/abc/test/service
+     * 命名空间与项目名称组合成的目录 com/abc/test/service/
      *
      * @return
      */
-    public String directory() {
-        return "/" + (namespace + "." + name).replace(".", "/").replace("-", "/");
+    public String getDirectory() {
+        return (namespace + "." + name).replace(".", "/").replace("-", "/") + "/";
     }
 
 }
