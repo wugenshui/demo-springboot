@@ -58,7 +58,7 @@ public class GenerateService {
         FileUtil.mkdir(targetDirectory);
         log.info("mkdir:{}", targetDirectory.getAbsolutePath());
 
-        writeFile(directory, ".gitignore.ftl", "", property);
+        writeFile(directory, ".gitignore.ftl.ftl", "", property);
         writeFile(directory, "App.java.ftl", "src/main/java/" + property.getDirectory(), property);
         copyFile(directory, "application.yml", "src/main/resources/");
         copyFile(directory, "application-dev.yml", "src/main/resources/");
@@ -69,6 +69,36 @@ public class GenerateService {
         copyFile(directory, "Jenkinsfile", "");
         writeFile(directory, "pom.xml.ftl", "", property);
         writeFile(directory, "AppTests.java.ftl", "src/test/java/" + property.getDirectory(), property);
+    }
+
+
+    /**
+     * 生成vuepress模板代码
+     */
+    public void generateVuePress(JavaProperty property) throws Exception {
+        String directory = "vuepress/";
+
+        // 设置模板文件所在的路径
+        configuration.setClassForTemplateLoading(GenerateService.class, "/vuepress");
+
+        File targetDirectory = new File(directory);
+        FileUtil.del(targetDirectory);
+        FileUtil.mkdir(targetDirectory);
+        log.info("mkdir:{}", targetDirectory.getAbsolutePath());
+
+        copyFile(directory, "deploy.sh", "docs/.vuepress/public/");
+        copyFile(directory, "Dockerfile", "docs/.vuepress/public/");
+        copyFile(directory, "favicon.ico", "docs/.vuepress/public/");
+        copyFile(directory, "logo.png", "docs/.vuepress/public/");
+        copyFile(directory, "palette.scss", "docs/.vuepress/styles/");
+        copyFile(directory, "config.js", "docs/.vuepress/");
+        copyFile(directory, "foo.md", "docs/guide/");
+        copyFile(directory, "gREADME.md", "docs/guide/", "README.md");
+        copyFile(directory, "dREADME.md", "docs/", "README.md");
+        writeFile(directory, ".gitignore.ftl", "", property);
+        copyFile(directory, "Jenkinsfile", "");
+        copyFile(directory, "package.json", "");
+        copyFile(directory, "README.md", "");
     }
 
     private void writeFile(String prefix, String templateName, String outputDirectory, Object dataModel) {
@@ -91,6 +121,10 @@ public class GenerateService {
     }
 
     private void copyFile(String directory, String templateName, String outputDirectory) throws Exception {
+        copyFile(directory, templateName, outputDirectory, templateName);
+    }
+
+    private void copyFile(String directory, String templateName, String outputDirectory, String outputFileName) throws Exception {
         File targetDirectory = new File(directory + outputDirectory);
         if (!FileUtil.exist(targetDirectory)) {
             log.info("mkdir:{}", targetDirectory.getAbsolutePath());
@@ -99,7 +133,7 @@ public class GenerateService {
         ClassPathResource source = new ClassPathResource(directory + templateName);
         InputStream input = source.getInputStream();
 
-        OutputStream os = new FileOutputStream(directory + outputDirectory + templateName);
+        OutputStream os = new FileOutputStream(directory + outputDirectory + outputFileName);
         int len = 2048;
         byte[] buffer = new byte[len];
 

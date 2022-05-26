@@ -19,5 +19,6 @@ public class App {
         property.setName("test-service");
         property.setNamespace("com.huaweisoft");
         bean.generateJava(property);
+        bean.generateVuePress(property);
     }
 }

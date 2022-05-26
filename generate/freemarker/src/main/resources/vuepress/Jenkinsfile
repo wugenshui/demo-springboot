@@ -1,0 +1,115 @@
+pipeline {
+  agent {
+    // 运行的服务器，前端项目统一使用JenkinsLinux（不可修改）
+    label 'JenkinsLinux'
+  }
+
+  options {
+    // 保留构建的产物和日志的次数
+    buildDiscarder(logRotator(numToKeepStr: '10'))
+    // 超时时间，120分钟没有构建完成直接失败，防止阻塞其它任务构建（可以根据项目实际情况调整）
+    timeout(time: 120, unit: 'MINUTES')
+    // 不允许同时执行流水线，可被用来防止同时访问共享资源等
+    disableConcurrentBuilds()
+  }
+
+  stages {
+
+    // ******************************** 初始化阶段 ********************************
+    stage('init') {
+      steps {
+        ansiColor(colorMapName: 'xterm') { }
+        // 日志包含时间信息
+        wrap([$class: 'TimestamperBuildWrapper']) {
+          script {
+            println "\033[34m 初始化 \033[0m"
+            names = env.JOB_NAME.split('/')
+            APP_NAME = names[0]
+          }
+        }
+      }
+    }
+
+
+    // ******************************** 构建阶段 ********************************
+
+    stage('build') {
+      when {
+        branch "master"
+      }
+      steps {
+        wrap([$class: 'TimestamperBuildWrapper']) {
+          // 构建阶段运行脚本（可以根据项目实际情况调整）
+          sh "npm install"
+          sh "npm run build"
+        }
+      }
+    }
+
+
+    // ******************************** 部署阶段 ********************************
+
+    stage('deploy') {
+      when {
+        branch "master"
+      }
+      steps {
+        sshPublisher(
+          publishers: [
+            sshPublisherDesc(
+              // 部署服务器简称，如未配置可以联系配置管理工程师添加（需要调整）
+              configName: 'tool',
+              transfers: [
+                sshTransfer(
+                  cleanRemote: false,
+                  // 源文件夹,可以配置多个,用逗号分割
+                  sourceFiles: 'docs/.vuepress/dist/**',
+                  // 移除原文件夹前缀
+                  removePrefix: 'docs/.vuepress/dist/',
+                  // 远程目录
+                  remoteDirectory: '$JOB_NAME',
+                  // 忽略路径
+                  excludes: '',
+                  // 部署脚本配置，结合项目实际情况调整
+                  execCommand:
+                  '''
+                  # 执行部署脚本（可以根据项目实际情况调整）
+                  chmod 774 /usr/local/$JOB_NAME/deploy.sh \
+                  && bash /usr/local/$JOB_NAME/deploy.sh $JOB_NAME prod
+                  ''',
+                  execTimeout: 0,
+                  flatten: false,
+                  makeEmptyDirs: false,
+                  noDefaultExcludes: false,
+                  patternSeparator: '[, ]+',
+                  remoteDirectorySDF: false
+                )
+              ],
+              usePromotionTimestamp: false,
+              useWorkspaceInPromotion: false,
+              verbose: false
+            )
+          ]
+        )
+      }
+    }
+
+  }
+
+  // ******************************** 构建完成通知 ********************************
+  post {
+    always {
+      wrap([$class: 'TimestamperBuildWrapper']) {
+        script {
+          // 邮件提醒
+          emailext (
+            subject: "【构建通知】'${env.JOB_NAME}' 构建 '${currentBuild.result}!'",
+            body: '''${SCRIPT,template="groovy-html.template"}''',
+            recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']]
+          )
+        }
+      }
+    }
+  }
+
+}
