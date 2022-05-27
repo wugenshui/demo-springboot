@@ -64,7 +64,7 @@ public class GenerateService {
         copyFile(directory, "application-dev.yml", "src/main/resources/");
         copyFile(directory, "application-prod.yml", "src/main/resources/");
         copyFile(directory, "application-test.yml", "src/main/resources/");
-        copyFile(directory, "deploy.sh", "src/main/resources/");
+        copyFile(directory, "deploy.sh.ftl", "src/main/resources/");
         copyFile(directory, "Dockerfile", "src/main/resources/");
         copyFile(directory, "Jenkinsfile", "");
         writeFile(directory, "pom.xml.ftl", "", property);
@@ -86,18 +86,18 @@ public class GenerateService {
         FileUtil.mkdir(targetDirectory);
         log.info("mkdir:{}", targetDirectory.getAbsolutePath());
 
-        copyFile(directory, "deploy.sh", "docs/.vuepress/public/");
+        writeFile(directory, "deploy.sh.ftl", "docs/.vuepress/public/", property);
         copyFile(directory, "Dockerfile", "docs/.vuepress/public/");
         copyFile(directory, "favicon.ico", "docs/.vuepress/public/");
         copyFile(directory, "logo.png", "docs/.vuepress/public/");
         copyFile(directory, "palette.scss", "docs/.vuepress/styles/");
-        copyFile(directory, "config.js", "docs/.vuepress/");
+        writeFile(directory, "config.js.ftl", "docs/.vuepress/", property);
         copyFile(directory, "foo.md", "docs/guide/");
         copyFile(directory, "gREADME.md", "docs/guide/", "README.md");
         copyFile(directory, "dREADME.md", "docs/", "README.md");
         writeFile(directory, ".gitignore.ftl", "", property);
         copyFile(directory, "Jenkinsfile", "");
-        copyFile(directory, "package.json", "");
+        writeFile(directory, "package.json.ftl", "", property);
         copyFile(directory, "README.md", "");
     }
 

@@ -7,21 +7,7 @@ import lombok.Data;
  * @date : 2022-04-30
  */
 @Data
-public class JavaProperty {
-    /**
-     * 命名空间,例如 com.abc
-     */
-    private String namespace;
-
-    /**
-     * 项目名称，_会替换成-,例如 test-service,
-     */
-    private String name;
-
-    public String getName() {
-        return name.replace("_", "-");
-    }
-
+public class JavaProperty extends GitProperty {
     /**
      * 包名，例如 test.service
      *

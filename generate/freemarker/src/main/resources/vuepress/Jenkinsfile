@@ -11,6 +11,10 @@ pipeline {
     timeout(time: 120, unit: 'MINUTES')
     // 不允许同时执行流水线，可被用来防止同时访问共享资源等
     disableConcurrentBuilds()
+    // 每条日志前打印时间
+    timestamps()
+    // 打印彩色日志
+    ansiColor('xterm')
   }
 
   stages {
@@ -18,31 +22,24 @@ pipeline {
     // ******************************** 初始化阶段 ********************************
     stage('init') {
       steps {
-        ansiColor(colorMapName: 'xterm') { }
-        // 日志包含时间信息
-        wrap([$class: 'TimestamperBuildWrapper']) {
-          script {
-            println "\033[34m 初始化 \033[0m"
-            names = env.JOB_NAME.split('/')
-            APP_NAME = names[0]
-          }
+        script {
+          println "\033[34m 初始化 \033[0m"
+          names = env.JOB_NAME.split('/')
+          APP_NAME = names[0]
         }
       }
     }
 
 
     // ******************************** 构建阶段 ********************************
-
     stage('build') {
       when {
         branch "master"
       }
       steps {
-        wrap([$class: 'TimestamperBuildWrapper']) {
-          // 构建阶段运行脚本（可以根据项目实际情况调整）
-          sh "npm install"
-          sh "npm run build"
-        }
+        // 构建阶段运行脚本（可以根据项目实际情况调整）
+        sh "npm install"
+        sh "npm run build"
       }
     }
 
@@ -99,15 +96,13 @@ pipeline {
   // ******************************** 构建完成通知 ********************************
   post {
     always {
-      wrap([$class: 'TimestamperBuildWrapper']) {
-        script {
-          // 邮件提醒
-          emailext (
-            subject: "【构建通知】'${env.JOB_NAME}' 构建 '${currentBuild.result}!'",
-            body: '''${SCRIPT,template="groovy-html.template"}''',
-            recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']]
-          )
-        }
+      script {
+        // 邮件提醒
+        emailext (
+          subject: "【构建通知】'${env.JOB_NAME}' 构建 '${currentBuild.result}!'",
+          body: '''${SCRIPT,template="groovy-html.template"}''',
+          recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']]
+        )
       }
     }
   }

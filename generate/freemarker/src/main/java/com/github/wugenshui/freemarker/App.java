@@ -16,9 +16,13 @@ public class App {
         ConfigurableApplicationContext run = SpringApplication.run(App.class, args);
         GenerateService bean = run.getBean(GenerateService.class);
         JavaProperty property = new JavaProperty();
-        property.setName("test-service");
+        property.setName("test-service".replace("_", "-"));
         property.setNamespace("com.huaweisoft");
-        bean.generateJava(property);
+        property.setRepo("http://gitlab/tool/cicd_doc");
+        property.setRegistry("docker.io");
+        property.setCompany("wu");
+
+        // bean.generateJava(property);
         bean.generateVuePress(property);
     }
 }
