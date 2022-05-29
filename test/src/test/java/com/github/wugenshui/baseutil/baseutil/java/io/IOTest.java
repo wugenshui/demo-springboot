@@ -23,6 +23,7 @@ public class IOTest {
         DataOutputStream dataOutputStream = new DataOutputStream(bufferedOutputStream);
         dataOutputStream.writeBytes(user.toString());
 
+        // 不管嵌套多少层流，只需刷新关闭最新的一个流即可
         dataOutputStream.flush();
         dataOutputStream.close();
     }
@@ -32,7 +33,6 @@ public class IOTest {
         FileInputStream fileInputStream = new FileInputStream("output.txt");
         BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
         DataInputStream dataInputStream = new DataInputStream(bufferedInputStream);
-        //dataInputStream.
         byte[] b = new byte[20];
         int len;
         while ((len = dataInputStream.read(b)) != -1) {
