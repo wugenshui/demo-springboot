@@ -40,7 +40,6 @@ import java.util.TooManyListenersException;
  */
 @Slf4j
 public class SipClient {
-
     private SipStack sipStack;
 
     private SipFactory sipFactory;
@@ -55,14 +54,14 @@ public class SipClient {
 
     private Dialog dialog;
 
-    String ip = "192.168.1.47";
+    String ip = "127.0.0.1";
     int port = 5061;
     String uname = "Tom";
 
     public static void main(String[] args) {
         SipClient client = new SipClient();
         client.init();
-        client.sendMessage("test_sender", "192.168.1.47:5061", "server", "192.168.1.47:5061", "");
+        client.sendMessage("test_sender", "127.0.0.1:5061", "server", "127.0.0.1:5061", "");
     }
 
     public void init() {

@@ -57,7 +57,7 @@ import java.util.TooManyListenersException;
 @Slf4j
 public class SipServer implements SipListener {
 
-    private static final String IP = "192.168.186.209";
+    private static final String IP = "0.0.0.0";
     SipStack sipStack = null;
     HeaderFactory headerFactory = null;
     AddressFactory addressFactory = null;
