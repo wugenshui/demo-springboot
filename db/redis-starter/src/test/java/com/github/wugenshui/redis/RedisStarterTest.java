@@ -2,14 +2,12 @@ package com.github.wugenshui.redis;
 
 import com.github.wugenshui.redis.vo.User;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.Serializable;
 import java.time.Duration;
@@ -27,14 +25,13 @@ import java.util.stream.IntStream;
  * @date : 2020-05-24
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
 @Slf4j
-public class RedisStarterTest {
+class RedisStarterTest {
     @Autowired
     RedisTemplate redisTemplate;
 
     @Test
-    public void testOperations() {
+    void testOperations() {
         String key = String.format("sample:user:cache:%s", "xxx");
         ValueOperations<String, User> operations = redisTemplate.opsForValue();
         // set,get测试
@@ -65,7 +62,6 @@ public class RedisStarterTest {
 
         Set<String> allKeys = redisTemplate.keys("*user*");
         allKeys.forEach(x -> log.info("key=" + x));
-
     }
 
     @Autowired
