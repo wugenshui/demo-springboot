@@ -5,12 +5,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
+import com.github.wugenshui.redis.subpub.RedisReceiver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.listener.ChannelTopic;
+import org.springframework.data.redis.listener.PatternTopic;
+import org.springframework.data.redis.listener.RedisMessageListenerContainer;
+import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
@@ -23,7 +26,6 @@ import java.io.Serializable;
  * @date : 2020-05-24
  */
 @Configuration
-@AutoConfigureAfter(RedisAutoConfiguration.class)
 public class RedisConfig {
 
     @Bean
@@ -43,8 +45,27 @@ public class RedisConfig {
         template.setHashKeySerializer(stringRedisSerializer);
         template.setValueSerializer(jackson2JsonRedisSerializer);
         template.setHashValueSerializer(jackson2JsonRedisSerializer);
+        // 连接工厂
         template.setConnectionFactory(redisConnectionFactory);
         template.afterPropertiesSet();
         return template;
+    }
+
+    @Bean
+    RedisMessageListenerContainer container(RedisConnectionFactory redisConnectionFactory, MessageListenerAdapter listenerAdapter) {
+        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+        container.setConnectionFactory(redisConnectionFactory);
+        // 可以添加多个 messageListener，配置不同的交换机
+        // 监听多个主题 PatternTopic
+        container.addMessageListener(listenerAdapter, new PatternTopic("msg*"));
+        // 监听单个主题 ChannelTopic
+        container.addMessageListener(listenerAdapter, new ChannelTopic("single"));
+        return container;
+    }
+
+    // 消息监听器适配器，绑定消息处理器，利用反射技术调用消息处理器的业务方法
+    @Bean
+    MessageListenerAdapter listenerAdapter(RedisReceiver receiver) {
+        return new MessageListenerAdapter(receiver);
     }
 }
