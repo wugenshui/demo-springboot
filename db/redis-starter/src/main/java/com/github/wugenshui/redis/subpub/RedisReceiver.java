@@ -8,7 +8,12 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class RedisReceiver {
-    public void handleMessage(String message) {
-        System.out.println("subscribe receive message:" + message);
+    /**
+     * 发布订阅模式，当订阅收到消息就会立即处理
+     */
+    public void handleMessage(String message) throws InterruptedException {
+        System.out.println("开始处理:" + message);
+        Thread.sleep(5000);
+        System.out.println("处理完毕:" + message);
     }
 }

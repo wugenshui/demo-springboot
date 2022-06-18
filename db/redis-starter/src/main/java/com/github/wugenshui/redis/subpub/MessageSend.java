@@ -22,7 +22,7 @@ public class MessageSend {
     /**
      * 定时发送消息
      */
-    @Scheduled(fixedRate = 2000)//定时发送
+    @Scheduled(fixedRate = 1000)//定时发送
     public void sendMessage() {
         redisTemplate.convertAndSend("msg", String.valueOf(new Random().nextInt(100)));
         redisTemplate.convertAndSend("msg2", "msg2");
