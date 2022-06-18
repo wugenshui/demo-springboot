@@ -2,6 +2,7 @@ package com.github.wugenshui.redis;
 
 import com.github.wugenshui.redis.vo.User;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,16 +31,20 @@ class RedisStarterTest {
     @Autowired
     RedisTemplate redisTemplate;
 
-    @Test
-    void testOperations() {
-        String key = String.format("sample:user:cache:%s", "xxx");
-        ValueOperations<String, User> operations = redisTemplate.opsForValue();
-        // set,get测试
-        operations.set(key, new User(100L, "chenzz", "666666"));
-        User value = operations.get(key);
-        log.info("[{}]: {}", value.getUsername(), value.getPassword());
+    @Autowired
+    private RedisTemplate<String, Serializable> redisSerialTemplate;
 
-        // 一次性设置获取多个key值
+    @Test
+    void userTest() {
+        String key = "user:0";
+        ValueOperations<String, User> operations = redisTemplate.opsForValue();
+        // 单个实体 set\get
+        User user = new User(0L, "aaa", "666666");
+        operations.set(key, user);
+        User getUser = operations.get(key);
+        Assertions.assertEquals(getUser.getPassword(), user.getPassword());
+
+        // 一次性设置获取多个值
         Map<String, User> maps = new HashMap<>();
         maps.put("user:1", new User(1L, "chenzz", "111111"));
         maps.put("user:2", new User(2L, "chenym", "222222"));
@@ -48,7 +53,8 @@ class RedisStarterTest {
         maps.put("user:5", new User(5L, "panwnz", "555555"));
 
         operations.multiSet(maps);
-        log.info("[第3个] - [{}]", operations.get("user:3").toString());
+        User user3 = operations.get("user:3");
+        log.info("[第3个] - [{}]", user3.toString());
 
         // 一次获取多个值
         List<String> keys = new ArrayList<>();
@@ -58,14 +64,12 @@ class RedisStarterTest {
         multiValues.forEach(x -> log.info("[{}]: {}", x.getUsername(), x.getPassword()));
 
         // 设置值时设置过期时间(2分钟后过期)
-        operations.set("user:xx", new User(20L, "czz", "xxxxxx"), Duration.ofMinutes(2));
+        operations.set("user:timeout", new User(20L, "czz", "xxxxxx"), Duration.ofMinutes(2));
 
         Set<String> allKeys = redisTemplate.keys("*user*");
         allKeys.forEach(x -> log.info("key=" + x));
     }
 
-    @Autowired
-    private RedisTemplate<String, Serializable> redisSerialTemplate;
 
     @Test
     public void testSerialzable() {
