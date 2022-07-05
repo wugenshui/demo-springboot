@@ -1,0 +1,30 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        # http://localhost:8080/holiday/get -> https://api.apihubs.cn/holiday/get
+        - id: holiday
+          uri: https://api.apihubs.cn
+          predicates:
+            - Path=/holiday/**
+        # http://localhost:8080/holiday2/holiday/get -> https://api.apihubs.cn/holiday/get
+        - id: holiday2
+          uri: https://api.apihubs.cn
+          predicates:
+            - Path=/holiday2/**
+          filters:
+            - StripPrefix=1
+        # http://localhost:8080/holiday3/get -> https://api.apihubs.cn/holiday/get
+        - id: holiday3
+          uri: https://api.apihubs.cn
+          predicates:
+            - Path=/holiday3/**
+          filters:
+            - RewritePath=/holiday3/(?<segment>.*), /holiday/$\{segment}
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - GET
