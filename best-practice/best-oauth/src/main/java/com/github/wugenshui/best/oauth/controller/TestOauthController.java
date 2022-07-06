@@ -14,30 +14,36 @@ import org.springframework.web.bind.annotation.RestController;
  * @date : 2020-04-26
  */
 @RestController
-@RequestMapping("/test")
+@RequestMapping
 @Slf4j
-public class TestOaurhController {
+public class TestOauthController {
+
+    @GetMapping("/f0")
+    @PreAuthorize("hasAuthority('f1')")
+    public String f0() {
+        return getUserName() + "访问资源0";
+    }
 
     @GetMapping("/f1")
-    @PreAuthorize("hasAnyAuthority('f1')")
+    @PreAuthorize("hasAnyAuthority('f1', 'f2')")
     public String f1() {
-        return getUser() + "访问资源1";
+        return getUserName() + "访问资源1";
     }
 
     @GetMapping("/f2")
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasRole('admin')")
     public String f2() {
-        return getUser() + "访问资源2";
+        return getUserName() + "访问资源2";
     }
-
 
     @GetMapping("/f3")
+    @PreAuthorize("permitAll()")
     public String f3() {
-        return getUser() + "访问资源3";
+        return getUserName() + "访问资源3";
     }
 
-    private String getUser() {
-        String username = null;
+    private String getUserName() {
+        String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         log.info("访问接口用户：" + principal);
         if (principal == null) {
