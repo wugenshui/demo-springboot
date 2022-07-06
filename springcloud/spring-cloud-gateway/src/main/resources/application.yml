@@ -21,6 +21,19 @@ spring:
             - Path=/holiday3/**
           filters:
             - RewritePath=/holiday3/(?<segment>.*), /holiday/$\{segment}
+          #      - id: demo
+          #        # 路由到其他服务,url需要用[lb://]+[serviceId]，lb代表从注册中心获取服务
+          #        uri: lb://demo
+          #        predicates:
+          #        # 仅转发/demo/**路径
+          #        - Path=/demo/**
+          #      - id: demo-websocket
+          #        # lb:ws://代表从注册中心获取demo-websocket服务，并且转发协议为 websocket
+          #        uri: lb:ws://demo-websocket
+          #        predicates:
+          #        # 仅转发/demows端点下的所有路径
+          #        - Path=/demows/**
+          # 路由到其他服务,url 可以配置[lb://]+[serviceId]和[http://] + [ip] + : + [port]
       globalcors:
         cors-configurations:
           '[/**]':
