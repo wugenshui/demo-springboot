@@ -4,6 +4,7 @@ import com.github.wugenshui.best.admin.service.dto.AjaxResult;
 import com.github.wugenshui.best.admin.service.enums.AjaxResultEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -22,9 +23,6 @@ public class GlobalExceptionHandler {
 
     /**
      * 处理参数校验异常
-     *
-     * @param ex
-     * @return
      */
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public AjaxResult handlerMethodArgumentNotValid(MethodArgumentNotValidException ex) {
@@ -35,9 +33,6 @@ public class GlobalExceptionHandler {
 
     /**
      * 处理参数校验异常
-     *
-     * @param ex
-     * @return
      */
     @ExceptionHandler(BindException.class)
     public AjaxResult handleBindException(BindException ex) {
@@ -47,16 +42,21 @@ public class GlobalExceptionHandler {
     }
 
     /**
+     * 处理未授权接口访问
+     */
+    @ExceptionHandler(AccessDeniedException.class)
+    public AjaxResult handleAccessDeniedException(AccessDeniedException ex) {
+        return new AjaxResult(AjaxResultEnum.UNAUTH.getState(), "未授权的接口");
+    }
+
+    /**
      * 处理其它未处理异常
-     *
-     * @param ex
-     * @return
      */
     @ExceptionHandler(value = Exception.class)
     public AjaxResult handleOtherException(Exception ex) {
         log.error("系统全局异常", ex);
         if (log.isInfoEnabled()) {
-            return AjaxResult.error(ex.getMessage());
+            return AjaxResult.error(StringUtils.defaultIfBlank(ex.getMessage(), AjaxResultEnum.ERROR.getMsg()));
         }
         return AjaxResult.error(AjaxResultEnum.ERROR.getMsg());
     }
