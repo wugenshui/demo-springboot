@@ -22,11 +22,11 @@ public class User {
     @ApiModelProperty("用户ID")
     private Long id;
 
-    @ApiModelProperty("用户名")
+    @ApiModelProperty(value = "用户名", required = true)
     @NotEmpty(message = "请输入用户名!")
     private String name;
 
-    @ApiModelProperty("密码")
+    @ApiModelProperty(value = "密码", required = true)
     @NotEmpty(message = "请输入用户密码!")
     private String password;
 
