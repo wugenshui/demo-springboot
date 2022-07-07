@@ -14,10 +14,8 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @date : 2020-04-25
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class BCryptTest {
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Test
     public void encodeTest() {
