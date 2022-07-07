@@ -14,7 +14,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
 /**
- * 授权服务器配置
+ * 简单的授权服务器配置
  *
  * @author : chenbo
  * @date : 2020-04-25

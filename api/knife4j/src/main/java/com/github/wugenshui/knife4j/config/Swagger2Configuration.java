@@ -1,5 +1,6 @@
 package com.github.wugenshui.knife4j.config;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -34,36 +35,29 @@ import java.util.List;
 public class Swagger2Configuration {
 
     /**
-     * api接口包扫描路径
-     */
-    public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.github.wugenshui.knife4j.controller";
-
-    /**
      * 版本号
      */
     public static final String VERSION = "1.0.0";
 
     @Bean(value = "defaultApi2")
     public Docket defaultApi2() {
-        //schema
         List<GrantType> grantTypes = new ArrayList<>();
-        //密码模式
+        // 密码模式
         String passwordTokenUrl = "http://localhost:8080/oauth/token";
         ResourceOwnerPasswordCredentialsGrant resourceOwnerPasswordCredentialsGrant = new ResourceOwnerPasswordCredentialsGrant(passwordTokenUrl);
         grantTypes.add(resourceOwnerPasswordCredentialsGrant);
 
         OAuth oAuth = new OAuthBuilder().name("oauth2")
                 .grantTypes(grantTypes).build();
-        //context
-        //scope方位
+        // scope
         List<AuthorizationScope> scopes = new ArrayList<>();
         scopes.add(new AuthorizationScope("read", "read all resources"));
-        scopes.add(new AuthorizationScope("write","write all resources"));
+        scopes.add(new AuthorizationScope("write", "write all resources"));
         SecurityReference securityReference = new SecurityReference("oauth2", scopes.toArray(new AuthorizationScope[]{}));
         SecurityContext securityContext = new SecurityContext(Arrays.asList(securityReference), PathSelectors.ant("/api/**"));
-        //schemas
+        // schemes
         List<SecurityScheme> securitySchemes = Arrays.asList(oAuth);
-        //securyContext
+        // contexts
         List<SecurityContext> securityContexts = Arrays.asList(securityContext);
 
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
@@ -75,10 +69,10 @@ public class Swagger2Configuration {
                         .version(VERSION)
                         .build())
                 //分组名称
-                .groupName("2.X版本")
+                .groupName("通用接口")
                 .select()
-                //这里指定Controller扫描包路径
-                .apis(RequestHandlerSelectors.basePackage(SWAGGER_SCAN_BASE_PACKAGE))
+                // 这里指定 API 扫描方式
+                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
                 .build()
                 .securityContexts(securityContexts).securitySchemes(securitySchemes);
