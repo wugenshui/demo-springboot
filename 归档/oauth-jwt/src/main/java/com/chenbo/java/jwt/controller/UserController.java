@@ -24,6 +24,7 @@ public class UserController {
 
     /**
      * 登录
+     * curl http://localhost:8080/api/login -X POST -H "Content-Type:application/json" -d "{\"password\": \"123\"}"
      *
      * @param user
      * @return
@@ -48,6 +49,12 @@ public class UserController {
         }
     }
 
+    /**
+     * 测试获取的token
+     * curl http://localhost:8080/api/getMessage -H "token:token"
+     *
+     * @return
+     */
     @UserLoginToken
     @GetMapping("/getMessage")
     public String getMessage() {
