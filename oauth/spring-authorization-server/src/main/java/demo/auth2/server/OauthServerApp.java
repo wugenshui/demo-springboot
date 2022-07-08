@@ -1,17 +1,17 @@
-package com.github.wugenshui.security.oauth2;
+package demo.auth2.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * OAuth2认证授权服务器
+ * 启动类
  *
  * @author : chenbo
- * @date : 2021-12-29
+ * @date : 2022-07-08
  */
 @SpringBootApplication
-public class Oauth2Application {
+public class OauthServerApp {
     public static void main(String[] args) {
-        SpringApplication.run(Oauth2Application.class, args);
+        SpringApplication.run(OauthServerApp.class, args);
     }
 }
