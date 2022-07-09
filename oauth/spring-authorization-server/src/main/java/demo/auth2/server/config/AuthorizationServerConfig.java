@@ -60,17 +60,20 @@ public class AuthorizationServerConfig {
     @Bean
     public RegisteredClientRepository registeredClientRepository(JdbcTemplate jdbcTemplate) {
         RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
-                .clientId("messaging-client")
+                .clientId("client")
                 .clientSecret("{noop}secret")
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+                .authorizationGrantType(AuthorizationGrantType.PASSWORD)
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
                 .redirectUri("http://127.0.0.1:8080/login/oauth2/code/messaging-client-oidc")
                 .redirectUri("http://127.0.0.1:8080/authorized")
+                .redirectUri("https://www.baidu.com")
                 .scope(OidcScopes.OPENID)
-                .scope("message.read")
-                .scope("message.write")
+                .scope("all")
+                .scope("read")
+                .scope("write")
                 .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
                 .build();
 
@@ -109,16 +112,16 @@ public class AuthorizationServerConfig {
         return ProviderSettings.builder().issuer("http://localhost:9000").build();
     }
 
-    @Bean
-    public EmbeddedDatabase embeddedDatabase() {
-        return new EmbeddedDatabaseBuilder()
-                .generateUniqueName(true)
-                .setType(EmbeddedDatabaseType.H2)
-                .setScriptEncoding("UTF-8")
-                .addScript("org/springframework/security/oauth2/server/authorization/oauth2-authorization-schema.sql")
-                .addScript("org/springframework/security/oauth2/server/authorization/oauth2-authorization-consent-schema.sql")
-                .addScript("org/springframework/security/oauth2/server/authorization/client/oauth2-registered-client-schema.sql")
-                .build();
-    }
+    // @Bean
+    // public EmbeddedDatabase embeddedDatabase() {
+    //     return new EmbeddedDatabaseBuilder()
+    //             .generateUniqueName(true)
+    //             .setType(EmbeddedDatabaseType.H2)
+    //             .setScriptEncoding("UTF-8")
+    //             .addScript("org/springframework/security/oauth2/server/authorization/oauth2-authorization-schema.sql")
+    //             .addScript("org/springframework/security/oauth2/server/authorization/oauth2-authorization-consent-schema.sql")
+    //             .addScript("org/springframework/security/oauth2/server/authorization/client/oauth2-registered-client-schema.sql")
+    //             .build();
+    // }
 
 }
