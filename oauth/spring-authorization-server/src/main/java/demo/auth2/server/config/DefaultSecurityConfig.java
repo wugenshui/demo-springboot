@@ -18,6 +18,12 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class DefaultSecurityConfig {
 
+    /**
+     * 身份验证过滤链
+     * @param http
+     * @return
+     * @throws Exception
+     */
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -28,6 +34,9 @@ public class DefaultSecurityConfig {
         return http.build();
     }
 
+    /**
+     * 用户详细信息服务，用于检索要进行身份验证的用户。
+     */
     @Bean
     UserDetailsService users() {
         UserDetails user = User.withDefaultPasswordEncoder()
