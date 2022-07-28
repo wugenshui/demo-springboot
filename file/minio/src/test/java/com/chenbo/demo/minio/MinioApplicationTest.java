@@ -23,7 +23,7 @@ public class MinioApplicationTest {
         try {
             MinioClient minioClient = MinioClient
                     .builder()
-                    .endpoint("http://192.168.192.168:9000")
+                    .endpoint("http://192.168.0.222:9000")
                     .credentials("minio", "minio2021")
                     .build();
 

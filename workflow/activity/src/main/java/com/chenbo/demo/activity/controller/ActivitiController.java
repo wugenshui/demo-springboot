@@ -1,7 +1,6 @@
 package com.github.wugenshui.activity.controller;
 
 import com.github.wugenshui.activity.util.SecurityUtil;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.activiti.api.process.model.ProcessDefinition;
 import org.activiti.api.process.model.ProcessInstance;
 import org.activiti.api.process.model.builders.ProcessPayloadBuilder;
@@ -31,7 +30,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/")
 public class ActivitiController {
-    ObjectMapper objectMapper = new ObjectMapper();
 
     /**
      * 流程引擎对象
