@@ -37,6 +37,10 @@ public class MinioApplicationTest {
                 System.out.println("Bucket already exists.");
             }
 
+            System.out.println(defaultBucketPolicy("image"));
+            // 设置桶访问策略
+            minioClient.setBucketPolicy(SetBucketPolicyArgs.builder().bucket("image").config(defaultBucketPolicy("image").toString()).build());
+
             // 上传
             minioClient.uploadObject(UploadObjectArgs.builder()
                     .bucket("image")
@@ -64,5 +68,70 @@ public class MinioApplicationTest {
         } catch (MinioException ex) {
             System.out.println(ex);
         }
+    }
+
+    /**
+     * 获取默认桶策略,可以读写
+     *
+     * @param bucketName 桶名称
+     * @return
+     */
+    private static StringBuilder defaultBucketPolicy(String bucketName) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("{\n" +
+                "    \"Version\": \"2012-10-17\",\n" +
+                "    \"Statement\": [\n" +
+                "        {\n" +
+                "            \"Effect\": \"Allow\",\n" +
+                "            \"Principal\": {\n" +
+                "                \"AWS\": [\n" +
+                "                    \"*\"\n" +
+                "                ]\n" +
+                "            },\n" +
+                "            \"Action\": [\n" +
+                "                \"s3:GetBucketLocation\"\n" +
+                "            ],\n" +
+                "            \"Resource\": [\n" +
+                "                \"arn:aws:s3:::" + bucketName + "\"\n" +
+                "            ]\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"Effect\": \"Allow\",\n" +
+                "            \"Principal\": {\n" +
+                "                \"AWS\": [\n" +
+                "                    \"*\"\n" +
+                "                ]\n" +
+                "            },\n" +
+                "            \"Action\": [\n" +
+                "                \"s3:ListBucket\"\n" +
+                "            ],\n" +
+                "            \"Resource\": [\n" +
+                "                \"arn:aws:s3:::" + bucketName + "\"\n" +
+                "            ],\n" +
+                "            \"Condition\": {\n" +
+                "                \"StringEquals\": {\n" +
+                "                    \"s3:prefix\": [\n" +
+                "                        \"*\"\n" +
+                "                    ]\n" +
+                "                }\n" +
+                "            }\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"Effect\": \"Allow\",\n" +
+                "            \"Principal\": {\n" +
+                "                \"AWS\": [\n" +
+                "                    \"*\"\n" +
+                "                ]\n" +
+                "            },\n" +
+                "            \"Action\": [\n" +
+                "                \"s3:GetObject\"\n" +
+                "            ],\n" +
+                "            \"Resource\": [\n" +
+                "                \"arn:aws:s3:::" + bucketName + "/**\"\n" +
+                "            ]\n" +
+                "        }\n" +
+                "    ]\n" +
+                "}");
+        return builder;
     }
 }
