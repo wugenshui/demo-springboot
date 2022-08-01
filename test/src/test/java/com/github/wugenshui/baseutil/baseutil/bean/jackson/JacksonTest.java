@@ -35,7 +35,7 @@ public class JacksonTest {
 
     public <T> List<T> read(List<T> list, Class<T> clz) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        //json中多余的参数不报错
+        // json中多余的参数不报错
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         // Date 格式化格式
         mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
@@ -51,14 +51,20 @@ public class JacksonTest {
     @Test
     public void apiTest() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
+
+        // LocalDateTime 序列化反序列化
+        objectMapper.registerModule(new JavaTimeModule());
         //json中多余的参数不报错
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        StudentVO vo = objectMapper.readValue("{\"name1\":\"123\"}", StudentVO.class);
+        System.out.println("vo = " + vo);
+
+
+
         // Date 格式化格式
         objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
         // 设置时区
         objectMapper.setTimeZone(TimeZone.getTimeZone("GMT+8"));
-        // LocalDateTime 序列化反序列化
-        objectMapper.registerModule(new JavaTimeModule());
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         //JavaTimeModule javaTimeModule = new JavaTimeModule();
         //javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
@@ -67,11 +73,12 @@ public class JacksonTest {
         //javaTimeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         //objectMapper.registerModule(javaTimeModule);
 
-        String userStr = objectMapper.writeValueAsString(getStudentDO("张三"));
-        System.out.println("userStr = " + userStr);
+        StudentVO user = getStudentDO("张三");
+        String userStr = objectMapper.writeValueAsString(user);
+        System.out.println("userW = " + user);
 
-        StudentVO user = objectMapper.readValue(userStr, StudentVO.class);
-        System.out.println("user = " + user);
+        user = objectMapper.readValue(userStr, StudentVO.class);
+        System.out.println("userR = " + user);
     }
 
     private StudentVO getStudentDO(String name) {
