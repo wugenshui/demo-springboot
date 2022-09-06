@@ -55,4 +55,12 @@ public class DateUtilTest {
         // 打印出耗时
         Console.log(stopWatch.prettyPrint());
     }
+
+    @Test
+    public void formatTest() {
+        System.out.println(DateUtil.formatBetween(DateUtil.yesterday(), DateUtil.date()));
+        System.out.println(DateUtil.formatBetween(DateUtil.lastWeek(), DateUtil.date()));
+        System.out.println(DateUtil.formatBetween(DateUtil.lastMonth(), DateUtil.date()));
+        System.out.println(DateUtil.formatBetween(DateUtil.beginOfYear(DateUtil.date()), DateUtil.date()));
+    }
 }
