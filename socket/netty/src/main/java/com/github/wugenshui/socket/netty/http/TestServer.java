@@ -1,4 +1,4 @@
-package com.github.wugenshui.socket.netty.demo1;
+package com.github.wugenshui.socket.netty.http;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
