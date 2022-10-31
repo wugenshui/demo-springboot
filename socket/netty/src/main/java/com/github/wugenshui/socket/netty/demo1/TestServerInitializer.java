@@ -1,4 +1,4 @@
-package com.github.wugenshui.socket.netty.firstexample;
+package com.github.wugenshui.socket.netty.demo1;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;

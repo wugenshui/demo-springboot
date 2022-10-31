@@ -1,4 +1,4 @@
-package com.github.wugenshui.socket.netty.firstexample;
+package com.github.wugenshui.socket.netty.demo1;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -7,6 +7,8 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 /**
+ * 模拟http服务器
+ *
  * @author : chenbo
  * @date : 2020-03-15
  */
@@ -22,7 +24,9 @@ public class TestServer {
                     .channel(NioServerSocketChannel.class)
                     .childHandler(new TestServerInitializer());
 
-            ChannelFuture channelFuture = serverBootstrap.bind(8899).sync();
+            int port = 8899;
+            ChannelFuture channelFuture = serverBootstrap.bind(port).sync();
+            System.out.println("server start: " + port);
             channelFuture.channel().closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully();

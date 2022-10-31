@@ -32,7 +32,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.github.wugenshui.socket.netty.firstexample.TestServer</mainClass>
+                    <mainClass>com.github.wugenshui.socket.netty.demo1.TestServer</mainClass>
                 </configuration>
             </plugin>
         </plugins>
