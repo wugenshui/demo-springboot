@@ -21,31 +21,31 @@ import io.netty.handler.logging.LoggingHandler;
 public class EchoServer {
     public static void main(String[] args) {
         // 引导辅助程序
-        EventLoopGroup boss = new NioEventLoopGroup();
+        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         // 通过nio方式来接收连接和处理连接
-        EventLoopGroup worker = new NioEventLoopGroup();
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
-            ServerBootstrap boot = new ServerBootstrap();
-            boot.group(boss, worker)
+            ServerBootstrap b = new ServerBootstrap();
+            b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
-                    .option(ChannelOption.TCP_NODELAY, true)
+                    .option(ChannelOption.SO_BACKLOG, 100)
+                    .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         public void initChannel(SocketChannel ch) throws Exception {
-                            ChannelPipeline pipeline = ch.pipeline();
-                            pipeline.addLast(new LoggingHandler(LogLevel.INFO));
-                            pipeline.addLast(new EchoServerHandler());
+                            ChannelPipeline p = ch.pipeline();
+                            p.addLast(new EchoServerHandler());
                         }
                     });
 
             // 开启服务端
-            ChannelFuture future = boot.bind(8090).sync();
+            ChannelFuture future = b.bind(8090).sync();
 
             // 等待关闭
             future.channel().closeFuture().sync();
         } catch (Exception ex) {
-            boss.shutdownGracefully();
-            worker.shutdownGracefully();
+            bossGroup.shutdownGracefully();
+            workerGroup.shutdownGracefully();
         }
     }
 }

@@ -15,24 +15,28 @@ import io.netty.util.concurrent.EventExecutorGroup;
  * @date : 2022-10-31
  */
 public class EchoClientHandler extends ChannelInboundHandlerAdapter {
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) {
+        ctx.writeAndFlush(Unpooled.copiedBuffer("Hello World!", CharsetUtil.UTF_8));
+    }
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        ctx.writeAndFlush(Unpooled.copiedBuffer("Netty rocks!", CharsetUtil.UTF_8));
         System.out.println("客户端收到数据: " + msg.toString());
+        ctx.write(msg);
     }
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
+        ctx.flush();
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        //cause.printStackTrace();//捕捉异常信息
-        System.out.println(cause.getMessage());
-        ctx.close();//出现异常时关闭channel
+        // 打印异常信息
+        cause.printStackTrace();
+        // 出现异常时关闭channel
+        ctx.close();
     }
-    // @Override
-    // protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
-    //     System.out.println("客户端收到数据: " + msg.toString(CharsetUtil.UTF_8));
-    // }
 }
