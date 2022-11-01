@@ -23,6 +23,7 @@ public class TcpServer {
         try {
             // 监听端口
             serverSocket = new ServerSocket(9999);
+            System.out.println("服务端已启动...");
             // 等待客户端连接
             socket = serverSocket.accept();
             // 获取客户端输入流
