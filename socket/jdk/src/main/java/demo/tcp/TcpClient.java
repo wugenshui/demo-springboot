@@ -10,32 +10,16 @@ import java.net.Socket;
  */
 public class TcpClient {
     public static void main(String[] args) throws IOException {
-        Socket socket = null;
-        OutputStream outputStream = null;
-        try {
-            // 创建socket连接连接服务端
-            socket = new Socket("127.0.0.1", 9999);
-            // 获取输出流
-            outputStream = socket.getOutputStream();
+        try (
+                // 创建socket连接连接服务端
+                Socket socket = new Socket("127.0.0.1", 9999);
+                // 获取输出流
+                OutputStream outputStream = socket.getOutputStream();
+        ) {
             // 输出文本
             outputStream.write("hello world!".getBytes());
         } catch (IOException ex) {
             ex.printStackTrace();
-        } finally {
-            if (outputStream != null) {
-                try {
-                    outputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (socket != null) {
-                try {
-                    socket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 }
