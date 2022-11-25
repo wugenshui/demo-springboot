@@ -1,6 +1,6 @@
 aa: http://localhost:9000
-ea: ENC(xbtRi4G2Ax2Gk+jh7BYs2g==)
-eb: ENC(7vH6RnOeeZRs+zSKyqaj4A==)
+ea: ENC(zWXM587rTOOpK0H1LDBKxw==)
+eb: ENC(I2fJwHv6smcJGUPvZSaa/g==)
 
 jasypt:
   encryptor:
