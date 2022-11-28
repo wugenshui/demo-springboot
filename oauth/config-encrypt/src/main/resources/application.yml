@@ -1,7 +1,7 @@
 aa: http://localhost:9000
-ea: ENC(zWXM587rTOOpK0H1LDBKxw==)
-eb: ENC(I2fJwHv6smcJGUPvZSaa/g==)
+Ado: ENC(V+Rv0Q4h++gnC40QDO6J2rZ2Rop0y4Gq)
+minio: ENC(2l60wx35WpFBArTuOjOfow==)
 
 jasypt:
   encryptor:
-    password: 20201211
+    password: 20221128

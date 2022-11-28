@@ -18,11 +18,11 @@ public class App {
         ConfigurableApplicationContext app = SpringApplication.run(App.class, args);
         ConfigurableEnvironment environment = app.getEnvironment();
         System.out.println("aa:" + environment.getProperty("aa"));
-        System.out.println("ea:" + environment.getProperty("ea"));
-        System.out.println("eb:" + environment.getProperty("eb"));
+        // System.out.println("Ado:" + environment.getProperty("ea"));
+        // System.out.println("minio:" + environment.getProperty("eb"));
 
         StringEncryptor encryptor = app.getBean(StringEncryptor.class);
-        System.out.println("encryptor.encrypt(\"ruphie\") = " + encryptor.encrypt("ruphie"));
+        System.out.println("encryptor.encrypt(\"Ado@sthw123\") = " + encryptor.encrypt("Ado@sthw123"));
         System.out.println("encryptor.encrypt(\"minio\") = " + encryptor.encrypt("minio"));
     }
 }
