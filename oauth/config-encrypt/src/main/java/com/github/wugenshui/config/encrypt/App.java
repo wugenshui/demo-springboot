@@ -23,6 +23,7 @@ public class App {
 
         StringEncryptor encryptor = app.getBean(StringEncryptor.class);
         System.out.println("encryptor.encrypt(\"Ado@sthw123\") = " + encryptor.encrypt("Ado@sthw123"));
+        System.out.println("encryptor.encrypt(\"1q2w#E$R\") = " + encryptor.encrypt("1q2w#E$R"));
         System.out.println("encryptor.encrypt(\"minio\") = " + encryptor.encrypt("minio"));
     }
 }
