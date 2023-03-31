@@ -10,6 +10,8 @@ import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.util.Collector;
 
 /**
+ * 批处理
+ *
  * @author : chenbo
  * @date : 2023-03-30
  */
