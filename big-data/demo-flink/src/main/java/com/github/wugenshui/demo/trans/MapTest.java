@@ -7,6 +7,8 @@ import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 /**
+ * 映射，将数据流中的数据进行转换
+ *
  * @author : chenbo
  * @date : 2023-04-04
  */

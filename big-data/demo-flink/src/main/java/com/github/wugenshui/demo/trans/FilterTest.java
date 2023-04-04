@@ -7,6 +7,8 @@ import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 /**
+ * 过滤：对数据流执行过滤
+ *
  * @author : chenbo
  * @date : 2023-04-04
  */
