@@ -1,5 +1,8 @@
 package com.chenbo.dbcp.druid.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.extension.toolkit.ChainWrappers;
@@ -35,20 +38,23 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public User getByName(String name) {
-        // QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        // QueryWrapper<User> queryWrapper = Wrappers.query();
-        // queryWrapper.eq("name", name);
-        // return userMapper.selectOne(queryWrapper);
+         //QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+         QueryWrapper<User> queryWrapper = Wrappers.query();
+         queryWrapper.eq("name", name);
+         return userMapper.selectOne(queryWrapper);
 
         // new LambdaQueryChainWrapper<>(userMapper);
         // ChainWrappers.lambdaQueryChain(userMapper);
-        return ChainWrappers.lambdaQueryChain(userMapper)
-                .eq(User::getName, name).one();
+        //return ChainWrappers.lambdaQueryChain(userMapper)
+        //        .eq(User::getName, name).one();
     }
 
     @Override
     public boolean updateByName(String name, User user) {
-        LambdaUpdateChainWrapper<User> lambdaUpdate = new LambdaUpdateChainWrapper<>(userMapper);
-        return lambdaUpdate().eq(User::getName, name).update(user);
+        //LambdaUpdateChainWrapper<User> lambdaUpdate = new LambdaUpdateChainWrapper<>(userMapper);
+        //return lambdaUpdate().eq(User::getName, name).update(user);
+        UpdateWrapper updateWrapper = new UpdateWrapper();
+        updateWrapper.set("name", name);
+        return userMapper.update(user, updateWrapper) > 0;
     }
 }

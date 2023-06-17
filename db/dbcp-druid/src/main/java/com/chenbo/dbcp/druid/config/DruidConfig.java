@@ -37,7 +37,7 @@ public class DruidConfig {
         ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
         Map<String, String> initParams = new HashMap<>(4);
         // 用户名
-        initParams.put("loginUsername", "druid");
+        initParams.put("loginUsername", "admin");
         // 密码
         initParams.put("loginPassword", "123456");
         // 允许IP
