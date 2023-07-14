@@ -1,6 +1,6 @@
-aa: http://localhost:9000
-Ado: ENC(V+Rv0Q4h++gnC40QDO6J2rZ2Rop0y4Gq)
-minio: ENC(2l60wx35WpFBArTuOjOfow==)
+weijiami: http://localhost:9000
+jiami1: ENC(V+Rv0Q4h++gnC40QDO6J2rZ2Rop0y4Gq)
+jiami2: ENC(2l60wx35WpFBArTuOjOfow==)
 
 jasypt:
   encryptor:
