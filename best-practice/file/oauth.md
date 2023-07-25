@@ -1,3 +1,8 @@
+# 数据库脚本
+https://github.com/spring-attic/spring-security-oauth/blob/main/spring-security-oauth2/src/test/resources/schema.sql
+
+
+
 # 授权码模式 authorization_code
 ### 获取code 
 http://localhost:8000/oauth/authorize?client_id=client&response_type=code
@@ -27,8 +32,8 @@ get http://localhost:8000/oauth/authorize?response_type=token&client_id=client
 # 密码模式 password
 
 ### post http://client:secret@localhost:8000/oauth/token
-username:admin  
-password:admin  
+username:admin 
+password:admin
 grant_type:password  
 scope:all  
 
