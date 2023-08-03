@@ -15,12 +15,11 @@ spring:
             # 附加至代理请求
             - AddRequestHeader=X-Request-Foo, Bar
             - AddRequestParameter=foo, bar
-            # 附加属性至响应
+            # 附加至响应
             - AddResponseHeader=X-Response-Foo, Bar
         - id: admin
           uri: lb://admin
           predicates:
-            # 当请求路径以/oauth/开头时
             - Path=/admin/**
         - id: test
           uri: http://localhost:8080
@@ -28,3 +27,19 @@ spring:
             - Path=/test/**
           filters:
             - RewritePath=/test/(?<segment>.*), /user/$\{segment}
+        # 权重，流量分流，数值越高，比例越高
+        - id: weight_high
+          uri: https://www.baidu.com
+          predicates:
+            - Weight=group1, 2
+            - Path=/weight
+          filters:
+            # 去除自己添加的一层前缀:/weight
+            - StripPrefix=1
+        - id: weight_low
+          uri: https://www.hao123.com
+          predicates:
+            - Weight=group1, 1
+            - Path=/weight
+          filters:
+            - StripPrefix=1
