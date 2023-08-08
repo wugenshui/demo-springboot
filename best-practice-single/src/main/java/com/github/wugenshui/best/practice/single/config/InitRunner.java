@@ -35,14 +35,18 @@ public class InitRunner implements CommandLineRunner {
     private MinioClient minioClient;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
+        if (minioClient == null) {
+            log.error("minio初始化异常");
+            return;
+        }
         BUCKETS.forEach(b -> {
             try {
                 // 检查minio 存储桶是否存在，不存在则初始化
                 boolean isExist = minioClient.bucketExists(BucketExistsArgs.builder().bucket(b).build());
                 if (!isExist) {
                     minioClient.makeBucket(MakeBucketArgs.builder().bucket(b).build());
-                    log.error("makeBucket:" + b);
+                    log.info("创建桶:" + b);
                 }
             } catch (Exception e) {
                 log.error("初始化桶异常", e);

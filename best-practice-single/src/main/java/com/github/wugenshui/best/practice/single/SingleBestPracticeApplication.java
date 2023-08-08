@@ -11,7 +11,7 @@ import springfox.documentation.oas.annotations.EnableOpenApi;
  */
 @EnableOpenApi
 @SpringBootApplication
-@MapperScan("com.github.wugenshui.single.best.practice.**.mapper")
+@MapperScan("com.github.wugenshui.best.practice.single.mapper")
 public class SingleBestPracticeApplication {
 
     public static void main(String[] args) {
