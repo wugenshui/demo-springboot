@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
+ * 文件存储配置类
+ *
  * @author : chenbo
  * @date : 2021-03-27
  */

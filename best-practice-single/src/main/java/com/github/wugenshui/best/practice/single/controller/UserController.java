@@ -7,6 +7,7 @@ import com.github.wugenshui.best.practice.single.entity.User;
 import com.github.wugenshui.best.practice.single.mapper.UserMapper;
 import com.github.wugenshui.best.practice.single.service.UserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,7 @@ public class UserController {
         return userService.list();
     }
 
+    @ApiOperation("获取用户")
     @GetMapping("/{name}")
     public List<User> getUser(@PathVariable String name) {
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();

@@ -19,6 +19,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * 时间处理配置类
+ *
  * @author : chenbo
  * @date : 2020-10-28
  */
