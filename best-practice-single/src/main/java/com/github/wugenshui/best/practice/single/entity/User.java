@@ -4,8 +4,7 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.Version;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,40 +23,40 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value = "User对象", description = "用户")
+@Schema
 @TableName(value = "USER")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "主键")
+    @Schema(description = "主键")
     private Long id;
 
-    @ApiModelProperty(value = "姓名")
+    @Schema(description = "姓名")
     private String name;
 
-    @ApiModelProperty(value = "年龄")
+    @Schema(description = "年龄")
     private Integer age;
 
-    @ApiModelProperty(value = "邮箱")
+    @Schema(description = "邮箱")
     private String email;
 
-    @ApiModelProperty(value = "直属上级id")
+    @Schema(description = "直属上级id")
     private Long managerId;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(description = "创建时间")
     @TableField(fill = FieldFill.INSERT)
     private Date createTime;
 
-    @ApiModelProperty(value = "修改时间")
+    @Schema(description = "修改时间")
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
-    @ApiModelProperty(value = "版本")
+    @Schema(description = "版本")
     @Version
     private Integer version;
 
-    @ApiModelProperty(value = "逻辑删除标识(0.未删除,1.已删除)")
+    @Schema(description = "逻辑删除标识(0.未删除,1.已删除)")
     @TableField(select = false)
     private Integer deleted;
 

@@ -6,8 +6,7 @@ import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapp
 import com.github.wugenshui.best.practice.single.entity.User;
 import com.github.wugenshui.best.practice.single.mapper.UserMapper;
 import com.github.wugenshui.best.practice.single.service.UserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +23,7 @@ import java.util.List;
  * @author chenbo
  * @since 2019-12-01
  */
-@Api("用户")
+@Schema(description = "用户")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -39,7 +38,7 @@ public class UserController {
         return userService.list();
     }
 
-    @ApiOperation("获取用户")
+    @Schema(description = "获取用户")
     @GetMapping("/{name}")
     public List<User> getUser(@PathVariable String name) {
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
