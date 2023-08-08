@@ -16,24 +16,26 @@ mybatis-plus:
       logic-delete-field: deleted
 
 
+#knife4j:
+#  enable: true
+#  documents:
+#    -
+#      group: 2.X版本
+#      name: 接口签名
+#      locations: classpath:sign/*
+#  openapi:
+#    title: Knife4j文档
+#    description: "单体项目最佳实践"
+#    email: chenboprogrammer@gmail.com
+#    concat: 无根水
+#    url: https://github.com/wugenshui
+#    version: v4.0
+#    license: Apache 2.0
+#    license-url: https://stackoverflow.com/
+#    terms-of-service-url: https://stackoverflow.com/
+
 knife4j:
   enable: true
-  openapi:
-    title: Knife4j文档
-    description: "单体项目最佳实践"
-    email: chenboprogrammer@gmail.com
-    concat: 无根水
-    url: https://github.com/wugenshui
-    version: v4.0
-    license: Apache 2.0
-    license-url: https://stackoverflow.com/
-    terms-of-service-url: https://stackoverflow.com/
-    group:
-      test1:
-        group-name: 默认
-        api-rule: package
-        api-rule-resources:
-          - com.github.wugenshui.best.practice.single.controller
   setting:
     enable-host: true
-    enable-host-text: http://localhost:8080
+    enable-host-text: http://localhost:${server.port}
