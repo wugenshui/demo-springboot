@@ -21,6 +21,8 @@ public class App {
         Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
         // 定义任务调度实例, 并与TestJob绑定
         JobDetail job = JobBuilder.newJob(TestJob.class)
+                .usingJobData("data1", "jobDetail数据存放")
+                .usingJobData("data2", "jobDetail数据存放2")
                 .withIdentity("testJob", "testJobGroup")
                 .build();
         // 定义触发器, 会马上执行一次, 接着5秒执行一次
