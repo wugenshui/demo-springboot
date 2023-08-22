@@ -3,6 +3,7 @@ package com.github.wugenshui.quartz.job;
 import org.quartz.Job;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
+import org.quartz.PersistJobDataAfterExecution;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,7 +14,14 @@ import java.time.format.DateTimeFormatter;
  * @author : chenbo
  * @date : 2023-08-22
  */
+@PersistJobDataAfterExecution
 public class TestJob implements Job {
+    private Integer exeCount;
+
+    public void setExeCount(Integer exeCount) {
+        this.exeCount = exeCount;
+    }
+
     @Override
     public void execute(JobExecutionContext jobExecutionContext) {
         // 获取任务详情
@@ -30,6 +38,9 @@ public class TestJob implements Job {
 
         // 定时任务具体执行逻辑
         String data = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        System.out.println("开启数据备份，当前时间：" + data);
+        System.out.println("开启数据备份，当前次数：" + ++exeCount + " 当前时间：" + data);
+
+        // 将累加的 count 存入JobDataMap中
+        jobExecutionContext.getJobDetail().getJobDataMap().put("exeCount", exeCount);
     }
 }

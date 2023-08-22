@@ -23,6 +23,7 @@ public class App {
         JobDetail job = JobBuilder.newJob(TestJob.class)
                 .usingJobData("data1", "jobDetail数据存放")
                 .usingJobData("data2", "jobDetail数据存放2")
+                .usingJobData("exeCount", 0)
                 .withIdentity("testJob", "testJobGroup")
                 .build();
         // 定义触发器, 会马上执行一次, 接着5秒执行一次
