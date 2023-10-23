@@ -19,9 +19,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 .authorizeRequests()
-                .anyRequest().authenticated()//所有请求，都需要登录状态校验
+                // 放行部分接口
+                .antMatchers("/", "/home").permitAll()
+                // 剩余接口都需要登录状态校验
+                .anyRequest().authenticated()
                 .and()
-                .formLogin();
+                .formLogin().loginPage("/login").permitAll();
         return httpSecurity.build();
     }
 
