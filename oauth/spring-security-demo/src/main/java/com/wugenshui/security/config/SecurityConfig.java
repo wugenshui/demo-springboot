@@ -2,6 +2,7 @@ package com.wugenshui.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,15 +13,21 @@ import org.springframework.security.web.SecurityFilterChain;
  * @author : chenbo
  * @date : 2023-10-23
  */
-@EnableWebSecurity
 @Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
+    /**
+     * 安全拦截配置
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 .authorizeRequests()
                 // 放行部分接口
                 .antMatchers("/", "/home").permitAll()
+                //.antMatchers("/f1").hasAuthority("f1")
+                //.antMatchers("/f2").hasAuthority("f2")
                 // 剩余接口都需要登录状态校验
                 .anyRequest().authenticated()
                 .and()

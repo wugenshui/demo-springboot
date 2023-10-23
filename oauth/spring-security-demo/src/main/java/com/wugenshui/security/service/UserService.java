@@ -15,6 +15,11 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public SysUser getFirst() {
-        return new SysUser(passwordEncoder.encode("1"));
+        return SysUser.builder()
+                .id("100")
+                .username("张三")
+                .password(passwordEncoder.encode("1"))
+                .mobile("12315")
+                .build();
     }
 }
