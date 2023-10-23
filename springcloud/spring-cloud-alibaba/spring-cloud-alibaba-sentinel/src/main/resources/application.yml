@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: sentinel-demo
+  main:
+    allow-circular-references: true
   cloud:
     sentinel:
       transport:

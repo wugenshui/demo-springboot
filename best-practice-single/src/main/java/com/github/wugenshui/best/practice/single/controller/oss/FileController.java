@@ -5,15 +5,31 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
 import com.github.wugenshui.best.practice.single.constant.MinioConstant;
 import com.github.wugenshui.best.practice.single.entity.AjaxResult;
-import io.minio.*;
-import io.minio.errors.*;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.minio.GetObjectArgs;
+import io.minio.MinioClient;
+import io.minio.ObjectStat;
+import io.minio.PutObjectArgs;
+import io.minio.StatObjectArgs;
+import io.minio.errors.ErrorResponseException;
+import io.minio.errors.InsufficientDataException;
+import io.minio.errors.InternalException;
+import io.minio.errors.InvalidBucketNameException;
+import io.minio.errors.InvalidResponseException;
+import io.minio.errors.ServerException;
+import io.minio.errors.XmlParserException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -32,7 +48,7 @@ import java.util.Map;
  * @author : chenbo
  * @date : 2021-03-27
  */
-@Api(tags = "文件上传")
+@Tag(name = "文件上传")
 @Controller
 @RequestMapping("/oss/file")
 @Slf4j
@@ -40,7 +56,7 @@ public class FileController {
     @Autowired
     private MinioClient minioClient;
 
-    @ApiOperation("上传附件")
+    @Operation(summary = "上传附件")
     @PostMapping
     @ResponseBody
     public AjaxResult<String> upload(@RequestPart MultipartFile file) throws IOException, InvalidKeyException, InvalidResponseException, InsufficientDataException, NoSuchAlgorithmException, ServerException, InternalException, XmlParserException, InvalidBucketNameException, ErrorResponseException {
@@ -71,7 +87,7 @@ public class FileController {
         return AjaxResult.success(newFilename);
     }
 
-    @ApiOperation("下载附件")
+    @Schema(description = "下载附件")
     @GetMapping("/{name}")
     public void download(@PathVariable String name, HttpServletResponse response) throws IOException, InvalidKeyException, InvalidResponseException, InsufficientDataException, NoSuchAlgorithmException, ServerException, InternalException, XmlParserException, InvalidBucketNameException, ErrorResponseException {
 

@@ -1,6 +1,7 @@
 package com.github.wugenshui.best.practice.single.entity;
 
 import com.github.wugenshui.best.practice.single.enums.AjaxResultEnum;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  * Ajax请求响应类
@@ -8,18 +9,24 @@ import com.github.wugenshui.best.practice.single.enums.AjaxResultEnum;
  * @author : chenbo
  * @date : 2019-12-07
  */
+@Schema
 public class AjaxResult<T> {
     /**
      * 返回状态:参照HttpResultEnum枚举
      */
+    @Schema(description = "返回状态:参照HttpResultEnum枚举")
     private int state;
+
     /**
      * 返回的消息提示
      */
+    @Schema(description = "返回的消息提示")
     private String msg;
+
     /**
      * 返回的数据
      */
+    @Schema(description = "返回的数据")
     private T data;
 
     public AjaxResult(int state, String msg) {

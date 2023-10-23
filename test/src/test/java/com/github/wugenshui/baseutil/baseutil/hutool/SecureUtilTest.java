@@ -1,6 +1,8 @@
 package com.github.wugenshui.baseutil.baseutil.hutool;
 
+import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.crypto.SecureUtil;
+import cn.hutool.crypto.symmetric.AES;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,4 +38,15 @@ public class SecureUtilTest {
             System.out.println("报错了");
         }
     }
+
+    @Test
+    public void aseTest() {
+        AES aes = SecureUtil.aes("random-key-12345".getBytes());
+
+        String encryptHex = aes.encryptHex("test中文");
+        System.out.println(encryptHex);
+        String decryptStr = aes.decryptStr(encryptHex, CharsetUtil.CHARSET_UTF_8);
+        System.out.println(decryptStr);
+    }
+
 }
