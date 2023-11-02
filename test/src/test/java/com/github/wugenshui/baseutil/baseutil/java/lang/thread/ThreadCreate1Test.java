@@ -13,7 +13,7 @@ import java.util.concurrent.FutureTask;
  * @author : chenbo
  * @date : 2023-11-02
  */
-class ThreadBaseCreateTest {
+class ThreadCreate1Test {
 
     static class Thread1 extends Thread {
         @Override
