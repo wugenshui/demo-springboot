@@ -18,8 +18,17 @@ import java.util.concurrent.TimeUnit;
 class ThreadCreate3Test {
     @Test
     void goodWayTest() throws InterruptedException {
-        BlockingQueue<Runnable> queue = new LinkedBlockingQueue<>(20);
-        ExecutorService executorService = new ThreadPoolExecutor(1, 2, 1L, TimeUnit.SECONDS, queue);
+        BlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<>(2);
+        /**
+         * corePoolSize 核心线程数，即使线程处于空闲状态，也不会被销毁
+         * maximumPoolSize 最大线程数
+         *      1. 当线程数>=corePoolSize，且任务队列已满时。线程池会创建新线程来处理任务。
+         *      2. 当线程数=maxPoolSize，且任务队列已满时，线程池会拒绝处理任务而抛出异常。因此任务队列需要满足使用场景。
+         * keepAliveTime 空闲线程存活时间
+         * unit 时间单位
+         * workQueue 任务队列
+         */
+        ExecutorService executorService = new ThreadPoolExecutor(1, 2, 1L, TimeUnit.SECONDS, workQueue);
         for (int i = 0; i < 5; i++) {
             try {
                 Thread.sleep(100);
