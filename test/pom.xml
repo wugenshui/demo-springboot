@@ -69,6 +69,11 @@
             <artifactId>org.eclipse.jgit</artifactId>
             <version>5.8.0.202006091008-r</version>
         </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>1.6.3</version>
+        </dependency>
     </dependencies>
 
     <build>
