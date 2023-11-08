@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author : chenbo
@@ -53,7 +54,7 @@ public class DateUtilTest {
         stopWatch.stop();
 
         // 打印出耗时
-        Console.log(stopWatch.prettyPrint());
+        Console.log(stopWatch.prettyPrint(TimeUnit.MILLISECONDS));
     }
 
     @Test
