@@ -30,11 +30,11 @@ public class MethodLogAspect {
 
     @Before("MethodLog()")
     public void doBefore(JoinPoint joinPoint) throws JsonProcessingException {
-        log.info("Request Method:{}, Request Param:{}", joinPoint.getSignature(), objectMapper.writeValueAsString(joinPoint.getArgs()));
+        log.info("MethodLogAspect：请求方法={}, 请求参数={}", joinPoint.getSignature(), objectMapper.writeValueAsString(joinPoint.getArgs()));
     }
 
     @AfterReturning(returning = "o", pointcut = "MethodLog()")
     public void doAfterReturning(Object o) throws JsonProcessingException {
-        log.info("Response Result:{}", objectMapper.writeValueAsString(o));
+        log.info("MethodLogAspect：响应结果={}", objectMapper.writeValueAsString(o));
     }
 }
