@@ -31,11 +31,15 @@ public class ListTest {
     public void foreachTest() {
         List<String> list = new ArrayList<>();
 
+        // 可添加重复元素
         list.add("1");
-        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.add("1");
         list.add("3");
         list.add("4");
 
+        // 删除单条，从前面开始删除
         list.remove("4");
         list.remove("3");
 
