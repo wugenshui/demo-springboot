@@ -42,8 +42,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
         // new LambdaQueryChainWrapper<>(userMapper);
         // ChainWrappers.lambdaQueryChain(userMapper);
-        return ChainWrappers.lambdaQueryChain(userMapper)
-                .eq(User::getName, name).one();
+        //return ChainWrappers.lambdaQueryChain(userMapper)
+        //        .eq(User::getName, name).one();
+        return lambdaQuery().eq(User::getName, name).one();
     }
 
     @Override

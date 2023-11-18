@@ -6,13 +6,11 @@ import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWra
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chenbo.daomybatisplus.auth.entity.User;
 import com.chenbo.daomybatisplus.auth.mapper.UserMapper;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -21,7 +19,6 @@ import java.util.List;
  * @author : chenbo
  * @date : 2020-04-07
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional // 支持事物，@SpringBootTest 事物默认自动回滚
 @Rollback // 事务自动回滚，不自动回滚@Rollback(false)
@@ -53,6 +50,6 @@ public class UserMapperTest {
                 .set(User::getAge, 32)
                 .update();
 
-        Assert.assertTrue(updateState);
+        Assertions.assertTrue(updateState);
     }
 }

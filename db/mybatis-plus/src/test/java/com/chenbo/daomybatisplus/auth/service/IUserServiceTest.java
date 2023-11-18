@@ -2,13 +2,11 @@ package com.chenbo.daomybatisplus.auth.service;
 
 import com.chenbo.daomybatisplus.auth.entity.User;
 import lombok.val;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -17,7 +15,6 @@ import java.util.List;
  * @author : chenbo
  * @date : 2019/12/1
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional // 支持事物，@SpringBootTest 事物默认自动回滚
 @Rollback // 事务自动回滚，不自动回滚@Rollback(false)
@@ -35,7 +32,7 @@ public class IUserServiceTest {
     public void getByIdTest() {
         User user = userService.getById(1088248166370832385L);
         System.out.println(user);
-        Assert.assertNotNull(user);
+        Assertions.assertNotNull(user);
     }
 
     @Test
@@ -43,14 +40,14 @@ public class IUserServiceTest {
         // 第二个参数可以隐藏异常
         val one = userService.getOne(null, false);
         System.out.println("one = " + one);
-        Assert.assertNotNull(one);
+        Assertions.assertNotNull(one);
     }
 
     @Test
     public void getByName() {
         User user = userService.getByName("王天风");
         System.out.println(user);
-        Assert.assertNotNull(user);
+        Assertions.assertNotNull(user);
     }
 
     @Test
@@ -60,7 +57,7 @@ public class IUserServiceTest {
         user.setAge(18);
         boolean state = userService.save(user);
         System.out.printf("插入状态：%s 插入id：%s", state, user.getId());
-        Assert.assertNotNull(user);
+        Assertions.assertNotNull(user);
     }
 
     /**
@@ -73,10 +70,10 @@ public class IUserServiceTest {
         user.setId(1094590409767661570L);
         user.setEmail("soft@gmail.com");
         boolean state = userService.updateById(user);
-        Assert.assertTrue(state);
+        Assertions.assertTrue(state);
 
         int rows = userService.resumeVersion(1094590409767661570L);
-        Assert.assertEquals(1, rows);
+        Assertions.assertEquals(1, rows);
     }
 
     @Test
@@ -86,7 +83,7 @@ public class IUserServiceTest {
         user.setId(1094590409767661570L);
         user.setEmail("soft@gmail.com");
         boolean updateState = userService.updateByName("胡龙飞", user);
-        Assert.assertTrue(updateState);
+        Assertions.assertTrue(updateState);
     }
 
     /**
@@ -95,9 +92,9 @@ public class IUserServiceTest {
     @Test
     public void removeByIdTest() {
         boolean state = userService.removeById(1094590409767661570L);
-        Assert.assertTrue(state);
+        Assertions.assertTrue(state);
 
         int rows = userService.resumeDelete(1094590409767661570L);
-        Assert.assertEquals(1, rows);
+        Assertions.assertEquals(1, rows);
     }
 }
