@@ -35,6 +35,9 @@ public class CollectionTest {
         // 按年龄分组
         students.stream().map(Student::getAge).distinct().forEach(System.out::println);
         Map<Integer, List<Student>> ageStudentMap = students.stream().collect(Collectors.groupingBy(Student::getAge));
-        System.out.println("ageStudentMap = " + ageStudentMap);
+        System.out.println(ageStudentMap);
+
+        Map<String, List<String>> ageStudentMap2 = students.stream().collect(Collectors.groupingBy(s -> s.getAge() + "岁", Collectors.mapping(Student::getName, Collectors.toList())));
+        System.out.println(ageStudentMap2);
     }
 }
