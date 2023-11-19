@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>com.github.wugenshui</groupId>
-    <artifactId>mybatis-plus</artifactId>
+    <artifactId>mybatis-plus-postgresql</artifactId>
     <version>0.0.1.snapshot</version>
 
     <properties>
