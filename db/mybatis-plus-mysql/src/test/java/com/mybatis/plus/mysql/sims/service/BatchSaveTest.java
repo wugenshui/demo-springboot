@@ -1,6 +1,7 @@
 package com.mybatis.plus.mysql.sims.service;
 
 import cn.hutool.core.date.StopWatch;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mybatis.plus.mysql.sims.entity.Class;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,12 @@ public class BatchSaveTest {
         boolean state = classService.saveBatch(classes);
         stopWatch.stop();
         System.out.println("save state:" + state);
+
+        stopWatch.start("删除数据");
+        QueryWrapper queryWrapper = new QueryWrapper();
+        classService.remove(queryWrapper);
+        stopWatch.stop();
+
         System.out.println(stopWatch.prettyPrint(TimeUnit.MILLISECONDS));
     }
 }
