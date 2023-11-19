@@ -39,6 +39,7 @@ public class BatchSaveTest {
         // 优化1. 批量插入表主键 @TableId(type = IdType.NONE)             5万条12.508s
         // 优化2. YAML配置文件增加配置 mybatis-plus.executorType: BATCH   5万条12.352s
         // 优化3. 数据库连接字符串增加参数 &rewriteBatchedStatements=true 5万条6.470s
+        // 优化4. 去除p6spy日志打印                                       5万条3.156s
         boolean state = classService.saveBatch(classes);
         stopWatch.stop();
         System.out.println("save state:" + state);
