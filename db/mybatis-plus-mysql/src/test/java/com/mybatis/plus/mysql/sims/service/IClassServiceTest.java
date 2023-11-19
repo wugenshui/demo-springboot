@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 @Slf4j
-public class IClassServiceTest {
+class IClassServiceTest {
     @Autowired
     private IClassService classService;
 
