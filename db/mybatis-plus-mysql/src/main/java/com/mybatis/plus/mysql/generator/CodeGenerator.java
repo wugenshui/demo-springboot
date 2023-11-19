@@ -13,7 +13,7 @@ import java.util.Collections;
 public class CodeGenerator {
     public static void main(String[] args) {
         String projectPath = System.getProperty("user.dir") + "/db/mybatis-plus-mysql/";
-        FastAutoGenerator.create("jdbc:p6spy:mysql://localhost:3306/test_school?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2B8", "root", "root")
+        FastAutoGenerator.create("jdbc:p6spy:mysql://localhost:3306/mybatis-plus-mysql?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2B8", "root", "root")
                 .globalConfig(builder -> {
                     builder
                             .author("chenbo") // 设置作者
