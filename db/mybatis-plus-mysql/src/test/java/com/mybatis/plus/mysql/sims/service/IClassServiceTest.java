@@ -48,13 +48,22 @@ public class IClassServiceTest {
 
     @Test
     void queryTest() {
+        // WHERE (class_id = '123')
         LambdaQueryWrapper<Class> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(Class::getClassId, "123");
+        lambdaQueryWrapper.eq(true, Class::getClassId, "123");
         classService.list(lambdaQueryWrapper);
 
+        // WHERE (class_id = '123' AND class_id = '456')
         QueryWrapper<Class> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("class_id", "123");
         queryWrapper.lambda().eq(Class::getClassId, "456");
         classService.list(queryWrapper);
+
+        // WHERE ((class_id = 'lambdaClassId' AND class_name = '张三') OR class_id = '123')
+        LambdaQueryWrapper<Class> lambdaQueryWrapper1 = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper1.and(o -> {
+            o.eq(Class::getClassId, "lambdaClassId").eq(Class::getClassName, "张三");
+        }).or().eq(Class::getClassId, "123");
+        classService.list(lambdaQueryWrapper1);
     }
 }
