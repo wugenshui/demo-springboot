@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -43,7 +43,7 @@ public class Class implements Serializable {
     private String adviser;
 
     @ApiModelProperty("成立时间")
-    private LocalDateTime estabDate;
+    private Date estabDate;
 
     @ApiModelProperty("学习年数")
     private Integer yearNumber;
@@ -58,13 +58,13 @@ public class Class implements Serializable {
     private String createdBy;
 
     @ApiModelProperty("创建时间")
-    private LocalDateTime createdTime;
+    private Date createdTime;
 
     @ApiModelProperty("更新人")
     private String updatedBy;
 
     @ApiModelProperty("更新时间")
-    private LocalDateTime updatedTime;
+    private Date updatedTime;
 
     public String getCollegeId() {
         return collegeId;
@@ -114,11 +114,11 @@ public class Class implements Serializable {
         this.adviser = adviser;
     }
 
-    public LocalDateTime getEstabDate() {
+    public Date getEstabDate() {
         return estabDate;
     }
 
-    public void setEstabDate(LocalDateTime estabDate) {
+    public void setEstabDate(Date estabDate) {
         this.estabDate = estabDate;
     }
 
@@ -154,11 +154,11 @@ public class Class implements Serializable {
         this.createdBy = createdBy;
     }
 
-    public LocalDateTime getCreatedTime() {
+    public Date getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(LocalDateTime createdTime) {
+    public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
 
@@ -170,11 +170,11 @@ public class Class implements Serializable {
         this.updatedBy = updatedBy;
     }
 
-    public LocalDateTime getUpdatedTime() {
+    public Date getUpdatedTime() {
         return updatedTime;
     }
 
-    public void setUpdatedTime(LocalDateTime updatedTime) {
+    public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;
     }
 
