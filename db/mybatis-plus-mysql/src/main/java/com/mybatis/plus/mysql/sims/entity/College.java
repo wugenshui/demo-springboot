@@ -2,7 +2,7 @@ package com.mybatis.plus.mysql.sims.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -55,13 +55,13 @@ public class College implements Serializable {
     private String createdBy;
 
     @ApiModelProperty("创建时间")
-    private LocalDateTime createdTime;
+    private Date createdTime;
 
     @ApiModelProperty("更新人")
     private String updatedBy;
 
     @ApiModelProperty("更新时间")
-    private LocalDateTime updatedTime;
+    private Date updatedTime;
 
 
 }

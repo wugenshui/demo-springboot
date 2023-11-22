@@ -3,7 +3,7 @@ package com.mybatis.plus.mysql.sims.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Controller;
  * </p>
  *
  * @author chenbo
- * @since 2021-12-19
+ * @since 2023-11-22
  */
-@Controller
+@RestController
 @RequestMapping("/sims/teacher")
 public class TeacherController {
 

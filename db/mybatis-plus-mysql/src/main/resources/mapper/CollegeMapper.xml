@@ -2,41 +2,4 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.plus.mysql.sims.mapper.CollegeMapper">
 
-    <select id="findCollegeAndTeacher" resultMap="collegeAndTeacher">
-        select * from sims_college c,sims_teacher t
-        where c.COLLEGE_ID=t.COLLEGE_ID
-    </select>
-
-    <resultMap id="collegeAndTeacher" type="com.mybatis.plus.mysql.sims.entity.CollegeAndTeacher">
-        <id property="collegeId" column="COLLEGE_ID"/>
-        <result property="collegeName" column="COLLEGE_NAME"/>
-        <association property="teacher" column="TEACHER_ID" javaType="com.mybatis.plus.mysql.sims.entity.Teacher"
-                     resultMap="teacher"/>
-    </resultMap>
-
-    <resultMap id="teacher" type="com.mybatis.plus.mysql.sims.entity.Teacher">
-        <id property="teacherId" column="TEACHER_ID"/>
-        <result property="teacherName" column="TEACHER_NAME"/>
-    </resultMap>
-
-
-    <select id="findCollegeAndStudent" resultMap="collegeAndStudent">
-        select
-        c.*,
-        s.*,
-        s.COLLEGE_ID as STUDENT_COLLEGE_ID
-        from sims_college c,sims_student s
-        where c.COLLEGE_ID=s.COLLEGE_ID
-    </select>
-
-    <resultMap id="collegeAndStudent" type="com.mybatis.plus.mysql.sims.entity.CollegeAndStudent">
-        <id property="collegeId" column="COLLEGE_ID"/>
-        <result property="collegeName" column="COLLEGE_NAME"/>
-        <collection property="students" ofType="com.mybatis.plus.mysql.sims.entity.Student" resultMap="student"/>
-    </resultMap>
-
-    <resultMap id="student" type="com.mybatis.plus.mysql.sims.entity.Student">
-        <id property="studentId" column="STUDENT_ID"/>
-        <result property="studentName" column="STUDENT_NAME"/>
-    </resultMap>
 </mapper>

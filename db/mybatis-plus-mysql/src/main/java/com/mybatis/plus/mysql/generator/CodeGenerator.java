@@ -2,6 +2,7 @@ package com.mybatis.plus.mysql.generator;
 
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
+import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
 import java.util.Collections;
@@ -20,6 +21,7 @@ public class CodeGenerator {
                             .enableSwagger() // 开启 swagger 模式
                             .fileOverride() // 覆盖已生成文件
                             .disableOpenDir()
+                            .dateType(DateType.ONLY_DATE)
                             .outputDir(projectPath + "src/main/java"); // 指定输出目录
                 })
                 .packageConfig(builder -> {
@@ -29,7 +31,7 @@ public class CodeGenerator {
                             .pathInfo(Collections.singletonMap(OutputFile.mapperXml, projectPath + "src/main/resources/mapper/")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
-                    builder.addInclude("sims_college") // 设置需要生成的表名
+                    builder.addInclude("sims_college", "sims_class", "sims_student", "sims_teacher") // 设置需要生成的表名
                             .addTablePrefix("sims_")
                             .controllerBuilder().enableRestStyle()
                             .entityBuilder().enableLombok(); // 设置过滤表前缀

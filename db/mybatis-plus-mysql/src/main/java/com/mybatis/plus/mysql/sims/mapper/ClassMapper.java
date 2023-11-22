@@ -11,7 +11,7 @@ import java.util.List;
  * </p>
  *
  * @author chenbo
- * @since 2021-12-17
+ * @since 2023-11-22
  */
 public interface ClassMapper extends BaseMapper<Class> {
     List<Class> findByClassName(@Param("className") String className);

@@ -1,13 +1,12 @@
 package com.mybatis.plus.mysql.sims.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 import java.io.Serializable;
 import java.util.Date;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * <p>
@@ -15,23 +14,24 @@ import java.util.Date;
  * </p>
  *
  * @author chenbo
- * @since 2021-12-17
+ * @since 2023-11-22
  */
+@Getter
+@Setter
 @TableName("sims_class")
 @ApiModel(value = "Class对象", description = "班级")
 public class Class implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(type = IdType.NONE)
-    @ApiModelProperty("班级ID")
-    private String classId;
-
     @ApiModelProperty("所在学院")
     private String collegeId;
 
     @ApiModelProperty("所属专业ID")
     private String majorId;
+
+    @ApiModelProperty("班级ID")
+    private String classId;
 
     @ApiModelProperty("班级名称")
     private String className;
@@ -66,135 +66,5 @@ public class Class implements Serializable {
     @ApiModelProperty("更新时间")
     private Date updatedTime;
 
-    public String getCollegeId() {
-        return collegeId;
-    }
 
-    public void setCollegeId(String collegeId) {
-        this.collegeId = collegeId;
-    }
-
-    public String getMajorId() {
-        return majorId;
-    }
-
-    public void setMajorId(String majorId) {
-        this.majorId = majorId;
-    }
-
-    public String getClassId() {
-        return classId;
-    }
-
-    public void setClassId(String classId) {
-        this.classId = classId;
-    }
-
-    public String getClassName() {
-        return className;
-    }
-
-    public void setClassName(String className) {
-        this.className = className;
-    }
-
-    public Integer getStudentNumber() {
-        return studentNumber;
-    }
-
-    public void setStudentNumber(Integer studentNumber) {
-        this.studentNumber = studentNumber;
-    }
-
-    public String getAdviser() {
-        return adviser;
-    }
-
-    public void setAdviser(String adviser) {
-        this.adviser = adviser;
-    }
-
-    public Date getEstabDate() {
-        return estabDate;
-    }
-
-    public void setEstabDate(Date estabDate) {
-        this.estabDate = estabDate;
-    }
-
-    public Integer getYearNumber() {
-        return yearNumber;
-    }
-
-    public void setYearNumber(Integer yearNumber) {
-        this.yearNumber = yearNumber;
-    }
-
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
-    }
-
-    public Integer getRevision() {
-        return revision;
-    }
-
-    public void setRevision(Integer revision) {
-        this.revision = revision;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Date getCreatedTime() {
-        return createdTime;
-    }
-
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
-    }
-
-    public String getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
-    }
-
-    public Date getUpdatedTime() {
-        return updatedTime;
-    }
-
-    public void setUpdatedTime(Date updatedTime) {
-        this.updatedTime = updatedTime;
-    }
-
-    @Override
-    public String toString() {
-        return "Class{" +
-                "collegeId=" + collegeId +
-                ", majorId=" + majorId +
-                ", classId=" + classId +
-                ", className=" + className +
-                ", studentNumber=" + studentNumber +
-                ", adviser=" + adviser +
-                ", estabDate=" + estabDate +
-                ", yearNumber=" + yearNumber +
-                ", tenantId=" + tenantId +
-                ", revision=" + revision +
-                ", createdBy=" + createdBy +
-                ", createdTime=" + createdTime +
-                ", updatedBy=" + updatedBy +
-                ", updatedTime=" + updatedTime +
-                "}";
-    }
 }

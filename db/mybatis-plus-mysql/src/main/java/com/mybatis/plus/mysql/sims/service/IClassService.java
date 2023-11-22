@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author chenbo
- * @since 2021-12-17
+ * @since 2023-11-22
  */
 public interface IClassService extends IService<Class> {
     boolean removeByClassId(String classId);
