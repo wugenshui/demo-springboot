@@ -29,7 +29,7 @@ public class CodeGenerator {
                     builder
                             .parent("com.mybatis.plus.mysql") // 设置父包名
                             .moduleName("sims") // 设置父包模块名
-                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, projectPath + "src/main/resources/mapper/")); // 设置mapperXml生成路径
+                            .pathInfo(Collections.singletonMap(OutputFile.mapper, projectPath + "src/main/resources/mapper/")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
                     builder.addInclude("sims_college", "sims_class", "sims_student", "sims_teacher") // 设置需要生成的表名
