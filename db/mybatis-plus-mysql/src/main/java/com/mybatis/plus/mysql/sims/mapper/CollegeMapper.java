@@ -13,7 +13,7 @@ import java.util.List;
  * </p>
  *
  * @author chenbo
- * @since 2021-12-19
+ * @since 2023-11-22
  */
 public interface CollegeMapper extends BaseMapper<College> {
     List<CollegeAndTeacher> findCollegeAndTeacher();

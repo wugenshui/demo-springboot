@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
  * </p>
  *
  * @author chenbo
- * @since 2021-12-19
+ * @since 2023-11-22
  */
 @Controller
 @RequestMapping("/sims/college")
