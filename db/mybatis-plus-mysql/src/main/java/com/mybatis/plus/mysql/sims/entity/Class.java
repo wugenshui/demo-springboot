@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,8 +17,7 @@ import lombok.Setter;
  * @author chenbo
  * @since 2023-11-22
  */
-@Getter
-@Setter
+@Data
 @TableName("sims_class")
 @ApiModel(value = "Class对象", description = "班级")
 public class Class implements Serializable {

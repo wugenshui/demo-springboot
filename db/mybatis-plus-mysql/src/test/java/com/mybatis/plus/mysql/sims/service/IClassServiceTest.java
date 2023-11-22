@@ -53,9 +53,11 @@ class IClassServiceTest {
     void simpleQueryTest() {
         List<Class> list = classService.list();
         log.info(list.toString());
+        Assertions.assertEquals("java.util.Date", list.get(0).getCreateTime().getClass().getName());
 
         List<Map<String, Object>> maps = classService.listMaps();
         log.info(maps.toString());
+        Assertions.assertEquals("java.sql.Timestamp", maps.get(0).get("create_time").getClass().getName());
     }
 
     @Test
