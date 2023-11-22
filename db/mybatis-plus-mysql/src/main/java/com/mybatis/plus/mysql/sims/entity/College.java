@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * <p>
@@ -14,6 +16,8 @@ import io.swagger.annotations.ApiModelProperty;
  * @author chenbo
  * @since 2023-11-22
  */
+@Getter
+@Setter
 @TableName("sims_college")
 @ApiModel(value = "College对象", description = "学院")
 public class College implements Serializable {
@@ -59,114 +63,5 @@ public class College implements Serializable {
     @ApiModelProperty("更新时间")
     private LocalDateTime updatedTime;
 
-    public String getCollegeId() {
-        return collegeId;
-    }
 
-    public void setCollegeId(String collegeId) {
-        this.collegeId = collegeId;
-    }
-    public String getCollegeName() {
-        return collegeName;
-    }
-
-    public void setCollegeName(String collegeName) {
-        this.collegeName = collegeName;
-    }
-    public String getShortName() {
-        return shortName;
-    }
-
-    public void setShortName(String shortName) {
-        this.shortName = shortName;
-    }
-    public String getIntro() {
-        return intro;
-    }
-
-    public void setIntro(String intro) {
-        this.intro = intro;
-    }
-    public Integer getProfessionNumber() {
-        return professionNumber;
-    }
-
-    public void setProfessionNumber(Integer professionNumber) {
-        this.professionNumber = professionNumber;
-    }
-    public Integer getStudentNumber() {
-        return studentNumber;
-    }
-
-    public void setStudentNumber(Integer studentNumber) {
-        this.studentNumber = studentNumber;
-    }
-    public String getPresident() {
-        return president;
-    }
-
-    public void setPresident(String president) {
-        this.president = president;
-    }
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
-    }
-    public Integer getRevision() {
-        return revision;
-    }
-
-    public void setRevision(Integer revision) {
-        this.revision = revision;
-    }
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-    public LocalDateTime getCreatedTime() {
-        return createdTime;
-    }
-
-    public void setCreatedTime(LocalDateTime createdTime) {
-        this.createdTime = createdTime;
-    }
-    public String getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
-    }
-    public LocalDateTime getUpdatedTime() {
-        return updatedTime;
-    }
-
-    public void setUpdatedTime(LocalDateTime updatedTime) {
-        this.updatedTime = updatedTime;
-    }
-
-    @Override
-    public String toString() {
-        return "College{" +
-            "collegeId=" + collegeId +
-            ", collegeName=" + collegeName +
-            ", shortName=" + shortName +
-            ", intro=" + intro +
-            ", professionNumber=" + professionNumber +
-            ", studentNumber=" + studentNumber +
-            ", president=" + president +
-            ", tenantId=" + tenantId +
-            ", revision=" + revision +
-            ", createdBy=" + createdBy +
-            ", createdTime=" + createdTime +
-            ", updatedBy=" + updatedBy +
-            ", updatedTime=" + updatedTime +
-        "}";
-    }
 }
