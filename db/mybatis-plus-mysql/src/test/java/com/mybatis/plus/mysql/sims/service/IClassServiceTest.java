@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author : chenbo
  * @date : 2021-12-17
@@ -44,6 +47,15 @@ class IClassServiceTest {
 
         log.info("classService.removeByClassId(clazz.getClassId())");
         Assertions.assertTrue(classService.removeByClassId(clazz.getClassId()));
+    }
+
+    @Test
+    void simpleQueryTest() {
+        List<Class> list = classService.list();
+        log.info(list.toString());
+
+        List<Map<String, Object>> maps = classService.listMaps();
+        log.info(maps.toString());
     }
 
     @Test

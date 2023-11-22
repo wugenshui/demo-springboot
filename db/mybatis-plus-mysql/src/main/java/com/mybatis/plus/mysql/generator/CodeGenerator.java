@@ -19,7 +19,8 @@ public class CodeGenerator {
                     builder
                             .author("chenbo") // 设置作者
                             .enableSwagger() // 开启 swagger 模式
-                            .fileOverride() // 覆盖已生成文件
+                            // 覆盖已生成文件
+                            //.fileOverride()
                             .disableOpenDir()
                             .dateType(DateType.ONLY_DATE)
                             .outputDir(projectPath + "src/main/java"); // 指定输出目录

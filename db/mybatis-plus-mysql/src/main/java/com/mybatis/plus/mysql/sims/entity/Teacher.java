@@ -64,16 +64,16 @@ public class Teacher implements Serializable {
     private Integer revision;
 
     @ApiModelProperty("创建人")
-    private String createdBy;
+    private String creater;
 
     @ApiModelProperty("创建时间")
-    private Date createdTime;
+    private Date createTime;
 
     @ApiModelProperty("更新人")
-    private String updatedBy;
+    private String updater;
 
     @ApiModelProperty("更新时间")
-    private Date updatedTime;
+    private Date updateTime;
 
 
 }
