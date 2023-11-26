@@ -2,8 +2,10 @@ package com.github.wugenshui.baseutil.baseutil.db.jsqlparser;
 
 import cn.hutool.core.collection.CollUtil;
 import net.sf.jsqlparser.JSQLParserException;
+import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.LongValue;
 import net.sf.jsqlparser.expression.StringValue;
+import net.sf.jsqlparser.expression.operators.conditional.AndExpression;
 import net.sf.jsqlparser.expression.operators.relational.EqualsTo;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.schema.Column;
@@ -31,11 +33,12 @@ import java.util.Map;
 public class JSqlDataPermissionTest {
 
     @ParameterizedTest
-    @CsvSource({
-            "SELECT * FROM user u,SELECT * FROM user u WHERE user.ou_id = 1",
-            "SELECT * FROM user,SELECT * FROM user WHERE user.ou_id = 1",
-            "SELECT * FROM a,SELECT * FROM a",
-    })
+    @CsvSource(value = {
+            "SELECT * FROM user,a WHERE 1=1-----SELECT * FROM user, a WHERE 1 = 1 AND user.ou_id = 1",
+            "SELECT * FROM user u-----SELECT * FROM user u WHERE user.ou_id = 1",
+            "SELECT * FROM user-----SELECT * FROM user WHERE user.ou_id = 1",
+            "SELECT * FROM a-----SELECT * FROM a",
+    }, delimiterString = "-----")
     void addTest(String sourceSql, String excepted) {
         Assertions.assertEquals(excepted, addDataPermission(sourceSql));
     }
@@ -57,12 +60,25 @@ public class JSqlDataPermissionTest {
             if (CollUtil.isNotEmpty(dataPermissionColumn)) {
                 if (selectBody instanceof PlainSelect) {
                     PlainSelect plainSelect = (PlainSelect) selectBody;
-                    dataPermissionColumn.forEach((tableName, columnName) -> {
-                        EqualsTo equalsTo = new EqualsTo();
-                        equalsTo.setLeftExpression(new Column(new Table(tableName), columnName));
-                        equalsTo.setRightExpression(new LongValue(1));
-                        plainSelect.setWhere(equalsTo);
-                    });
+                    Expression oldWhere = plainSelect.getWhere();
+                    if (oldWhere == null) {
+                        dataPermissionColumn.forEach((tableName, columnName) -> {
+                            EqualsTo equalsTo = new EqualsTo();
+                            equalsTo.setLeftExpression(new Column(new Table(tableName), columnName));
+                            equalsTo.setRightExpression(new LongValue(1));
+                            plainSelect.setWhere(equalsTo);
+                        });
+                    } else {
+                        dataPermissionColumn.forEach((tableName, columnName) -> {
+                            AndExpression andExpression = new AndExpression();
+                            EqualsTo equalsTo = new EqualsTo();
+                            equalsTo.setLeftExpression(new Column(new Table(tableName), columnName));
+                            equalsTo.setRightExpression(new LongValue(1));
+                            andExpression.setLeftExpression(oldWhere);
+                            andExpression.setRightExpression(equalsTo);
+                            plainSelect.setWhere(andExpression);
+                        });
+                    }
                     sql = plainSelect.toString();
                 }
             }
