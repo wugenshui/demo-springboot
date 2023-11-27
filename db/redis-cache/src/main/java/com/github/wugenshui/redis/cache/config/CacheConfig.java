@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.CacheErrorHandler;
 import org.springframework.cache.interceptor.CacheResolver;
 import org.springframework.cache.interceptor.KeyGenerator;
@@ -20,17 +21,21 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 
 import javax.annotation.Resource;
-
 import java.time.Duration;
 
 import static org.springframework.data.redis.cache.RedisCacheConfiguration.defaultCacheConfig;
 
 /**
  * Redis 缓存配置
+ * 1. 开启@EnableCaching注解
+ * 2. 实现CachingConfigurerSupport类
+ * 3. 重写cacheManager方法
+ * 4. 重写keyGenerator方法
  *
  * @author : chenbo
  * @date : 2020-12-29
  */
+@EnableCaching
 @Configuration
 public class CacheConfig extends CachingConfigurerSupport {
 
@@ -65,12 +70,11 @@ public class CacheConfig extends CachingConfigurerSupport {
         RedisCacheConfiguration cacheConfiguration =
                 defaultCacheConfig()
                         .prefixCacheNameWith("cache:")
-                        .entryTtl(Duration.ofMinutes(5))
+                        .entryTtl(Duration.ofMinutes(30))
                         .disableCachingNullValues()
                         .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jackson2JsonRedisSerializer));
         RedisCacheManager build = RedisCacheManager.builder(factory).cacheDefaults(cacheConfiguration).build();
         return build;
-
     }
 
     @Override

@@ -26,19 +26,32 @@ public class TestController {
         redisTemplate.opsForValue().set("name", User.builder().age(18).build());
     }
 
+    /**
+     * 固定主键缓存:   cache:user::com.github.wugenshui.redis.cache.controller.TestControllertest
+     */
     @Cacheable(value = "user")
     @GetMapping
-    public User test() throws InterruptedException {
-        Thread.sleep(2000);
-        User user = User.builder().age(18).build();
-        return user;
+    public User test() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return User.builder().name("张三").age(18).build();
     }
 
+    /**
+     * 固定主键缓存:   cache:user::com.github.wugenshui.redis.cache.controller.TestControllerput
+     */
     @CachePut(value = "put")
     @GetMapping("/put")
-    public User put() throws InterruptedException {
-        Thread.sleep(2000);
-        User user = User.builder().age(18).build();
+    public User put() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        User user = User.builder().name("put").age(18).build();
         return user;
     }
 

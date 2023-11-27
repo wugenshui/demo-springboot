@@ -1,7 +1,9 @@
 package com.github.wugenshui.redis.cache.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,6 +13,8 @@ import java.util.Date;
  * @date : 2019/11/21
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class User implements Serializable {
 
