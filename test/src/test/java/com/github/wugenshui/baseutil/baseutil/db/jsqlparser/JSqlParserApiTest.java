@@ -42,6 +42,7 @@ import net.sf.jsqlparser.statement.values.ValuesStatement;
 import net.sf.jsqlparser.util.SelectUtils;
 import net.sf.jsqlparser.util.TablesNamesFinder;
 import org.apache.commons.collections.CollectionUtils;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
@@ -51,10 +52,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
+ * JSqlParser基础API测试
  * @author : chenbo
  * @date : 2023-11-12
  */
-class JSqlParserTest {
+class JSqlParserApiTest {
     @Test
     void simple() {
         // 单表全量
@@ -84,9 +86,9 @@ class JSqlParserTest {
 
         // 其他运算符, 参考上面代码添加表达式即可
         GreaterThan gt = new GreaterThan(); // ">"
-        GreaterThanEquals geq = new GreaterThanEquals(); // ">="
+        GreaterThanEquals ge = new GreaterThanEquals(); // ">="
         MinorThan mt = new MinorThan(); // "<"
-        MinorThanEquals leq = new MinorThanEquals();// "<="
+        MinorThanEquals me = new MinorThanEquals();// "<="
         IsNullExpression isNull = new IsNullExpression(); // "is null"
         isNull.setNot(true);// "is not null"
         LikeExpression nlike = new LikeExpression();
@@ -110,7 +112,7 @@ class JSqlParserTest {
         InExpression inExpression = new InExpression(new Column("dept_id "), itemsList); // 创建IN表达式对象，传入列名及IN范围列表
         PlainSelect plainSelectIn = (PlainSelect) select.getSelectBody();
         plainSelectIn.setWhere(inExpression);
-        System.err.println(plainSelectIn); // SELECT * FROM test WHERE dept_id  IN ('0001', '0002')
+        System.err.println(plainSelectIn); // SELECT * FROM test WHERE dept_id IN ('0001', '0002')
 
         // WHERE BETWEEN AND
         Between between = new Between();
@@ -158,9 +160,9 @@ class JSqlParserTest {
         EqualsTo equalsTo = new EqualsTo(); // 添加 = 条件表达式  t1.user_id  = t2.user_id
         equalsTo.setLeftExpression(new Column(t1, "user_id "));
         equalsTo.setRightExpression(new Column(t2, "user_id "));
-        join.withOnExpression(equalsTo);// 添加ON
+        join.addOnExpression(equalsTo);// 添加ON
         plainSelect.addJoins(join);
-        System.err.println(plainSelect); // SELECT * FROM tab1 AS t1 JOIN tab2 t2 ON t1.user_id  = t2.user_id
+        Assertions.assertEquals("SELECT * FROM tab1 AS t1 JOIN tab2 t2 ON t1.user_id  = t2.user_id ", plainSelect.toString());
 
         // 设置join参数可实现其他类型join
         // join.setLeft(true); LEFT JOIN
@@ -183,16 +185,16 @@ class JSqlParserTest {
             if (select.getSelectBody() instanceof PlainSelect) { // 普通查询
                 // 复杂sql会多次调用此处方法，所以抽出作为公共类使用
                 getSelectMsg(select);
-            }else if (select.getSelectBody() instanceof WithItem){ // WITH语句
+            } else if (select.getSelectBody() instanceof WithItem) { // WITH语句
 
-            }else if (select.getSelectBody() instanceof SetOperationList){ // INTERSECT、EXCEPT、MINUS、UNION语句
-                SetOperationList setOperationList =  (SetOperationList)select.getSelectBody();
+            } else if (select.getSelectBody() instanceof SetOperationList) { // INTERSECT、EXCEPT、MINUS、UNION语句
+                SetOperationList setOperationList = (SetOperationList) select.getSelectBody();
                 List<SelectBody> selects = setOperationList.getSelects();
                 for (int i = 0; i < selects.size(); i++) {
                     // 此处又是符合普通sql的拆解逻辑
                     getSelectMsg(select);
                 }
-            }else if (select.getSelectBody() instanceof ValuesStatement){ // VALUES语句
+            } else if (select.getSelectBody() instanceof ValuesStatement) { // VALUES语句
 
             }
         } catch (JSQLParserException e) {
@@ -201,7 +203,7 @@ class JSqlParserTest {
         System.out.println("=================测试查询==================");
     }
 
-    public static void getSelectMsg(Select select){
+    public static void getSelectMsg(Select select) {
         PlainSelect plain = (PlainSelect) select.getSelectBody();
         List<Join> joins = plain.getJoins();
         if (CollectionUtils.isNotEmpty(joins)) {
