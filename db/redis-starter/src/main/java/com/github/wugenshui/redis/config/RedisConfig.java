@@ -47,6 +47,7 @@ public class RedisConfig {
         objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
+
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
         // key
         template.setKeySerializer(stringRedisSerializer);
@@ -73,7 +74,9 @@ public class RedisConfig {
         return container;
     }
 
-    // 消息监听器适配器，绑定消息处理器，利用反射技术调用消息处理器的业务方法
+    /**
+     * 消息监听器适配器，绑定消息处理器，利用反射技术调用消息处理器的业务方法
+     */
     @Bean
     MessageListenerAdapter listenerAdapter(RedisReceiver receiver) {
         return new MessageListenerAdapter(receiver);
