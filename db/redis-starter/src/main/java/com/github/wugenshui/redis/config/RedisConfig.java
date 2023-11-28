@@ -20,7 +20,6 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import java.io.Serializable;
 import java.time.Duration;
 
 /**
@@ -32,11 +31,13 @@ import java.time.Duration;
 @Configuration
 public class RedisConfig {
 
+    /**
+     * 配置自定义RedisTemplate
+     */
     @Bean
-    public RedisTemplate<String, Serializable> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        RedisTemplate<String, Serializable> template = new RedisTemplate<>();
-        // 连接工厂
-        template.setConnectionFactory(redisConnectionFactory);
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
+
         // 使用Jackson2JsonRedisSerializer来序列化和反序列化redis的value值（默认使用JDK的序列化方式）
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -53,10 +54,12 @@ public class RedisConfig {
         // value
         template.setValueSerializer(jackson2JsonRedisSerializer);
         template.setHashValueSerializer(jackson2JsonRedisSerializer);
-
+        // 连接工厂
+        template.setConnectionFactory(redisConnectionFactory);
         template.afterPropertiesSet();
         return template;
     }
+
 
     @Bean
     RedisMessageListenerContainer container(RedisConnectionFactory redisConnectionFactory, MessageListenerAdapter listenerAdapter) {
