@@ -10,8 +10,10 @@
     </parent>
 
     <groupId>com.github.wugenshui</groupId>
-    <artifactId>spring-cache</artifactId>
+    <artifactId>redis-cache</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
+    <description>spring-cache</description>
 
     <properties>
         <java.version>1.8</java.version>
