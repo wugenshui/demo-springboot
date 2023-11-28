@@ -27,7 +27,7 @@ public class TestController {
     }
 
     /**
-     * 固定主键缓存:   cache:user::com.github.wugenshui.redis.cache.controller.TestControllertest
+     * 固定主键缓存:  cache:user::SimpleKey []
      * 1. 当第一次调用时，会将方法的返回值作为value存入缓存中
      * 2. 再次调用此方法时，会从缓存中取出数据，而不会再次执行方法
      */
@@ -43,7 +43,7 @@ public class TestController {
     }
 
     /**
-     * 固定主键缓存:   cache:user::com.github.wugenshui.redis.cache.controller.TestControllerput
+     * 固定主键缓存:   cache:put::SimpleKey []
      * 1. 每次调用时，都会将方法的返回值作为value存入缓存中
      */
     @CachePut(value = "put")
@@ -86,7 +86,7 @@ public class TestController {
     }
 
     /**
-     * 多个参数作为缓存的key：      cache:ab::com.github.wugenshui.redis.cache.controller.TestControllersquare-2-1
+     * 多个参数作为缓存的key：      cache:ab::SimpleKey [1,2]
      */
     @Cacheable("ab")
     @GetMapping("/{a}/{b}")
