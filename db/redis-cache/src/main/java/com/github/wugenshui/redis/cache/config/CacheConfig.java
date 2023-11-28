@@ -9,7 +9,6 @@ import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.CacheErrorHandler;
 import org.springframework.cache.interceptor.CacheResolver;
-import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.cache.interceptor.SimpleCacheErrorHandler;
 import org.springframework.cache.interceptor.SimpleCacheResolver;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +17,6 @@ import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.RedisSerializationContext;
 
 import javax.annotation.Resource;
 import java.time.Duration;
@@ -55,6 +53,9 @@ public class CacheConfig extends CachingConfigurerSupport {
         return new SimpleCacheErrorHandler();
     }
 
+    /**
+     * 缓存管理器
+     */
     @Bean
     @Override
     public CacheManager cacheManager() {
@@ -67,27 +68,26 @@ public class CacheConfig extends CachingConfigurerSupport {
         objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
         jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
 
-        RedisCacheConfiguration cacheConfiguration =
-                defaultCacheConfig()
-                        .prefixCacheNameWith("cache:")
-                        .entryTtl(Duration.ofMinutes(30))
-                        .disableCachingNullValues()
-                        .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jackson2JsonRedisSerializer));
-        RedisCacheManager build = RedisCacheManager.builder(factory).cacheDefaults(cacheConfiguration).build();
+        RedisCacheManager build = RedisCacheManager.builder(factory).cacheDefaults(redisCacheConfiguration()).build();
         return build;
     }
 
-    @Override
+    /**
+     * Redis缓存配置
+     *
+     * @return RedisCacheConfiguration
+     */
     @Bean
-    public KeyGenerator keyGenerator() {
-        return (target, method, params) -> {
-            StringBuilder sb = new StringBuilder();
-            sb.append(target.getClass().getName());
-            sb.append(method.getName());
-            for (Object obj : params) {
-                sb.append("-" + obj.toString());
-            }
-            return sb.toString();
-        };
+    public RedisCacheConfiguration redisCacheConfiguration() {
+        // 设置缓存前缀
+        RedisCacheConfiguration cacheConfiguration =
+                defaultCacheConfig()
+                        // 设置缓存前缀
+                        .prefixCacheNameWith("cache:")
+                        // 设置缓存的默认过期时间，也是使用Duration设置
+                        .entryTtl(Duration.ofMinutes(30))
+                        // 如果是空值，不缓存
+                        .disableCachingNullValues();
+        return cacheConfiguration;
     }
 }
