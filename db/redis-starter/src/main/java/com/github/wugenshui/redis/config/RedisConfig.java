@@ -8,19 +8,14 @@ import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator
 import com.github.wugenshui.redis.subpub.RedisReceiver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.PatternTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-
-import java.time.Duration;
 
 /**
  * redis 配置
@@ -62,6 +57,12 @@ public class RedisConfig {
     }
 
 
+    /**
+     * redis消息监听器容器
+     *
+     * @param redisConnectionFactory redis连接工厂
+     * @param listenerAdapter        消息监听器适配器
+     */
     @Bean
     RedisMessageListenerContainer container(RedisConnectionFactory redisConnectionFactory, MessageListenerAdapter listenerAdapter) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
@@ -76,23 +77,12 @@ public class RedisConfig {
 
     /**
      * 消息监听器适配器，绑定消息处理器，利用反射技术调用消息处理器的业务方法
+     *
+     * @param receiver 自定义消息处理者，消息会发送至该管道
      */
     @Bean
     MessageListenerAdapter listenerAdapter(RedisReceiver receiver) {
         return new MessageListenerAdapter(receiver);
-    }
-
-    @Bean
-    public RedisCacheConfiguration redisCacheConfiguration() {
-        return RedisCacheConfiguration
-                .defaultCacheConfig()
-                .prefixCacheNameWith("spring-cache:")
-                // key过期时间
-                .entryTtl(Duration.ofDays(1))
-                // key序列化
-                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
-                // value序列化
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
     }
 
 }
