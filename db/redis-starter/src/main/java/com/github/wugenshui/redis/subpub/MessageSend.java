@@ -22,6 +22,7 @@ public class MessageSend {
      */
     @Scheduled(fixedRate = 10000)
     public void sendMessage() {
+        // 发送端用字符串传递，接收端可以根据channel进行不同类型转换
         redisTemplate.convertAndSend("msg", String.valueOf(new Random().nextInt(100)));
         redisTemplate.convertAndSend("msg2", "msg2");
         redisTemplate.convertAndSend("single", "single");

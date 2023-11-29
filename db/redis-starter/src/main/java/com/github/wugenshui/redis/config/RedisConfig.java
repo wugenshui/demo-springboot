@@ -56,7 +56,6 @@ public class RedisConfig {
         return template;
     }
 
-
     /**
      * redis消息监听器容器
      *
@@ -84,5 +83,4 @@ public class RedisConfig {
     MessageListenerAdapter listenerAdapter(RedisReceiver receiver) {
         return new MessageListenerAdapter(receiver);
     }
-
 }
