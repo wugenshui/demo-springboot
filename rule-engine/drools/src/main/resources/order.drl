@@ -1,5 +1,5 @@
 // 包名用于逻辑上区分 rule
-package com.example.drools.order;
+package com.github.wugenshui.order;
 
 import com.github.wugenshui.HelloDrools.Order
 import com.github.wugenshui.HelloDrools.User
