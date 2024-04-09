@@ -5,13 +5,19 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.8</version>
-        <relativePath/>
+        <version>2.7.17</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>redis-starter</artifactId>
+    <groupId>com.github.wugenshui</groupId>
+    <artifactId>drools</artifactId>
+    <version>0.0.1</version>
 
-    <description>Spring Data Redis</description>
+    <packaging>jar</packaging>
+
+    <properties>
+        <drools.version>7.62.0.Final</drools.version>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -19,28 +25,30 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <!-- 如果需要redis线程池，则一定需要添加这个依赖 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-pool2</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <scope>provided</scope>
         </dependency>
+        <!-- test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- this is needed or IntelliJ gives junit.jar or junit-platform-launcher:1.8.2 not found errors -->
         <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-launcher</artifactId>
-            <scope>test</scope>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-compiler</artifactId>
+            <version>${drools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-mvel</artifactId>
+            <version>${drools.version}</version>
         </dependency>
     </dependencies>
 
@@ -52,4 +60,6 @@
             </plugin>
         </plugins>
     </build>
+
+
 </project>

@@ -37,6 +37,10 @@ public class DateUtilTest {
         System.out.println("tomorrow = " + tomorrow);
         System.out.println(DateUtil.between(date, tomorrow, DateUnit.HOUR));
         System.out.println(DateUtil.between(tomorrow, date, DateUnit.HOUR));
+
+        // 月数计算
+        long betweenMonth = DateUtil.betweenMonth(DateUtil.parse("2024-01-01"), DateUtil.parse("2039-02-01"), false);
+        System.out.println("betweenMonth = " + betweenMonth);
     }
 
     @Test

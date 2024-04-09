@@ -1,10 +1,8 @@
 package com.github.wugenshui.redis.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
@@ -13,7 +11,9 @@ import java.util.concurrent.TimeUnit;
  * @author : chenbo
  * @date : 2020-05-28
  */
+@Component
 public class RedisUtil {
+
     @Autowired
     RedisTemplate<String, Object> redisTemplate;
 

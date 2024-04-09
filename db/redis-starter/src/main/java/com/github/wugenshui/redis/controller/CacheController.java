@@ -1,6 +1,7 @@
 package com.github.wugenshui.redis.controller;
 
 import com.github.wugenshui.redis.service.CacheService;
+import com.github.wugenshui.redis.vo.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,7 @@ public class CacheController {
      * 查询
      */
     @GetMapping("/{id}")
-    public String get(@PathVariable("id") Integer id) {
+    public User get(@PathVariable("id") Integer id) {
         return cacheService.get(id);
     }
 
