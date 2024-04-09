@@ -20,6 +20,9 @@ import java.util.Scanner;
 @Component
 public class BlockQueueTest {
 
+    private static final String QUEUE_NAME = "anyQueue";
+    private static final String REDIS_ADDRESS = "redis://localhost:6379";
+
     public static void main(String[] args) {
         BlockQueueTest.receiver();
         BlockQueueTest.sender();
@@ -35,12 +38,11 @@ public class BlockQueueTest {
             public void run() {
                 Config config = new Config();
                 // 单机模式
-                config.useSingleServer()
-                        .setAddress("redis://192.168.0.204:6379").setPassword("1q2w#E$R");
+                config.useSingleServer().setAddress(REDIS_ADDRESS);
 
                 RedissonClient redisson = Redisson.create(config);
 
-                RBlockingQueue<User> queue = redisson.getBlockingQueue("anyQueue");
+                RBlockingQueue<User> queue = redisson.getBlockingQueue(QUEUE_NAME);
                 //queue.offer(User.builder().name("张三").age(12).birthday(LocalDateTime.now()).build());
                 User obj = queue.peek();
                 System.out.println("obj = " + obj);
@@ -56,12 +58,11 @@ public class BlockQueueTest {
     public static void sender() {
         Config config = new Config();
         // 单机模式
-        config.useSingleServer()
-                .setAddress("redis://192.168.0.204:6379").setPassword("1q2w#E$R");
+        config.useSingleServer().setAddress(REDIS_ADDRESS);
 
         RedissonClient redisson = Redisson.create(config);
 
-        RBlockingQueue<User> queue = redisson.getBlockingQueue("anyQueue");
+        RBlockingQueue<User> queue = redisson.getBlockingQueue(QUEUE_NAME);
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("请输入用户姓名:");
