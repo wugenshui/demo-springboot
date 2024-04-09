@@ -20,7 +20,6 @@ import java.util.concurrent.TimeUnit;
  * @author : chenbo
  * @date : 2020-06-01
  */
-@Component
 @SpringBootApplication
 public class BlockQueueTest {
 
