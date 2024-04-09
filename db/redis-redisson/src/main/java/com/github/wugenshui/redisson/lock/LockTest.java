@@ -32,6 +32,7 @@ public class LockTest {
 
         for (int i = 0; i < 5; i++) {
             new Thread(new Runnable() {
+                @Override
                 public void run() {
                     RLock lock = redisson.getLock("myLock");
                     System.out.println(Thread.currentThread().getName() + " 获取锁对象");
