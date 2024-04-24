@@ -1,9 +1,12 @@
 package com.github.wugenshui.redisson.lock;
 
+import com.github.wugenshui.redisson.queue.block.BlockQueueTest;
 import org.redisson.Redisson;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * 分布式锁测试
@@ -12,9 +15,12 @@ import org.redisson.config.Config;
  * @author : chenbo
  * @date : 2020-05-31
  */
+@SpringBootApplication
 public class LockTest {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
+        SpringApplication.run(BlockQueueTest.class, args);
+
         Config config = new Config();
 
         // 集群模式
@@ -32,18 +38,19 @@ public class LockTest {
 
         for (int i = 0; i < 5; i++) {
             new Thread(new Runnable() {
+                @Override
                 public void run() {
                     RLock lock = redisson.getLock("myLock");
                     System.out.println(Thread.currentThread().getName() + " 获取锁对象");
                     lock.lock();
                     System.out.println(Thread.currentThread().getName() + " 获取锁");
                     try {
-                        Thread.sleep(3000);
+                        Thread.sleep(2000);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
                     lock.unlock();
-                    System.out.println(Thread.currentThread().getName() + " 释放锁");
+                    System.out.println(Thread.currentThread().getName() + " 释放");
                 }
             }).start();
         }
