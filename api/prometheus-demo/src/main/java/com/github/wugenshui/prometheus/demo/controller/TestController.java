@@ -22,10 +22,10 @@ public class TestController {
     public Object get() throws InterruptedException {
         long startTimeMillis = System.currentTimeMillis();
 
-        Double typeRandom = Math.random();
-        String aiType = "算法" + ((Double) (typeRandom * 10)).intValue();
-        Double stateRandom = Math.random();
-        Boolean state = stateRandom > 0.8;
+        double typeRandom = Math.random();
+        String aiType = "算法" + ((Double) (typeRandom * 3)).intValue();
+        double stateRandom = Math.random();
+        boolean state = stateRandom > 0.8;
 
         String success = "1";
         if (state) {
