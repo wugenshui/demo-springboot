@@ -21,21 +21,22 @@ public class JWTTest {
     @Test
     public void jwtTest() {
         // 密钥
-        byte[] key = "1234567890".getBytes();
+        byte[] secretKey = "1234567890".getBytes();
 
         String token = JWT.create()
                 // 过期时间
                 .setExpiresAt(DateUtil.tomorrow())
-                // 接收方
-                .setAudience("quick-gen","quick-system")
-                .setPayload("sub", "1234567890")
-                .setPayload("name", "looly")
-                .setPayload("admin", true)
-                .setKey(key)
+                // 用户id
+                .setPayload("userId", "1")
+                // 应用id
+                .setPayload("appId", "123456")
+                // 调用系统名称
+                .setPayload("system", "大模型应用开发及运行平台")
+                .setKey(secretKey)
                 .sign();
         System.out.println("token = " + token);
 
-        boolean verify = JWT.of(token).setKey(key).validate(0);
+        boolean verify = JWT.of(token).setKey(secretKey).validate(0);
         Assert.assertTrue(verify);
 
         boolean verifyFalse = JWT.of(token).setKey("1".getBytes()).validate(0);
