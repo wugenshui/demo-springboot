@@ -31,31 +31,12 @@ public class LdapUtil {
     @Resource
     private LdapProperties ldapProperties;
 
-    public DirContext login(String principal, String password) throws NamingException {
-        Hashtable<String, String> env = new Hashtable<>();
-        env.put(Context.INITIAL_CONTEXT_FACTORY, INITIAL_CONTEXT_FACTORY);
-        env.put(Context.PROVIDER_URL, ldapProperties.getHost());
-        env.put(Context.SECURITY_PRINCIPAL, principal);
-        env.put(Context.SECURITY_CREDENTIALS, password);
-        // 尝试连接并认证，若用户名密码不对会抛出异常
-        return new InitialDirContext(env);
-    }
-
-    public List<String> getUserDN(DirContext dirContext, String username) throws NamingException {
-        List<String> results = new ArrayList<>();
-        // Perform search
-        SearchControls cons = new SearchControls();
-        cons.setSearchScope(SearchControls.SUBTREE_SCOPE);
-        NamingEnumeration<SearchResult> answer = dirContext.search(ldapProperties.getOuPath(), String.format(ldapProperties.getUserFilter(), username), cons);
-        // Process results
-        while (answer.hasMore()) {
-            SearchResult result = answer.next();
-            results.add(result.getNameInNamespace());
-            log.info("getUserDN:" + result.getNameInNamespace());
-        }
-        return results;
-    }
-
+    /**
+     * ldap登录校验
+     * @param username 用户名
+     * @param password 密码
+     * @return 是否合法用户
+     */
     public boolean validLdapLogin(String username, String password) {
         boolean isValid = false;
         try {
@@ -70,5 +51,38 @@ public class LdapUtil {
         }
         log.info("validLdap:" + username + " isValid:" + isValid);
         return isValid;
+    }
+
+    /**
+     * 登录
+     * @param principal 用户名
+     * @param password 密码
+     */
+    public DirContext login(String principal, String password) throws NamingException {
+        Hashtable<String, String> env = new Hashtable<>();
+        env.put(Context.INITIAL_CONTEXT_FACTORY, INITIAL_CONTEXT_FACTORY);
+        env.put(Context.PROVIDER_URL, ldapProperties.getHost());
+        env.put(Context.SECURITY_PRINCIPAL, principal);
+        env.put(Context.SECURITY_CREDENTIALS, password);
+        // 尝试连接并认证，若用户名密码不对会抛出异常
+        return new InitialDirContext(env);
+    }
+
+    /**
+     * 获取用户集合
+     */
+    public List<String> getUserDN(DirContext dirContext, String username) throws NamingException {
+        List<String> results = new ArrayList<>();
+        // Perform search
+        SearchControls cons = new SearchControls();
+        cons.setSearchScope(SearchControls.SUBTREE_SCOPE);
+        NamingEnumeration<SearchResult> answer = dirContext.search(ldapProperties.getOuPath(), String.format(ldapProperties.getUserFilter(), username), cons);
+        // Process results
+        while (answer.hasMore()) {
+            SearchResult result = answer.next();
+            results.add(result.getNameInNamespace());
+            log.info("getUserDN:" + result.getNameInNamespace());
+        }
+        return results;
     }
 }
