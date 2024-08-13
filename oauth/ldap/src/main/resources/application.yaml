@@ -1,0 +1,7 @@
+ldap:
+  enable: true
+  host: ldap://192.168.0.32:389
+  ou-path: OU=Company,DC=local,DC=test,DC=com
+  user-filter: (sAMAccountName=%s)
+  username: CN=LDAP_Config,OU=Other,OU=Company,DC=local,DC=test,DC=com
+  password: 1q2w#E$R
