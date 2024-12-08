@@ -12,6 +12,12 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 指标监控组件
+ * 在Prometheus中，主要有以下几种数据类型：
+ * Counter（计数器）：用于累积数据，只能增加，不能减少。
+ * Gauge（测量仪）：表示一个可变的数值，可以增加或减少。
+ * Histogram（直方图）：用于统计数据分布情况，例如请求响应时间的分布。
+ * Summary（摘要）：类似于直方图，但是更适合记录长时间的数据分布情况。
+ * Untyped（未指定类型）：表示没有指定数据类型的指标。
  *
  * @author : chenbo
  * @date : 2024-01-26
@@ -41,14 +47,17 @@ public class MetricsMonitor {
      */
     private Summary aiAmountSum;
 
+    /**
+     * 初始化配置指标项，服务启动后自动执行
+     */
     @PostConstruct
-    private void init() {
-        // 暴露指标：xxx_total xxx_created
+    private void initConfig() {
+        // 暴露指标：xxx_total xxx_created，每次在原值基础上增加
         aiCount = Counter.build().name("ai_request_count")
                 .help("ai request count")
                 .labelNames(LABEL_AI_TYPE, LABEL_AI_SUCCESS)
                 .register();
-        // 暴露指标：xxx_count xxx_sum xxx_created
+        // 暴露指标：xxx_count xxx_sum xxx_created，与上方类似，值可以自由设置
         aiAmountSum = Summary.build().name("ai_request_amount_sum")
                 .help("ai request amount sum")
                 .labelNames(LABEL_AI_TYPE, LABEL_AI_SUCCESS)
