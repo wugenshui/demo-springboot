@@ -1,5 +1,6 @@
 package com.github.wugenshui.flowable.demo;
 
+import org.flowable.engine.HistoryService;
 import org.flowable.engine.ProcessEngine;
 import org.flowable.engine.ProcessEngineConfiguration;
 import org.flowable.engine.RepositoryService;
@@ -28,6 +29,8 @@ public class SimpleTest {
     private ProcessEngine processEngine;
     @Resource
     private TaskService taskService;
+    @Resource
+    private HistoryService historyService;
 
     public void run() {
         RepositoryService repositoryService = processEngine.getRepositoryService();
@@ -66,6 +69,9 @@ public class SimpleTest {
             tasks = printCurrentTask();
             if (!tasks.isEmpty()) {
                 taskService.complete(tasks.get(0).getId());
+            } else {
+                // 可以查询历史所有
+                historyService.createHistoricTaskInstanceQuery().processInstanceId(task.getProcessInstanceId()).list();
             }
         }
     }
@@ -74,9 +80,8 @@ public class SimpleTest {
         // 查询任务
         TaskService taskService = processEngine.getTaskService();
         List<Task> tasks = taskService.createTaskQuery().list();
-        System.out.println("You have " + tasks.size() + " tasks:");
-        for (int i = 0; i < tasks.size(); i++) {
-            System.out.println((i + 1) + ") " + tasks.get(i).getName());
+        if (!tasks.isEmpty()) {
+            System.out.println(String.format("--> 您有%s个任务，当前任务：%s", tasks.size(), tasks.get(0).getName()));
         }
         return tasks;
     }
