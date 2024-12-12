@@ -1,6 +1,6 @@
 package com.github.wugenshui.flowable;
 
-import com.github.wugenshui.flowable.demo.SimpleTest;
+import com.github.wugenshui.flowable.demo.QingJiaTest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -13,7 +13,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class App {
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(App.class, args);
-        SimpleTest bean = run.getBean(SimpleTest.class);
+        QingJiaTest bean = run.getBean(QingJiaTest.class);
         bean.run();
     }
 }
