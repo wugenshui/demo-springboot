@@ -23,6 +23,7 @@
             <extensionElements>
                 <flowable:properties>
                     <flowable:property name="approveType" value="6" />
+                    <flowable:property name="age" value="16" />
                 </flowable:properties>
                 <flowable:formData />
             </extensionElements>
